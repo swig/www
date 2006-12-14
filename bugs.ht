@@ -9,7 +9,7 @@ Note that you need to log on to SourceForge before submitting a bug.
 <p>
 Users who have found a bug and fixed it themselves can submit a
 <a href="http://sourceforge.net/patch/?group_id=1645">patch</a>.
-Please give the SWIG version or CVS snapshot date that the patch is against.
+Please give the SWIG version or SVN revision number that the patch is against.
 Again, please log on to SourceForge before submitting patches.
 
 <p>

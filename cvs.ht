@@ -3,6 +3,13 @@ SWIG CVS
 <p>
 <img src="images/cvs.png" alt="CVS">
 
+<h3> Important Note </h3>
+
+<p>
+SWIG has now switched to using SVN for revision control - see the <a
+href="svn.html">SWIG SVN</a> page for details of how to access our SVN
+repository.
+
 <p>
 Development versions of SWIG are available through the CVS server located at SourceForge.
 
