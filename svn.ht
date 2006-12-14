@@ -39,7 +39,7 @@ consult the generic SVN instructions above.
 <li><p>The latest development version of SWIG can be retrieved using
 
 <pre>
-% svn co https://swig.svn.sourceforge.net/svnroot/swig swig
+% svn co https://swig.svn.sourceforge.net/svnroot/swig/trunk swig
 </pre>
 
 <li><p>To build the system, follow these steps
