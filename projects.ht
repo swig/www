@@ -8,7 +8,7 @@ open source projects, inhouse projects within corporations or organisations as w
 
 <h1>Open source projects using SWIG</h1>
 The following are some of the large open source projects which use SWIG.
-These can be a useful reference for seeing how SWIG used in real projects as the source is available.
+These can be a useful reference for seeing how SWIG is used in real projects as the source is available.
 
 <li>
   <a href="http://subversion.tigris.org/">Subversion</a> Version control system.
