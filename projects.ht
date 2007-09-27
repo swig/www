@@ -118,6 +118,10 @@ gramophone records on CDs, and includes a Perl port.
 Crystal Space is a free (LGPL) and portable 3D Game Development Kit written in C++.
 </li>
 
+<li> <a href="http://pkif.sourceforge.net">PKIF</a>:
+PKIF is a full-featured, standards compliant Public Key Infrastructure enablement library. Its goal is to make it easy for your applications to take advantage of your PKI.
+</li>
+
 
 <h1>Other projects using SWIG</h1>
 <p>
@@ -531,4 +535,4 @@ used (but don't have many details).
 <h3> How are you using SWIG? </h3>
 
 If you would like to list your project here, please
-send e-mail to beazley@cs.uchicago.edu.
+send e-mail to the <a href="mail.html">swig-devel</a> mailing list.
