@@ -72,7 +72,7 @@ For those who are new to mailing lists, there are many articles on the subject, 
 <h2><a name="search_lists">Searching and browsing the mailing lists</h2>
 <p>
 The mailing lists can be searched in various different ways.
-The links below are shortcuts to the archives from where you can easily search or browse old postings.
+The links below are shortcuts to the archives from where you can easily search or browse the archives of postings from November 2005 onwards.
 </p>
 
 <p>
@@ -83,6 +83,27 @@ The links below are shortcuts to the archives from where you can easily search o
 <a href="http://sourceforge.net/mailarchive/forum.php?forum=swig-cvs">swig-cvs archives</a>
 </p>
 
+<p>
+The original mailing lists in use prior to November 2005 are partially archived. 
+These old lists and the new lists can be searched at the same time using <a href="http://www.gmane.org">Gmane</a>:
+</p>
+
+<!-- SiteSearch Gmane -->
+<TABLE bgcolor="#FFFFFF"><tr><td>
+<A HREF="http://www.google.com/">
+</td>
+<td>
+<INPUT TYPE=text name=query size=31 maxlength=255 value="">
+<INPUT type=submit VALUE="Gmane Search">
+<br>
+<font size=-1>
+<input type=radio name=group value="gmane.comp.programming.swig" checked> swig-user mailing list <input type=radio name=group value="gmane.comp.programming.swig.devel"> swig-devel mailing list <br>
+</font>
+</td></tr></TABLE>
+</FORM>
+<!-- SiteSearch Gmane -->
+
+<!-- no longer works as the University of Chicago has removed the mailing lists
 <p>
 The original mailing lists in use prior to November 2005 are still archived and available for browsing from the links below.
 </p>
@@ -98,7 +119,6 @@ These lists can be searched in two different ways.
 The most thorough approach is to use Google to search the web site that hosts these old list archives.
 </p>
 
-<!-- SiteSearch Google -->
 <FORM method=GET action="http://www.google.com/search">
 <input type=hidden name=ie value=UTF-8>
 <input type=hidden name=oe value=UTF-8>
@@ -115,13 +135,15 @@ border="0" ALT="Google"></A>
 </font>
 </td></tr></TABLE>
 </FORM>
-<!-- SiteSearch Google -->
+-->
 
 <p>
-An alternative approach is to make use of <a href="http://www.gmane.org">Gmane</a> which also archived these old lists.
-The <a href="http://dir.gmane.org/gmane.comp.programming.swig">old swig mailing list</a>
-can be searched or browsed online as if the list was a newsgroup.
-Gmane also has an <b>incomplete</b> archive of the <a href="http://dir.gmane.org/gmane.comp.programming.swig.devel"> old swig-dev mailing list</a>.
+The Gmane interface to the <a href="http://dir.gmane.org/gmane.comp.programming.swig">old swig and new swig-user mailing lists</a>
+and the <a href="http://dir.gmane.org/gmane.comp.programming.swig.devel"> old swig-dev and new swig-devel mailing lists</a> 
+can also be used to browse online as if the list was a newsgroup. Note that the old swig-dev archive is <b>incomplete</b>.
 </p>
 
+<p>
+The swig-user mailing list can also be browsed and searched using <a href="http://www.nabble.com/SWIG-f3365.html">Nabble</a>.
+</p>
 
