@@ -89,9 +89,8 @@ These old lists and the new lists can be searched at the same time using <a href
 </p>
 
 <!-- SiteSearch Gmane -->
-<TABLE bgcolor="#FFFFFF"><tr><td>
-<A HREF="http://www.google.com/">
-</td>
+<FORM method=GET action="http://search.gmane.org">
+<TABLE bgcolor="#FFFFFF"><tr>
 <td>
 <INPUT TYPE=text name=query size=31 maxlength=255 value="">
 <INPUT type=submit VALUE="Gmane Search">
