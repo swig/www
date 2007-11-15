@@ -7,7 +7,7 @@ This information is based on the SWIG-1.3.32 release.
 
 <h3>Code Generation</h3>
 
-SWIG current generates wrapper code for seventeen different target languages:
+SWIG currently generates wrapper code for eighteen different target languages:
 
 <ul>
 <li>Allegro CL
@@ -17,6 +17,7 @@ SWIG current generates wrapper code for seventeen different target languages:
 <li>Chicken
 <li>Guile
 <li>Java
+<li>Lua
 <li>Modula-3
 <li>Mzscheme
 <li>OCAML
