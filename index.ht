@@ -31,6 +31,10 @@ and non-commercial use.
 <h3>News</h3>
 
 <p>
+<b>2007/11/23</b>
+SWIG-1.3.33 has been released and fixes a few regressions introduced into version 1.3.32.
+
+<p>
 <b>2007/11/15</b>
 SWIG-1.3.32 has been released. This release contains over a hundred bug fixes and improvements to most language modules.
 
