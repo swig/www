@@ -122,6 +122,10 @@ Crystal Space is a free (LGPL) and portable 3D Game Development Kit written in C
 PKIF is a full-featured, standards compliant Public Key Infrastructure enablement library. Its goal is to make it easy for your applications to take advantage of your PKI.
 </li>
 
+<li> <a href="http://www.opencascade.org/">Open Cascade</a>:
+3D modeling & numerical simulation
+</li>
+
 
 <h1>Other projects using SWIG</h1>
 <p>
