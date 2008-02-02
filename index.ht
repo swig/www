@@ -2,7 +2,7 @@ Simplified Wrapper and Interface Generator
 
 <h2>Welcome to SWIG</h2>
 
-[ <a href="http://swig-jp.dyndns.org">Japanese</a> ]
+[ <a href="http://swig.1m2n.com">Chinese</a> ]
 
 <p>
 SWIG is a software development tool that connects programs written in
@@ -29,6 +29,10 @@ and non-commercial use.
 </ul>
 
 <h3>News</h3>
+
+<p>
+<b>2008/02/02</b>
+Jimmy Lv has provided a translation of the SWIG web site into Chinese, see <a href="http://swig.1m2n.com">http://swig.1m2n.com</a>.
 
 <p>
 <b>2007/11/23</b>
