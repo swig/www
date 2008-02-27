@@ -126,6 +126,10 @@ PKIF is a full-featured, standards compliant Public Key Infrastructure enablemen
 3D modeling & numerical simulation
 </li>
 
+<li> <a href="http://www.realitygrid.org/">RealityGrid</a>:
+Computational steering project - Python, Perl and Java wrappers.
+</li>
+
 
 <h1>Other projects using SWIG</h1>
 <p>
