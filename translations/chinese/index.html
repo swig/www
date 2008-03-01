@@ -1,10 +1,371 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<title>Simplified Wrapper and Interface Generator
-</title>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+<title>SWIG中文 | 首页</title>
 <body  bgcolor="#ffffff" link="#0000ff" vlink="#8000ff">
 
-<a href="http://swig.1m2n.com">Chinese</a>
+<table width=780 border=0 cellpadding=0 cellspacing=0 summary="Main web page">
+<tr>
+  <td valign=middle bgcolor="#000000">
+      <table width=180 cellpadding=0 cellspacing=0 summary="Corner section">
+          <tr>
+               <td>
+<center>
+<img src="images/swig17.png" alt="SWIG image">
+</center>
+
+               </td>
+         </tr>
+      </table>
+   </td>
+   <td valign=middle bgcolor="#e0e0e0">
+       <table width=600 cellpadding=0 cellspacing=0 summary="Top section">
+          <tr>
+             <td valign=middle>
+<table cellpadding=0 border=0 summary="Top section links">
+<tr>
+<td align=left><a href="index.html">主页</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="http://sourceforge.net/project/?group_id=1645">开发</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="mail.html">邮件列表</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="bugs.html">错误报告和补丁</a></td>
+</tr>
+</table>
+
+             </td>
+          </tr>
+       </table>
+   </td>
+</tr>
+<tr>
+   <td valign=top bgcolor="#e0e0e0">
+       <table width=180 summary="Side section">
+           <tr>
+               <td>
+<table width="100%" summary="Side section links">
+<tr>
+<td bgcolor="#000000" align=center><font color="#ffffff"><b>Information</b></font></td>
+</tr>
+<tr><td><a href="exec.html">SWIG是什么</a></td></tr>
+<tr><td><a href="compat.html">兼容性</a></td></tr>
+<tr><td><a href="compare.html">特征</a></td></tr>
+<tr><td><a href="tutorial.html">使用教程</a></td></tr>
+<tr><td><a href="doc.html">文档</a></td></tr>
+<tr><td><a href="svn.html">风险</a></td></tr>
+<tr><td><a href="history.html">历史</a></td></tr>
+<tr><td><a href="subversion.html">版本</a></td></tr>
+<tr><td><a href="guilty.html">参与者</a></td></tr>
+<tr><td><a href="projects.html">项目</a></td></tr>
+<tr><td><a href="copyright.html">版权申明</a></td></tr>
+<tr><td><a href="links.html">友情链接</a></td></tr>
+<tr><td><a href="survey.html">下载</a></td></tr>
+<tr><td><a href="http://www.dabeaz.com/cgi-bin/wiki.pl">SwigWiki</a></td></tr>
+
+<tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Exits</b></font></td></tr>
+<tr><td><a href="http://www.franz.com/products/allegrocl">AllegroCL</a></td></tr>
+<tr><td><a href="http://www.mono-project.com/">C# - Mono</a></td></tr>
+<tr><td><a href="http://msdn.microsoft.com/netframework">C# - MS .NET</a></td></tr>
+<tr><td><a href="http://common-lisp.net/project/cffi">CFFI</a></td></tr>
+<tr><td><a href="http://www.call-with-current-continuation.org/chicken.html">CHICKEN</a></td></tr>
+<tr><td><a href="http://clisp.cons.org">CLISP</a></td></tr>
+<tr><td><a href="http://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
+<tr><td><a href="http://java.sun.com">Java</a></td></tr>
+<tr><td><a href="http://www.lua.org">Lua</a></td></tr>
+<tr><td><a href="http://www.plt-scheme.org/software/mzscheme/">MzScheme</a></td></tr>
+<tr><td><a href="http://www.ocaml.org/">Ocaml</a></td></tr>
+<tr><td><a href="http://www.perl.com">Perl</a></td></tr>
+<tr><td><a href="http://www.php.net">PHP</a></td></tr>
+<tr><td><a href="http://www.python.org">Python</a></td></tr>
+<tr><td><a href="http://www.r-project.org">R</a></td></tr>
+<tr><td><a href="http://www.ruby-lang.org">Ruby</a></td></tr>
+<tr><td><a href="http://www.tcl.tk">Tcl/Tk</a></td></tr>
+
+<tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Our Generous Host</b></font></td></tr>
+<tr><td align=center><a href="http://sourceforge.net"><img src="http://sourceforge.net/images/sflogo2-steel.png" vspace="0" border=0 alt="SourceForge logo"></A></td></tr>
+
+</table>
+
+
+
+
+
+
+
+
+
+               </td>
+           </tr>
+       </table>
+   </td>
+   <td valign=top>
+       <table width=600 summary="Web page body">
+           <tr>
+              <td>
+
+ <h2>欢迎来到SWIG中文</h2>
+  [ <a href="http://www.swig.org">English</a> ]
+ <p>
+ SWIG是个帮助使用C或者C++编写的软件能与其它各种高级编程语言进行嵌入联接的开发工具。SWIG能应用于各种不同类型的语言包括常用脚本编译语言例如Perl, PHP, Python, Tcl, Ruby and PHP。<a href="compat.html#SupportedLanguages">支持语言列表</a>中也包括非脚本编译语言，例如C#, Common Lisp (CLISP, Allegro CL, CFFI, UFFI), Java, Modula-3, OCAML以及R，甚至是编译器或者汇编的计划应用（Guile, MzScheme, Chicken）。SWIG普遍应用于创建高级语言解析或汇编程序环境，用户接口，作为一种用来测试C/C++或进行原型设计的工具。SWIG还能够导出XML或Lisp s-expressions格式的解析树。SWIG可以被自由使用，发布，修改用于商业或非商业中。
+ 
+ <ul>
+ <li> <a href="survey.html">下载</a> 最新版本.
+ <li> <a href="doc.html">关于SWIG的文档, 文章</a>
+ <li> <a href="compare.html">性能特点</a>.
+ <li> <a href="mail.html">邮寄名单</a>
+ <li> <a href="bugs.html">Bug tracking</a>
+ <li> <a href="http://www.dabeaz.com/cgi-bin/wiki.pl">Swig畅所欲言!</a>
+ </ul>
+ 
+ <h3>News</h3>
+ 
+ <p>
+ <b>2007/11/23</b>
+ SWIG-1.3.33版本发布。修正了一些1.3.32版本中的Bug
+ 
+ <p>
+ <b>2007/11/15</b>
+ SWIG-1.3.32版本发布。修正了上百个Bug并改进了一些最常用的语言模块。
+ 
+ <p>
+ <b>2006/12/14</b>
+ SWIG开始使用Subversion (SVN)进行修改控制。具体使用方法请参见<a href="svn.html">SVN 使用指南</a> 
+ 
+ <p>
+ <b>2006/11/20</b>
+ SWIG-1.3.31版本发布。此版本修正了Python递归函数。
+ 
+ <p>
+ <b>2006/11/13</b>
+ SWIG-1.3.30版本发布。此版本增加了R的支持，以及修正了C#指针循环的BUG。
+ 
+ <p>
+ <b>2006/05/16</b>
+ Sourceforge修改了方法使得源代码能够使用cvs。参见已更新的<a href="cvs.html">cvs 使用指南</a>.
+ 
+ <p>
+ <b>2006/03/21</b>
+ SWIG-1.3.29版本发布。此版本修正了之前的bug。
+ 
+ <p>
+ <b>2006/02/11</b>
+ SWIG-1.3.28版本发布。此版本提供了一些新功能以及对之前版本的bug修正和提高。CFFI增加了对新语言的支持。
+ 
+ <p>
+ <b>2006/01/12</b>
+ SWIG组装成<a href="http://en.wikipedia.org/wiki/SWIG">Wikipedia</a>。
+ 
+ <p>
+ <b>2005/12/12</b>
+ 一篇在CodeGuru features上登载的关于SWIG的文章《<a href="http://codeguru.com/csharp/.net/net_asp/scripting/article.php/c11103">Expose Your C/C++ Program's Internal API with a Quick SWIG</a>》。
+ 
+ <p>
+ <b>2005/10/29</b>
+ SWIG和SWIG-dev的芝加哥大学邮件列表服务器正在关机，请使用SourceForge上新的swig-user和swig-devel邮件列表。详情请看<a href="http://www.swig.org/mail.html">邮件列表</a>.
+ 
+ <p>
+ <b>2005/10/15</b>
+ SWIG-1.3.27已经发布了，修正了前一版本中一个比较重要的错误
+ 
+ <p>
+ <b>2005/10/09</b>
+ SWIG-1.3.26已经发布。增加了对Lua, CLISP和Common Lisp with UFFI的支持. PHP4模块经过一番调整有了很好的工作效率。修复了一些小错误，对某些功能进行了改善。
+ 
+ <p>
+ <b>2005/06/11</b>
+ SWIG-1.3.25版本发布。这一版本对C#模块和运行时间类型系统作了很大程度的错误修复和改进。
+ 
+ <p>
+ <b>2005/03/25</b>
+ Greg Stein <a href=http://www.sauria.com/~twl/conferences/pycon2005/20050325/Python%20at%20Google.notes>在2005年PyCon会议</a>上做了关于Python 和 SWIG在Google's中的使用情况的专题演讲。
+  
+ <p>
+ <b>2004/12/14</b>
+ SWIG-1.3.24版本发布。主要修正了bug.
+ 
+ <p>
+ <b>2004/11/11</b>
+ SWIG-1.3.23版本发布。主要在模块和名字空间中增加了更多C++的支持。在语言名单中增加了Java 和 C#使之能利用C++默认参数的优势生成wrapper。许多小错误的修正和增强功能的做工作也包含在内。
+ 
+ <p>
+ <b>2004/09/04</b>
+ SWIG-1.3.22版本发布。本版本旨在继续不断改进和bug修正。主要改进了异常处理，enums 和 the STL。新增语言Allegro CL 和 Modula-3。文件已更新，并能通过以下格式查看：单html网页，多html网页以及pdf文件。
+ 
+ <p>
+ <b>2004/01/11</b>
+ SWIG-1.3.21版本发布。修正了重大bug。
+ <p>
+ <b>2003/12/17</b>
+ SWIG-1.3.20版本发布。此版本包含了对C++支持，directors, contracts等诸方面的改进。
+ 
+ <p>
+ <b>2003/12/17</b>
+ Phil Tomson的一篇关于SWIG 和 Ruby文章在2004年1月的<a href="http://www.cuj.com">C/C++ Users Journal.</a>上发表。
+ 
+ <p>
+ <b>2003/10/27</b>
+ 
+ 
+ The Code Generation Network undertakes an
+ <a href="http://www.codegeneration.net/tiki-read_article.php?articleId=33">interview</a> talking about SWIG.
+ 
+ <p>
+ <b>2003/03/28</b>
+ SWIG-1.3.19 has been
+ released.  This release fixes a small number of critical bugs in 1.3.18.
+ 
+ <p>
+ <b>2003/03/23</b>
+ SWIG-1.3.18 has been
+ released.  This release includes a number of new language modules (C# and Chicken), new features, an improved
+ build environment, and a lot of minor bug fixes.
+ 
+ <p>
+ <b>2002/11/27</b>
+ An article about SWIG appears in <a href="http://www.cmagazine.jp/contents/200212.html">C Magazine</a> (Japanese).
+ 
+ <p>
+ <b>2002/11/27</b>
+ Bernard Desgraupes has created a Macintosh version of SWIG-1.3.17. Download <a href="http://webperso.easyconnect.fr/bdesgraupes/Downloads/MacSwig_Carbon_1.3.17.hqx">here</a>.
+ 
+ <p>
+ <b>2002/11/22</b>
+ SWIG-1.3.17 has been
+ released.  This is mostly a bug-fix release for 1.3.16.
+ 
+ <p>
+ <b>2002/10/14</b>
+ SWIG-1.3.16 has been
+ released.  This is mostly a bug-fix release for 1.3.15.
+ 
+ <p>
+ <b>2002/10/01</b>
+ Mitchell Charity has created <a href="http://www.vendian.org/mncharity/dir3/inline/swig/">Inline::SWIG</a> for Perl.  Check it out.
+ 
+ <p>
+ <b>2002/09/10</b>
+ SWIG-1.3.15 has been
+ released.  This is mostly a bug-fix release for 1.3.14 that resolves a number
+ of issues with template and namespace support.  Improvements to exception handling and overloading are also included.
+ 
+ <p>
+ <b>2002/08/12</b>
+ SWIG-1.3.14 has been
+ released.  SWIG development continues to break new ground--this release features
+ full support for overloaded methods and functions, C++ smart pointers, and more.  It also
+ includes new language modules for Ocaml and XML as well as a variety of enhancements to
+ existing modules.
+ 
+ 
+ <p>
+ <b>2002/07/19</b>
+ Shibukawa Yoshiki is working on a Japanese translation of the SWIG documentation.  Check out
+ <a href="http://swig-jp.dyndns.org/">swig-jp.dyndns.org</a>.
+ 
+ <p>
+ <b>2002/06/17</b>
+ SWIG-1.3.13
+ has been released.  This is a more stable version of SWIG-1.3.12.  If you downloaded
+ SWIG-1.3.12, you should upgrade.
+ 
+ <p>
+ <b>2002/06/02</b>
+ <a href="Doc1.3/index.html">Updated documentation</a> for SWIG-1.3.12 is online.
+ 
+ <p>
+ <b>2002/06/02</b>
+ SWIG-1.3.12
+ has been released.  This is the most capable SWIG release ever!  New
+ features include support for C++ namespaces, enhanced support for C++
+ templates, new library files, updated documentation, and a huge number of minor enhancements.
+ See the <a href="survey.html">download</a> page for release notes
+ and versions for Windows and Macintosh.
+ 
+ <p>
+ <b>2002/04/03</b> Robert Tolbert has contributed PDF and postscript versions of the SWIG-1.3.11 documentation.  Check it out.
+ 
+ <p>
+ <b>2002/02/01</b> SWIG-1.3.11 has been released.   This is a bug-fix release for SWIG-1.3.10.  The release also
+ includes substantial improvements to the Java and PHP modules.
+ See the <a href="survey.html">download</a> page for release notes and versions for Windows and Macintosh.  
+ 
+ <p>
+ <b>2001/12/10</b> SWIG-1.3.10 has been
+ released.   This release features substantial changes to typemaps, exception
+ handling, and SWIG's internals.   New features also include support for C++ operator
+ overloading and an experimental PHP module.   Since this is an unstable
+ release, first time users might want to consider using SWIG-1.3.9 or
+ SWIG1.1p5 instead.
+ See the <a href="survey.html">download</a> page for release notes and versions for Windows and Macintosh.  
+ 
+ 
+ <P>
+ <b>2001/12/10</b> The <a href="Doc1.3">development documentation</a> for SWIG-1.3 has been extensively updated.  Not yet finished, but includes coverage of most
+ new SWIG features including the redesigned typemap system and
+ improved exception handling.             
+ 
+ <p>
+ <b>2001/10/31</b> Announcing the SwigWiki.   
+ Problems with SWIG?  Look here for more information and to contribute.
+ 
+ <p>
+ <b>2001/09/28</b> <a href="Doc1.3">Development documentation</a> for SWIG-1.3 is now online.  This is a work in progress, but many new SWIG features
+ are described.
+ 
+ <p>
+ <b>2001/09/23</b> SWIG-1.3.9 has been
+ released. This is a bug-fix release for 1.3.7 (described below).
+ See the <a href="survey.html">download</a> page for release notes and versions for Windows and Macintosh.  Note: SWIG-1.3.8 had a major parsing problem that
+ snuck in at the last moment--don't use that version.
+ 
+ <p>
+ <b>2001/09/03</b> SWIG-1.3.7 has been
+ released. This is one of the most substantial enhancements to SWIG ever released.  Includes a more
+ powerful parser, support for C++ templates, simplified wrapping of overloaded methods and more!
+ This release also includes some updated documentation on the new features. See the <a href="survey.html">download</a> page for release notes and versions for Windows and Macintosh.
+ 
+ 
+ <p>
+ <b>2001/08/30</b> A precompiled executable of SWIG-1.3.6 for Windows (swigwin-1.3.6) is now available.
+ 
+ 
+ <p>
+ <b>2001/07/16</b> A Macintosh port of SWIG-1.3.6 (macswig-1.3.6)
+ has been contributed by Luigi Ballabio.
+ 
+ <p>
+ <b>2001/07/10</b> SWIG-1.3.6 has been released.  This release includes substantial changes
+ to the language modules and greatly improved support for Guile, Java, and 
+ Ruby.  Please see the <a href="survey.html">download</a> page for further details.
+ 
+ <p>
+ <b>2000/10/14</b> A Macintosh port of SWIG1.3a5 (macswig1.3a5) has been contributed by Luigi Ballabio.
+ 
+ 
+ <p>
+ <b>2000/09/22</b> SWIG1.3a5
+ has been released.  This release has too many changes to list here,
+ but it fixes a lot of bugs in SWIG1.3a3 and SWIG1.3a4, includes new language modules
+ for Ruby and Mzscheme, and has some new examples.  Note: this is a somewhat
+ unstable release and may not be suitable for first time users.
+ Download SWIG-1.1 instead.
+ 
+ 
+
+
+<hr>
+Feedback and questions concerning this site should be posted to the <a href="mail.html">swig-devel</a> mailing list.
+
+<p>
+Last modified : Sun Oct 21 00:32:18 2007
+
+
+             </td>
+          </tr>
+       </table>
+   </td>
+</tr>
+</table>
 
 </body>
-
+</html>
