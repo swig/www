@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+
+<title>SWIG Tutorial
+</title>
+<body  bgcolor="#ffffff" link="#0000ff" vlink="#8000ff">
+
+<table width=780 border=0 cellpadding=0 cellspacing=0 summary="Main web page">
+<tr>
+  <td valign=middle bgcolor="#000000">
+      <table width=180 cellpadding=0 cellspacing=0 summary="Corner section">
+          <tr>
+               <td>
+<center>
+<img src="images/swig17.png" alt="SWIG image">
+</center>
+
+               </td>
+         </tr>
+      </table>
+   </td>
+   <td valign=middle bgcolor="#e0e0e0">
+       <table width=600 cellpadding=0 cellspacing=0 summary="Top section">
+          <tr>
+             <td valign=middle>
+<table cellpadding=0 border=0 summary="Top section links">
+<tr>
+<td align=left><a href="http://minidx.com">Minidx</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="http://blog.minidx.com">翻译博客</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="index.html">主页</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="http://sourceforge.net/project/?group_id=1645">开发</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="mail.html">邮件列表</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="bugs.html">错误报告和补丁</a></td>
+</tr>
+</table>
+
+             </td>
+          </tr>
+       </table>
+   </td>
+</tr>
+<tr>
+   <td valign=top bgcolor="#e0e0e0">
+       <table width=180 summary="Side section">
+           <tr>
+               <td>
+<table width="100%" summary="Side section links">
+<tr>
+<td bgcolor="#000000" align=center><font color="#ffffff"><b>Information</b></font></td>
+</tr>
+<tr><td><a href="exec.html">SWIG是什么</a></td></tr>
+<tr><td><a href="compat.html">兼容性</a></td></tr>
+<tr><td><a href="compare.html">特征</a></td></tr>
+<tr><td><a href="tutorial.html">使用教程</a></td></tr>
+<tr><td><a href="doc.html">文档</a></td></tr>
+<tr><td><a href="svn.html">风险</a></td></tr>
+<tr><td><a href="history.html">历史</a></td></tr>
+<tr><td><a href="subversion.html">版本</a></td></tr>
+<tr><td><a href="guilty.html">参与者</a></td></tr>
+<tr><td><a href="projects.html">项目</a></td></tr>
+<tr><td><a href="copyright.html">版权申明</a></td></tr>
+<tr><td><a href="links.html">友情链接</a></td></tr>
+<tr><td><a href="survey.html">下载</a></td></tr>
+<tr><td><a href="http://www.dabeaz.com/cgi-bin/wiki.pl">SwigWiki</a></td></tr>
+
+<tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Exits</b></font></td></tr>
+<tr><td><a href="http://www.franz.com/products/allegrocl">AllegroCL</a></td></tr>
+<tr><td><a href="http://www.mono-project.com/">C# - Mono</a></td></tr>
+<tr><td><a href="http://msdn.microsoft.com/netframework">C# - MS .NET</a></td></tr>
+<tr><td><a href="http://common-lisp.net/project/cffi">CFFI</a></td></tr>
+<tr><td><a href="http://www.call-with-current-continuation.org/chicken.html">CHICKEN</a></td></tr>
+<tr><td><a href="http://clisp.cons.org">CLISP</a></td></tr>
+<tr><td><a href="http://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
+<tr><td><a href="http://java.sun.com">Java</a></td></tr>
+<tr><td><a href="http://www.lua.org">Lua</a></td></tr>
+<tr><td><a href="http://www.plt-scheme.org/software/mzscheme/">MzScheme</a></td></tr>
+<tr><td><a href="http://www.ocaml.org/">Ocaml</a></td></tr>
+<tr><td><a href="http://www.perl.com">Perl</a></td></tr>
+<tr><td><a href="http://www.php.net">PHP</a></td></tr>
+<tr><td><a href="http://www.python.org">Python</a></td></tr>
+<tr><td><a href="http://www.r-project.org">R</a></td></tr>
+<tr><td><a href="http://www.ruby-lang.org">Ruby</a></td></tr>
+<tr><td><a href="http://www.tcl.tk">Tcl/Tk</a></td></tr>
+
+
+<tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Our Generous Host</b></font></td></tr>
+<tr><td align=center><a href="http://sourceforge.net"><img src="http://sourceforge.net/images/sflogo2-steel.png" vspace="0" border=0 alt="SourceForge logo"></A></td></tr>
+</table>
+
+
+
+
+
+
+
+
+
+               </td>
+           </tr>
+       </table>
+   </td>
+   <td valign=top>
+       <table width=600 summary="Web page body">
+           <tr>
+              <td>
+
+ <p>
+ <img src="images/tutorial.png" alt="Tutorial">
+ 
+ <p>
+ 想要快一点的方法吗，使用swig吧。假设你有一些c你想再加入Tcl, Perl, Python, Java and C#.。举例来说有这么一个文件example.c
+ 
+ <blockquote><pre>
+ /* File : example.c */
+ 
+ #include &lt;time.h&gt;
+ double My_variable = 3.0;
+ 
+ int fact(int n) {
+     if (n &lt;= 1) return 1;
+     else return n*fact(n-1);
+ }
+ 
+ int my_mod(int x, int y) {
+     return (x%y);
+ }
+ 	
+ char *get_time()
+ {
+     time_t ltime;
+     time(&amp;ltime);
+     return ctime(&amp;ltime);
+ }
+ 
+ </pre></blockquote>
+ 
+ <h3>接口文件</h3> 
+现在，为了增加这些文件到你喜欢的语言中，你需要写一个接口文件（interface file）投入到swig中。这些C functions的接口文件可能如下所示：
+ 
+ <blockquote><pre>
+ /* example.i */
+ %module example
+ %{
+ /* Put header files here or function declarations like below */
+ extern double My_variable;
+ extern int fact(int n);
+ extern int my_mod(int x, int y);
+ extern char *get_time();
+ %}
+ 
+ extern double My_variable;
+ extern int fact(int n);
+ extern int my_mod(int x, int y);
+ extern char *get_time();
+ </pre></blockquote>
+ 
+ <h3> 建立Tcl模块</h3>
+ 在UNIX系统提示，键入以下信息（LINUX系统请见<a href="http://www.dabeaz.com/cgi-bin/wiki.pl?SwigFaq/SharedLibraries">SWIG WIKI共享库</a>页面其他操作系统帮助）：
+ 
+ <blockquote>
+ <pre>
+ unix % swig -tcl example.i
+ unix % gcc -fpic -c example.c example_wrap.c \
+        -I/usr/local/include 
+ unix % gcc -shared example.o example_wrap.o -o example.so
+ unix % tclsh
+ % load ./example.so example
+ % puts $My_variable
+ 3.0
+ % fact 5
+ 120
+ % my_mod 7 3
+ 1
+ % get_time
+ Sun Feb 11 23:01:07 1996
+ 
+ % 
+ </pre></blockquote>
+ 该<tt>SWIG</tt>命令创建了一个文件<a href = "tutorial/example_wrap.html"><tt>example_wrap.c</tt> </a>，编辑并且和其余的程序联接。在这情况下，我们必须创建一个动态可装载的链接。能够装载进入TCL使用LOAD命令。
+ 
+ <h3> 建立Python模块 </h3>
+ 转换编码C成Python模块很简单，只需要按如下做即可（请见其他操作系统的<a href="http://www.dabeaz.com/cgi-bin/wiki.pl?SwigFaq/SharedLibraries">SWIG共享库</a>帮助手册）:
+ 
+ <blockquote> <pre>
+ 
+ unix % swig -python example.i
+ unix % gcc -c example.c example_wrap.c \
+        -I/usr/local/include/python2.1
+ unix % ld -shared example.o example_wrap.o -o _example.so 
+ </pre> </blockquote>
+我们现在可以使用如下Python模块 : 
+ <blockquote> <pre>
+ &gt;&gt;&gt; import example
+ &gt;&gt;&gt; example.fact(5)
+ 120
+ &gt;&gt;&gt; example.my_mod(7,3)
+ 1
+ &gt;&gt;&gt; example.get_time()
+ 'Sun Feb 11 23:01:07 1996'
+ &gt;&gt;&gt;
+ </pre>
+ </blockquote>
+ 
+ <h3> 建立Perl模块 </h3>
+ 你可以建立如下的Perl模块，如Solaris(请见其他操作系统的<a href="http://www.dabeaz.com/cgi-bin/wiki.pl?SwigFaq/SharedLibraries">SWIG共享库</a>帮助手册）:
+ 
+ <blockquote><pre>
+ unix % swig -perl5 example.i
+ unix % gcc -c example.c example_wrap.c \
+        `perl -MExtUtils::Embed -e ccopts`
+ unix % ld -G example.o example_wrap.o -o example.so
+ unix % perl
+ use example;
+ print $example::My_variable,"\n";
+ print example::fact(5),"\n";
+ print example::get_time(),"\n";
+ &lt;ctrl-d&gt;
+ 3.0
+ 120
+ Sun Feb 11 23:01:07 1996
+ unix % 
+ </pre></blockquote>
+ 
+ <h3> 建立Java模块 </h3>
+ 
+SWIG也会产生JNI代码以便Jave代码进入C/CC++。以下是建立一个Jave模块的事例（cygwin ，见其他操作系统的<a href="http://www.dabeaz.com/cgi-bin/wiki.pl?SwigFaq/SharedLibraries">swig维基共享库</a>页帮助）:
+ 
+ <blockquote><pre>
+ $ swig -java example.i
+ $ gcc -c example.c example_wrap.c -I/c/jdk1.3.1/include -I/c/jdk1.3.1/include/win32
+ $ gcc -shared example.o  example_wrap.o -mno-cygwin -Wl,--add-stdcall-alias  -o example.dll
+ $ cat main.java
+ public class main {
+   public static void main(String argv[]) {
+     System.loadLibrary("example");
+     System.out.println(example.getMy_variable());
+     System.out.println(example.fact(5));
+     System.out.println(example.get_time());
+   }
+ }
+ $ javac main.java
+ $ java main
+ 3.0
+ 120
+ Mon Mar  4 18:20:31  2002
+ $
+ </pre></blockquote>
+ 
+ <h3> 建立C#模块 </h3>
+ SWIG也会产生代码以便C#使用Pinvoke进入C/CC++。以下是如何建立C#模块事例。cygwin ，见其他操作系统的<a href="http://www.dabeaz.com/cgi-bin/wiki.pl?SwigFaq/SharedLibraries">swig维基共享库</a>页帮助。使用了开源<a href="http://www.southern-storm.com.au/portable_net.html">DotGNU Portable.NET</a>能够在大多数Unix系统上运行，和其他C# compilers一样方便使用:
+ 
+ <blockquote><pre>
+ $ swig -csharp  example.i
+ $ gcc -c -fpic  example.c example_wrap.c
+ $ gcc -shared example.o  example_wrap.o   -o libexample.so
+ $ cscc -o runme *.cs
+ $ cat runme.cs
+ using System;
+ public class runme {
+     static void Main() {
+         Console.WriteLine(example.My_variable);
+         Console.WriteLine(example.fact(5));
+         Console.WriteLine(example.get_time());
+     }
+ }
+ $ ilrun runme
+ 3
+ 120
+ Tue May 13 10:45:45 2003
+ 
+ $
+ </pre></blockquote>
+ 
+ <h3>SWIG 懒人方法</h3>
+ 如上所见，并非总是需要写一个专门的接口文件。如果你有一个头文件，你可以直接在其中包含SWIG接口，如例：
+ 
+ <blockquote>
+ <pre>
+ %module example
+ %{
+ /* Includes the header in the wrapper code */
+ #include "header.h"
+ %}
+ 
+ /* Parse the header file to generate wrappers */
+ %include "header.h"
+ </pre>
+ </blockquote>
+ 另外，有些人可能只包括SWIG条件指令在头文件中。例如：
+ 
+ <blockquote>
+ <pre>
+ #ifdef SWIG
+ %module example
+ %{
+ #include "header.h"
+ %}
+ #endif
+ 
+ extern int fact(int n);
+ ...
+ </pre>
+ </blockquote>
+ 
+ <h3> Microsoft Windows下运行SWIG</h3>
+ SWIG能够运行在所有已知的32位版本的WINDOWS下95/98/NT/2000/XP。SWIG通常使用命令提示符因此能够使用NMAKE。模块通常由DLL编译，可动态加载入Tcl, Python,或者任何你使用的语言。只需要小小加工，SWIG就能够在MS下发挥巨大作用。
+ 
+ <h3>That's it (well, more or less)</h3>
+ 在开始前，你需要知道的事情。这里是简短的清单:
+ 
+ <ul>
+ <li> 明确模块名称
+ <li> 使用 ANSI C/C++
+ <li> 理解如何编写一个共享模块/动态连接库（可能需要阅读一些所使用的编译器的帮助文件）
+ <li> 放松
+ </ul>
+ 
+ <h3>Surely there's more to it...</h3>
+ 上述例子都很简单，但是大体思路已经延伸到复杂的C/C++。事实上，重要的是明白SWIG一个完整的C++支持下几乎能包含所有语言的特征。这些包括预处理，指针，类，甚至C++模块。SWIG能够在特定语言打包结构和类变成PROXY。
+ 
+ <p>
+ 为了说明这一点，假设你想要封装以下C++数据结构:
+ 
+ <blockquote>
+ <pre>
+ // pair.h.  A pair like the STL
+ namespace std {
+    template&lt;class T1, class T2&gt; struct pair {
+        T1 first;
+        T2 second;
+        pair() : first(T1()), second(T2()) { };
+        pair(const T1 &amp;f, const T2 &amp;s) : first(f), second(s) { }
+    };
+ }
+ </pre>
+ </blockquote>
+ 为了封装SWIG你需要如下接口:
+ 
+ <blockquote>
+ <pre>
+ // pair.i - SWIG interface
+ %module pair
+ %{
+ #include "pair.h"
+ %}
+ 
+ // Ignore the default constructor
+ %ignore std::pair::pair();      
+ 
+ // Parse the original header file
+ %include "pair.h"
+ 
+ // Instantiate some templates
+ 
+ %template(pairii) std::pair&lt;int,int&gt;;
+ %template(pairdi) std::pair&lt;double,int&gt;;
+ </pre>
+ </blockquote>
+ 
+ 接下去是编译（Python):
+ 
+ <blockquote>
+ <pre>
+ $ swig -python -c++ pair.i
+ $ c++ -c pair_wrap.c -I/usr/local/include/python2.1
+ $ c++ -shared pair_wrap.o -o _pair.so
+ $ python
+ Python 2.1 (#3, Aug 20 2001, 15:41:42) 
+ [GCC 2.95.2 19991024 (release)] on sunos5
+ Type "copyright", "credits" or "license" for more information.
+ &gt;&gt;&gt; import pair
+ &gt;&gt;&gt; a = pair.pairii(3,4)
+ &gt;&gt;&gt; a.first
+ 3
+ &gt;&gt;&gt; a.second
+ 4
+ &gt;&gt;&gt; a.second = 16
+ &gt;&gt;&gt; a.second
+ 16
+ &gt;&gt;&gt; b = pair.pairdi(3.5,8)
+ &gt;&gt;&gt; b.first
+ 3.5
+ &gt;&gt;&gt; b.second
+ 8
+ </pre>
+ </blockquote>
+ 
+
+
+<hr>
+有什么问题可以通过<a href="mail.html">swig-devel邮件列表</a>进行反馈 .
+
+<p>
+最后修改: Thu Sep 27 21:25:53 2007
+
+
+             </td>
+          </tr>
+       </table>
+   </td>
+</tr>
+</table>
+
+</body>
+</html>
+ 
+
+
+
+
+
+
+
+
+
