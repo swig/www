@@ -23,7 +23,7 @@ SWIG has also been distributed as source code from the following locations:
 You can also find SWIG in the following locations :
 
 <ul>
-<li> <a href="http://cgi.debian.org/www-master/debian.org/Packages/stable/interpreters/swig.html">Debian GNU/Linux</a>.
+<li> <a href="http://packages.debian.org/swig">Debian GNU/Linux</a>.
 <li> <a href="http://www.freebsd.org/ports/devel.html">FreeBSD</a>.
 <li> <a href="http://www.cygwin.com">Cygwin</a>.
 <li> <a href="http://www.oreilly.com/catalog/python/noframes.html">Programming Python</a> (Included on CD-ROM).
