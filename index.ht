@@ -34,6 +34,7 @@ and non-commercial use.
 <b>2008/02/27</b>
 SWIG-1.3.34 has been released. This release adds shared_ptr support for Python and fixes a number of various other bugs.
 
+
 <p>
 <b>2007/11/23</b>
 SWIG-1.3.33 has been released and fixes a few regressions introduced into version 1.3.32.
