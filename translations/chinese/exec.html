@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<title>Executive Summary
+</title>
+<body  bgcolor="#ffffff" link="#0000ff" vlink="#8000ff">
+
+<table width=780 border=0 cellpadding=0 cellspacing=0 summary="Main web page">
+<tr>
+  <td valign=middle bgcolor="#000000">
+      <table width=180 cellpadding=0 cellspacing=0 summary="Corner section">
+          <tr>
+               <td>
+<center>
+<img src="images/swig17.png" alt="SWIG image">
+</center>
+
+               </td>
+         </tr>
+      </table>
+   </td>
+   <td valign=middle bgcolor="#e0e0e0">
+       <table width=600 cellpadding=0 cellspacing=0 summary="Top section">
+          <tr>
+             <td valign=middle>
+<table cellpadding=0 border=0 summary="Top section links">
+<tr>
+<td align=left><a href="index.html">主页</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="http://sourceforge.net/project/?group_id=1645">开发</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="mail.html">邮件列表</a>&nbsp;|&nbsp;</td>
+<td align=left><a href="bugs.html">错误报告和补丁</a></td>
+</tr>
+</table>
+
+             </td>
+          </tr>
+       </table>
+   </td>
+</tr>
+<tr>
+   <td valign=top bgcolor="#e0e0e0">
+       <table width=180 summary="Side section">
+           <tr>
+               <td>
+<table width="100%" summary="Side section links">
+<tr>
+<td bgcolor="#000000" align=center><font color="#ffffff"><b>Information</b></font></td>
+</tr>
+<tr><td><a href="exec.html">SWIG是什么</a></td></tr>
+<tr><td><a href="compat.html">兼容性</a></td></tr>
+<tr><td><a href="compare.html">特征</a></td></tr>
+<tr><td><a href="tutorial.html">使用教程</a></td></tr>
+<tr><td><a href="doc.html">文档</a></td></tr>
+<tr><td><a href="svn.html">风险</a></td></tr>
+<tr><td><a href="history.html">历史</a></td></tr>
+<tr><td><a href="subversion.html">版本</a></td></tr>
+<tr><td><a href="guilty.html">参与者</a></td></tr>
+<tr><td><a href="projects.html">项目</a></td></tr>
+<tr><td><a href="copyright.html">版权申明</a></td></tr>
+<tr><td><a href="links.html">相关链接</a></td></tr>
+<tr><td><a href="survey.html">下载</a></td></tr><tr><td><a href="http://www.dabeaz.com/cgi-bin/wiki.pl">SwigWiki</a></td></tr>
+
+<tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Exits</b></font></td></tr>
+<tr><td><a href="http://www.franz.com/products/allegrocl">AllegroCL</a></td></tr>
+<tr><td><a href="http://www.mono-project.com/">C# - Mono</a></td></tr>
+<tr><td><a href="http://msdn.microsoft.com/netframework">C# - MS .NET</a></td></tr>
+<tr><td><a href="http://common-lisp.net/project/cffi">CFFI</a></td></tr>
+<tr><td><a href="http://www.call-with-current-continuation.org/chicken.html">CHICKEN</a></td></tr>
+<tr><td><a href="http://clisp.cons.org">CLISP</a></td></tr>
+<tr><td><a href="http://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
+<tr><td><a href="http://java.sun.com">Java</a></td></tr>
+<tr><td><a href="http://www.lua.org">Lua</a></td></tr>
+<tr><td><a href="http://www.plt-scheme.org/software/mzscheme/">MzScheme</a></td></tr>
+<tr><td><a href="http://www.ocaml.org/">Ocaml</a></td></tr>
+<tr><td><a href="http://www.perl.com">Perl</a></td></tr>
+<tr><td><a href="http://www.php.net">PHP</a></td></tr>
+<tr><td><a href="http://www.python.org">Python</a></td></tr>
+<tr><td><a href="http://www.r-project.org">R</a></td></tr>
+<tr><td><a href="http://www.ruby-lang.org">Ruby</a></td></tr>
+<tr><td><a href="http://www.tcl.tk">Tcl/Tk</a></td></tr>
+
+
+<tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Our Generous Host</b></font></td></tr>
+<tr><td align=center><a href="http://sourceforge.net"><img src="http://sourceforge.net/images/sflogo2-steel.png" vspace="0" border=0 alt="SourceForge logo"></A></td></tr>
+</table>
+
+
+
+
+
+
+
+
+
+               </td>
+           </tr>
+       </table>
+   </td>
+   <td valign=top>
+       <table width=600 summary="Web page body">
+           <tr>
+              <td>
+
+ <img src="images/exec.png" alt="Executive Summary">
+ <p>
+SWIG是一个能将C或者C++编写的程序与其它各种高级语言如Perl, Python, Ruby, 和 Tcl进行联接的开发工具。其原理是从C/C++头文件中找到申明并利用他们生成脚本语言访问C/C++代码所必须的封装代码。SWIG具有高度可自定义的特点，它能帮助你生成适合你的应用程序的封装包。<p>
+ John Ousterhout (Tcl的创造者) 写了<a href="http://home.pacbell.net/ouster/scripting.html">一篇文章</a>
+ 描述SWIG对脚本语言的好处.   SWIG能相当容易的将脚本语言和C/C++代码连接起了。
+ <p>SWIG 主要用在以下几个方面：
+ 
+ <ul>
+ <li><p><b>编译更强大的C/C++程序</b>.Using SWIG, you can
+ replace the main() function of a C program with a scripting
+ interpreter from which you can control the application.  This adds
+ quite a lot of flexibility and makes the program "programmable."  That
+ is, the scripting interface allows users and developers to easily
+ modifiy the behavior of the program without having to modify low-level
+ C/C++ code.  The benefits of this are numerous. In fact think of all
+ of the large software packages that you use every day---nearly all of
+ them include special a macro language, configuration language, or even
+ a scripting engine that allows users to make customizations.
+ 
+ <li><p><b>快速构造原型和调试</b>.  SWIG allows C/C++ programs to be placed in
+ a scripting environment that can be used for testing and debugging.
+ For example, you might test a library with a collection of scripts or use the scripting
+ interpreter as an interactive debugger.   Since SWIG requires no modifications to the
+ underlying C/C++ code, it can be used even if the final product does not rely upon scripting.
+ 
+ <li><p><b>系统集成</b>.  Scripting languages work fairly well
+ for controlling and gluing loosely-coupled software components
+ together.  With SWIG, different C/C++ programs can be turned into
+ scripting language extension modules.  These modules can then be
+ combined together to create new and interesting applications.
+ 
+ <li><p><b>架设脚本语言的扩展模块</b>.  SWIG
+ can be used to turn common C/C++ libraries into components for use in
+ popular scripting languages.  Of course, you will still want to make
+ sure that no-one else has already created a module before doing this.
+ </ul>
+ 
+ SWIG is sometimes compared to interface definition language (IDL)
+ compilers such as those you find with systems such as CORBA and COM.
+ Although there are a few similarities, the whole point of SWIG is to
+ make it so you don't have to add an extra layer of IDL specifications
+ to your application.  If anything, it's much more of a rapid
+ application development and prototyping tool.  Specifically:
+ 
+ <ul>
+ <li><p><b>ANSI C/C++ syntax</b>.  SWIG parses ANSI C++ that has been
+ extended with a number of special directives.  As a result, interfaces
+ are usually built by grabbing a header file and tweaking it a little
+ bit.  This particular approach is especially useful when the
+ underlying C/C++ program undergoes frequent modification.
+ 
+ <li><p><b>SWIG is not a stub generator</b>.  SWIG produces code that you
+ simply compile and run.  You don't have to fill in any stubs or write
+ special client/server code as you do with RPC-like systems.
+ 
+ <li><p><b>SWIG does not define a protocol nor is it a component
+ framework.</b> SWIG does not define mechanisms or enforce rules
+ regarding the way in which software components are supposed to
+ interact with each other.  Nor is it a specialized runtime library
+ or alternative scripting language API.  SWIG is merely a code generator
+ that provides the glue necessary to hook C/C++ to other languages.
+ 
+ <li><p><b>Designed to work with existing C/C++ code</b>.  SWIG
+ requires little, if any, modifications to existing code.  For the most
+ part, it encourages you to keep a clean separation between C/C++ and
+ its scripting interface.
+ 
+ <li><p><b>Extensibility</b>.  SWIG provides a variety of customization options that
+ allow you to blow your whole leg off if that's what you want to do.  
+ SWIG is not here to enforce programming morality.
+ </ul>
+ 
+ Finally, it is worth noting that even though SWIG is occasionally compared
+ to other more specialized scripting language extension building tools
+ (e.g., Perl XS, Python bgen, etc.), its primary audience is C/C++
+ programmers who want to add a scripting language component to their
+ applications.  Because of this, SWIG tends to have a slightly
+ different focus than tools designed to build small modules for
+ widespread use in a scripting language distribution. applications.
+ 
+ <p>
+ A number of <a href="doc.html">papers and tutorials</a> describing SWIG are available.
+ You can also view a simple <a href="tutorial.html">tutorial</a> to see an
+ example of SWIG in action, or check out how other people are using SWIG
+ in their <a href="projects.html">projects</a>.
+ 
+ <p>
+ SWIG has been freely available in various forms since February, 1996
+ and a large number of developers have made contributions.  Today, SWIG
+ remains an all-volunteer effort.  Approximately 875 people subscribe
+ to the <a href="mail.html">swig</a> mailing list and a public SVN
+ repository is available at SourceForge.  Versions of 
+ SWIG can now be found in most Linux distributions (however, you'll almost
+ certainly want to get the latest version here).
+ 
+ 
+
+
+<hr>
+Feedback and questions concerning this site should be posted to the <a href="mail.html">swig-devel</a> mailing list.
+
+<p>
+Last modified : Thu Sep 27 21:25:52 2007
+
+
+             </td>
+          </tr>
+       </table>
+   </td>
+</tr>
+</table>
+
+</body>
+</html>
+ 
+
+
+
+
+
+
+
+
+
