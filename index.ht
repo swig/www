@@ -35,10 +35,6 @@ and non-commercial use.
 SWIG-1.3.34 has been released. This release adds shared_ptr support for Python and fixes a number of various other bugs.
 
 <p>
-<b>2008/02/02</b>
-Jimmy Lv has provided a translation of the SWIG web site into Chinese, see <a href="http://swig.1m2n.com">http://swig.1m2n.com</a>.
-
-<p>
 <b>2007/11/23</b>
 SWIG-1.3.33 has been released and fixes a few regressions introduced into version 1.3.32.
 
