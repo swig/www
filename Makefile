@@ -3,11 +3,14 @@ DRY_RUN=
 
 help:
 	@echo "Simple makefile to create the web pages and update/synchronise to the real web server"
-	@echo "Targets: updateweb makeweb release rsync rsync-dry-run"
+	@echo "Targets: updateweb makeweb release rsync updateweb-dry-run rsync-dry-run"
 	@echo "For the rsync target, use the USERNAME variable to specify your SF username, eg"
 	@echo "  make rsync USERNAME=xyz"
+	@echo "Use the dry-run targets to see what will get synchronised to the web server"
 
 updateweb: makeweb rsync
+
+updateweb-dry-run: makeweb rsync-dry-run
 
 makeweb:
 	python makeweb.py
