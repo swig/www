@@ -31,9 +31,16 @@ and non-commercial use.
 <h3>News</h3>
 
 <p>
+<b>2008/03/18</b>
+SWIG is one of 175 open source organizations that have been accepted onto the Google Summer of Code (GSoC) 2008. 
+<a href="http://code.google.com/opensource/gsoc/2008/faqs.html">GSoC</a> is a program to pay students and in the process benefit open source.
+Students interested in submitting an application to work on SWIG are invited to look at the 
+<a href="http://www.dabeaz.com/cgi-bin/wiki.pl?DeveloperInfo/GoogleSummerOfCode">ideas page</a>
+and then discuss them on the mailing lists before submitting a project proposal.
+
+<p>
 <b>2008/02/27</b>
 SWIG-1.3.34 has been released. This release adds shared_ptr support for Python and fixes a number of various other bugs.
-
 
 <p>
 <b>2007/11/23</b>
