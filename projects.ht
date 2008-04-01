@@ -7,7 +7,7 @@ SWIG is being used in an increasing number of applications. Applications cover t
 open source projects, inhouse projects within corporations or organisations as well as commercial software projects.
 
 <h1>Open source projects using SWIG</h1>
-The following are some of the large open source projects which use SWIG.
+The following are some of the large number of open source projects which use SWIG.
 These can be a useful reference for seeing how SWIG is used in real projects as the source is available.
 
 <li>
@@ -23,11 +23,11 @@ These can be a useful reference for seeing how SWIG is used in real projects as 
 </li>
 
 <li>
-  <a href="http://www.scipy.org/documentation/weave/">Weave</a> Scientific tools library.
+  <a href="http://www.scipy.org/Weave/">Weave</a> Scientific tools library.
 </li>
 
 <li>
-  <a href="http://www.xapian.org/">Xapian</a> Probabilistic Information Retrieval library.
+  <a href="http://xapian.org/">Xapian</a> Search Engine library.
 </li>
 
 <li>
@@ -39,7 +39,8 @@ These can be a useful reference for seeing how SWIG is used in real projects as 
 </li>
 
 <li>
-  <a href="http://www.wxwindows.org/">wxWindows</a> GUI framework.
+  <a href="http://www.wxPython.org/">wxPython</a>: A Python extension
+module that encapsulates the <a href="http://www.wxwidgets.org/">wxWidgets</a> GUI framework.
 </li>
 
 <li>
@@ -47,30 +48,30 @@ These can be a useful reference for seeing how SWIG is used in real projects as 
 </li>
 
 <li>
-  <a href="http://software.sandia.gov/trilinos;">Trilinos</a> Parallel, matrix OO solver packages.
+  <a href="http://trilinos.sandia.gov/">Trilinos</a> Parallel, matrix OO solver packages.
 </li>
  
 <li>
-  <a href="http://www.vscp.org/">VSCP</a> Very Simple Control Protocol  - Automation software suite for TCP/IP, CAN, PLC and more.
+  <a href="http://www.vscp.org/">VSCP</a> Very Simple Control Protocol - Automation software suite for TCP/IP, CAN, PLC and more.
 </li>
 
 <li>
-  <a href="http://openbabel.sf.net/">OpenBabel</a> Chemistry open  source package,  used in molecular modeling, computational chemistry, and many related areas
+  <a href="http://openbabel.org/">OpenBabel</a> Chemistry package, used in molecular modeling, computational chemistry, and many related areas
 </li>
 
 <li>
-  <a href="https://pse.cheme.cmu.edu/wiki/view/Ascend/PythonWrapper">Python Ascend</a>  Python Interface for ASCEND.
+  <a href="http://ascendwiki.cheme.cmu.edu/PythonWrapper">Python Ascend</a>  Python Interface for ASCEND.
   ASCEND is both a large-scale object-oriented mathematical modeling environment and a strongly typed mathematical modeling language
 </li>
 
 <li>
-  <a href="http://www.quantlib.org/">QuantLib</a> A free/open-source
+  <a href="http://www.quantlib.org/">QuantLib</a>
   library for quantitative finance with ports for C#, Guile, Java, MzScheme, Perl, Python, and Ruby.
 </li>
 
 <li>
   <a href="http://geos.refractions.net/">GEOS</a>: GEOS (Geometry Engine - Open Source) is a C++ port of the 
-  <a href="http://www.jump-project.org/project.php?PID=JTS&SID=OVER">Java
+  <a href="http://www.vividsolutions.com/jts/JTSHome.htm">Java
   Topology Suite with ports for Python and Ruby</a>. 
 </li>
 
@@ -83,13 +84,11 @@ Ruby-VTK is an one-to-one wrapper of The Visualization ToolKit (VTK) for Ruby.
   <a href="http://www.gnu.org/software/gnuradio/">GNURadio</a>: GNU Radio - The GNU Software Radio.
 </li>
 
+<!-- link dead 2008-04-01
 <li> <a href="http://www.mic.atr.co.jp/~gulliver/WTK/www/">PyWTK</a>: A Python
 interface to the WorldToolKit (a virtual reality modeling
 toolkit). (Roberto Lopez Gulliver) </li>
-
-
-<li> <a href="http://www.wxPython.org/">wxPython</a>: A Python extension
-module that encapsulates the wxWindows GUI classes. </li>
+-->
 
 <li> <a
 href="http://search.cpan.org/~jhpb/X11-Wcl-0.3/Wcl.pm">X11::Wcl</a>: A
@@ -100,7 +99,7 @@ XML::Xerces is the Perl API to the Apache project's Xerces XML parser.
 </li>
 
 <li> <a
-href="http://mpa.itc.it/markus/grass61progman/swig/main.html">GRASS-SWIG</a>: 
+href="http://grass.gdf-hannover.de/wiki/GRASS_and_Python">GRASS-SWIG</a>: 
 GRASS GIS (Geographic Resources Analysis Support System)- SWIG interface.</li>
 
 
@@ -110,7 +109,7 @@ The main goal of Gramofile is putting the sound of for example
 gramophone records on CDs, and includes a Perl port.
 </li>
 
-<li> <a href="http://pivy.tammura.at/">Pivy</a>:Coin3D (a high-level
+<li> <a href="http://pivy.coin3d.org/">Pivy</a>:Coin3D (a high-level
 3D graphics toolkit) binding for Python.
 </li>
 
@@ -140,7 +139,7 @@ given employer or organization).
 
 <hr>
 <p>
-David Beazley (dmb@viking.lanl.gov) and Peter Lomdahl (pxl@viking.lanl.gov)<br>
+David Beazley and Peter Lomdahl<br>
 
 <p>
 SWIG is being used to construct a Python interface to the <a
@@ -161,7 +160,7 @@ was recently featured on the cover of "Computers in Physics" (June,
 
 <hr>
 <p>
-John Schmidt (jas@cs.utah.edu) <br>
+John Schmidt <br>
 
 <p>
 I am using SWIG to integrate four stand alone software packages into a
@@ -177,7 +176,7 @@ individual pieces was trivial.
 
 <hr>
 <p>
-David Brydon (brydon@lanl.gov) <br>
+David Brydon <br>
 
 <p>
 We are using swig with python to retrieve, analyze, and visualize very
@@ -188,7 +187,7 @@ flexible, programmable, powerful tool that results.
 
 <hr> 	
 <p>
-Mike Weiblen (mew@paradigmsim.com) <br>
+Mike Weiblen <br>
 
 <p>
 Paradigm sells modular C toolkits for developing visual
@@ -211,7 +210,7 @@ success!
 
 <hr>
 <p>
-Jonah Lee (jonah@melab.uafsoe.alaska.edu)
+Jonah Lee
 
 <p>
 [We're using SWIG for] wrapping up engineering applications using
@@ -223,7 +222,7 @@ testing. The code runs on workstations, Cray Y-MPs and Cray T3E (when
 I get there...  that is).
 
 <hr>
-<p>Jody Winston (jody@sccsi.com) 
+<p>Jody Winston 
 
 <p>
 
@@ -240,7 +239,7 @@ can quickly embed an interpreter into an application.
 
 <hr>
 <p>
-Peter Lister (p.lister@cranfield.ac.uk)<br>
+Peter Lister<br>
 
 <p>
 I'm using [SWIG] for a Perl scriptable version of Van Jacobson's libpcap
@@ -252,7 +251,7 @@ arpwatch or tcpdump.
 
 <hr>
 <p>
-Harald Singer (singer@itl.atr.co.jp)
+Harald Singer
 
 <p>
 [We are using SWIG for] wrapping C libraries  to Python for speech recognition research
@@ -290,7 +289,7 @@ our efficiency.
 
 <hr>
 <p>
-Dominique Dumont (domi@ss7serv.grenoble.hp.com)
+Dominique Dumont
 <p>
 I'm using SWIG to generate a perl5 API on top of HP's OpenCall TCAP
 API. TCAP is the top protocol layer of HP's SS7 stack of telecom 
@@ -331,7 +330,7 @@ in satellite-based remote sensing activities and who will be starting to
 use SWIG in the near future for their purposes.
 
 <hr>
-<p>Roger Burnham (rburnham@cri-inc.com)
+<p>Roger Burnham
 
 <p>
 Thanks again for SWIG... Its fun, allows great productivity while 
@@ -360,7 +359,7 @@ SDK, never having dealt with such hardware before!
 
 <hr>
 <p>
-Simon Gibson (gibson@dstc.qut.edu.au)
+Simon Gibson
 <p>
 
 I have been using SWIG to create a Python interface for our
@@ -389,14 +388,14 @@ COM interface (ie, not IDispatch (eg, VB/Word/Excel) based) to be supported
 by Python.
 
 <hr>
-<p> Michael Bell (michaelb@gold.net.au)
+<p> Michael Bell
 
 <p>
 I've used SWIG on a Linux platform to create Python modules for
 graphing and database access.
 <p>
 The PGPLOT Graphics Subroutine Library is a Fortran library by Tim
-Pearson (tjp@astro.caltech.edu). I understand it is often used by
+Pearson. I understand it is often used by
 astronomers.  It may also be built into a C library.
 <p>
 I used SWIG to wrap the C library wrapping the Fortran library (!)
@@ -422,7 +421,7 @@ reading only knowledge of C, and lots of cutting and pasting.
 
 <hr>
 <p>
-Soeren Henkel (soeren@hni.uni-paderborn.de)
+Soeren Henkel
 <p>
 We are currently in the process of redeveloping OOPUS, a system for
 modeling plant systems and generate plant control software from a model.
@@ -434,7 +433,7 @@ done that with SWIG.
 
 <hr>
 <p>
-Peter A. Tinker (patinker@msmail4.hac.com)
+Peter A. Tinker
 <p>
 We're using SWIG to "glue" Tcl/Tk to custom and third-party libraries. In
 particular, SWIG provides an elegant means for controlling Sense8
@@ -447,7 +446,7 @@ on a variety of imcompatible systems.
 
 <hr>
 <p>
-Peter-Pike Sloan (ppsloan@cs.utah.edu)
+Peter-Pike Sloan
 <p>
 I have been using SWIG for several projects, mostly to streamline
 working with OpenGL under Tcl/Tk.  Examples are a time-critical
@@ -461,7 +460,7 @@ to Python).
 
 <hr>
 <p>
-Chris Myers (myers@beamtech.com)
+Chris Myers
 <p>
 We at Beam Technologies, Inc. have used SWIG to begin developing an
 interpreted Python interface to our PDESolve library.  PDESolve is a
@@ -495,7 +494,7 @@ demonstrate the utility of such an approach for a complex C++ library
 
 <hr>
 <p>
-Vladimir I.Ulogov (gandalf@starship.skyport.net)
+Vladimir I.Ulogov
 <p>
 
 SWIG is being used to create a Python interface to CLIPS expert system shell
@@ -512,7 +511,7 @@ functions. This job took 3 days of my job at october 1997.
 
 <hr>
 <p>
-Pinhong Chen (phchenb@tsmc.com)
+Pinhong Chen
 <p>
 I got a page for
 <a href="http://www-cad.eecs.berkeley.edu/~pinhong/scriptEDA"
@@ -522,7 +521,7 @@ using SWIG.
 <hr>
 
 <hr>
-<a href="http://minidx.com">Minidix file management and search engine</a>
+<a href="http://minidx.com">Minidx file management and search engine</a>
 <hr>
 
 
