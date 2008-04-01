@@ -1,4 +1,4 @@
-#!/usr/local/bin/python
+#!/usr/bin/python
 # Make the SWIG web-pages
 #
 # Okay. Yet another bogus rewrite of Barry's work
