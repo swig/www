@@ -129,6 +129,14 @@ PKIF is a full-featured, standards compliant Public Key Infrastructure enablemen
 Computational steering project - Python, Perl and Java wrappers.
 </li>
 
+<li> <a href="http://mapserver.gis.umn.edu/">MapServer</a>:
+Environment for building spatially-enabled internet applications - PHP, Python, Perl, Ruby, Java, and C# wrappers.
+</li>
+
+<li> <a href="http://mapnik.org">mapnik</a>:
+Toolkit for developing mapping applications for the desktop and web.
+</li>
+
 
 <h1>Other projects using SWIG</h1>
 <p>
