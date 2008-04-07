@@ -41,7 +41,7 @@ Borland compiler when Tcl/Tk has been compiled with Visual C++).
 <li> Macintosh
 
 <blockquote>
-SWIG-1.3.12 and later support OS-X/Darwin.  Simply download the Unix
+swig-1.3.12 and later support OS-X/Darwin.  Simply download the Unix
 sources, configure, and build from the command terminal.
 </blockquote>
 </ul>
@@ -57,7 +57,7 @@ The following scripting languages were supported in the final SWIG 1.1 release.
 <li> Guile 1.3.4 and newer.
 </ul>
 
-The following languages are also supported in SWIG 1.3.6 onwards.
+The following languages are also supported in swig-1.3.6 onwards.
 
 <ul>
 <li> Java JDK 1.1 and newer.
@@ -65,13 +65,14 @@ The following languages are also supported in SWIG 1.3.6 onwards.
 <li> Mzscheme.
 </ul>
 
-PHP support was added in SWIG 1.3.11.<br>
-Objective Caml (Ocaml) and Pike support was added in SWIG 1.3.14.<br>
-Support for C# and the Chicken scheme compiler was added in SWIG 1.3.18.<br>
-Support for Allegro CL and Modula-3 was added in SWIG-1.3.22.<br>
-Support for Lua, CLISP and Common Lisp with UFFI was added in SWIG-1.3.26.<br>
-Support for Common Lisp with CFFI was added in SWIG-1.3.28.<br>
-Support for R was added in SWIG-1.3.30.<br>
+PHP support was added in swig-1.3.11.<br>
+Objective Caml (Ocaml) and Pike support was added in swig-1.3.14.<br>
+Support for C# and the Chicken scheme compiler was added in swig-1.3.18.<br>
+Support for Allegro CL and Modula-3 was added in swig-1.3.22.<br>
+Support for Lua, CLISP and Common Lisp with UFFI was added in swig-1.3.26.<br>
+Support for Common Lisp with CFFI was added in swig-1.3.28.<br>
+Support for R was added in swig-1.3.30.<br>
+Support for Octave was added in swig-1.3.35.<br>
 <p>
 
 Any newer versions of these languages should be assumed to be
