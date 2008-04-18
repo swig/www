@@ -137,6 +137,10 @@ Environment for building spatially-enabled internet applications - PHP, Python, 
 Toolkit for developing mapping applications for the desktop and web.
 </li>
 
+<li> <a href="http://www.shogun-toolbox.org/">SHOGUN</a>:
+SHOGUN is a large scale machine learning toolbox with focus on especially Support Vector Machines.
+</li>
+
 
 <h1>Other projects using SWIG</h1>
 <p>
