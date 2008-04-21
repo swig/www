@@ -141,6 +141,16 @@ Toolkit for developing mapping applications for the desktop and web.
 SHOGUN is a large scale machine learning toolbox with focus on especially Support Vector Machines.
 </li>
 
+<li> <a href="http://opencvlibrary.sourceforge.net/">OpenCV</a>:
+Large image processing, computer vision, and machine learning library.
+</li>
+
+<li> <a href="http://octave.sourceforge.net/">Octave-Forge</a>:
+Contains SWIG-based bindings for <a href="http://www.mysql.org">mysql</a>, <a href="http://www.postgresql.org/">postgres</a>, 
+<a href="http://www.sqlite.org/">sqlite</a>, <a href="http://en.wikipedia.org/wiki/Open_Database_Connectivity">odbc</a>, 
+and <a href="http://www.cs.umd.edu/~mount/ANN/">ann</a> bindings.
+</li>
+
 
 <h1>Other projects using SWIG</h1>
 <p>
