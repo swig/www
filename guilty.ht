@@ -48,12 +48,12 @@ Chicken, Guile, and MzScheme modules, runtime type system.
 <tr>
 <td>
 <img src="images/marcelo.jpg" alt="Marcelo Matus"><br>
-<b>Marcelo Matus (ACMS, Tuscon, AZ).</b> <br>
+<b>Marcelo Matus (ACMS, Tucson, AZ).</b> <br>
 Evil C++ testing, SWIG core, template support, STL,
 Python, and Ruby and Tcl when needed
 </td>
 <td>
-<img src="blank.jpg" alt="Blank"><br>
+<img src="images/blank.jpg" alt="Blank"><br>
 <b>Jason Stewart (Albuquerque, New Mexico).</b> <br>
 Perl module.
 </td>
@@ -75,13 +75,17 @@ Japanese translation.
 
 <tr>
 <td>
-<img src="blank.jpg" alt="Blank"><br/>
+<img src="images/blank.jpg" alt="Blank"><br/>
 <b>Surendra Singhi (Kolkota, India).</b> <br/>
 CFFI and Clisp modules.
 </td>
 <td>
+<img src="images/xavier.jpg" alt="Xavier Delacour"><br/>
+<b>Xavier Delacour (Boston, Massachusetts).</b> <br/>
+Octave Module.
 </td>
 </tr>
+
 </table>
 
 <p>
