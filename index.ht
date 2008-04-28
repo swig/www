@@ -31,6 +31,19 @@ and non-commercial use.
 <h3>News</h3>
 
 <p>
+<b>2008/04/21</b>
+The students accepted into the Google Summer of Code have now been announced. SWIG has managed to get four slots and we have chosen the following four projects/students:
+
+<ul>
+<li> "SWIG's Python 3.0 Backend" - Haoyu Bai tutored by Richard Boulton
+<li> "C target language backend" - Maciej Drwal tutored by William Fulton
+<li> "Comment 'Translator' for SWIG" - Cheryl Marie Foil tutored by Olly Betts
+<li> "Support for generating COM wrappers" - Jan Jezabek tutored by Ian Appru
+</ul>
+
+The competition was tough and although it was difficult choosing the projects, these four were our strongest, so congratulations and welcome to Haoyu, Jan, Cheryl and Maciej. Further details on the <a href="http://code.google.com/soc/2008/swig/about.html">Google SWIG</a> page.
+
+<p>
 <b>2008/04/07</b>
 SWIG-1.3.35 has been released. This release adds Octave to the list of languages modules that SWIG can generate wrappers for. This release also contains a few bug fixes and regression fixes from the previous release. 
 
