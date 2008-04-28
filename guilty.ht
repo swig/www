@@ -2,8 +2,7 @@ Guilty Parties
 
 <p><img src="images/guilty.png" alt="Guilty Parties">
 
-<p>
-<b>Active Developers</b>
+<h2>Active Developers</h2>
 
 <table cellpadding=0 cellspacing=8 width="100%" border=0 summary="Developer mugshots">
 <tr>
@@ -23,7 +22,7 @@ STL libraries (Python, Ruby,  MzScheme, Guile).
 <td>
 <img src="images/fulton3.jpg" alt="William Fulton"><br>
 <b>William Fulton (Bath, UK).</b> <br>
-Java and C# modules. Cygwin/Windows.
+Java and C# modules, core. Administrator.
 </td>
 <td>
 <img src="images/lyle.jpg" alt="Lyle Johnson"><br>
@@ -88,8 +87,39 @@ Octave Module.
 
 </table>
 
-<p>
-<b>Students</b>
+<h2>Google Summer of Code 2008 Students</h2>
+<table cellpadding=0 cellspacing=8 width="100%" border=0 summary="GSoC 2008 mugshots">
+
+<tr>
+<td>
+<img src="images/haoyu.jpg" alt="Haoyu Bai"><br>
+<b>Haoyu Bai (Fudan University, China).</b> <br>
+SWIG's Python 3.0 Backend
+</td>
+<td>
+<img src="images/blank.jpg" alt="Blank"><br>
+<b>Jan Jezabek (Jagiellonian University, Krakow, Poland).</b> <br>
+Support for generating COM wrappers
+</td>
+</tr>
+
+<tr>
+<td>
+<img src="images/blank.jpg" alt="Blank"><br>
+<b>Cheryl Foil (College of William and Mary, Virginia, USA).</b> <br>
+Comment 'Translator' for SWIG
+</td>
+<td>
+<img src="images/blank.jpg" alt="Blank"><br>
+<b>Maciej Drwal (Wroclaw University of Technology, Poland).</b> <br>
+C target language backend
+</td>
+</tr>
+
+</table>
+
+
+<h2>Past students</h2>
 <ul>
 <li>Songyan Feng (Chicago).
 <li>Xinghua Shi (Chicago). 
@@ -98,7 +128,7 @@ Octave Module.
 </ul>
 
 <p>
-<b>Major contributors</b>
+<h2>Major contributors</h2>
 
 <ul>
 <li>Thien-Thi Nguyen 
@@ -123,7 +153,7 @@ Octave Module.
 </ul>
 
 <p>
-<b>Bug reports and patches</b>
+<h2>Bug reports and patches</h2>
 <blockquote>
 Adam Hupp,
 Arthur Smyles,
@@ -188,7 +218,7 @@ Wyss Clemens,
 Zhong Ren. 
 </blockquote>
 
-<p><b>Friends</b>
+<h2>Friends</h2>
 <ul>
 <li>The F street crew
 <li>Peter Lomdahl
@@ -202,7 +232,9 @@ Zhong Ren.
 <li>Patrick Tullmann
 </ul>
 
+<p>
 Apologies to anyone missed....
+</p>
 
 
 
