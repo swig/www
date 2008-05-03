@@ -25,9 +25,9 @@ STL libraries (Python, Ruby,  MzScheme, Guile).
 Java and C# modules, core. Administrator.
 </td>
 <td>
-<img src="images/lyle.jpg" alt="Lyle Johnson"><br>
-<b>Lyle Johnson (Madison, Alabama).</b><br>
-Ruby module.
+<img src="images/markgossage.jpg" alt="Mark Gossage"><br>
+<b>Mark Gossage (Singapore).</b><br>
+Lua module.
 </td>
 </tr>
 
@@ -97,7 +97,7 @@ Octave Module.
 SWIG's Python 3.0 Backend
 </td>
 <td>
-<img src="images/blank.jpg" alt="Blank"><br>
+<img src="images/janjezabek.jpg" alt="Jan Jezabek"><br>
 <b>Jan Jezabek (Jagiellonian University, Krakow, Poland).</b> <br>
 Support for generating COM wrappers
 </td>
@@ -110,7 +110,7 @@ Support for generating COM wrappers
 Comment 'Translator' for SWIG
 </td>
 <td>
-<img src="images/blank.jpg" alt="Blank"><br>
+<img src="images/maciekdrwal.jpg" alt="Maciej Drwal"><br>
 <b>Maciej Drwal (Wroclaw University of Technology, Poland).</b> <br>
 C target language backend
 </td>
@@ -150,6 +150,7 @@ C target language backend
 <li>Klaus Wiederänders
 <li>Richard Palmer
 <li>Sam Liddicott
+<li>Lyle Johnson 
 </ul>
 
 <p>
