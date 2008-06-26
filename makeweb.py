@@ -9,7 +9,7 @@ import os
 import time
 import stat
 
-def makepage(filename):
+def makepage(filename, extension):
         name, suffix = os.path.splitext(filename)
 	f = open("default.html")
 	page = f.read()
@@ -21,7 +21,7 @@ def makepage(filename):
 	f.close()
 	title = body[0]
 	body = string.join(body[1:])
-	page = string.replace(page,"$title",title)	
+	page = string.replace(page,"$title",title + "  ")	
 	page = string.replace(page,"$body",body)
 
 	# Read in the corner file
@@ -90,15 +90,20 @@ def makepage(filename):
 	page = string.replace(page,"$mtime",mstr);
 
 	# Write out the page
-	f = open(name+".html","w")
+	f = open(name+"."+extension,"w")
 	f.write(page)
 	f.close()
-	print "Wrote ", name+".html"
+	print "Wrote ", name+"."+extension
 
 files = glob.glob("*.ht")
 
 for f in files:
-	makepage(f)
+	makepage(f, "html")
+
+files = glob.glob("*.ph")
+
+for f in files:
+	makepage(f, "php")
 
 
 
