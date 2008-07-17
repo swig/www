@@ -84,6 +84,10 @@ Ruby-VTK is an one-to-one wrapper of The Visualization ToolKit (VTK) for Ruby.
   <a href="http://www.gnu.org/software/gnuradio/">GNURadio</a>: GNU Radio - The GNU Software Radio.
 </li>
 
+<li>
+  <a href="http://www.gnucash.org">GNUCash</a>: Personal and small-business financial-accounting software.
+</li>
+
 <!-- link dead 2008-04-01
 <li> <a href="http://www.mic.atr.co.jp/~gulliver/WTK/www/">PyWTK</a>: A Python
 interface to the WorldToolKit (a virtual reality modeling
