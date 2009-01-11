@@ -155,6 +155,9 @@ Contains SWIG-based bindings for <a href="http://www.mysql.org">mysql</a>, <a hr
 and <a href="http://www.cs.umd.edu/~mount/ANN/">ann</a> bindings.
 </li>
 
+<li> <a href="http://tmplusplus.sourceforge.net/">TM++</a>:
+Embedded open source OS portable persistent Topic Maps engine
+</li>
 
 <h1>Other projects using SWIG</h1>
 <p>
