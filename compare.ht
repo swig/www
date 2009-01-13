@@ -21,6 +21,7 @@ SWIG currently generates wrapper code for eighteen different target languages:
 <li>Modula-3
 <li>Mzscheme
 <li>OCAML
+<li>Octave
 <li>Perl
 <li>PHP
 <li>Python
