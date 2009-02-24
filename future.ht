@@ -130,7 +130,7 @@ This included the documentation system and Objective-C support.  These
 were not removed because they weren't useful.  Instead, the
 documentation system was removed because it accounted for nearly half
 of the special SWIG directives, yet had no direct bearing on what SWIG
-actually did.  Obective-C support was removed because it was tangled
+actually did.  Objective-C support was removed because it was tangled
 with C++ support in a way that was very difficult to understand and
 maintain.  The removal of these features was seen as a way to vastly
 simplify cleanup--and to buy some time where we could rethink their
@@ -141,7 +141,7 @@ role in a future release.
 This work, started in February 2001, is the beginning of the current
 SWIG implementation.  With the help of William Fulton, Matthias Koppe,
 Lyle Johnson, Luigi Ballabio, Jason Stewart, Richard Palmer, Sam
-Liddicot, and others, this work can best be described as the wholesale
+Liddicott, and others, this work can best be described as the wholesale
 destruction of everything remaining from SWIG-1.1.  The language
 module API, type system, the parser, numerous SWIG directives, and
 SWIG library files---all destroyed or rewritten.  Not only that, we

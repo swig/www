@@ -322,7 +322,7 @@ Dominique Dumont
 <p>
 I'm using SWIG to generate a perl5 API on top of HP's OpenCall TCAP
 API. TCAP is the top protocol layer of HP's SS7 stack of telecom 
-protocol. The perl5 API developemnt effort is a part of the systematic
+protocol. The perl5 API development effort is a part of the systematic
 testing approach we're implementing in the division. 
 <p>
 The usual way was to write test programs
@@ -345,7 +345,7 @@ friendly interface the progress of the test suite.
 <p>Daniel Michelson (Daniel.Michelson@smhi.se)
 
 <p>
-A collegue and I are using SWIG for two purposes, both of which
+A colleague and I are using SWIG for two purposes, both of which
 centre around the creation of a Python-based environment for analysis
 and visualization of data from the Swedish national weather radar
 network:
@@ -354,7 +354,7 @@ network:
 <li> interfacing new, performance critical, code.
 </ul>
 <p>
-We have a couple of other collegues, also at SMHI R&amp;D, who are working
+We have a couple of other colleagues, also at SMHI R&amp;D, who are working
 in satellite-based remote sensing activities and who will be starting to
 use SWIG in the near future for their purposes.
 
@@ -379,7 +379,7 @@ So, I've use SWIG to:
 <li> Wrap a commercial serial communications DLL.
 <li> Wrap a commercial frame grabber interface
 <li> After prototyping in Python, I move compute intensive routines 
-     into DLL's.
+     into DLLs.
 </ul>
 Our apps are running under Win95.  I thought it was pretty cool to be 
 able to control a frame grabber, display live/acquired images, all 
@@ -407,7 +407,7 @@ Mark Hammond (MHammond@skippinet.com.au)
 
 <p>
 
-I'm using [SWIG] to write a commericial application, which runs as an NT
+I'm using [SWIG] to write a commercial application, which runs as an NT
 service.  It uses the COM extensions to talk native MAPI to exchange
 server, the service extensions to run unattended on NT, and the pipe, file
 and event modules to manage the service control messages and named pipe
@@ -455,7 +455,7 @@ Soeren Henkel
 We are currently in the process of redeveloping OOPUS, a system for
 modeling plant systems and generate plant control software from a model.
 (Don't ask what OOPUS stands for -it's a German acronym.) We decided to 
-reimplement its user inteface using Tcl/Tk. OOPUS puts its models
+reimplement its user interface using Tcl/Tk. OOPUS puts its models
 into an OODBMS, namely POET. So we needed an integration of POET
 (which is tightly coupled to C++) with Tcl/Tk, and we've successfully
 done that with SWIG.
@@ -471,7 +471,7 @@ Tk GUI. The result is highly portable code that is
 independent of WTK's proprietary GUI yet allows access to virtually all WTK
 functions from a Tcl script and/or a Tk GUI. This approach is
 being used in a variety of projects involving advanced 3D visualization
-on a variety of imcompatible systems.
+on a variety of incompatible systems.
 
 <hr>
 <p>
@@ -527,10 +527,10 @@ Vladimir I.Ulogov
 <p>
 
 SWIG is being used to create a Python interface to CLIPS expert system shell
-inside my general research job under OODBMS DNET. This extention module
+inside my general research job under OODBMS DNET. This extension module
 provide full control from Python environment to expert system: Change a
-global valiables, register a fact, manipulation with agenda, fact lists,
-modules, functions, classes and instances. You can dynamicaly create and
+global variables, register a fact, manipulation with agenda, fact lists,
+modules, functions, classes and instances. You can dynamically create and
 execute CLIPS commands using clips.RouteCommand function call. Module
 interface are similar to CLIPS Advanced API, who described into CLIPS
 documentation. All additional documentation, Python classes are distributed

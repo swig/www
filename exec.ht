@@ -27,7 +27,7 @@ replace the main() function of a C program with a scripting
 interpreter from which you can control the application.  This adds
 quite a lot of flexibility and makes the program "programmable."  That
 is, the scripting interface allows users and developers to easily
-modifiy the behavior of the program without having to modify low-level
+modify the behavior of the program without having to modify low-level
 C/C++ code.  The benefits of this are numerous. In fact think of all
 of the large software packages that you use every day---nearly all of
 them include special a macro language, configuration language, or even

@@ -100,7 +100,7 @@ system--making it easy to apply customizations across inheritance
 hierarchies, template instantiations, and more.  Features include:
 
 <ul>
-<li>Customizated type conversion/marshaling.
+<li>Customized type conversion/marshaling.
 <Li>Exception handling.
 <li>Class/structure extension.
 <li>Memory management.
