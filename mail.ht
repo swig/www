@@ -72,7 +72,7 @@ For those who are new to mailing lists, there are many articles on the subject, 
 <h2><a name="search_lists">Searching and browsing the mailing lists</h2>
 <p>
 The mailing lists can be searched in various different ways.
-The links below are shortcuts to the archives from where you can easily search or browse the archives of postings from November 2005 onwards.
+The links below are shortcuts to the archives from where you can browse the archives of postings from November 2005 onwards.
 </p>
 
 <p>
@@ -81,6 +81,11 @@ The links below are shortcuts to the archives from where you can easily search o
 <a href="http://sourceforge.net/mailarchive/forum.php?forum=swig-devel">swig-devel archives</a>
 <br>
 <a href="http://sourceforge.net/mailarchive/forum.php?forum=swig-cvs">swig-cvs archives</a>
+</p>
+
+
+<p>
+The lists at Sourceforge can be searched directly using the <a href=https://sourceforge.net/search/?group_id=1645&type_of_search=mlists>Advanced search</a> facility, but the recommended way to search is detailed below.
 </p>
 
 <p>
