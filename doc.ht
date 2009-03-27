@@ -48,7 +48,10 @@ Cluster at Los Alamos National Laboratory. <br>
 <h3> Tutorials about SWIG </h3>
 
 <ul>
-<li> <b><a href="papers/PyTutorial98/PyTutorial98.pdf">Interfacing C/C++ and Python with SWIG</a></b> (PDF).
+<li> <b><a href="http://www.dabeaz.com/SwigMaster/index.html">SWIG Masterclass</a></b>.
+In this tutorial, the creator of SWIG gives the inside story on what SWIG is, how it works, and how it is put together - PyCon March 2008. <br>
+
+<li><p> <b><a href="papers/PyTutorial98/PyTutorial98.pdf">Interfacing C/C++ and Python with SWIG</a></b> (PDF).
 Half-day tutorial presented at the 7th International Python Conference, November, 1998. <br>
 
 <li><p> <b><a href="papers/PyTutorial97/PyTutorial97.pdf">Interfacing C/C++ and Python with SWIG</a></b> (PDF).
@@ -60,7 +63,11 @@ Half-day tutorial presented at the 6th International Python Conference, October,
 <h3> Other Resources </h3>
 
 <ul>
-<li> Perl users can find more information about SWIG in the O'Reilly book 
+<li> Klaus Kaempf gave an introductory SWIG tutorial in July 2008 as an OpenSUSE talk - 
+<a href="http://files.opensuse.org/opensuse/en/e/eb/Kkaempf_KnowledgeSharing_Swig.pdf">Slides (pdf)</a> and 
+<a href="http://blip.tv/file/1179673/">Video recording</a>. <br>
+
+<li><p> Perl users can find more information about SWIG in the O'Reilly book 
 <a href="http://www.ora.com/catalog/advperl">"Advanced Perl Programming"</a>. <br>
 
 <li><p> Daniel Blezek wrote an article about SWIG in the November, 1998 issue
