@@ -88,7 +88,7 @@ Ruby-VTK is an one-to-one wrapper of The Visualization ToolKit (VTK) for Ruby.
   <a href="http://www.gnucash.org">GNUCash</a>: Personal and small-business financial-accounting software.
 </li>
 
-<!-- link dead 2008-04-01
+<!-- link dead 2008-04-01 ; still dead 2009-03-29
 <li> <a href="http://www.mic.atr.co.jp/~gulliver/WTK/www/">PyWTK</a>: A Python
 interface to the WorldToolKit (a virtual reality modeling
 toolkit). (Roberto Lopez Gulliver) </li>
@@ -170,6 +170,7 @@ Below are some comments received on usage of SWIG by various organisations.
 opinions expressed here do not necessarily reflect those of any
 given employer or organization).
 
+<!-- link dead 2008-04-01
 <hr>
 <p>
 David Beazley and Peter Lomdahl<br>
@@ -190,6 +191,7 @@ SPaSM system consists of nearly 300 C functions and the Python
 interface is automatically generated during compilation.  This work
 was recently featured on the cover of "Computers in Physics" (June,
 1997).
+-->
 
 <hr>
 <p>
