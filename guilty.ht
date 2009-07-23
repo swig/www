@@ -2,7 +2,7 @@ Guilty Parties
 
 <p><img src="images/guilty.png" alt="Guilty Parties">
 
-<h2>Active Developers</h2>
+<h2>Active and Recently Active Developers</h2>
 
 <table cellpadding=0 cellspacing=8 width="100%" border=0 summary="Developer mugshots">
 <tr>
@@ -133,26 +133,26 @@ C target language backend
 
 <tr>
 <td>
-<img src="images/blank.jpg" alt="Baozeng Ding"><br>
-<b>Baozeng Ding</b> <br>
+<img src="images/baozengding.png" alt="Baozeng Ding"><br>
+<b>Baozeng Ding (Institute of Software Chinese Academy of Sciences, Beijing, China)</b> <br>
 Scilab module
 </td>
 <td>
-<img src="images/blank.jpg" alt="Matevz Jekovec"><br>
-<b>Matevz Jekovec</b> <br>
+<img src="images/matevzjekovec.png" alt="Matevz Jekovec"><br>
+<b>Matevz Jekovec (Faculty of Computer and Information Science, Ljubljana, Slovenia)</b> <br>
 C++0x features
 </td>
 </tr>
 
 <tr>
 <td>
-<img src="images/blank.jpg" alt="Ashish Sharma"><br>
-<b>Ashish Sharma</b> <br>
+<img src="images/ashishsharma.png" alt="Ashish Sharma"><br>
+<b>Ashish Sharma (University of Minnesota Twin Cities, Minneapolis, USA)</b> <br>
 Objective C module
 </td>
 <td>
-<img src="images/blank.jpg" alt="Miklos Vajna"><br>
-<b>Miklos Vajna</b> <br>
+<img src="images/miklosvajna.png" alt="Miklos Vajna"><br>
+<b>Miklos Vajna(Budapest University of Technology and Economics, Hungary)</b> <br>
 PHP directors
 </td>
 </tr>
