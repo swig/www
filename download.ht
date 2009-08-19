@@ -2,47 +2,37 @@ Download SWIG
 <p>
 <img src="images/download.png" alt="Download">
 
-<p>
-SourceForge is now the primary site for SWIG distributions.
-
-<ul>
-<li><a href="https://sourceforge.net/projects/swig/files">All releases</a>.
-<li><a href="ftp://swig.sourceforge.net/pub/swig/">Older stuff</a>.
-</ul>
-
-<p>
-SWIG has also been distributed as source code from the following locations:
-
-<ul>
-<li> <a href="ftp://ftp.mcc.ac.uk/pub/mvc/swig">ftp.mcc.ac.uk/pub/mvc/swig</a> (UK)
-<li> <a href="ftp://ftp.rge.com/pub/languages/swig/">ftp.rge.com/pub/languages/swig</a> (New York).
-<li> <a href="ftp://ftp.python.org/pub/python/contrib/System/">ftp.python.org/pub/python/contrib/System</a> (Python contributed software).
-<li> <a href="http://www.perl.com/CPAN//authors/Dave_Beazley">CPAN (Comprehensive Perl Archive Network)</a>
-</ul>
-
-You can also find SWIG in the following locations :
-
-<ul>
-<li> <a href="http://packages.debian.org/swig">Debian GNU/Linux</a>.
-<li> <a href="http://www.freebsd.org/ports/devel.html">FreeBSD</a>.
-<li> <a href="http://www.cygwin.com">Cygwin</a>.
-<li> <a href="http://www.oreilly.com/catalog/python/noframes.html">Programming Python</a> (Included on CD-ROM).
-<li> <a href="http://www.mkp.com/books_catalog/0-12261-205-1.asp">Tcl/Tk for Real Programmers</a> (Included on CD-ROM).
-</ul>
-
-Note : If you received SWIG on CD-ROM, you may want to upgrade to the latest release.
-
-<h3> The Latest Release </h3>
+<h3>The Latest Release</h3>
 
 <p>
 The latest development release is <a href="http://prdownloads.sourceforge.net/swig/swig-1.3.40.tar.gz">swig-1.3.40</a>.
-View the <a href="release.html">release notes</a>.  Windows users should download
+View the <a href="release.html">release notes</a>.
+
+<p>
+Windows users should download
 <a href="http://prdownloads.sourceforge.net/swig/swigwin-1.3.40.zip">swigwin-1.3.40</a>
 which includes a prebuilt executable. 
 
 <p>
+Many Unix-like operating systems also include packages of SWIG (e.g.
+Debian GNU/Linux, FreeBSD, Cygwin).  Consult your package management
+application to see if your operating system does.
+
+<h3>Older Releases</h3>
+
+<p>
+As well as the latest release, many older releases of SWIG can be found on
+SourceForge:
+
+<ul>
+<li><a href="https://sourceforge.net/projects/swig/files">All releases</a>.
+</ul>
+
+<h3>SWIG 1.1</h3>
+
+<p>
 <b>Note:</b> The following releases pertain to SWIG-1.1 which was a widely distributed release
-from several years ago.  Unless you really need backwards compatibility, you should use
+from a decade ago.  Unless you really need backwards compatibility, you should use
 SWIG-1.3.x instead of SWIG-1.1 (especially since 1.3 is much more capable).
 
 <p>
