@@ -1,0 +1,43 @@
+Release Notes
+
+<table summary="Legal Talk"> <tr>
+<td bgcolor="#000000" align=center><font color="#ffffff"><b>Legal Talk</b></font></td>
+</tr> </table>
+
+<p>
+<b>IMPORTANT:</b> The following represents the intent of the SWIG developers regarding
+how SWIG is licensed to the public.  This is not legal advice; if you have
+specific questions about how SWIG's license applies to your use, please seek
+legal counsel.
+</p>
+
+<p>
+The intention of the SWIG license is to ensure the SWIG source code (the 
+code that is compiled into the SWIG executable) remains as free software 
+by using the 
+<a href="http://www.gnu.org/copyleft/gpl.html">GPL license</a>
+on the SWIG source code. SWIG also 
+generates code and the intention of the SWIG license is also to enable 
+distribution of the generated code under license terms of the user's 
+choice/requirements.  Users are responsible for ensuring that they meet any license 
+requirements for all code fed into SWIG that is subsequently used in the 
+generated output. Note that portions of the SWIG library are used in the 
+generated code and this library code distributed with SWIG is licensed 
+under a very permissive license that allows further distribution without 
+any obligations.
+</p>
+
+<p>
+As SWIG is a code generator, the license separation of 
+the SWIG source and the generated code is important and should be 
+clearly noted.
+The full license is available in the following files:
+</p>
+
+<ul>
+<li><a href="Release/LICENSE">LICENSE</a>
+<li><a href="Release/LICENSE-GPL">LICENSE-GPL</a>
+<li><a href="Release/LICENSE-UNIVERSITIES">LICENSE-UNIVERSITIES</a>
+<li><a href="Release/COPYRIGHT">COPYRIGHT</a>
+</ul>
+

@@ -10,8 +10,10 @@ The following files are extracted from the latest SWIG release.
 <li><a href="Release/README">README</a> - General information and high level release notes.
 <li><a href="Release/CHANGES.current">CHANGES.current</a> - Detailed release notes for the current release.
 <li><a href="Release/CHANGES">CHANGES</a> - Detailed release notes for old releases.
-<li><a href="Release/NEW">NEW</a>
-<li><a href="Release/LICENSE">LICENSE</a>
+<li><a href="Release/RELEASENOTES">RELEASENOTES</a> - Release notes summary for each released version.
 </ul>
 
+<p>
+The <a href="legal.html">license</a> for the latest release is also available to view online.
+</p>
 
