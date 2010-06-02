@@ -36,6 +36,7 @@ makedocs:
 	cp ../trunk/ANNOUNCE Release/
 	cp ../trunk/CHANGES Release/
 	cp ../trunk/CHANGES.current Release/
+	cp ../trunk/COPYRIGHT Release/
 	cp ../trunk/LICENSE* Release/
 	cp ../trunk/RELEASENOTES Release/
 	cp ../trunk/README Release/
