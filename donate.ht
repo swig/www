@@ -10,6 +10,7 @@ The SWIG developers are volunteers who develop and improve SWIG in their spare t
 Furthermore, SWIG is not supported by investors, a large corporation or research grants.  
 We have a donation system in place to encourage developer participation and to help cover expenses.
 If you have benefited from SWIG, please consider donating to encourage the healthy existence of the project.
+If you donate $500 or more, we would like to mention you on the list of donors below.
 
 <p>
 SWIG's membership of the <a href="http://sfconservancy.org">Software Freedom Conservancy</a>
@@ -88,4 +89,14 @@ Via Paypal:
 
 <p>
 Many thanks.
+
+<p>
+
+<table summary="Donors"> <tr>
+<td bgcolor="#000000" align=center><font color="#ffffff"><b>Donors</b></font></td>
+</tr> </table>
+
+<ul>
+<li>Melissa Data</li>
+</ul>
 
