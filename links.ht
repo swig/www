@@ -100,6 +100,8 @@ It lets you generate code by parsing existing languages or by creating and parsi
 
 <a href="http://seal-reflex.web.cern.ch/seal-reflex/index.html">Reflex</a>. C++ library which provides reflection information about C++ types.<br>
 
+<a href="http://fortwrap.sourceforge.net">FortWrap</a>. Program to parse Fortran 90/95/200X source and generate C++ wrapper code, which can in turn by wrapped by SWIG for use from other languages.<br>
+
 </blockquote>
 
 <h3> Other interesting links</h3>
