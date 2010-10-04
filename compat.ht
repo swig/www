@@ -73,6 +73,7 @@ Support for Lua, CLISP and Common Lisp with UFFI was added in swig-1.3.26.<br>
 Support for Common Lisp with CFFI was added in swig-1.3.28.<br>
 Support for R was added in swig-1.3.30.<br>
 Support for Octave was added in swig-1.3.35.<br>
+Support for the Go language was added in swig-2.0.1.<br>
 <p>
 
 Any newer versions of these languages should be assumed to be

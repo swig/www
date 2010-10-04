@@ -31,6 +31,7 @@
 <tr><td><a href="http://common-lisp.net/project/cffi">CFFI</a></td></tr>
 <tr><td><a href="http://www.call-with-current-continuation.org/chicken.html">CHICKEN</a></td></tr>
 <tr><td><a href="http://clisp.cons.org">CLISP</a></td></tr>
+<tr><td><a href="http://golang.org">Go language</a></td></tr>
 <tr><td><a href="http://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
 <tr><td><a href="http://java.sun.com">Java</a></td></tr>
 <tr><td><a href="http://www.lua.org">Lua</a></td></tr>
