@@ -7,17 +7,17 @@ Simplified Wrapper and Interface Generator
 <p>
 SWIG is a software development tool that connects programs written in
 C and C++ with a variety of high-level programming
-languages.  SWIG is used with different types of languages including common scripting languages such as
+languages.  SWIG is used with different types of target languages including common scripting languages such as
 Perl, PHP, Python, Tcl and Ruby. The list of 
 <a href="compat.html#SupportedLanguages">supported languages</a> also includes 
-non-scripting languages such as C#, Common Lisp (CLISP, Allegro CL, CFFI, UFFI), Java, Lua, Modula-3, OCAML, Octave and R.
+non-scripting languages such as C#, Common Lisp (CLISP, Allegro CL, CFFI, UFFI), Go language, Java, Lua, Modula-3, OCAML, Octave and R.
 Also several interpreted and compiled Scheme implementations (Guile, MzScheme, Chicken)
 are supported. SWIG is most
 commonly used to create high-level interpreted or compiled programming
-environments, user interfaces, and as a tool for testing and prototyping C/C++
-software.  SWIG can also export its parse tree in the form of XML and
-Lisp s-expressions.  SWIG may be freely used, distributed, and modified for commercial
-and non-commercial use.
+environments, user interfaces, and as a tool for testing and prototyping C/C++ software. 
+SWIG is typically used to parse C/C++ interfaces and generate the 'glue code' required for the above target languages to call into the C/C++ code.
+SWIG can also export its parse tree in the form of XML and Lisp s-expressions.
+SWIG is free software and the code that SWIG generates is compatible with both commercial and non-commercial projects.
 
 <ul>
 <li> <a href="survey.html">Download</a> the latest version.
