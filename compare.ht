@@ -3,7 +3,7 @@ SWIG Features
 <h2>SWIG Features</h2>
 
 <p>
-This information is based on the SWIG-2.0.1 release.
+This information is based on the SWIG-2.0.2 release.
 
 <h3>Code Generation</h3>
 
@@ -15,6 +15,7 @@ SWIG currently generates wrapper code for nineteen different target languages:
 <li>CFFI
 <li>CLISP
 <li>Chicken
+<li>D
 <li>Go
 <li>Guile
 <li>Java
