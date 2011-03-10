@@ -159,6 +159,16 @@ and <a href="http://www.cs.umd.edu/~mount/ANN/">ann</a> bindings.
 Embedded open source OS portable persistent Topic Maps engine
 </li>
 
+<li> <a href="https://pureimage.flll.jku.at/">pureImage</a>:
+pureImage is a plug-in development framework that provides a common
+plug-in interface, generic data structures, and a uniform workflow
+managed by a runtime environment.
+pureImage is specialized in image processing under C++. However,
+pureImage can be used in different areas (due to its generic data types,
+such as vectors, matrices, etc.), and in any programming language which
+is supported by SWIG.
+</li>
+
 <li> <a href="http://www.openwsman.org/">Openwsman</a>:
 Open source implementation of the Web Services Management Specification (WS-Management).
 </li>
