@@ -111,13 +111,13 @@ We can now use the Python module as follows :
 </blockquote>
 
 <h3> Building a Perl module </h3>
-You can also build a Perl5 module as follows (shown for Solaris, see the <a href="http://www.dabeaz.com/cgi-bin/wiki.pl?SwigFaq/SharedLibraries">SWIG Wiki Shared Libraries</a> page for help with other operating systems):
+You can also build a Perl5 module as follows (shown for Linux, see the <a href="http://www.dabeaz.com/cgi-bin/wiki.pl?SwigFaq/SharedLibraries">SWIG Wiki Shared Libraries</a> page for help with other operating systems):
 
 <blockquote><pre>
 unix % swig -perl5 example.i
-unix % gcc -c example.c example_wrap.c \
-       `perl -MExtUtils::Embed -e ccopts`
-unix % ld -G example.o example_wrap.o -o example.so
+unix % gcc -c `perl -MConfig -e 'print join(" ", @Config{qw(ccflags optimize cccdlflags)}, \
+       "-I$Config{archlib}/CORE")'` example.c example_wrap.c
+unix `perl -MConfig -e 'print @Config{qw(lddlflags)}'` example.o example_wrap.o -o example.so
 unix % perl
 use example;
 print $example::My_variable,"\n";
