@@ -20,6 +20,7 @@ To compile SWIG from its SVN repository, you will need the following tools:
 <li> Automake 1.7.2 or higher
 <li> A working C++ compiler.
 <li> yacc or bison (to compile the SWIG parser).  
+<li> libpcre (regular expressions library dependency)
 <li> yodl2man and yodl2html (to generate some documentation)
 </ul>
 
