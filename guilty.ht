@@ -162,6 +162,37 @@ PHP directors
 
 </table>
 
+<h2>Google Summer of Code 2012 Students</h2>
+<table cellpadding=0 cellspacing=8 width="100%" border=0 summary="GSoC 2012 mugshots">
+
+<tr>
+<td>
+<img src="images/leifmiddelschulte.png" alt="Leif Middelschulte"><br>
+<b>Leif Middelschulte</b> <br>
+C target language module
+</td>
+<td>
+<img src="images/nehanarang.png" alt="Neha Narang"><br>
+<b>Neha Narang</b> <br>
+JavaScript target language module
+</td>
+</tr>
+
+<tr>
+<td>
+<img src="images/swatisharma.png" alt="Swati Sharma"><br>
+<b>Swati Sharma</b> <br>
+Objective C target language module
+</td>
+<td>
+<img src="images/blank.jpg" alt="Dmitry Kabak"><br>
+<b>Dmitry Kabak</b> <br>
+Source code documentation and Doxygen comments
+</td>
+</tr>
+
+</table>
+
 <h2>Past Contributors</h2>
 <p>
 The <a href="Release/COPYRIGHT">COPYRIGHT</a> file contains a list of past contributors.
