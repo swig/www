@@ -11,6 +11,6 @@ SWIG News
 
 <p>
 &lt;&lt;
-<a href="http://sourceforge.net/news/?group_id=1645">Full News Archives</a>
+<a href="https://sourceforge.net/p/swig/news/">Full News Archives</a>
 &gt;&gt;
 
