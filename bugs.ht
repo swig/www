@@ -2,13 +2,13 @@ SWIG Bug Tracking
 
 <p><img src="images/bugs.png" alt="Bugs">
 
-<p>A <a href="http://sourceforge.net/tracker/?group_id=1645">bug-tracking system</a> for SWIG
+<p>A <a href="https://sourceforge.net/p/swig/bugs/">bug-tracking system</a> for SWIG
 is located on <a href="http://sourceforge.net">SourceForge</a>. 
 Note that you need to log on to SourceForge before submitting a bug.
 
 <p>
 Users who have found a bug and fixed it themselves can submit a
-<a href="http://sourceforge.net/patch/?group_id=1645">patch</a>.
+<a href="https://sourceforge.net/p/swig/patches/">patch</a>.
 Please give the SWIG version or SVN revision number that the patch is against.
 Again, please log on to SourceForge before submitting patches.
 
