@@ -1,11 +1,12 @@
 USERNAME=wsfulton
 DRY_RUN=
+WORKTREE=../swig
 
 help:
 	@echo "Simple makefile to create the web pages and publish to the web server"
 	@echo "Targets:"
 	@echo "  htmlfiles - create .html files from .ht files"
-	@echo "  makedocs - copy files from trunk working copy to local directory ready for publishing to web server"
+	@echo "  makedocs - copy Doc/Manual files from main git source repository working tree to local directory ready for publishing to web server"
 	@echo "  rsync - publish local files to web server"
 	@echo "  rsync-dry-run - dry run of above"
 	@echo "  updateweb - both htmlfiles and rsync targets"
@@ -33,12 +34,12 @@ release: htmlfiles makedocs rsync
 makedocs:
 	rm -rf Release
 	mkdir -p Release
-	cp ../trunk/ANNOUNCE Release/
-	cp ../trunk/CHANGES Release/
-	cp ../trunk/CHANGES.current Release/
-	cp ../trunk/COPYRIGHT Release/
-	cp ../trunk/LICENSE* Release/
-	cp ../trunk/RELEASENOTES Release/
-	cp ../trunk/README Release/
+	cp $(WORKTREE)/ANNOUNCE Release/
+	cp $(WORKTREE)/CHANGES Release/
+	cp $(WORKTREE)/CHANGES.current Release/
+	cp $(WORKTREE)/COPYRIGHT Release/
+	cp $(WORKTREE)/LICENSE* Release/
+	cp $(WORKTREE)/RELEASENOTES Release/
+	cp $(WORKTREE)/README Release/
 	rm -rf Doc2.0
-	cp -rf ../trunk/Doc/Manual Doc2.0
+	cp -rf $(WORKTREE)/Doc/Manual Doc2.0
