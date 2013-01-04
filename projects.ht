@@ -10,6 +10,7 @@ open source projects, inhouse projects within corporations or organisations as w
 The following are some of the large number of open source projects which use SWIG.
 These can be a useful reference for seeing how SWIG is used in real projects as the source is available.
 
+<ul>
 <li>
   <a href="http://subversion.tigris.org/">Subversion</a> Version control system.
 </li>
@@ -181,6 +182,7 @@ CasADi is a minimalistic computer algebra system for numerical optimization impl
 Java GSS-API wrapper for the MIT Kerberos GSS-API (Computer network authentication protocol) library.
 SWIG was used to help generate the Java GSS-API wrapper around the native MIT Kerberos libraries. Up to this point, the Android platform had lacked support for Kerberos.
 </li>
+</ul>
 
 <h1>Other projects using SWIG</h1>
 <p>
