@@ -187,6 +187,10 @@ SWIG was used to help generate the Java GSS-API wrapper around the native MIT Ke
 Extensible feature-rich IRC bouncer.
 Support for Perl and Python modules is done using SWIG.
 </li>
+
+<li> <a href="http://fenicsproject.org/">FEniCS</a> (DOLFIN component):
+The FEniCS Project is a collaborative project for the development of innovative concepts and tools for automated scientific computing, with a particular focus on automated solution of differential equations by finite element methods.
+</li>
 </ul>
 
 <h1>Other projects using SWIG</h1>
