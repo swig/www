@@ -182,6 +182,11 @@ CasADi is a minimalistic computer algebra system for numerical optimization impl
 Java GSS-API wrapper for the MIT Kerberos GSS-API (Computer network authentication protocol) library.
 SWIG was used to help generate the Java GSS-API wrapper around the native MIT Kerberos libraries. Up to this point, the Android platform had lacked support for Kerberos.
 </li>
+
+<li> <a href="http://znc.in/">ZNC</a>:
+Extensible feature-rich IRC bouncer.
+Support for Perl and Python modules is done using SWIG.
+</li>
 </ul>
 
 <h1>Other projects using SWIG</h1>
