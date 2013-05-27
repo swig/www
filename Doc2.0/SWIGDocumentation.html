@@ -122,13 +122,26 @@ PRE { font-family: monospace }
 <UL>
 <LI><A HREF="#Preface_nn2">1.1 Introduction</A></LI>
 <LI><A HREF="#Preface_nn4">1.2 SWIG Versions</A></LI>
-<LI><A HREF="#Preface_nn5">1.3 SWIG resources</A></LI>
-<LI><A HREF="#Preface_nn6">1.4 Prerequisites</A></LI>
-<LI><A HREF="#Preface_nn7">1.5 Organization of this manual</A></LI>
-<LI><A HREF="#Preface_nn8">1.6 How to avoid reading the manual</A></LI>
-<LI><A HREF="#Preface_nn9">1.7 Backwards compatibility</A></LI>
-<LI><A HREF="#Preface_nn10">1.8 Credits</A></LI>
-<LI><A HREF="#Preface_nn11">1.9 Bug reports</A></LI>
+<LI><A HREF="#Preface_license">1.3 SWIG License</A></LI>
+<LI><A HREF="#Preface_nn5">1.4 SWIG resources</A></LI>
+<LI><A HREF="#Preface_nn6">1.5 Prerequisites</A></LI>
+<LI><A HREF="#Preface_nn7">1.6 Organization of this manual</A></LI>
+<LI><A HREF="#Preface_nn8">1.7 How to avoid reading the manual</A></LI>
+<LI><A HREF="#Preface_nn9">1.8 Backwards compatibility</A></LI>
+<LI><A HREF="#Preface_release_notes">1.9 Release notes</A></LI>
+<LI><A HREF="#Preface_nn10">1.10 Credits</A></LI>
+<LI><A HREF="#Preface_nn11">1.11 Bug reports</A></LI>
+<LI><A HREF="#Preface_installation">1.12 Installation</A>
+<UL>
+<LI><A HREF="#Preface_windows_installation">1.12.1 Windows installation</A>
+</LI>
+<LI><A HREF="#Preface_unix_installation">1.12.2 Unix installation</A></LI>
+<LI><A HREF="#Preface_osx_installation">1.12.3 Macintosh OS X
+ installation</A></LI>
+<LI><A HREF="#Preface_testing">1.12.4 Testing</A></LI>
+<LI><A HREF="#Preface_examples">1.12.5 Examples</A></LI>
+</UL>
+</LI>
 </UL>
 <B><A HREF="#Introduction">2 Introduction</A></B>
 <UL>
@@ -838,11 +851,13 @@ PRE { font-family: monospace }
  csin typemap and associated attributes</A></LI>
 <LI><A HREF="#CSharp_date_properties">19.8.4 A date example
  demonstrating marshalling of C# properties</A></LI>
-<LI><A HREF="#CSharp_partial_classes">19.8.5 Turning wrapped classes
+<LI><A HREF="#CSharp_date_pre_post_directors">19.8.5 Date example
+ demonstrating the 'pre' and 'post' typemap attributes for directors</A></LI>
+<LI><A HREF="#CSharp_partial_classes">19.8.6 Turning wrapped classes
  into partial classes</A></LI>
-<LI><A HREF="#CSharp_extending_proxy_class">19.8.6 Extending proxy
+<LI><A HREF="#CSharp_extending_proxy_class">19.8.7 Extending proxy
  classes with additional C# code</A></LI>
-<LI><A HREF="#CSharp_enum_underlying_type">19.8.7 Underlying type for
+<LI><A HREF="#CSharp_enum_underlying_type">19.8.8 Underlying type for
  enums</A></LI>
 </UL>
 </LI>
@@ -957,34 +972,34 @@ PRE { font-family: monospace }
 </UL>
 <B><A HREF="#Guile">23 SWIG and Guile</A></B>
 <UL>
-<LI><A HREF="#Guile_nn2">23.1 Meaning of &quot;Module&quot;</A></LI>
-<LI><A HREF="#Guile_nn3">23.2 Using the SCM or GH Guile API</A></LI>
-<LI><A HREF="#Guile_nn4">23.3 Linkage</A>
+<LI><A HREF="#Guile_nn1">23.1 Supported Guile Versions</A></LI>
+<LI><A HREF="#Guile_nn2">23.2 Meaning of &quot;Module&quot;</A></LI>
+<LI><A HREF="#Guile_nn3">23.3 Old GH Guile API</A></LI>
+<LI><A HREF="#Guile_nn4">23.4 Linkage</A>
 <UL>
-<LI><A HREF="#Guile_nn5">23.3.1 Simple Linkage</A></LI>
-<LI><A HREF="#Guile_nn6">23.3.2 Passive Linkage</A></LI>
-<LI><A HREF="#Guile_nn7">23.3.3 Native Guile Module Linkage</A></LI>
-<LI><A HREF="#Guile_nn8">23.3.4 Old Auto-Loading Guile Module Linkage</A>
+<LI><A HREF="#Guile_nn5">23.4.1 Simple Linkage</A></LI>
+<LI><A HREF="#Guile_nn6">23.4.2 Passive Linkage</A></LI>
+<LI><A HREF="#Guile_nn7">23.4.3 Native Guile Module Linkage</A></LI>
+<LI><A HREF="#Guile_nn8">23.4.4 Old Auto-Loading Guile Module Linkage</A>
 </LI>
-<LI><A HREF="#Guile_nn9">23.3.5 Hobbit4D Linkage</A></LI>
+<LI><A HREF="#Guile_nn9">23.4.5 Hobbit4D Linkage</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Guile_nn10">23.4 Underscore Folding</A></LI>
-<LI><A HREF="#Guile_nn11">23.5 Typemaps</A></LI>
-<LI><A HREF="#Guile_nn12">23.6 Representation of pointers as smobs</A>
+<LI><A HREF="#Guile_nn10">23.5 Underscore Folding</A></LI>
+<LI><A HREF="#Guile_nn11">23.6 Typemaps</A></LI>
+<LI><A HREF="#Guile_nn12">23.7 Representation of pointers as smobs</A>
 <UL>
-<LI><A HREF="#Guile_nn13">23.6.1 GH Smobs</A></LI>
-<LI><A HREF="#Guile_nn14">23.6.2 SCM Smobs</A></LI>
-<LI><A HREF="#Guile_nn15">23.6.3 Garbage Collection</A></LI>
+<LI><A HREF="#Guile_nn14">23.7.1 Smobs</A></LI>
+<LI><A HREF="#Guile_nn15">23.7.2 Garbage Collection</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Guile_nn16">23.7 Exception Handling</A></LI>
-<LI><A HREF="#Guile_nn17">23.8 Procedure documentation</A></LI>
-<LI><A HREF="#Guile_nn18">23.9 Procedures with setters</A></LI>
-<LI><A HREF="#Guile_nn19">23.10 GOOPS Proxy Classes</A>
+<LI><A HREF="#Guile_nn16">23.8 Exception Handling</A></LI>
+<LI><A HREF="#Guile_nn17">23.9 Procedure documentation</A></LI>
+<LI><A HREF="#Guile_nn18">23.10 Procedures with setters</A></LI>
+<LI><A HREF="#Guile_nn19">23.11 GOOPS Proxy Classes</A>
 <UL>
-<LI><A HREF="#Guile_nn20">23.10.1 Naming Issues</A></LI>
-<LI><A HREF="#Guile_nn21">23.10.2 Linking</A></LI>
+<LI><A HREF="#Guile_nn20">23.11.1 Naming Issues</A></LI>
+<LI><A HREF="#Guile_nn21">23.11.2 Linking</A></LI>
 </UL>
 </LI>
 </UL>
@@ -1969,7 +1984,7 @@ PRE { font-family: monospace }
 </UL>
 <HR NOSHADE>
 <H1><A name="Sections"></A>SWIG-2.0 Documentation</H1>
- Last update : SWIG-2.0.9 (16 December 2012)
+ Last update : SWIG-2.0.10 (27 May 2013)
 <H2><A NAME="1_1">Sections</A></H2>
 <H3><A NAME="1_1_1">SWIG Core Documentation</A></H3>
 <UL>
@@ -2026,13 +2041,24 @@ PRE { font-family: monospace }
 <UL>
 <LI><A href="#Preface_nn2">Introduction</A></LI>
 <LI><A href="#Preface_nn4">SWIG Versions</A></LI>
+<LI><A href="#Preface_license">SWIG License</A></LI>
 <LI><A href="#Preface_nn5">SWIG resources</A></LI>
 <LI><A href="#Preface_nn6">Prerequisites</A></LI>
 <LI><A href="#Preface_nn7">Organization of this manual</A></LI>
 <LI><A href="#Preface_nn8">How to avoid reading the manual</A></LI>
 <LI><A href="#Preface_nn9">Backwards compatibility</A></LI>
+<LI><A href="#Preface_release_notes">Release notes</A></LI>
 <LI><A href="#Preface_nn10">Credits</A></LI>
 <LI><A href="#Preface_nn11">Bug reports</A></LI>
+<LI><A href="#Preface_installation">Installation</A>
+<UL>
+<LI><A href="#Preface_windows_installation">Windows installation</A></LI>
+<LI><A href="#Preface_unix_installation">Unix installation</A></LI>
+<LI><A href="#Preface_osx_installation">Macintosh OS X installation</A></LI>
+<LI><A href="#Preface_testing">Testing</A></LI>
+<LI><A href="#Preface_examples">Examples</A></LI>
+</UL>
+</LI>
 </UL>
 </DIV>
 <!-- INDEX -->
@@ -2060,11 +2086,18 @@ PRE { font-family: monospace }
  The final version in the 1.3.x series was 1.3.40, but in truth the
  1.3.x series had been stable for many years. An official stable version
  was released along with the decision to make SWIG license changes and
- this gave rise to version 2.0.0 in 2010. The license was clarified so
- that the code that SWIG generated could be distributed under license
- terms of the user's choice/requirements and at the same time the SWIG
- source was placed under the GNU General Public License version 3.</P>
-<H2><A name="Preface_nn5"></A>1.3 SWIG resources</H2>
+ this gave rise to version 2.0.0 in 2010.</P>
+<H2><A name="Preface_license"></A>1.3 SWIG License</H2>
+<P> The LICENSE file shipped with SWIG in the top level directory
+ contains the SWIG license. For further insight into the license
+ including the license of SWIG's output code, please visit the SWIG
+ legal page - <A href="http://www.swig.org/legal.html">
+http://www.swig.org/legal.html</A>.</P>
+<P> The license was clarified in version 2.0.0 so that the code that
+ SWIG generated could be distributed under license terms of the user's
+ choice/requirements and at the same time the SWIG source was placed
+ under the GNU General Public License version 3.</P>
+<H2><A name="Preface_nn5"></A>1.4 SWIG resources</H2>
 <P> The official location of SWIG related material is</P>
 <DIV class="shell">
 <PRE>
@@ -2083,14 +2116,14 @@ PRE { font-family: monospace }
 </DIV>
 <P> The mailing list often discusses some of the more technical aspects
  of SWIG along with information about beta releases and future work.</P>
-<P> Subversion access to the latest version of SWIG is also available.
- More information about this can be obtained at:</P>
+<P> Git and Subversion access to the latest version of SWIG is also
+ available. More information about this can be obtained at:</P>
 <DIV class="shell">
 <PRE>
-<A href="http://www.swig.org/svn.html">http://www.swig.org/svn.html</A>
+<A href="http://www.swig.org/svn.html">SWIG Bleeding Edge</A>
 </PRE>
 </DIV>
-<H2><A name="Preface_nn6"></A>1.4 Prerequisites</H2>
+<H2><A name="Preface_nn6"></A>1.5 Prerequisites</H2>
 <P> This manual assumes that you know how to write C/C++ programs and
  that you have at least heard of scripting languages such as Tcl,
  Python, and Perl. A detailed knowledge of these scripting languages is
@@ -2108,27 +2141,28 @@ PRE { font-family: monospace }
  of the gory details, you will almost certainly want to consult a good
  C++ reference. If you don't program in C++, you may just want to skip
  those parts of the manual.</P>
-<H2><A name="Preface_nn7"></A>1.5 Organization of this manual</H2>
+<H2><A name="Preface_nn7"></A>1.6 Organization of this manual</H2>
 <P> The first few chapters of this manual describe SWIG in general and
  provide an overview of its capabilities. The remaining chapters are
  devoted to specific SWIG language modules and are self contained. Thus,
  if you are using SWIG to build Python interfaces, you can probably skip
  to that chapter and find almost everything you need to know.</P>
-<H2><A name="Preface_nn8"></A>1.6 How to avoid reading the manual</H2>
+<H2><A name="Preface_nn8"></A>1.7 How to avoid reading the manual</H2>
 <P> If you hate reading manuals, glance at the &quot;Introduction&quot; which
  contains a few simple examples. These examples contain about 95% of
  everything you need to know to use SWIG. After that, simply use the
  language-specific chapters as a reference. The SWIG distribution also
  comes with a large directory of examples that illustrate different
  topics.</P>
-<H2><A name="Preface_nn9"></A>1.7 Backwards compatibility</H2>
+<H2><A name="Preface_nn9"></A>1.8 Backwards compatibility</H2>
 <P> If you are a previous user of SWIG, don't expect SWIG to provide
  complete backwards compatibility. Although the developers strive to the
  utmost to keep backwards compatibility, this isn't always possible as
  the primary goal over time is to make SWIG better---a process that
  would simply be impossible if the developers are constantly bogged down
  with backwards compatibility issues. Potential incompatibilities are
- clearly marked in the detailed release notes (CHANGES files).</P>
+ clearly marked in the detailed <A href="#Preface_release_notes">release
+ notes</A>.</P>
 <P> If you need to work with different versions of SWIG and backwards
  compatibility is an issue, you can use the SWIG_VERSION preprocessor
  symbol which holds the version of SWIG being executed. SWIG_VERSION is
@@ -2145,7 +2179,12 @@ PRE { font-family: monospace }
 <P> Note: The version symbol is not defined in the generated SWIG
  wrapper file. The SWIG preprocessor has defined SWIG_VERSION since
  SWIG-1.3.11.</P>
-<H2><A name="Preface_nn10"></A>1.8 Credits</H2>
+<H2><A name="Preface_release_notes"></A>1.9 Release notes</H2>
+<P> The CHANGES.current, CHANGES and RELEASENOTES files shipped with
+ SWIG in the top level directory contain, respectively, detailed release
+ notes for the current version, detailed release notes for previous
+ releases and summary release notes from SWIG-1.3.22 onwards.</P>
+<H2><A name="Preface_nn10"></A>1.10 Credits</H2>
 <P> SWIG is an unfunded project that would not be possible without the
  contributions of many people working in their spare time. If you have
  benefitted from using SWIG, please consider <A href="http://www.swig.org/donate.html">
@@ -2153,7 +2192,7 @@ Donating to SWIG</A> to keep development going. There have been a large
  varied number of people who have made contributions at all levels over
  time. Contributors are mentioned either in the COPYRIGHT file or
  CHANGES files shipped with SWIG or in submitted bugs.</P>
-<H2><A name="Preface_nn11"></A>1.9 Bug reports</H2>
+<H2><A name="Preface_nn11"></A>1.11 Bug reports</H2>
 <P> Although every attempt has been made to make SWIG bug-free, we are
  also trying to make feature improvements that may introduce bugs. To
  report a bug, either send mail to the SWIG developer list at the <A href="http://www.swig.org/mail.html">
@@ -2163,6 +2202,145 @@ SWIG bug tracker</A>. In your report, be as specific as possible,
  occurred), corresponding portions of the SWIG interface file used, and
  any important pieces of the SWIG generated wrapper code. We can only
  fix bugs if we know about them.</P>
+<H2><A name="Preface_installation"></A>1.12 Installation</H2>
+<H3><A name="Preface_windows_installation"></A>1.12.1 Windows
+ installation</H3>
+<P> Please see the dedicated <A href="Windows.html">Windows chapter</A>
+ for instructions on installing SWIG on Windows and running the
+ examples. The Windows distribution is called swigwin and includes a
+ prebuilt SWIG executable, swig.exe, included in the top level
+ directory. Otherwise it is exactly the same as the main SWIG
+ distribution. There is no need to download anything else.</P>
+<H3><A name="Preface_unix_installation"></A>1.12.2 Unix installation</H3>
+<P> You must use <A href="http://www.gnu.org/software/make/">GNU make</A>
+ to build and install SWIG.</P>
+<P> <A href="http://www.pcre.org/">PCRE</A> needs to be installed on
+ your system to build SWIG, in particular pcre-config must be available.
+ If you have PCRE headers and libraries but not pcre-config itself or,
+ alternatively, wish to override the compiler or linker flags returned
+ by pcre-config, you may set PCRE_LIBS and PCRE_CFLAGS variables to be
+ used instead. And if you don't have PCRE at all, the configure script
+ will provide instructions for obtaining it.</P>
+<P> To build and install SWIG, simply type the following:</P>
+<DIV class="shell">
+<PRE>
+$ ./configure
+$ make
+$ make install
+</PRE>
+</DIV>
+<P> By default SWIG installs itself in /usr/local. If you need to
+ install SWIG in a different location or in your home directory, use the
+ <TT>--prefix</TT> option to <TT>./configure</TT>. For example:</P>
+<DIV class="shell">
+<PRE>
+$ ./configure --prefix=/home/yourname/projects
+$ make
+$ make install
+</PRE>
+</DIV>
+<P> Note: the directory given to <TT>--prefix</TT> must be an absolute
+ pathname. Do<B> not</B> use the ~ shell-escape to refer to your home
+ directory. SWIG won't work properly if you do this.</P>
+<P> The INSTALL file shipped in the top level directory details more
+ about using configure. Also try</P>
+<DIV class="shell">
+<PRE>
+$ ./configure --help.
+</PRE>
+</DIV>
+<P> The configure script will attempt to locate various packages on your
+ machine including Tcl, Perl5, Python and all the other target languages
+ that SWIG supports. Don't panic if you get 'not found' messages -- SWIG
+ does not need these packages to compile or run. The configure script is
+ actually looking for these packages so that you can try out the SWIG
+ examples contained in the 'Examples' directory without having to hack
+ Makefiles. Note that the <TT>--without-xxx</TT> options, where xxx is a
+ target language, have minimal effect. All they do is reduce the amount
+ of testing done with 'make check'. The SWIG executable and library
+ files installed cannot currently be configured with a subset of target
+ languages.</P>
+<P> SWIG used to include a set of runtime libraries for some languages
+ for working with multiple modules. These are no longer built during the
+ installation stage. However, users can build them just like any wrapper
+ module as described in the <A href="Modules.html">Modules chapter</A>.
+ The CHANGES file shipped with SWIG in the top level directory also
+ lists some examples which build the runtime library.</P>
+<P> Note:</P>
+<UL>
+<LI> If you checked the code out via Git, you will have to run <TT>
+./autogen.sh</TT> before <TT>./configure</TT>. In addition, a full build
+ of SWIG requires a number of packages to be installed. Full
+ instructions at <A href="http://www.swig.org/svn.html">SWIG bleeding
+ edge</A>.</LI>
+</UL>
+<H3><A name="Preface_osx_installation"></A>1.12.3 Macintosh OS X
+ installation</H3>
+<P> SWIG is known to work on various flavors of OS X. Follow the Unix
+ installation instructions above. However, as of this writing, there is
+ still great deal of inconsistency with how shared libaries are handled
+ by various scripting languages on OS X.</P>
+<P> Users of OS X should be aware that Darwin handles shared libraries
+ and linking in a radically different way than most Unix systems. In
+ order to test SWIG and run the examples, SWIG configures itself to use
+ flat namespaces and to allow undefined symbols (<TT>-flat_namespace
+ -undefined suppress</TT>). This mostly closely follows the Unix model
+ and makes it more likely that the SWIG examples will work with whatever
+ installation of software you might have. However, this is generally not
+ the recommended technique for building larger extension modules.
+ Instead, you should utilize Darwin's two-level namespaces. Some details
+ about this can be found here <A href="http://developer.apple.com/documentation/ReleaseNotes/DeveloperTools/TwoLevelNamespaces.html">
+http://developer.apple.com/documentation/ReleaseNotes/DeveloperTools/TwoLevelNamespaces.html
+</A>.</P>
+<P> Needless to say, you might have to experiment a bit to get things
+ working at first.</P>
+<H3><A name="Preface_testing"></A>1.12.4 Testing</H3>
+<P> If you want to test SWIG after building it, a check can be performed
+ on Unix operating systems. Type the following:</P>
+<DIV class="shell">
+<PRE>
+    $ make -k check
+</PRE>
+</DIV>
+<P> This step can be performed either before or after installation. The
+ check requires at least one of the target languages to be installed. If
+ it fails, it may mean that you have an uninstalled language module or
+ that the file 'Examples/Makefile' has been incorrectly configured. It
+ may also fail due to compiler issues such as a broken C++ compiler.
+ Even if the check fails, there is a pretty good chance SWIG still works
+ correctly --- you will just have to mess around with one of the
+ examples and some makefiles to get it to work. Some tests may also fail
+ due to missing dependency packages, eg PCRE or Boost, but this will
+ require careful analysis of the configure output done during
+ configuration.</P>
+<P> The test suite executed by the check is designed to stress-test many
+ parts of the implementation including obscure corner cases. If some of
+ these tests fail or generate warning messages, there is no reason for
+ alarm --- the test may be related to some new SWIG feature or a
+ difficult bug that we're trying to resolve. Chances are that SWIG will
+ work just fine for you. Note that if you have more than one CPU/core,
+ then you can use parallel make to speed up the check as it does take
+ quite some time to run, for example:</P>
+<DIV class="shell">
+<PRE>
+    $ make -j2 -k check
+</PRE>
+</DIV>
+<P> Also, SWIG's support for C++ is sufficiently advanced that certain
+ tests may fail on older C++ compilers (for instance if your compiler
+ does not support member templates). These errors are harmless if you
+ don't intend to use these features in your own programs.</P>
+<P> Note: The test-suite currently contains over 500 tests. If you have
+ many different target languages installed and a slow machine, it might
+ take more than an hour to run the test-suite.</P>
+<H3><A name="Preface_examples"></A>1.12.5 Examples</H3>
+<P> The Examples directory contains a variety of examples of using SWIG
+ and it has some browsable documentation. Simply point your browser to
+ the file &quot;Example/index.html&quot;.</P>
+<P> The Examples directory also includes Visual C++ project 6 (.dsp)
+ files for building some of the examples on Windows. Later versions of
+ Visual Studio will convert these old style project files into a current
+ solution file.</P>
 <HR NOSHADE>
 <H1><A name="Introduction"></A>2 Introduction</H1>
 
@@ -2726,9 +2904,10 @@ Cygwin</A> or <A href="http://www.mingw.org">MinGW</A> which provides a
  root directory to build swig.exe from the MinGW command prompt.</LI>
 </UL>
 <P> The step by step instructions to download and install MinGW and
- MSYS, then download and build the latest version of SWIG from SVN
- follow... Note that the instructions for obtaining SWIG from SVN are
- also online at <A href="http://www.swig.org/svn.html">SWIG SVN</A>.</P>
+ MSYS, then download and build the latest version of SWIG from Github
+ follow... Note that the instructions for obtaining SWIG from Github are
+ also online at <A href="http://www.swig.org/svn.html">SWIG Bleeding
+ Edge</A>.</P>
 <P><B> Pitfall note:</B> Execute the steps in the order shown and don't
  use spaces in path names. In fact it is best to use the default
  installation directories.</P>
@@ -2776,14 +2955,17 @@ tar -jxf msys-autoconf-2.59.tar.bz2
 tar -zxf bison-2.0-MSYS.tar.gz   
 </PRE>
 </DIV></LI>
-<LI> To get the latest SWIG SVN (version from Subversion source
- control), type in the following:<DIV class="shell">
+<LI> The very latest development version of SWIG is available from <A href="https://github.com/swig/swig">
+SWIG on Github</A> and can be downloaded as a zip file or if you have
+ Git installed, via Git. Either download the latest <A href="https://github.com/swig/swig/archive/master.zip">
+Zip file</A> snapshot and unzip and rename the top level folder to
+ /usr/src/swig. Otherwise if using Git, type in the following:<DIV class="shell">
 <PRE>
 mkdir /usr/src
 cd /usr/src
-svn co https://swig.svn.sourceforge.net/svnroot/swig/trunk swig
+git clone https://github.com/swig/swig.git
 </PRE>
-</DIV><B> Pitfall note:</B> If you want to check out SWIG to a different
+</DIV><B> Pitfall note:</B> If you want to place SWIG in a different
  folder to the proposed /usr/src/swig, do not use MSYS emulated windows
  drive letters, because the autotools will fail miserably on those.</LI>
 <LI> The PCRE third party library needs to be built next. Download the
@@ -5290,7 +5472,7 @@ struct Bar {              // Default destructor generated.
 <PRE>
 /* file : vector.h */
 ...
-typedef struct {
+typedef struct Vector {
 	double x,y,z;
 } Vector;
 
@@ -5360,7 +5542,7 @@ typedef struct {
 #include &quot;vector.h&quot;
 %}
 
-typedef struct {
+typedef struct Vector {
 	double x,y,z;
 	%extend {
 		Vector(double x, double y, double z) { ... }
@@ -5370,7 +5552,7 @@ typedef struct {
 } Vector;
 </PRE>
 </DIV>
-<P> Finally, <TT>%extend</TT> can be used to access externally written
+<P> Note that <TT>%extend</TT> can be used to access externally written
  functions provided they follow the naming convention used in this
  example :</P>
 <DIV class="code">
@@ -5401,7 +5583,7 @@ double Vector_magnitude(Vector *v) {
 #include &quot;vector.h&quot;
 %}
 
-typedef struct {
+typedef struct Vector {
 	double x,y,z;
 	%extend {
                 Vector(int,int,int); // This calls new_Vector()
@@ -5410,6 +5592,34 @@ typedef struct {
 		...
 	}
 } Vector;
+</PRE>
+</DIV>
+<P> The name used for %extend should be the name of the struct and not
+ the name of any typedef to the struct. For example:</P>
+<DIV class="code">
+<PRE>
+typedef struct Integer {
+	int value;
+} Int;
+%extend Integer { ...  } /* Correct name */
+%extend Int { ...  } /* Incorrect name */
+
+struct Float {
+	float value;
+};
+typedef struct Float FloatValue;
+%extend Float { ...  } /* Correct name */
+%extend FloatValue { ...  } /* Incorrect name */
+</PRE>
+</DIV>
+<P> There is one exception to this rule and that is when the struct is
+ anonymously named such as:</P>
+<DIV class="code">
+<PRE>
+typedef struct {
+	double value;
+} Double;
+%extend Double { ...  } /* Okay */
 </PRE>
 </DIV>
 <P> A little known feature of the <TT>%extend</TT> directive is that it
@@ -5438,7 +5648,7 @@ const double Vector_magnitude_get(Vector *v) {
  you want to process. For example, consider this interface:</P>
 <DIV class="code">
 <PRE>
-typedef struct {
+typedef struct Person {
   char name[50];
   ...
 } Person;
@@ -5449,7 +5659,7 @@ typedef struct {
  name is read or written to:</P>
 <DIV class="code">
 <PRE>
-typedef struct {
+typedef struct Person {
   %extend {
     char name[50];
   }
@@ -10354,7 +10564,7 @@ noblock</TT> where the { ... } delimiters can be used, but the
 <P> Library files are included using the <TT>%include</TT> directive.
  When searching for files, directories are searched in the following
  order:</P>
-<UL>
+<OL>
 <LI>The current directory</LI>
 <LI>Directories specified with the <TT>-I</TT> command line option</LI>
 <LI>.<TT>/swig_lib</TT></LI>
@@ -10362,12 +10572,12 @@ noblock</TT> where the { ... } delimiters can be used, but the
  for example <TT>/usr/local/share/swig/1.3.30</TT></LI>
 <LI>On Windows, a directory <TT>Lib</TT> relative to the location of <TT>
 swig.exe</TT> is also searched.</LI>
-</UL>
-<P> Within each directory, SWIG first looks for a subdirectory
- corresponding to a target language (e.g., <TT>python</TT>, <TT>tcl</TT>
-, etc.). If found, SWIG will search the language specific directory
- first. This allows for language-specific implementations of library
- files.</P>
+</OL>
+<P> Within directories mentioned in points 3-5, SWIG first looks for a
+ subdirectory corresponding to a target language (e.g., <TT>python</TT>,
+ <TT>tcl</TT>, etc.). If found, SWIG will search the language specific
+ directory first. This allows for language-specific implementations of
+ library files.</P>
 <P> You can ignore the installed SWIG library by setting the <TT>
 SWIG_LIB</TT> environment variable. Set the environment variable to hold
  an alternative library directory.</P>
@@ -12670,7 +12880,7 @@ Preprocessor and Typemaps</A>. Here are some examples of valid typemap
 }
 
 /* Typemap with modifiers */
-%typemap(in,doc=&quot;integer&quot;) int &quot;$1 = gh_scm2int($input);&quot;;
+%typemap(in,doc=&quot;integer&quot;) int &quot;$1 = scm_to_int($input);&quot;;
 
 /* Typemap applied to patterns of multiple arguments */
 %typemap(in) (char *str, int len),
@@ -16249,9 +16459,7 @@ SWIG_MemoryError
 SWIG_NullReferenceError
 </PRE>
 </DIV>
-<P> Since the <TT>SWIG_exception()</TT> function is defined at the
- C-level it can be used elsewhere in SWIG. This includes typemaps and
- helper functions.</P>
+<P> The <TT>SWIG_exception()</TT> function can also be used in typemaps.</P>
 <H2><A name="Customization_ownership"></A>11.2 Object ownership and
  %newobject</H2>
 <P> A common problem in some applications is managing proper ownership
@@ -17192,7 +17400,7 @@ int execlp(const char *path, const char *arg, ...);
 </PRE>
 </DIV>
 <P> Note that <TT>str3</TT> is the name of the last argument, as we have
- used <TT>%vargars</TT> with 3. Now <TT>execlp(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;)</TT>
+ used <TT>%varargs</TT> with 3. Now <TT>execlp(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;)</TT>
  will result in an error as one too many arguments has been passed, as
  now only 2 additional 'str' arguments can be passed with the 3rd one
  always using the specified default <TT>NULL</TT>.</P>
@@ -17277,10 +17485,10 @@ wrap_printf() {
 %varargs</TT>, you might first write a typemap like this:</P>
 <DIV class="code">
 <PRE>
-%typemap(in) (...)(char *args[10]) {
+%typemap(in) (...)(char *vargs[10]) {
   int i;
   int argc;
-  for (i = 0; i &lt; 10; i++) args[i] = 0;
+  for (i = 0; i &lt; 10; i++) vargs[i] = 0;
   argc = PyTuple_Size(varargs);
   if (argc &gt; 10) {
     PyErr_SetString(PyExc_ValueError, &quot;Too many arguments&quot;);
@@ -17296,7 +17504,7 @@ wrap_printf() {
        return NULL;
     }
     pystr = PyUnicode_AsUTF8String(pyobj);
-    str = PyBytes_AsString(pystr);
+    str = strdup(PyBytes_AsString(pystr));
     Py_XDECREF(pystr);
 %#else  
     if (!PyString_Check(pyobj)) {
@@ -17305,27 +17513,39 @@ wrap_printf() {
     }
     str = PyString_AsString(pyobj);
 %#endif
-    args[i] = str;
+    vargs[i] = str;
   }
-  $1 = (void *) args;
+  $1 = (void *)vargs;
+}
+
+%typemap(freearg) (...) {
+%#if PY_VERSION_HEX&gt;=0x03000000
+  int i;
+  for (i = 0; i &lt; 10; i++) {
+    free(vargs$argnum[i]);
+  }
+%#endif
 }
 </PRE>
 </DIV>
-<P> In this typemap, the special variable <TT>varargs</TT> is a tuple
- holding all of the extra arguments passed (this is specific to the
- Python module). The typemap then pulls this apart and sticks the values
- into the array of strings <TT>args</TT>. Then, the array is assigned to
- <TT>$1</TT> (recall that this is the <TT>void *</TT> variable
- corresponding to <TT>(...)</TT>). However, this assignment is only half
- of the picture----clearly this alone is not enough to make the function
- work. To patch everything up, you have to rewrite the underlying action
- code using the <TT>%feature</TT> directive like this:</P>
+<P> In the 'in' typemap, the special variable <TT>varargs</TT> is a
+ tuple holding all of the extra arguments passed (this is specific to
+ the Python module). The typemap then pulls this apart and sticks the
+ values into the array of strings <TT>args</TT>. Then, the array is
+ assigned to <TT>$1</TT> (recall that this is the <TT>void *</TT>
+ variable corresponding to <TT>(...)</TT>). However, this assignment is
+ only half of the picture----clearly this alone is not enough to make
+ the function work. The 'freearg' typemap cleans up memory allocated in
+ the 'in' typemap; this code is generated to be called after the <TT>
+execlp</TT> function is called. To patch everything up, you have to
+ rewrite the underlying action code using the <TT>%feature</TT>
+ directive like this:</P>
 <DIV class="code">
 <PRE>
 %feature(&quot;action&quot;) execlp {
-   char *args = (char **) arg3;
-   result = execlp(arg1, arg2, args[0], args[1], args[2], args[3], args[4],
-                   args[5],args[6],args[7],args[8],args[9], NULL);
+  char **vargs = (char **) arg3;
+  result = execlp(arg1, arg2, vargs[0], vargs[1], vargs[2], vargs[3], vargs[4],
+                  vargs[5], vargs[6], vargs[7], vargs[8], vargs[9], NULL);
 }
 
 int execlp(const char *path, const char *arg, ...);
@@ -18042,7 +18262,10 @@ name</EM>'</LI>
 <LI>323. Recursive scope inheritance of '<EM>name</EM>'.</LI>
 <LI>324. Named nested template instantiations not supported. Processing
  as if no name was given to %template().</LI>
-<LI>325. Nested class not currently supported (<EM>name</EM> ignored).</LI>
+<LI>325. Nested<EM> kind</EM> not currently supported (<EM>name</EM>
+ ignored).</LI>
+<LI>326. Deprecated %extend name used - the<EM> kind</EM> name '<EM>name</EM>
+' should be used instead of the typedef name '<EM>name</EM>'.</LI>
 <LI>350. operator new ignored.</LI>
 <LI>351. operator delete ignored.</LI>
 <LI>352. operator+ ignored.</LI>
@@ -18154,6 +18377,10 @@ name</EM>'</LI>
 <LI>520.<EM> Base/Derived</EM> class '<EM>classname1</EM>' of '<EM>
 classname2</EM>' is not similarly marked as a smart pointer.</LI>
 <LI>521. Illegal destructor name<EM> name</EM>. Ignored.</LI>
+<LI>522. Use of an illegal constructor name '<EM>name</EM>' in %extend
+ is deprecated, the constructor name should be '<EM>name</EM>'.</LI>
+<LI>523. Use of an illegal destructor name '<EM>name</EM>' in %extend is
+ deprecated, the destructor name should be '<EM>name</EM>'.</LI>
 </UL>
 <H3><A name="Warnings_nn15"></A>14.9.6 Language module specific
  (700-899)</H3>
@@ -18179,6 +18406,12 @@ classname2</EM>' is not similarly marked as a smart pointer.</LI>
 <LI>823. No javaconstruct typemap defined for<EM> type</EM> (Java).</LI>
 <LI>824. Missing JNI descriptor in directorin typemap defined for<EM>
  type</EM> (Java).</LI>
+<LI>825. &quot;directorconnect&quot; attribute missing in<EM> type</EM>
+ &quot;javaconstruct&quot; typemap. (Java).</LI>
+<LI>826. The nspace feature is used on '<EM>type</EM>' without -package.
+ The generated code may not compile as Java does not support types
+ declared in a named package accessing types declared in an unnamed
+ package. (Java).</LI>
 </UL>
 <UL>
 <LI>830. No ctype typemap defined for<EM> type</EM> (C#).</LI>
@@ -19875,7 +20108,7 @@ namespace BAR {
  defclass form are generated. For every function that returns an object
  (or pointer/reference) of C/C++ type <TT>X</TT>, the wrapping defun (or
  defmethod) on the Lisp side will automatically wrap the pointer
- returned in an instance of the apropriate class. This makes it much
+ returned in an instance of the appropriate class. This makes it much
  easier to write and debug code than if pointers were passed around as a
  jumble of integer values.</P>
 <H4><A name="Allegrocl_nn22"></A>17.3.6.2 CLOS Inheritance</H4>
@@ -20271,13 +20504,13 @@ opoverload&gt;
 <H3><A name="Allegrocl_nn32"></A>17.3.11 Varargs</H3>
 <P> Variable length argument lists are not supported, by default. If
  such a function is encountered, a warning will generated to stderr.
- Varargs are supported via the SWIG <TT>%vararg</TT> directive. This
+ Varargs are supported via the SWIG <TT>%varargs</TT> directive. This
  directive allows you to specify a (finite) argument list which will be
  inserted into the wrapper in place of the variable length argument
  indicator. As an example, consider the function <TT>printf()</TT>. It's
  declaration would appear as follows:</P>
 <P> See the following section on <A href="#Varargs">Variable Length
- arguments</A> provides examples on how <TT>%vararg</TT> can be used,
+ arguments</A> provides examples on how <TT>%varargs</TT> can be used,
  along with other ways such functions can be wrapped.</P>
 <H3><A name="Allegrocl_nn33"></A>17.3.12 C++ Exceptions</H3>
 <P> Each C++ wrapper includes a handler to catch any exceptions that may
@@ -21351,6 +21584,8 @@ APP_STL := gnustl_static
  typemap and associated attributes</A></LI>
 <LI><A href="#CSharp_date_properties">A date example demonstrating
  marshalling of C# properties</A></LI>
+<LI><A href="#CSharp_date_pre_post_directors">Date example demonstrating
+ the 'pre' and 'post' typemap attributes for directors</A></LI>
 <LI><A href="#CSharp_partial_classes">Turning wrapped classes into
  partial classes</A></LI>
 <LI><A href="#CSharp_extending_proxy_class">Extending proxy classes with
@@ -21526,17 +21761,21 @@ $jnicall                    -&gt; $imcall
 <P> Unlike the &quot;javain&quot; typemap, the &quot;csin&quot; typemap does not support the
  'pgcpp' attribute as the C# module does not have a premature garbage
  collection prevention parameter. The &quot;csin&quot; typemap supports additional
- optional attributes called 'cshin' and 'terminator'. The 'cshin'
- attribute should contain the parameter type and name whenever a <A href="#Java_constructor_helper_function">
-constructor helper function</A> is generated due to the 'pre' or 'post'
- attributes. The 'terminator' attribute normally just contains a closing
- brace for when the 'pre' attribute contains an opening brace, such as
- when a C# <TT>using</TT> or <TT>fixed</TT> block is started. Note that
- 'pre', 'post', 'terminator' and 'cshin' attributes are not used for
- marshalling the property set. Please see the <A href="#CSharp_date_marshalling">
-Date marshalling example</A> and <A href="#CSharp_date_properties">Date
+ optional attributes called 'cshin' and 'terminator'. The &quot;csdirectorin&quot;
+ typemap supports additional optional attributes called 'terminator'.
+ The 'cshin' attribute should contain the parameter type and name
+ whenever a <A href="#Java_constructor_helper_function">constructor
+ helper function</A> is generated due to the 'pre' or 'post' attributes.
+ The 'terminator' attribute normally just contains a closing brace for
+ when the 'pre' attribute contains an opening brace, such as when a C# <TT>
+using</TT> or <TT>fixed</TT> block is started. Note that 'pre', 'post',
+ 'terminator' and 'cshin' attributes are not used for marshalling the
+ property set. Please see the <A href="#CSharp_date_marshalling">Date
+ marshalling example</A> and <A href="#CSharp_date_properties">Date
  marshalling of properties example</A> for further understanding of
- these &quot;csin&quot; applicable attributes.</P>
+ these &quot;csin&quot; applicable attributes. Please see the <A href="#CSharp_date_pre_post_directors">
+Date marshalling director example</A> for further understanding of the
+ &quot;csdirectorin&quot; attributes.</P>
 </LI>
 <LI>
 <P> Support for asymmetric type marshalling. The 'ctype', 'imtype' and
@@ -23067,13 +23306,13 @@ dateIn = new System.DateTime(2012, 7, 14);
  achieve this are shown below.</P>
 <DIV class="code">
 <PRE>
-%typemap(cstype) const CDate&amp; &quot;System.DateTime&quot;
+%typemap(cstype) const CDate &amp; &quot;System.DateTime&quot;
 %typemap(csin, 
          pre=&quot;    CDate temp$csinput = new CDate($csinput.Year, $csinput.Month, $csinput.Day);&quot;
         ) const CDate &amp;
          &quot;$csclassname.getCPtr(temp$csinput)&quot;
 
-%typemap(cstype) CDate&amp; &quot;out System.DateTime&quot;
+%typemap(cstype) CDate &amp; &quot;out System.DateTime&quot;
 %typemap(csin, 
          pre=&quot;    CDate temp$csinput = new CDate();&quot;, 
          post=&quot;      $csinput = new System.DateTime(temp$csinput.getYear(),&quot;
@@ -23272,8 +23511,8 @@ Console.WriteLine(&quot;Important date: &quot; + importantDate);
 </DIV>
 <P> When SWIG wraps a variable that is a class/struct/union, it is
  wrapped using a pointer to the type for the reasons given in <A href="#SWIG_structure_data_members">
-Stucture data members</A>. The typemap type required is thus <TT>CDate *</TT>
-. Given that the previous section already designed <TT>CDate *</TT>
+Structure data members</A>. The typemap type required is thus <TT>CDate
+ *</TT>. Given that the previous section already designed <TT>CDate *</TT>
  typemaps, we'll use those same typemaps plus the 'csvarin' and
  'csvarout' typemaps.<DIV class="code">
 <PRE>
@@ -23354,7 +23593,64 @@ CDate.getCPtr(tempvalue)</TT>.</LI>
  creating the <TT>temp$csinput</TT> variable is such an example; it is
  identical to what is in the 'pre' attribute.</LI>
 </UL>
-<H3><A name="CSharp_partial_classes"></A>19.8.5 Turning wrapped classes
+<H3><A name="CSharp_date_pre_post_directors"></A>19.8.5 Date example
+ demonstrating the 'pre' and 'post' typemap attributes for directors</H3>
+<P> The 'pre' and 'post' attributes in the &quot;csdirectorin&quot; typemap act
+ like the attributes of the same name in the &quot;csin&quot; typemap. For example
+ if we modify the <A href="#CSharp_date_marshalling">Date marshalling
+ example</A> like this:</P>
+<DIV class="code">
+<PRE>
+class CDate {
+  ...
+  void setYear(int);
+  void setMonth(int);
+  void setDay(int);
+};
+struct Action {
+  virtual void someCallback(CDate &amp;date);
+  virtual ~Action();
+  ...
+};
+</PRE>
+</DIV>
+<P> and declare <TT>%feature (&quot;director&quot;)</TT> for the <TT>Action</TT>
+ class, we would have to define additional marshalling rules for <TT>
+CDate &amp;</TT> parameter. The typemap may look like this:</P>
+<DIV class="code">
+<PRE>
+%typemap(csdirectorin,
+         pre=&quot;System.DateTime temp$iminput = new System.DateTime();&quot;,
+         post=&quot;CDate temp2$iminput = new CDate($iminput, false);\n&quot;
+              &quot;temp2$iminput.setYear(tempdate.Year);\n&quot;
+              &quot;temp2$iminput.setMonth(tempdate.Month);\n&quot;
+              &quot;temp2$iminput.setDay(tempdate.Day);&quot;
+         ) CDate &amp;date &quot;out temp$iminput&quot;
+</PRE>
+</DIV>
+<P> The generated proxy class code will then contain the following
+ wrapper for calling user-overloaded <TT>someCallback()</TT>:</P>
+<DIV class="code">
+<PRE>
+...
+  private void SwigDirectorsomeCallback(IntPtr date) {
+    System.DateTime tempdate = new System.DateTime();
+    try {
+      someCallback(out tempdate);
+    } finally {
+      // we create a managed wrapper around the existing C reference, just for convenience
+      CDate temp2date = new CDate(date, false);
+      temp2date.setYear(tempdate.Year);
+      temp2date.setMonth(tempdate.Month);
+      temp2date.setDay(tempdate.Day);
+    }
+  }
+...
+</PRE>
+</DIV>
+<P> Pay special attention to the memory management issues, using these
+ attributes.</P>
+<H3><A name="CSharp_partial_classes"></A>19.8.6 Turning wrapped classes
  into partial classes</H3>
 <P> C# supports the notion of partial classes whereby a class definition
  can be split into more than one file. It is possible to turn the
@@ -23428,7 +23724,7 @@ Console.WriteLine(&quot;part2: {0}&quot;, em.Part2());
  code - <TT>Part1()</TT> and managed code - <TT>Part2()</TT>. The
  following example is an alternative approach to adding managed code to
  the generated proxy class.</P>
-<H3><A name="CSharp_extending_proxy_class"></A>19.8.6 Extending proxy
+<H3><A name="CSharp_extending_proxy_class"></A>19.8.7 Extending proxy
  classes with additional C# code</H3>
 <P> The previous example showed how to use partial classes to add
  functionality to a generated C# proxy class. It is also possible to
@@ -23461,7 +23757,7 @@ public class ExtendMe : IDisposable {
 }
 </PRE>
 </DIV>
-<H3><A name="CSharp_enum_underlying_type"></A>19.8.7 Underlying type for
+<H3><A name="CSharp_enum_underlying_type"></A>19.8.8 Underlying type for
  enums</H3>
 <P> C# enums use int as the underlying type for each enum item. If you
  wish to change the underlying type to something else, then use the <TT>
@@ -24987,8 +25283,9 @@ func (arg SwigcptrWrapped_MyClass) GetAValue() (int, bool) {
 <!-- INDEX -->
 <DIV class="sectiontoc">
 <UL>
+<LI><A href="#Guile_nn1">Supported Guile Versions</A></LI>
 <LI><A href="#Guile_nn2">Meaning of &quot;Module&quot;</A></LI>
-<LI><A href="#Guile_nn3">Using the SCM or GH Guile API</A></LI>
+<LI><A href="#Guile_nn3">Old GH Guile API</A></LI>
 <LI><A href="#Guile_nn4">Linkage</A>
 <UL>
 <LI><A href="#Guile_nn5">Simple Linkage</A></LI>
@@ -25002,8 +25299,7 @@ func (arg SwigcptrWrapped_MyClass) GetAValue() (int, bool) {
 <LI><A href="#Guile_nn11">Typemaps</A></LI>
 <LI><A href="#Guile_nn12">Representation of pointers as smobs</A>
 <UL>
-<LI><A href="#Guile_nn13">GH Smobs</A></LI>
-<LI><A href="#Guile_nn14">SCM Smobs</A></LI>
+<LI><A href="#Guile_nn14">Smobs</A></LI>
 <LI><A href="#Guile_nn15">Garbage Collection</A></LI>
 </UL>
 </LI>
@@ -25020,69 +25316,33 @@ func (arg SwigcptrWrapped_MyClass) GetAValue() (int, bool) {
 </DIV>
 <!-- INDEX -->
 <P> This section details guile-specific support in SWIG.</P>
-<H2><A name="Guile_nn2"></A>23.1 Meaning of &quot;Module&quot;</H2>
+<H2><A name="Guile_nn1"></A>23.1 Supported Guile Versions</H2>
+<P> SWIG works with Guile versions 1.8.x and 2.0.x. Support for version
+ 1.6.x has been dropped. The last version of SWIG that still works with
+ Guile version 1.6.x is SWIG 2.0.9.</P>
+<P> Note that starting with guile 2.0, the guile sources can be compiled
+ for improved performance. This is currently not tested with swig so
+ your mileage may vary. To be safe set environment variable
+ GUILE_AUTO_COMPILE to 0 when using swig generated guile code.</P>
+<H2><A name="Guile_nn2"></A>23.2 Meaning of &quot;Module&quot;</H2>
 <P> There are three different concepts of &quot;module&quot; involved, defined
  separately for SWIG, Guile, and Libtool. To avoid horrible confusion,
  we explicitly prefix the context, e.g., &quot;guile-module&quot;.</P>
-<H2><A name="Guile_nn3"></A>23.2 Using the SCM or GH Guile API</H2>
-<P>The guile module can currently export wrapper files that use the
- guile GH interface or the SCM interface. This is controlled by an
- argument passed to swig. The &quot;-gh&quot; argument causes swig to output GH
- code, and the &quot;-scm&quot; argument causes swig to output SCM code. Right now
- the &quot;-scm&quot; argument is the default. The &quot;-scm&quot; wrapper generation
- assumes a guile version &gt;= 1.6 and has several advantages over the
- &quot;-gh&quot; wrapper generation including garbage collection and GOOPS
- support. The &quot;-gh&quot; wrapper generation can be used for older versions of
- guile. The guile GH wrapper code generation is depreciated and the SCM
- interface is the default. The SCM and GH interface differ greatly in
- how they store pointers and have completely different run-time code.
- See below for more info.</P>
-<P>The GH interface to guile is deprecated. Read more about why in the <A
-href="http://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/GH.html#GH">
-Guile manual</A>. The idea of the GH interface was to provide a high
- level API that other languages and projects could adopt. This was a
- good idea, but didn't pan out well for general development. But for the
- specific, minimal uses that the SWIG typemaps put the GH interface to
- use is ideal for using a high level API. So even though the GH
- interface is depreciated, SWIG will continue to use the GH interface
- and provide mappings from the GH interface to whatever API we need. We
- can maintain this mapping where guile failed because SWIG uses a small
- subset of all the GH functions which map easily. All the guile typemaps
- like typemaps.i and std_vector.i will continue to use the GH functions
- to do things like create lists of values, convert strings to integers,
- etc. Then every language module will define a mapping between the GH
- interface and whatever custom API the language uses. This is currently
- implemented by the guile module to use the SCM guile API rather than
- the GH guile API. For example, here are some of the current mapping
- file for the SCM API</P>
-<DIV class="code">
-<PRE>
-
-#define gh_append2(a, b) scm_append(scm_listify(a, b, SCM_UNDEFINED)) 
-#define gh_apply(a, b) scm_apply(a, b, SCM_EOL) 
-#define gh_bool2scm SCM_BOOL 
-#define gh_boolean_p SCM_BOOLP 
-#define gh_car SCM_CAR 
-#define gh_cdr SCM_CDR 
-#define gh_cons scm_cons 
-#define gh_double2scm scm_make_real 
-...
-</PRE>
-</DIV>
-<P>This file is parsed by SWIG at wrapper generation time, so every
- reference to a gh_ function is replaced by a scm_ function in the
- wrapper file. Thus the gh_ function calls will never be seen in the
- wrapper; the wrapper will look exactly like it was generated for the
- specific API. Currently only the guile language module has created a
- mapping policy from gh_ to scm_, but there is no reason other languages
- (like mzscheme or chicken) couldn't also use this. If that happens,
- there is A LOT less code duplication in the standard typemaps.</P>
-<H2><A name="Guile_nn4"></A>23.3 Linkage</H2>
+<H2><A name="Guile_nn3"></A>23.3 Old GH Guile API</H2>
+<P>Guile 1.8 and older could be interfaced using two different api's,
+ the SCM or the GH API. The GH interface to guile is deprecated. Read
+ more about why in the <A href="http://www.gnu.org/software/guile/docs/docs-1.6/guile-ref/GH.html#GH">
+Guile manual</A>.</P>
+<P>Support for the guile GH wrapper code generation has been dropped
+ from SWIG. The last version of SWIG that can still generate guile GH
+ wrapper code is 2.0.9. Please use that version if you really need the
+ GH wrapper code.</P>
+<H2><A name="Guile_nn4"></A>23.4 Linkage</H2>
 <P> Guile support is complicated by a lack of user community
  cohesiveness, which manifests in multiple shared-library usage
  conventions. A set of policies implementing a usage convention is
  called a<B> linkage</B>.</P>
-<H3><A name="Guile_nn5"></A>23.3.1 Simple Linkage</H3>
+<H3><A name="Guile_nn5"></A>23.4.1 Simple Linkage</H3>
 <P> The default linkage is the simplest; nothing special is done. In
  this case the function <CODE>SWIG_init()</CODE> is exported. Simple
  linkage can be used in several ways:</P>
@@ -25100,7 +25360,7 @@ inner_main()</CODE> function. See the &quot;simple&quot; and &quot;matrix&quot; 
 <DIV class="targetlang">
 <PRE>
 (define-module (my module))
-(define my-so (dynamic-link &quot;./example.so&quot;))
+(define my-so (dynamic-link &quot;./libexample.so&quot;))
 (dynamic-call &quot;SWIG_init&quot; my-so) ; make SWIG bindings
 ;; Scheme definitions can go here
 </PRE>
@@ -25109,7 +25369,14 @@ inner_main()</CODE> function. See the &quot;simple&quot; and &quot;matrix&quot; 
  and <CODE>dynamic-call</CODE>:</P>
 <DIV class="targetlang">
 <PRE>
-(load-extension &quot;./example.so&quot; &quot;SWIG_init&quot;)
+(load-extension &quot;./libexample.so&quot; &quot;SWIG_init&quot;)
+</PRE>
+</DIV>
+<P> A more portable approach would be to drop the shared library
+ extension:</P>
+<DIV class="targetlang">
+<PRE>
+(load-extension &quot;./libexample&quot; &quot;SWIG_init&quot;)
 </PRE>
 </DIV>
 <P> You need to explicitly export those bindings made by SWIG that you
@@ -25140,7 +25407,7 @@ load-extension</CODE>), you need to supply this information by including
  a directive like this in the interface file:</P>
 <DIV class="code">
 <PRE>
-%scheme %{ (load-extension &quot;./example.so&quot; &quot;SWIG_init&quot;) %}
+%scheme %{ (load-extension &quot;./libexample.so&quot; &quot;SWIG_init&quot;) %}
 </PRE>
 </DIV>
 <P> (The <CODE>%scheme</CODE> directive allows to insert arbitrary
@@ -25152,16 +25419,16 @@ export</CODE> form.)</P>
 <P>If you want to include several SWIG modules, you would need to rename
  <CODE>SWIG_init</CODE> via a preprocessor define to avoid symbol
  clashes. For this case, however, passive linkage is available.</P>
-<H3><A name="Guile_nn6"></A>23.3.2 Passive Linkage</H3>
+<H3><A name="Guile_nn6"></A>23.4.2 Passive Linkage</H3>
 <P>Passive linkage is just like simple linkage, but it generates an
  initialization function whose name is derived from the module and
  package name (see below).</P>
 <P>You should use passive linkage rather than simple linkage when you
  are using multiple modules.</P>
-<H3><A name="Guile_nn7"></A>23.3.3 Native Guile Module Linkage</H3>
+<H3><A name="Guile_nn7"></A>23.4.3 Native Guile Module Linkage</H3>
 <P>SWIG can also generate wrapper code that does all the Guile module
  declarations on its own if you pass it the <CODE>-Linkage module</CODE>
- command-line option. This requires Guile 1.5.0 or later.</P>
+ command-line option.</P>
 <P>The module name is set with the <CODE>-package</CODE> and <CODE>
 -module</CODE> command-line options. Suppose you want to define a module
  with name <CODE>(my lib foo)</CODE>; then you would have to pass the
@@ -25179,17 +25446,17 @@ inner_main()</CODE> function.</LI>
  shared libraries into Guile; all bindings are automatically put in
  newly created Guile modules.<DIV class="targetlang">
 <PRE>
-(define my-so (dynamic-link &quot;./foo.so&quot;))
+(define my-so (dynamic-link &quot;./libfoo&quot;))
 ;; create new module and put bindings there:
 (dynamic-call &quot;scm_init_my_modules_foo_module&quot; my-so) 
 </PRE>
 </DIV> Newer Guile versions have a shorthand procedure for this:<DIV class="targetlang">
 <PRE>
-(load-extension &quot;./foo.so&quot; &quot;scm_init_my_modules_foo_module&quot;)
+(load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;)
 </PRE>
 </DIV></LI>
 </UL>
-<H3><A name="Guile_nn8"></A>23.3.4 Old Auto-Loading Guile Module Linkage</H3>
+<H3><A name="Guile_nn8"></A>23.4.4 Old Auto-Loading Guile Module Linkage</H3>
 <P>Guile used to support an autoloading facility for object-code
  modules. This support has been marked deprecated in version 1.4.1 and
  is going to disappear sooner or later. SWIG still supports building
@@ -25208,7 +25475,7 @@ scm_init_<VAR>my</VAR>_<VAR>modules</VAR>_<VAR>foo</VAR>_module</CODE>,
 <P>When invoked with the <CODE>-Linkage ltdlmod</CODE> command-line
  option, SWIG generates an exported module initialization function with
  an appropriate name.</P>
-<H3><A name="Guile_nn9"></A>23.3.5 Hobbit4D Linkage</H3>
+<H3><A name="Guile_nn9"></A>23.4.5 Hobbit4D Linkage</H3>
 <P> The only other linkage supported at this time creates shared object
  libraries suitable for use by hobbit's <CODE>(hobbit4d link)</CODE>
  guile module. This is called the &quot;hobbit&quot; linkage, and requires also
@@ -25224,14 +25491,14 @@ swig -guile -package my/lib -module foo foo.i
  case foo.i declares the module to be &quot;foo&quot;). The installed files are
  my/lib/libfoo.so.X.Y.Z and friends. This scheme is still very
  experimental; the (hobbit4d link) conventions are not well understood.</P>
-<H2><A name="Guile_nn10"></A>23.4 Underscore Folding</H2>
+<H2><A name="Guile_nn10"></A>23.5 Underscore Folding</H2>
 <P> Underscores are converted to dashes in identifiers. Guile support
  may grow an option to inhibit this folding in the future, but no one
  has complained so far.</P>
 <P>You can use the SWIG directives <CODE>%name</CODE> and <CODE>%rename</CODE>
  to specify the Guile name of the wrapped functions and variables (see
  CHANGES).</P>
-<H2><A name="Guile_nn11"></A>23.5 Typemaps</H2>
+<H2><A name="Guile_nn11"></A>23.6 Typemaps</H2>
 <P> The Guile module handles all types via typemaps. This information is
  read from <CODE>Lib/guile/typemaps.i</CODE>. Some non-standard typemap
  substitutions are supported:</P>
@@ -25298,7 +25565,7 @@ receive</CODE>. The latter is available if you issue <CODE>(use-modules
  must be called, the constant will appear as a scheme variable. See <A href="#Customization_features">
 Features and the %feature directive</A> for info on how to apply the
  %feature.</P>
-<H2><A name="Guile_nn12"></A>23.6 Representation of pointers as smobs</H2>
+<H2><A name="Guile_nn12"></A>23.7 Representation of pointers as smobs</H2>
 <P> For pointer types, SWIG uses Guile smobs. SWIG smobs print like
  this: <CODE>#&lt;swig struct xyzzy * 0x1234affe&gt;</CODE> Two of them are <CODE>
 equal?</CODE> if and only if they have the same type and value.</P>
@@ -25312,52 +25579,25 @@ SWIG_ConvertPtr()</CODE>, passing a pointer to a struct representing the
 The run-time type checker</A>. If the Scheme object passed was not a
  SWIG smob representing a compatible pointer, a <CODE>wrong-type-arg</CODE>
  exception is raised.</P>
-<H3><A name="Guile_nn13"></A>23.6.1 GH Smobs</H3>
+<H3><A name="Guile_nn14"></A>23.7.1 Smobs</H3>
 <P> In earlier versions of SWIG, C pointers were represented as Scheme
  strings containing a hexadecimal rendering of the pointer value and a
  mangled type name. As Guile allows registering user types, so-called
  &quot;smobs&quot; (small objects), a much cleaner representation has been
  implemented now. The details will be discussed in the following.</P>
-<P> A smob is a cons cell where the lower half of the CAR contains the
- smob type tag, while the upper half of the CAR and the whole CDR are
- available. Every module creates its own smob type in the clientdata
- field of the module. So the lower 16 bits of the car of the smob store
- the tag and the upper 16 bits store the index this type is in the
- array. We can then, given a smob, find its swig_type_info struct by
- using the tag (lower 16 bits of car) to find which module this type is
- in (since each tag is unique for the module). Then we use the upper 16
- bits to index into the array of types attached to this module. Looking
- up the module from the tag is worst case O(# of modules) but average
- case O(1). This is because the modules are stored in a circularly
- linked list, and when we start searching the modules for the tag, we
- start looking with the module that the function doing the lookup is in.
- SWIG_Guile_ConvertPtr() takes as its first argument the
- swig_module_info * of the calling function, which is where we start
- comparing tags. Most types will be looked up in the same module that
- created them, so the first module we check will most likely be correct.
- Once we have a swig_type_info structure, we loop through the linked
- list of casts, using pointer comparisons.</P>
-<H3><A name="Guile_nn14"></A>23.6.2 SCM Smobs</H3>
-<P>The SCM interface (using the &quot;-scm&quot; argument to swig) uses
- swigrun.swg. The whole type system, when it is first initialized,
- creates two smobs named &quot;swig&quot; and &quot;collected_swig&quot;. The swig smob is
- used for non-garbage collected smobs, while the collected_swig smob is
- used as described below. Each smob has the same format, which is a
- double cell created by SCM_NEWSMOB2() The first word of data is the
- pointer to the object and the second word of data is the swig_type_info
- * structure describing this type. This is a lot easier than the GH
- interface above because we can store a pointer to the type info
- structure right in the type. With the GH interface, there was not
- enough room in the smob to store two whole words of data so we needed
- to store part of the &quot;swig_type_info address&quot; in the smob tag. If a
- generated GOOPS module has been loaded, smobs will be wrapped by the
- corresponding GOOPS class.</P>
-<H3><A name="Guile_nn15"></A>23.6.3 Garbage Collection</H3>
-<P>Garbage collection is a feature of the new SCM interface, and it is
- automatically included if you pass the &quot;-scm&quot; flag to swig. Thus the
- swig garbage collection support requires guile &gt;1.6. Garbage collection
- works like this. Every swig_type_info structure stores in its
- clientdata field a pointer to the destructor for this type. The
+<P>The whole type system, when it is first initialized, creates two
+ smobs named &quot;swig&quot; and &quot;collected_swig&quot;. The swig smob is used for
+ non-garbage collected smobs, while the collected_swig smob is used as
+ described below. Each smob has the same format, which is a double cell
+ created by SCM_NEWSMOB2() The first word of data is the pointer to the
+ object and the second word of data is the swig_type_info * structure
+ describing this type. If a generated GOOPS module has been loaded,
+ smobs will be wrapped by the corresponding GOOPS class.</P>
+<H3><A name="Guile_nn15"></A>23.7.2 Garbage Collection</H3>
+<P>Garbage collection is a feature of Guile since version 1.6. As SWIG
+ now requires Guile &gt; 1.8, it is automatically included. Garbage
+ collection works like this. Every swig_type_info structure stores in
+ its clientdata field a pointer to the destructor for this type. The
  destructor is the generated wrapper around the delete function. So swig
  still exports a wrapper for the destructor, it just does not call
  scm_c_define_gsubr() for the wrapped delete function. So the only way
@@ -25367,7 +25607,7 @@ The run-time type checker</A>. If the Scheme object passed was not a
  Object ownership and %newobject</A> in the SWIG manual. All typemaps
  use an $owner var, and the guile module replaces $owner with 0 or 1
  depending on feature:new.</P>
-<H2><A name="Guile_nn16"></A>23.7 Exception Handling</H2>
+<H2><A name="Guile_nn16"></A>23.8 Exception Handling</H2>
 <P> SWIG code calls <CODE>scm_error</CODE> on exception, using the
  following mapping:<DIV class="code">
 <PRE>
@@ -25385,12 +25625,11 @@ The run-time type checker</A>. If the Scheme object passed was not a
 </DIV></P>
 <P> The default when not specified here is to use &quot;swig-error&quot;. See
  Lib/exception.i for details.</P>
-<H2><A name="Guile_nn17"></A>23.8 Procedure documentation</H2>
+<H2><A name="Guile_nn17"></A>23.9 Procedure documentation</H2>
 <P>If invoked with the command-line option <CODE>-procdoc<VAR> file</VAR>
 </CODE>, SWIG creates documentation strings for the generated wrapper
  functions, describing the procedure signature and return value, and
- writes them to<VAR> file</VAR>. You need Guile 1.4 or later to make use
- of the documentation files.</P>
+ writes them to<VAR> file</VAR>.</P>
 <P>SWIG can generate documentation strings in three formats, which are
  selected via the command-line option <CODE>-procdocformat<VAR> format</VAR>
 </CODE>:</P>
@@ -25414,7 +25653,7 @@ The run-time type checker</A>. If the Scheme object passed was not a
 <P>Documentation strings can be configured using the Guile-specific
  typemap argument <CODE>doc</CODE>. See <CODE>Lib/guile/typemaps.i</CODE>
  for details.</P>
-<H2><A name="Guile_nn18"></A>23.9 Procedures with setters</H2>
+<H2><A name="Guile_nn18"></A>23.10 Procedures with setters</H2>
 <P>For global variables, SWIG creates a single wrapper procedure <CODE>(<VAR>
 variable</VAR> :optional value)</CODE>, which is used for both getting
  and setting the value. For struct members, SWIG creates two wrapper
@@ -25436,17 +25675,16 @@ variable</VAR></CODE> is created, so you can use <CODE>(<VAR>variable</VAR>
  struct members, the procedures <CODE>(<VAR>struct</VAR>-<VAR>member</VAR>
 -get pointer)</CODE> and <CODE>(<VAR>struct-member</VAR>-set pointer
  value)</CODE> are<EM> not</EM> generated.</P>
-<H2><A name="Guile_nn19"></A>23.10 GOOPS Proxy Classes</H2>
+<H2><A name="Guile_nn19"></A>23.11 GOOPS Proxy Classes</H2>
 <P>SWIG can also generate classes and generic functions for use with
  Guile's Object-Oriented Programming System (GOOPS). GOOPS is a
  sophisticated object system in the spirit of the Common Lisp Object
  System (CLOS).</P>
-<P>GOOPS support is only available with the new SCM interface (enabled
- with the <CODE>-scm</CODE> command-line option of SWIG). To enable
- GOOPS support, pass the <CODE>-proxy</CODE> argument to swig. This will
- export the GOOPS wrapper definitions into the <CODE><I>module</I>.scm</CODE>
- file in the directory specified by -outdir or the current directory.
- GOOPS support requires either passive or module linkage.</P>
+<P>To enable GOOPS support, pass the <CODE>-proxy</CODE> argument to
+ swig. This will export the GOOPS wrapper definitions into the <CODE><I>
+module</I>.scm</CODE> file in the directory specified by -outdir or the
+ current directory. GOOPS support requires either passive or module
+ linkage.</P>
 <P>The generated file will contain definitions of GOOPS classes
  mimicking the C++ class hierarchy.</P>
 <P>Enabling GOOPS support implies <CODE>-emit-setters</CODE>.</P>
@@ -25575,7 +25813,7 @@ variable</VAR></CODE> is created, so you can use <CODE>(<VAR>variable</VAR>
 <P> Notice that &lt;Foo&gt; is used before it is defined. The fix is to just
  put the <CODE>%import &quot;foo.h&quot;</CODE> before the <CODE>%inline</CODE>
  block.</P>
-<H3><A name="Guile_nn20"></A>23.10.1 Naming Issues</H3>
+<H3><A name="Guile_nn20"></A>23.11.1 Naming Issues</H3>
 <P>As you can see in the example above, there are potential naming
  conflicts. The default exported accessor for the <CODE>Foo::a</CODE>
  variable is named <CODE>a</CODE>. The name of the wrapper global
@@ -25615,7 +25853,7 @@ Test-primitive.scm</CODE>. The string &quot;primitive&quot; can be changed by th
 (use-modules ((Test) #:renamer (symbol-prefix-proc 'goops:)))
 </PRE>
 </DIV>
-<H3><A name="Guile_nn21"></A>23.10.2 Linking</H3>
+<H3><A name="Guile_nn21"></A>23.11.2 Linking</H3>
 <P>The guile-modules generated above all need to be linked together.
  GOOPS support requires either passive or module linkage. The exported
  GOOPS guile-module will be the name of the swig-module and should be
@@ -25636,9 +25874,9 @@ Test-primitive.scm</CODE>. The string &quot;primitive&quot; can be changed by th
 -exportprimitive</CODE> option is passed to SWIG the <CODE>(export ...)</CODE>
  code that would be exported into the scmstub file is exported at the
  bottom of the generated GOOPS guile-module. The <CODE>%goops</CODE>
- directive should contain code to load the .so library.<DIV class="code">
+ directive should contain code to load the shared library.<DIV class="code">
 <PRE>
-%goops %{ (load-extension &quot;./foo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) %}
+%goops %{ (load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) %}
 </PRE>
 </DIV>
 <P> Produces the following code at the top of the generated GOOPS
@@ -25649,7 +25887,7 @@ Test-primitive.scm</CODE>. The string &quot;primitive&quot; can be changed by th
 (define-module (my modules foo))
 
 ;; %goops directive goes here
-(load-extension &quot;./foo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) 
+(load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) 
 
 (use-modules (oop goops) (Swig common))
 </PRE>
@@ -25658,18 +25896,17 @@ Test-primitive.scm</CODE>. The string &quot;primitive&quot; can be changed by th
 <P><B>Passive Linkage with -scmstub</B>: Here, the name of the scmstub
  file should be <CODE>Module-primitive.scm</CODE> (with<I> primitive</I>
  replaced with whatever is given with the <CODE>-primsuffix</CODE>
- argument. The code to load the <CODE>.so</CODE> library should be
- located in the <CODE>%scheme</CODE> directive, which will then be added
- to the scmstub file. SWIG will automatically generate the line <CODE>
-(use-modules (<I>Package</I><I> Module-primitive</I>))</CODE> into the
- GOOPS guile-module. So if<I> Module-primitive.scm</I> is on the
- autoload path for guile, the <CODE>%goops</CODE> directive can be
- empty. Otherwise, the <CODE>%goops</CODE> directive should contain
- whatever code is needed to load the<I> Module-primitive.scm</I> file
- into guile.</P>
+ argument. The code to load the shared library should be located in the <CODE>
+%scheme</CODE> directive, which will then be added to the scmstub file.
+ SWIG will automatically generate the line <CODE>(use-modules (<I>
+Package</I><I> Module-primitive</I>))</CODE> into the GOOPS
+ guile-module. So if<I> Module-primitive.scm</I> is on the autoload path
+ for guile, the <CODE>%goops</CODE> directive can be empty. Otherwise,
+ the <CODE>%goops</CODE> directive should contain whatever code is
+ needed to load the<I> Module-primitive.scm</I> file into guile.</P>
 <DIV class="targetlang">
 <PRE>
-%scheme %{ (load-extension &quot;./foo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) %}
+%scheme %{ (load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) %}
 // only include the following definition if (my modules foo) cannot
 // be loaded automatically
 %goops %{ 
@@ -25702,7 +25939,7 @@ Test-primitive.scm</CODE>. The string &quot;primitive&quot; can be changed by th
  contain whatever code is needed to get that module loaded into guile.</P>
 <DIV class="code">
 <PRE>
-%goops %{ (load-extension &quot;./foo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) %}
+%goops %{ (load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) %}
 </PRE>
 </DIV>
 <P> Produces the following code at the top of the generated GOOPS
@@ -25712,7 +25949,7 @@ Test-primitive.scm</CODE>. The string &quot;primitive&quot; can be changed by th
 (define-module (my modules foo))
 
 ;; %goops directive goes here (if any)
-(load-extension &quot;./foo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) 
+(load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) 
 
 (use-modules (oop goops) (Swig common))
 (use-modules ((my modules foo-primitive) :renamer (symbol-prefix-proc
@@ -27401,19 +27638,23 @@ nspace feature</A>. Note that it only works for classes, structs, unions
  declared in the unnamed package by default. As Java does not support
  types declared in a named package accessing types declared in an
  unnamed package, the <TT>-package</TT> commandline option described
- earlier must be used to provide a parent package. So if SWIG is run
- using the <TT>-package com.myco</TT> option, a wrapped class, <TT>
-MyWorld::Material::Color</TT>, can then be accessed as <TT>
+ earlier generally should be used to provide a parent package. So if
+ SWIG is run using the <TT>-package com.myco</TT> option, a wrapped
+ class, <TT>MyWorld::Material::Color</TT>, can then be accessed as <TT>
 com.myco.MyWorld.Material.Color</TT>. If you don't specify a package,
- you will get the following error message:</P>
+ you will get the following warning:</P>
 <DIV class="shell">
 <PRE>
-example.i:16: Error: The nspace feature used on 'MyWorld::Material::Color' is not supported unless
-a package is specified
-with -package - Java does not support types declared in a named package accessing types declared
-in an unnamed package.
+example.i:16: Warning 826: The nspace feature is used on 'MyWorld::Material::Color' without -package. The generated code 
+may not compile as Java does not support types declared in a named package accessing types declared in an unnamed package.
 </PRE>
 </DIV>
+<P> If it is undesirable to have a single top level package, the nspace
+ feature may be used without the <TT>-package</TT> commandline option
+ (and the resulting warning ignored) if all of the types exposed using
+ SWIG are placed in a package using the nspace feature and the
+ 'jniclasspackage' pragma is used to specify a package for the JNI
+ intermediary class.</P>
 <P> If the resulting use of the nspace feature and hence packages
  results in a proxy class in one package deriving or using a proxy class
  from another package, you will need to open up the visibility for the
@@ -27641,6 +27882,8 @@ modulenameModule</TT>.</P>
 <TR VALIGN="TOP"><TD><B>Pragma</B></TD><TD><B>Description</B></TD></TR>
 <TR><TD>jniclassbase</TD><TD>Base class for the intermediary JNI class</TD>
 </TR>
+<TR><TD>jniclasspackage</TD><TD>Package in which to place the
+ intermediary JNI class</TD></TR>
 <TR><TD>jniclassclassmodifiers</TD><TD>Class modifiers and class type
  for the intermediary JNI class</TD></TR>
 <TR><TD>jniclasscode</TD><TD>Java code is copied verbatim into the
@@ -30463,7 +30706,7 @@ javabody</TT> typemap in future versions of SWIG. The macros are for the
  &quot;javadirectorout&quot;, &quot;directorin&quot; and the &quot;directorout&quot; typemaps in order
  to work properly. The &quot;javapackage&quot; typemap is an optional typemap used
  to identify the Java package path for individual SWIG generated proxy
- classes.</P>
+ classes used in director methods.</P>
 <P><TT>%typemap(directorin)</TT></P>
 <DIV class="indent">
 <P> The &quot;directorin&quot; typemap is used for converting arguments in the C++
@@ -30567,7 +30810,8 @@ $jnicall</CODE> special variable. It is replaced by the call to the
 <P> The &quot;javapackage&quot; typemap is optional; it serves to identify a
  class's Java package. This typemap should be used in conjunction with
  classes that are defined outside of the current SWIG interface file.
- For example:</P>
+ The typemap is only used if the type is used in a director method, that
+ is, in a virtual method in a director class. For example:</P>
 <DIV class="code">
 <PRE>
 // class Foo is handled in a different interface file:
@@ -30581,7 +30825,7 @@ $jnicall</CODE> special variable. It is replaced by the call to the
   class Example {
   public:
     virtual ~Example();
-    void     ping(Foo *arg1, Bar *arg2);
+    virtual void ping(Foo *arg1, Bar *arg2);
   };
 }
 </PRE>
@@ -30604,7 +30848,7 @@ $jnicall</CODE> special variable. It is replaced by the call to the
   class Example {
   public:
     virtual ~Example();
-    void     ping(Foo *arg1, Bar *arg2);
+    virtual void ping(Foo *arg1, Bar *arg2);
   };
 }
 </PRE>
@@ -34597,7 +34841,7 @@ carrays.i</A> documentation.</P>
  directly into the function, and have SWIG automatically convert between
  Lua-table and C-array. Within the <TT>&lt;typemaps.i&gt;</TT> file there are
  typemaps ready written to perform this task. To use them is again a
- matter of using %appy in the correct manner.</P>
+ matter of using %apply in the correct manner.</P>
 <P>The wrapper file below, shows both the use of carrays as well as the
  use of the typemap to wrap arrays.</P>
 <DIV class="code">
@@ -36479,7 +36723,7 @@ directorin, directorout, directorargout</TT></H4>
 <P> Let's start with a very simple SWIG interface file, example.i:</P>
 <DIV class="code">
 <PRE>
-%module example
+%module swigexample
 %{
 #include &quot;example.h&quot;
 %}
@@ -36534,41 +36778,42 @@ $ mkoctfile example_wrap.cpp example.c
 <P> mkoctfile can also be used to extract the build parameters required
  to invoke the compiler and linker yourself. See the Octave manual and
  mkoctfile man page.</P>
-<P> mkoctfile will produce &quot;example.oct&quot;, which contains the compiled
- extension module. Loading it into Octave is then a matter of invoking</P>
+<P> mkoctfile will produce &quot;swigexample.oct&quot;, which contains the
+ compiled extension module. Loading it into Octave is then a matter of
+ invoking</P>
 <DIV class="targetlang">
-<PRE>octave:1&gt; example</PRE>
+<PRE>octave:1&gt; swigexample</PRE>
 </DIV>
 <H3><A name="Octave_nn6"></A>30.2.3 Using your module</H3>
 <P> Assuming all goes well, you will be able to do this:
 <BR></P>
 <DIV class="targetlang">
 <PRE>$ octave -q
-octave:1&gt; example
-octave:2&gt; example.gcd(4,6)
+octave:1&gt; swigexample
+octave:2&gt; swigexample.gcd(4,6)
 ans =  2
-octave:3&gt; example.cvar.Foo
+octave:3&gt; swigexample.cvar.Foo
 ans =  3
-octave:4&gt; example.cvar.Foo=4;
-octave:5&gt; example.cvar.Foo
+octave:4&gt; swigexample.cvar.Foo=4;
+octave:5&gt; swigexample.cvar.Foo
 ans =  4 </PRE>
 </DIV>
 <H2><A name="Octave_nn7"></A>30.3 A tour of basic C/C++ wrapping</H2>
 <H3><A name="Octave_nn8"></A>30.3.1 Modules</H3>
 <P> The SWIG module directive specifies the name of the Octave module.
- If you specify &quot;module example&quot;, then in Octave everything in the
- module will be accessible under &quot;example&quot;, as in the above example.
+ If you specify &quot;module swigexample&quot;, then in Octave everything in the
+ module will be accessible under &quot;swigexample&quot;, as in the above example.
  When choosing a module name, make sure you don't use the same name as a
  built-in Octave command or standard module name.</P>
-<P> When Octave is asked to invoke <TT>example</TT>, it will try to find
- the &quot;.m&quot; or &quot;.oct&quot; file that defines the function &quot;example&quot;. You
- therefore need to make sure that &quot;example.oct&quot; is in Octave's search
- path, which can be specified with the environment variable
+<P> When Octave is asked to invoke <TT>swigexample</TT>, it will try to
+ find the &quot;.m&quot; or &quot;.oct&quot; file that defines the function &quot;swigexample&quot;.
+ You therefore need to make sure that &quot;swigexample.oct&quot; is in Octave's
+ search path, which can be specified with the environment variable
  &quot;OCTAVE_PATH&quot;.</P>
 <P> To load an Octave module, simply type its name:</P>
 <DIV class="targetlang">
 <PRE>
-octave:1&gt; example;
+octave:1&gt; swigexample;
 octave:2&gt; gcd(4,6)
 ans =  2
 octave:3&gt; cvar.Foo
@@ -36584,15 +36829,15 @@ ans =  4
 <DIV class="targetlang">
 <PRE>
 octave:1&gt; function l = my_lcm(a,b)
-&gt; example
-&gt; l = abs(a*b)/example.gcd(a,b);
+&gt; swigexample
+&gt; l = abs(a*b)/swigexample.gcd(a,b);
 &gt; endfunction
 octave:2&gt; my_lcm(4,6)
 ans =  12
-octave:3&gt; example.gcd(4,6)
+octave:3&gt; swigexample.gcd(4,6)
 error: can't perform indexing operations for &lt;unknown type&gt; type
-octave:3&gt; example;
-octave:4&gt; example.gcd(4,6)
+octave:3&gt; swigexample;
+octave:4&gt; swigexample.gcd(4,6)
 ans =  2
 </PRE>
 </DIV>
@@ -36600,20 +36845,20 @@ ans =  2
 <P> Global functions are wrapped as new Octave built-in functions. For
  example,</P>
 <DIV class="code">
-<PRE>%module example
+<PRE>%module swigexample
 int fact(int n); </PRE>
 </DIV>
-<P> creates a built-in function <TT>example.fact(n)</TT> that works
+<P> creates a built-in function <TT>swigexample.fact(n)</TT> that works
  exactly like you think it does:</P>
 <DIV class="targetlang">
-<PRE>octave:1&gt; example.fact(4)
+<PRE>octave:1&gt; swigexample.fact(4)
 24 </PRE>
 </DIV>
 <H3><A name="Octave_nn10"></A>30.3.3 Global variables</H3>
 <P> Global variables are a little special in Octave. Given a global
  variable:</P>
 <DIV class="code">
-<PRE>%module example
+<PRE>%module swigexample
 extern double Foo;
 </PRE>
 </DIV>
@@ -36624,20 +36869,20 @@ extern double Foo;
  interpreter of the C variables, and in the latter case copying an
  interpreter variables onto the C variable.</P>
 <DIV class="targetlang">
-<PRE>octave:1&gt; example;
-octave:2&gt; c=example.cvar.Foo
+<PRE>octave:1&gt; swigexample;
+octave:2&gt; c=swigexample.cvar.Foo
 c =  3
-octave:3&gt; example.cvar.Foo=4;
+octave:3&gt; swigexample.cvar.Foo=4;
 octave:4&gt; c
 c =  3
-octave:5&gt; example.cvar.Foo
+octave:5&gt; swigexample.cvar.Foo
 ans =  4</PRE>
 </DIV>
 <P> If a variable is marked with the %immutable directive then any
  attempts to set this variable will cause an Octave error. Given a
  global variable:</P>
 <DIV class="code">
-<PRE>%module example
+<PRE>%module swigexample
 %immutable;
 extern double Foo;
 %mutable;
@@ -36646,8 +36891,8 @@ extern double Foo;
 <P> SWIG will allow the reading of <TT>Foo</TT> but when a set attempt
  is made, an error function will be called.</P>
 <DIV class="targetlang">
-<PRE>octave:1&gt; example
-octave:2&gt; example.Foo=4
+<PRE>octave:1&gt; swigexample
+octave:2&gt; swigexample.Foo=4
 error: attempt to set immutable member variable
 error: assignment failed, or no method for `swig_type = scalar'
 error: evaluating assignment expression near line 2, column 12 </PRE>
@@ -36657,9 +36902,9 @@ error: evaluating assignment expression near line 2, column 12 </PRE>
  (but not linked variables, mutable or immutable). Therefore users are
  recommended to be careful when doing so.</P>
 <DIV class="targetlang">
-<PRE>octave:1&gt; example;
-octave:2&gt; example.PI=3.142;
-octave:3&gt; example.PI
+<PRE>octave:1&gt; swigexample;
+octave:2&gt; swigexample.PI=3.142;
+octave:3&gt; swigexample.PI
 ans =  3.1420 </PRE>
 </DIV>
 <H3><A name="Octave_nn11"></A>30.3.4 Constants and enums</H3>
@@ -36668,7 +36913,7 @@ ans =  3.1420 </PRE>
  copy of the value into the Octave interpreter. Therefore they can be
  changed just as any other value. For example given some constants:</P>
 <DIV class="code">
-<PRE>%module example
+<PRE>%module swigexample
 %constant int ICONST=42;
 #define    SCONST      &quot;Hello World&quot;
 enum Days{SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY};
@@ -36676,9 +36921,9 @@ enum Days{SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY};
 </DIV>
 <P> This is 'effectively' converted into the following Octave code:</P>
 <DIV class="targetlang">
-<PRE>example.ICONST=42
-example.SCONST=&quot;Hello World&quot;
-example.SUNDAY=0
+<PRE>swigexample.ICONST=42
+swigexample.SCONST=&quot;Hello World&quot;
+swigexample.SUNDAY=0
 .... </PRE>
 </DIV>
 <H3><A name="Octave_nn12"></A>30.3.5 Pointers</H3>
@@ -36688,7 +36933,7 @@ example.SUNDAY=0
  Furthermore, SWIG has no problem working with incomplete type
  information. Given a wrapping of the &lt;file.h&gt; interface:</P>
 <DIV class="code">
-<PRE>%module example
+<PRE>%module swigexample
 FILE *fopen(const char *filename, const char *mode);
 int fputs(const char *, FILE *);
 int fclose(FILE *);
@@ -36698,17 +36943,17 @@ int fclose(FILE *);
  from Octave. For example:</P>
 <DIV class="targetlang">
 <PRE>
-octave:1&gt; example;
-octave:2&gt; f=example.fopen(&quot;w&quot;,&quot;junk&quot;);
-octave:3&gt; example.fputs(&quot;Hello world&quot;,f);
-octave:4&gt; example.fclose(f);
+octave:1&gt; swigexample;
+octave:2&gt; f=swigexample.fopen(&quot;w&quot;,&quot;junk&quot;);
+octave:3&gt; swigexample.fputs(&quot;Hello world&quot;,f);
+octave:4&gt; swigexample.fclose(f);
 </PRE>
 </DIV>
 <P> Simply printing the value of a wrapped C++ type will print it's
  typename. E.g.,</P>
 <DIV class="targetlang">
-<PRE>octave:1&gt; example;
-octave:2&gt; f=example.fopen(&quot;junk&quot;,&quot;w&quot;);
+<PRE>octave:1&gt; swigexample;
+octave:2&gt; f=swigexample.fopen(&quot;junk&quot;,&quot;w&quot;);
 octave:3&gt; f
 f =
 
@@ -36721,8 +36966,8 @@ f =
  program). This does not apply so strictly to classes and structs (see
  below).</P>
 <DIV class="targetlang">
-<PRE>octave:1&gt; example;
-octave:2&gt; f=example.fopen(&quot;not there&quot;,&quot;r&quot;);
+<PRE>octave:1&gt; swigexample;
+octave:2&gt; f=swigexample.fopen(&quot;not there&quot;,&quot;r&quot;);
 error: value on right hand side of assignment is undefined
 error: evaluating assignment expression near line 2, column 2 </PRE>
 </DIV>
@@ -36743,8 +36988,8 @@ swig_ref</TT> will be exposed that has the name of the type. When
 </DIV>
 <P> is used as follows:</P>
 <DIV class="targetlang">
-<PRE>octave:1&gt; example;
-octave:2&gt; p=example.Point();
+<PRE>octave:1&gt; swigexample;
+octave:2&gt; p=swigexample.Point();
 octave:3&gt; p.x=3;
 octave:4&gt; p.y=5;
 octave:5&gt; p.x, p.y
@@ -36777,9 +37022,9 @@ public:
 </DIV>
 <P> can be used from Octave like this</P>
 <DIV class="targetlang">
-<PRE>octave:1&gt; example;
-octave:2&gt; p1=example.Point(3,5);
-octave:3&gt; p2=example.Point(1,2);
+<PRE>octave:1&gt; swigexample;
+octave:2&gt; p1=swigexample.Point(3,5);
+octave:3&gt; p2=swigexample.Point(1,2);
 octave:4&gt; p1.distance(p2)
 ans =  3.6056
 </PRE>
@@ -37023,7 +37268,7 @@ octave:4&gt; a.__str()
  instantiations of templated types. For example, function templates can
  be instantiated as follows:</P>
 <DIV class="code">
-<PRE>%module example
+<PRE>%module swigexample
 %inline {
  template&lt;class __scalar&gt;
    __scalar mul(__scalar a,__scalar b) {
@@ -37049,7 +37294,7 @@ ans =  22 + 46i
 <P> Similarly, class templates can be instantiated as in the following
  example,</P>
 <DIV class="code">
-<PRE>%module example
+<PRE>%module swigexample
 %include &lt;std_complex.i&gt;
 %include &lt;std_string.i&gt;
 %inline {
@@ -46343,7 +46588,7 @@ true</TT> for an array containing no elements) and<EM>
  is unique to the Ruby module and was introduced in SWIG 1.3.28. For
  example:</P>
 <DIV class="code">
-<PRE>%bang sort!(arr);
+<PRE>%bang sort(int arr[]);
 <BR>
 <BR>int sort(int arr[]); </PRE>
 </DIV>
@@ -53500,7 +53745,7 @@ RETURN_TYPE _wrap_some_function(ARGS){
 <DIV class="code">
 <PRE>
 virtual int functionWrapper(Node *n) {
-  /* get useful atributes */
+  /* get useful attributes */
   String   *name   = Getattr(n,&quot;sym:name&quot;);
   SwigType *type   = Getattr(n,&quot;type&quot;);
   ParmList *parms  = Getattr(n,&quot;parms&quot;);
@@ -53604,7 +53849,7 @@ virtual int functionWrapper(Node *n) {
 </TABLE>
 <P> As you can see, most usages are direct.</P>
 <DL>
-<DT><B> configure.in</B></DT>
+<DT><B> configure.ac</B></DT>
 <DD> This file is processed by
 <P> <A HREF="http://www.gnu.org/software/autoconf/">autoconf</A> to
  generate the <TT>configure</TT> script. This is where you need to add
@@ -53950,9 +54195,10 @@ make ret_by_value.ctest SWIG_FEATURES=&quot;-debug-tmsearch&quot;
  which we encourage for all popular languages, there are a few
  requirements. While we appreciate that getting all aspects of a new
  language working won't happen at the outset, there are a set of minimum
- requirements before a module can be committed into the SVN repository
- for distribution with future versions of SWIG. The following are really
- a summary of this whole section with details being outlined earlier on.</P>
+ requirements before a module can be committed into the official Github
+ repository for distribution with future versions of SWIG. The following
+ are really a summary of this whole section with details being outlined
+ earlier on.</P>
 <OL>
 <LI> Demonstrate basic C code working by porting the &quot;simple&quot; example
  including a runtime test, see for example <TT>Examples/python/simple</TT>
@@ -53960,7 +54206,7 @@ make ret_by_value.ctest SWIG_FEATURES=&quot;-debug-tmsearch&quot;
 <LI> Demonstrate basic C++ code working by porting the &quot;class&quot; example
  including a runtime test, see for example <TT>Examples/python/class</TT>
 .</LI>
-<LI> Modify <TT>configure.in</TT>, <TT>Makefile.in</TT> and <TT>
+<LI> Modify <TT>configure.ac</TT>, <TT>Makefile.in</TT> and <TT>
 Examples/Makefile.in</TT> to run these examples. Please make sure that
  if the new language is not installed properly on a box, <TT>make -k
  check</TT> should still work by skipping the tests and examples for the
@@ -53979,11 +54225,11 @@ coding style guidelines</A>.</LI>
  of commitment to maintaining the language module, certainly in the
  short term and ideally long term.</LI>
 </OL>
-<P> Once accepted into SVN, development efforts should concentrate on
- getting the entire test-suite to work with plenty of runtime tests.
- Runtime tests should be for existing testcases and new test cases
- should be added should there be an area not already covered by the
- existing tests.</P>
+<P> Once accepted into the official Git repository, development efforts
+ should concentrate on getting the entire test-suite to work with plenty
+ of runtime tests. Runtime tests should be for existing testcases and
+ new test cases should be added should there be an area not already
+ covered by the existing tests.</P>
 <H3><A name="Extending_coding_style_guidelines"></A>38.10.15 Coding
  style guidelines</H3>
 <P> The coding guidelines for the C/C++ source code are pretty much K&amp;R

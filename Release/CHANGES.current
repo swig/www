@@ -2,157 +2,240 @@ Below are the changes for the current release.
 See the CHANGES file for changes in older releases.
 See the RELEASENOTES file for a summary of changes in each release.
 
-Version 2.0.9 (16 December 2012)
-================================
+Version 2.0.10 (27 May 2013)
+============================
 
-2012-12-16: wsfulton
-            Fix garbage line number / empty file name reporting for some missing
-            '}' or ')' error messages.
+2013-05-25: wsfulton
+            [Python] Fix Python 3 inconsistency when negative numbers are passed
+            where a parameter expects an unsigned C type. An OverFlow error is
+            now consistently thrown instead of a TypeError.
 
-2012-12-15: kkaempf
-            [Ruby] Apply patch 3530444, Class#methods and Class#constants returns array of
-            symbols in Ruby 1.9+
+2013-05-25: Artem Serebriyskiy
+            SVN Patch ticket #338 - fixes to %attribute macros for template usage
+            with %arg.
 
-2012-12-14: kkaempf
-            [Ruby] Apply patch 3530439 and finally replace all occurences of the STR2CSTR() macro
-            with StringValuePtr(). STR2CSTR was deprecated since years and got removed in Ruby 1.9
+2013-05-19: wsfulton
+            Fix ccache-swig internal error bug due to premature file cleanup.
 
-2012-12-14: kkaempf
-            [Ruby] Applied patches #3530442 and 3530443 to adapt compile and runtime include
-            paths to match Ruby 1.9+
+            Fixes SF bug 1319 which shows up as a failure in the ccache tests on
+            Debian 64 bit Wheezy, possibly because ENABLE_ZLIB is defined.
 
-2012-12-14: wsfulton
-            [CFFI] Fix #3161614 - Some string constants are incorrect
+            This is a corner case which will be hit when the maximum number of files
+            in the cache is set to be quite low (-F option), resulting in a cache miss.
 
-2012-12-13: wsfulton
-            [CFFI] Fix #3529690 - Fix incorrect constant names.
+2013-05-09: kwwette
+            [Octave] Fix bugs in Octave module loading:
+            - fix a memory leak in setting of global variables
+            - install functions only once, to speed up module loads
 
-2012-12-12: drjoe
-	    [R] add fix to finalizer that was missed earlier
+2013-04-28: gjanssens
+            [Guile] Updates in guile module:
+            - Add support for guile 2.0
+            - Drop support for guile 1.6
+            - Drop support for generating wrappers using guile's gh interface.
+              All generated wrappers will use the scm interface from now on.
+            - Deprecate -gh and -scm options. They are no longer needed.
+              A warning will be issued when these options are still used.
+            - Fix all tests and examples to have a successful travis test
 
-2012-12-11: wsfulton
-            [Python] Apply patch #3590522 - fully qualified package paths for Python 3 even if a module is in the
-            same package.
+2013-04-18: wsfulton
+            Apply Patch #36 from Jesus Lopez to add support for $descriptor() special variable macro expansion 
+            in fragments. For example:
 
-2012-12-08: wsfulton
-            [Python] Bug #3563647 - PyInt_FromSize_t unavailable prior to Python 2.5 for unsigned int types.
+              %fragment("nameDescriptor", "header")
+              %{
+                static const char *nameDescriptor = "$descriptor(Name)";
+              %}
 
-2012-12-08: wsfulton
-            [Perl] Fix bug #3571361 - C++ comment in C wrappers.
+            which will generate into the wrapper if the fragment is used:
 
-2012-12-07: wsfulton
-            [C#] Apply patch #3571029 which adds missing director support for const unsigned long long &.
+              static const char *nameDescriptor = "SWIGTYPE_Name";
 
-2012-11-28: kwwette
-            [Octave] Simplified module loading: now just the syntax
-            $ example;
-            is accepted, which loads functions globally but constants and variables relative to the current scope.
-            This make module loading behaviour reliably consistent, and reduces problems when loading modules which
-            depend on other modules which may not have been previously loaded.
+2013-04-18: wsfulton
+            Fix SF Bug #428 - Syntax error when preprocessor macros are defined inside of enum lists, such as:
 
-2012-11-27: wsfulton
-            [cffi] Fix junk output when wrapping single character literal constants.
+              typedef enum {
+                eZero = 0
+              #define ONE 1
+              } EFoo;
 
-2012-11-17: wsfulton
-            [Tcl, Modula3] Add missing support for -outdir.
+            The macros are silently ignored.
 
-2012-11-17: wsfulton
-            Fix segfaults when using filename paths greater than 1024 characters in length.
+2013-04-17: wsfulton
+            [C#] Pull patch #34 from BrantKyser to fix smart pointers in conjuction with directors.
 
-2012-11-14: wsfulton
-            [ccache-swig] Apply patch #3586392 from Frederik Deweerdt to fix some error cases - incorrectly using
-            memory after it has been deleted.
+2013-04-15: kwwette
+            [Octave] Fix bugs in output of cleanup code.
+            - Cleanup code is now written also after the "fail:" label, so it will be called if
+              a SWIG_exception is raised by the wrapping function, consistent with other modules.
+            - Octave module now also recognises the "$cleanup" special variable, if needed.
 
-2012-11-09: vzeitlin
-            [Python] Fix overflow when passing values greater than LONG_MAX from Python 3 for parameters with unsigned long C type.
+2013-04-08: kwwette
+            Add -MP option to SWIG for generating phony targets for all dependencies.
+            - Prevents make from complaining if header files have been deleted before
+              the dependency file has been updated.
+            - Modelled on similar option in GCC.
 
-2012-11-09: wsfulton
-            Fix some feature matching issues for implicit destructors and implicit constructors and implicit
-            copy constructors added with %copyctor. Previously a feature for these had to be fully qualified
-            in order to match. Now the following will also match:
+2013-04-09: olly
+	    [PHP] Add missing directorin typemap for char* and char[] which
+	    fixes director_string testcase failure.
 
-              %feature("xyz") ~XXX();
-              struct XXX {};
+2013-04-05: wsfulton
+            [Ruby] SF Bug #1292 - Runtime fixes for Proc changes in ruby-1.9 when using STL
+            wrappers that override the default predicate, such as:
 
-2012-11-09: wsfulton
-            Further consistency in named output typemap lookups for implicit constructors and destructors and
-            implicit copy constructors added with %copyctor. Previously only the fully qualified name was being
-            used, now the unqualified name will also be used. For example, previously:
+              %template(Map) std::map<swig::LANGUAGE_OBJ, swig::LANGUAGE_OBJ, swig::BinaryPredicate<> >;
 
-              example.i:38: Searching for a suitable 'out' typemap for: void Space::More::~More
-                Looking for: void Space::More::~More
-                Looking for: void
+2013-04-05: wsfulton
+            [Ruby] SF Bug #1159 - Correctly check rb_respond_to call return values to fix some
+            further 1.9 problems with functors and use of Complex wrappers.
 
-            Now the unqualified name is also used:
+2013-04-02: wsfulton
+            [Ruby] Runtime fixes for std::complex wrappers for ruby-1.9 - new native Ruby complex numbers are used.
 
-              example.i:38: Searching for a suitable 'out' typemap for: void Space::More::~More
-                Looking for: void Space::More::~More
-                Looking for: void ~More
-                Looking for: void
+2013-03-30: wsfulton
+            [Ruby] Fix seg fault when using STL containers of generic Ruby types, GC_VALUE or LANGUAGE_OBJECT,
+            on exit of the Ruby interpreter. More frequently observed in ruby-1.9.
 
-2012-11-02: wsfulton
-            Fix some subtle named output typemap lookup misses, the fully qualified name was not always being
-            used for variables, for example:
+2013-03-29: wsfulton
+            [Ruby] Fix delete_if (reject!) for the STL container wrappers which previously would
+            sometimes seg fault or not work.
 
-              struct Glob {
-                int MyVar;
+2013-03-25: wsfulton
+            [Python] Fix some undefined behaviour deleting slices in the STL containers.
+
+2013-03-19: wsfulton
+            [C#, Java, D] Fix seg fault in SWIG using directors when class and virtual method names are
+            the same except being in different namespaces when the %nspace feature is not being used.
+
+2013-02-19: kwwette
+            Fix bug in SWIG's handling of qualified (e.g. const) variables of array type. Given the typedef
+              a(7).q(volatile).double myarray     // typedef volatile double[7] myarray;
+            the type
+              q(const).myarray                    // const myarray
+            becomes
+              a(7).q(const volatile).double       // const volatile double[7]
+            Previously, SwigType_typedef_resolve() produces the type
+              q(const).a(7).q(volatile).double    // non-sensical type
+            which would never match %typemap declarations, whose types were parsed correctly.
+            Add typemap_array_qualifiers.i to the test suite which checks for the correct behaviour.
+
+2013-02-18: wsfulton
+            Deprecate typedef names used as constructor and destructor names in %extend. The real
+            class/struct name should be used.
+
+              typedef struct tagEStruct {
+                int ivar;
+              } EStruct;
+
+              %extend tagEStruct {
+                EStruct() // illegal name, should be tagEStruct()
+                {
+                  EStruct *s = new EStruct();
+                  s->ivar = ivar0;
+                  return s;
+                }
+                ~EStruct() // illegal name, should be ~tagEStruct()
+                {
+                  delete $self;
+                }
+              }
+
+            For now these trigger a warning:
+
+              extend_constructor_destructor.i:107: Warning 522: Use of an illegal constructor name 'EStruct' in
+              %extend is deprecated, the constructor name should be 'tagEStruct'.
+              extend_constructor_destructor.i:111: Warning 523: Use of an illegal destructor name 'EStruct' in
+              %extend is deprecated, the destructor name should be 'tagEStruct'.
+
+            These %extend destructor and constructor names were valid up to swig-2.0.4, however swig-2.0.5 ignored
+            them altogether for C code as reported in SF bug #1306. The old behaviour of using them has been
+            restored for now, but is officially deprecated. This does not apply to anonymously defined typedef
+            classes/structs such as:
+
+              typedef struct {...} X;
+
+2013-02-17: kwwette
+            When generating functions provided by %extend, use "(void)" for no-argument functions
+            instead of "()". This prevents warnings when compiling with "gcc -Wstrict-prototypes".
+
+2013-02-17: kwwette
+            [Octave] Minor fix to autodoc generation: get the right type for functions returning structs.
+
+2013-02-15: wsfulton
+            Deprecate typedef names used in %extend that are not the real class/struct name. For example:
+
+              typedef struct StructBName {
+                int myint;
+              } StructB;
+
+              %extend StructB {
+                void method() {}
+              }
+
+            will now trigger a warning:
+
+              swig_extend.i:19: Warning 326: Deprecated %extend name used - the struct name StructBName
+              should be used instead of the typedef name StructB.
+
+            This is only partially working anyway (the %extend only worked if placed after the class
+            definition). 
+
+2013-02-09: wsfulton
+            [CFFI] Apply patch #22 - Fix missing package before &body
+
+2013-01-29: wsfulton
+            [Java] Ensure 'javapackage' typemap is used as it stopped working from version 2.0.5.
+
+2013-01-28: wsfulton
+            [Python] Apply patch SF #334 - Fix default value conversions "TRUE"->True, "FALSE"->False.
+
+2013-01-28: wsfulton
+            [Java] Apply patch SF #335 - Truly ignore constructors in directors with %ignore.
+
+2013-01-18: Brant Kyser
+            [Java] Patch #15 - Allow the use of the nspace feature without the -package commandline option.
+            This works as long and the new jniclasspackage pragma is used to place the JNI intermediate class
+            into a package and the nspace feature is used to place all exposed types into a package.
+
+2013-01-15: wsfulton
+            Fix Visual Studio examples to work when SWIG is unzipped into a directory containing spaces.
+
+2013-01-15: wsfulton
+            [C#] Fix cstype typemap lookup for member variables so that a fully qualified variable name
+            matches. For example:
+              %typemap(cstype) bool MVar::mvar "MyBool"
+              struct MVar {
+                bool mvar;
               };
 
-            Previously the search rules (as shown by -debug-tmsearch) for the getter wrapper were:
+2013-01-11: Brant Kyser
+	    [Java, C#, D] SF Bug #1299 - Fix generated names for when %nspace is used on
+            classes with the same name in two different namespaces.
 
-              example.i:44: Searching for a suitable 'out' typemap for: int MyVar
-                Looking for: int MyVar
-                Looking for: int
+2013-01-11: Vladimir Kalinin
+	    [C#] Add support for csdirectorin 'pre', 'post' and 'terminator' attributes.
 
-            Now the scope is named correctly:
+2013-01-08: olly
+	    [PHP] Fix to work with a ZTS build of PHP (broken in 2.0.7).
 
-              example.i:44: Searching for a suitable 'out' typemap for: int Glob::MyVar
-                Looking for: int Glob::MyVar
-                Looking for: int MyVar
-                Looking for: int
+2013-01-07: olly
+	    Fix bashism in configure, introduced in 2.0.9.
 
-2012-10-26: wsfulton
-            Fix director typemap searching so that a typemap specified with a name will be correctly matched. Previously
-            the name was ignored during the typemap search. Applies to the following list of typemaps: 
-            directorout, csdirectorout, cstype, imtype, ctype, ddirectorout, dtype, gotype, jtype, jni, javadirectorout.
+2013-01-06: wsfulton
+            Pull patch #4 from ptomulik to fix SF Bug #1296 - Fix incorrect warning for virtual destructors
+            in templates, such as:
+             Warning 521: Illegal destructor name B< A >::~B(). Ignored.
 
-2012-10-11: wsfulton
-            Most of the special variables available for use in %exception are now also available for expansion in
-            %extend blocks. These are: $name $symname $overname $decl $fulldecl $parentname $parentsymname, see docs
-            on "Class extension" in SWIGPlus.html. Patch based on submission from Kris Thielemans.
+2013-01-05: wsfulton
+            [Python] Pull patch #3 from ptomulik to fix SF Bug #1295 - standard exceptions as
+            classes using the SWIG_STD_EXCEPTIONS_AS_CLASSES macro.
 
-2012-10-10: wsfulton
-            Additional new special variables in %exception are expanded as follows:
-              $parentname - The parent class name (if any) for a method.
-              $parentsymname - The target language parent class name (if any) for a method.
+2013-01-04: wsfulton
+            [Java] Pull patch #2 from BrantKyser to fix SF Bug #1283 - fix smart pointers in conjuction
+            with directors.
 
-2012-10-08: iant
-	    [Go] Generating Go code now requires using the -intgosize option to
-	    indicate the size of the 'int' type in Go.  This is because the
-	    size of the type is changing from Go 1.0 to Go 1.1 for x86_64. 
+2013-01-03: wsfulton
+            [Java] Pull patch #1 from BrantKyser to fix SF Bug #1278 - fix directors and nspace feature when
+            multilevel namespaces are used.
 
-2012-09-14: wsfulton
-	    Add new warning if the empty template instantiation is used as a base class, for example:
-
-              template <typename T> class Base {};
-              %template() Base<int>;
-              class Derived : public Base<int> {};
-
-            gives the following warning instead of silently ignoring the base:
-
-            cpp_inherit.i:52: Warning 401: Base class 'Base< int >' has no name as it is an empty template instantiated with '%template()'. Ignored.
-            cpp_inherit.i:51: Warning 401: The %template directive must be written before 'Base< int >' is used as a base class and be declared with a name.
-
-
-2012-09-11: wsfulton
-	    [Java] Fix #3535304 - Direct use of a weak global reference in directors
-            sometimes causing seg faults especially on Android.
-
-2012-09-06: wsfulton
-	    [Java] Fix (char *STRING, size_t LENGTH) typemaps to accept NULL string.
-
-2012-08-26: drjoe
-	    [R] make ExternalReference slot ref to contain reference
-
-2012-08-26: drjoe
-	    [R] fix Examples/Makefile to use C in $(CC) rather than $(CXX)
