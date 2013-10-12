@@ -52,8 +52,9 @@ Discussion list for SWIG developers or anyone interested in SWIG development.
 <a href="http://lists.sourceforge.net/lists/listinfo/swig-cvs">swig-cvs</a>
 </td>
 <td>
-SWIG SVN list. Details of SVN commits are mailed to this list (the listname is
-a historical relic from when we used CVS for revision control).
+SWIG Github commits list. A summary of Git commits are mailed to this list.
+The list name is a historical relic from when we used CVS for revision control.
+The list also contains historic Subversion commits.
 </td>
 </tr>
 
