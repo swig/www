@@ -41,5 +41,5 @@ makedocs:
 	cp $(WORKTREE)/LICENSE* Release/
 	cp $(WORKTREE)/RELEASENOTES Release/
 	cp $(WORKTREE)/README Release/
-	rm -rf Doc2.0
-	cp -rf $(WORKTREE)/Doc/Manual Doc2.0
+	rm -rf Doc3.0
+	cp -rf $(WORKTREE)/Doc/Manual Doc3.0
