@@ -35,6 +35,9 @@
 <tr><td><a href="http://golang.org">Go language</a></td></tr>
 <tr><td><a href="http://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
 <tr><td><a href="http://java.sun.com">Java</a></td></tr>
+<tr><td><a href="http://nodejs.org/">Javascript - Node.js</a></td></tr>
+<tr><td><a href="https://developers.google.com/v8/">Javascript - V8</a></td></tr>
+<tr><td><a href="http://www.webkit.org/">Javascript - WebKit</a></td></tr>
 <tr><td><a href="http://www.lua.org">Lua</a></td></tr>
 <tr><td><a href="http://racket-lang.org/">MzScheme/Racket</a></td></tr>
 <tr><td><a href="http://www.ocaml.org/">Ocaml</a></td></tr>

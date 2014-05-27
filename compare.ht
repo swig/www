@@ -3,11 +3,11 @@ SWIG Features
 <h2>SWIG Features</h2>
 
 <p>
-This information is based on the SWIG-2.0.2 release.
+This information is based on the SWIG-3.0.1 release.
 
 <h3>Code Generation</h3>
 
-SWIG currently generates wrapper code for nineteen different target languages:
+SWIG currently generates wrapper code for twenty different target languages:
 
 <ul>
 <li>Allegro CL
@@ -19,6 +19,7 @@ SWIG currently generates wrapper code for nineteen different target languages:
 <li>Go
 <li>Guile
 <li>Java
+<li>Javascript
 <li>Lua
 <li>Modula-3
 <li>Mzscheme
@@ -36,12 +37,12 @@ SWIG currently generates wrapper code for nineteen different target languages:
 In addition to this, the parse tree can be exported as XML and Lisp s-expressions.
 Experimental work is also available for a Pike module.
 
-<h3>ANSI C</h3>
+<h3>ISO C</h3>
 
-SWIG is capable of wrapping all of ANSI C.   Features include:
+SWIG is capable of wrapping all of ISO C99.   Features include:
 
 <ul>
-<li>Handling of <em>all</em> ANSI C datatypes.
+<li>Handling of <em>all</em> ISO C datatypes.
 <li>Global functions, global variables, and constants.
 <Li>Structures and unions.
 <li>Pointers.
@@ -52,9 +53,9 @@ SWIG is capable of wrapping all of ANSI C.   Features include:
 <li>Enums.
 </ul>
 
-<h3>ANSI C++</h3>
+<h3>ISO C++</h3>
 
-SWIG provides wrapping support for almost all of ANSI C++.
+SWIG provides wrapping support for ISO C++11.
 
 <ul>
 <Li>All C++ datatypes.
@@ -67,14 +68,13 @@ SWIG provides wrapping support for almost all of ANSI C++.
 <li>Static members.
 <li>Namespaces (including using declarations, aliases, nesting, etc.)
 <li>Templates
+<li>Nested classes
 <li>Member templates
 <li>Template specialization and partial specialization.
 <li>Smart pointers
 <li>C++ library support for strings and the STL.
+<li>The majority of the new C++11 standard features.
 </ul>
-
-The only major C++ feature not currently supported by SWIG is the
-wrapping of nested classes.
 
 <p>
 C++ users who rely on advanced template programming techniques 
