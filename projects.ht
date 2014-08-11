@@ -191,6 +191,11 @@ Support for Perl and Python modules is done using SWIG.
 <li> <a href="http://fenicsproject.org/">FEniCS</a> (DOLFIN component):
 The FEniCS Project is a collaborative project for the development of innovative concepts and tools for automated scientific computing, with a particular focus on automated solution of differential equations by finite element methods.
 </li>
+
+<li> <a href="https://www.lsc-group.phys.uwm.edu/daswg/projects/lalsuite.html">LALSuite</a>:
+a suite of libraries for gravitational-wave data analysis, used by the <a href="http://www.ligo.org/">LIGO Scientific Collaboration</a>.
+</li>
+
 </ul>
 
 <h1>Other projects using SWIG</h1>
