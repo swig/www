@@ -13,6 +13,6 @@ python makeweb.py
 - The .ph files contain html markup and php code and contain the main content of each generated .php file.
 - The default.* files are template files and are used to provide the same html markup at the top, bottom and side of each of the generated .html and .php files.
 
-In summary, the cmost common changes are made by editing the .ht files, running the Python script then viewing the resulting html pages.
+The most common changes are made by editing the .ht files, running the Python script then viewing the resulting html pages.
 
 SWIG developers should look at the Makefile for updating the documentation for new releases and for pushing contents to the web server.
