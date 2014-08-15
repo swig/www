@@ -2,20 +2,31 @@ SWIG Bug Tracking
 
 <p><img src="images/bugs.png" alt="Bugs">
 
-<p>A <a href="https://sourceforge.net/p/swig/bugs/">bug-tracking system</a> for SWIG
-is located on <a href="http://sourceforge.net">SourceForge</a>. 
-Note that you need to log on to SourceForge before submitting a bug.
+<p>
+SWIG development is done on Github at the <a href="https://github.com/swig/swig">SWIG Github project</a> where you can
+view all development activity such as code changes and issues.
 
 <p>
-Users who have found a bug and fixed it themselves can submit a
-<a href="https://sourceforge.net/p/swig/patches/">patch</a>.
-Please give the SWIG version or SVN revision number that the patch is against.
-Again, please log on to SourceForge before submitting patches.
+Bugs can be submitted as an issue on the <a href="https://github.com/swig/swig/issues">SWIG Github issue tracker</a>.
+Users who have found a bug and fixed it themselves can submit a patch as a 
+<a href="https://github.com/swig/swig/pulls">SWIG Github pull request</a>.
+Patches are very welcome and encouraged as user contributions are the primary way that SWIG evolves and improves.
+The SWIG developers try to give top priority to patches.
+Note that submitting issues and pull requests requires a Github account, but simply browsing anything on Github does not.
 
 <p>
-Please note that due to time constraints, bug reports may not 
+Modifications to this website can be submitted as a pull request to the separate <a href="https://github.com/swig/www">SWIG Github www project</a>.
+
+<p>
+SWIG is an all volunteer effort and so bug reports may not 
 receive an immediate response.
-If you have an urgent problem, you may want to
+If you have an urgent problem or if you are not sure you have found a bug, please
 post a message to the <a href="mail.html">swig</a> mailing list
 instead. 
+
+<p>
+Development used to be based on <a href="https://sourceforge.net/projects/swig/">Sourceforge</a>.
+Most of this has migrated to Github and so it is not used much now. The old
+<a href="https://sourceforge.net/p/swig/bugs/">bug-tracking system</a> can still be browsed.
+Please do not submit new bugs to it.
 
