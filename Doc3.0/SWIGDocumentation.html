@@ -1045,7 +1045,8 @@ PRE { font-family: monospace }
 <LI><A HREF="#Go_enumerations">23.3.4 Go Enumerations</A></LI>
 <LI><A HREF="#Go_classes">23.3.5 Go Classes</A>
 <UL>
-<LI><A HREF="#Go_class_inheritance">23.3.5.1 Go Class Inheritance</A></LI>
+<LI><A HREF="#Go_class_memory">23.3.5.1 Go Class Memory Management</A></LI>
+<LI><A HREF="#Go_class_inheritance">23.3.5.2 Go Class Inheritance</A></LI>
 </UL>
 </LI>
 <LI><A HREF="#Go_templates">23.3.6 Go Templates</A></LI>
@@ -1055,6 +1056,7 @@ PRE { font-family: monospace }
 <LI><A HREF="#Go_output_arguments">23.3.9 Output arguments</A></LI>
 <LI><A HREF="#Go_adding_additional_code">23.3.10 Adding additional go
  code</A></LI>
+<LI><A HREF="#Go_typemaps">23.3.11 Go typemaps</A></LI>
 </UL>
 </LI>
 </UL>
@@ -1673,6 +1675,8 @@ PRE { font-family: monospace }
 <LI><A HREF="#Php_nn2_6_2">34.2.6.2 Constructors and Destructors</A></LI>
 <LI><A HREF="#Php_nn2_6_3">34.2.6.3 Static Member Variables</A></LI>
 <LI><A HREF="#Php_nn2_6_4">34.2.6.4 Static Member Functions</A></LI>
+<LI><A HREF="#Php_nn2_6_5">34.2.6.5 Specifying Implemented Interfaces</A>
+</LI>
 </UL>
 </LI>
 <LI><A HREF="#Php_nn2_7">34.2.7 PHP Pragmas, Startup and Shutdown code</A>
@@ -2154,7 +2158,7 @@ PRE { font-family: monospace }
 </UL>
 <HR NOSHADE>
 <H1><A name="Sections"></A>SWIG-3.0 Documentation</H1>
- Last update : SWIG-3.0.2 (4 Jun 2014)
+ Last update : SWIG-3.0.3 (30 Dec 2014)
 <H2><A NAME="1_1">Sections</A></H2>
 <H3><A NAME="1_1_1">SWIG Core Documentation</A></H3>
 <UL>
@@ -6150,7 +6154,7 @@ Vector *new_Vector() {
  available if it is needed, whereas SWIG will usually not warn or error
  out as it is designed to work without full type information. However,
  if type information is not specified correctly, the wrappers can be
- sub-optimal and even result in uncompileable C/C++ code.</LI>
+ sub-optimal and even result in uncompilable C/C++ code.</LI>
 <LI>If your program has a main() function, you may need to rename it
  (read on).</LI>
 <LI>Run SWIG and compile.</LI>
@@ -7204,16 +7208,19 @@ public:
 };
 </PRE>
 </DIV>
-<P> This produces uncompileable wrapper code because default values in
+<P> This produces uncompilable wrapper code because default values in
  C++ are evaluated in the same scope as the member function whereas SWIG
  evaluates them in the scope of a wrapper function (meaning that the
  values have to be public).</P>
-<P> This feature is automatically turned on when wrapping <A href="#SWIG_default_args">
-C code with default arguments</A> and whenever keyword arguments
- (kwargs) are specified for either C or C++ code. Keyword arguments are
- a language feature of some scripting languages, for example Ruby and
- Python. SWIG is unable to support kwargs when wrapping overloaded
- methods, so the default approach cannot be used.</P>
+<P> The <TT>compactdefaultargs</TT> feature is automatically turned on
+ when wrapping <A href="#SWIG_default_args">C code with default
+ arguments</A>. Some target languages will also automatically turn on
+ this feature if the keyword arguments feature (kwargs) is specified for
+ either C or C++ functions, and the target language supports kwargs, the
+ <TT>compactdefaultargs</TT> feature is also automatically turned on.
+ Keyword arguments are a language feature of some scripting languages,
+ for example Ruby and Python. SWIG is unable to support kwargs when
+ wrapping overloaded methods, so the default approach cannot be used.</P>
 <H2><A name="SWIGPlus_nn15"></A>6.8 Protection</H2>
 <P> SWIG wraps class members that are public following the C++
  conventions, i.e., by explicit public declaration or by the use of the <TT>
@@ -8478,7 +8485,7 @@ struct Derived : Base {
 </DIV>
 <P> The following special variables are expanded if used within a
  %extend block: $name, $symname, $overname, $decl, $fulldecl,
- $parentname and $parentsymname. The <A href="#Customization_exception_special_variables">
+ $parentclassname and $parentclasssymname. The <A href="#Customization_exception_special_variables">
 Special variables</A> section provides more information each of these
  special variables.</P>
 <P> The <TT>%extend</TT> directive follows all of the same conventions
@@ -9026,7 +9033,7 @@ public:
 template&lt;class T&gt; class List {
     ...
     public:
-    List() { };
+    List() { }
     T get(int index);
     ...
 };
@@ -10734,61 +10741,58 @@ struct DerivedStruct : BaseStruct {
  the few places it has an effect, it is treated like <TT>NULL</TT>.</P>
 <H3><A name="CPlusPlus11_strongly_typed_enumerations"></A>7.2.13
  Strongly typed enumerations</H3>
-<P>SWIG parses the new <TT>enum class</TT> syntax and forward declarator
- for the enums:</P>
+<P>SWIG supports strongly typed enumerations and parses the new <TT>enum
+ class</TT> syntax and forward declarator for the enums, such as:</P>
 <DIV class="code">
 <PRE>
 enum class MyEnum : unsigned int;
 </PRE>
 </DIV>
-<P>The strongly typed enumerations are treated the same as the ordinary
- and anonymous enums. This is because the required nested class support
- in SWIG is new and has not yet been incorporated into the wrapping of
- these strongly typed enum classes. This is usually not a problem,
- however, there may be some name clashes. For example, the following
- code:</P>
+<P> Strongly typed enums are often used to avoid name clashes such as
+ the following:</P>
 <DIV class="code">
 <PRE>
-class Color {
-  enum class PrintingColors : unsigned int {
-    Cyan, Magenta, Yellow, Black
+struct Color {
+  enum class RainbowColors : unsigned int {
+    Red, Orange, Yellow, Green, Blue, Indigo, Violet
   };
   
-  enum class BasicColors {
-    Red, Green, Blue
+  enum class WarmColors {
+    Yellow, Orange, Red
   };
-  
-  enum class AllColors {
-    // produces warnings because of duplicate names
-    Yellow, Orange, Red, Magenta, Blue, Cyan, Green, Pink, Black, White
+
+  // Note normal enum
+  enum PrimeColors {
+    Red=100, Green, Blue
   };
 };
 </PRE>
 </DIV>
-<P>A workaround is to write these as a series of separate classes
- containing anonymous enums:</P>
-<DIV class="code">
+<P> There are various ways that the target languages handle enums, so it
+ is not possible to precisely state how they are handled in this
+ section. However, generally, most scripting languages mangle in the
+ strongly typed enumeration's class name, but do not use any additional
+ mangling for normal enumerations. For example, in Python, the following
+ code</P>
+<DIV class="targetlang">
 <PRE>
-class PrintingColors {
-  enum : unsigned int {
-    Cyan, Magenta, Yellow, Black
-  };
-};
-
-class BasicColors {
-  enum : unsigned int {
-    Red, Green, Blue
-  };
-};
-
-class AllColors {
-  enum : unsigned int {
-    Yellow, Orange, Red, Magenta, Blue, Cyan, Green, Pink, Black, White
-  };
-};
+print Color.RainbowColors_Red, Color.WarmColors_Red, Color.Red
 </PRE>
 </DIV>
-<P> Expect to see this improved in a future version of SWIG.</P>
+<P> results in</P>
+<DIV class="shell">
+<PRE>
+0 2 100
+</PRE>
+</DIV>
+<P> The strongly typed languages often wrap normal enums into an enum
+ class and so treat normal enums and strongly typed enums the same. The
+ equivalent in Java is:</P>
+<DIV class="targetlang">
+<PRE>
+System.out.println(Color.RainbowColors.Red.swigValue() + &quot; &quot; + Color.WarmColors.Red.swigValue() + &quot; &quot; + Color.PrimeColors.Red.swigValue());
+</PRE>
+</DIV>
 <H3><A name="CPlusPlus11_double_angle_brackets"></A>7.2.14 Double angle
  brackets</H3>
 <P>SWIG correctly parses the symbols &gt;&gt; as closing the template block,
@@ -10844,6 +10848,7 @@ struct Testable {
 <PRE>
 template&lt; typename T1, typename T2, int &gt;
 class SomeType {
+public:
   T1 a;
   T2 b;
   int c;
@@ -15147,6 +15152,20 @@ wrap_foo() {
 }
 </PRE>
 </DIV>
+<P>There is an exception: if the variable name starts with the <TT>
+_global_</TT> prefix, the argument number is not appended. Such
+ variables can be used throughout the generated wrapper function. For
+ example, the above typemap could be rewritten to use <TT>_global_temp</TT>
+ instead of <TT>temp</TT> and the generated code would then contain a
+ single <TT>_global_temp</TT> variable instead of <TT>temp1</TT>, <TT>
+temp2</TT> and <TT>temp3</TT>:</P>
+<DIV class="code">
+<PRE>
+%typemap(in) std::string * <B>(std::string _global_temp)</B> {
+ ... as above ...
+}
+</PRE>
+</DIV>
 <P> Some typemaps do not recognize local variables (or they may simply
  not apply). At this time, only typemaps that apply to argument
  conversion support this (input typemaps such as the &quot;in&quot; typemap).</P>
@@ -17615,10 +17634,10 @@ Ambiguity resolution and renaming</A>. For example, if you wanted to
  method being wrapped without the return type</TD></TR>
 <TR><TD>$fulldecl</TD><TD>The fully qualified C/C++ declaration of the
  method being wrapped including the return type</TD></TR>
-<TR><TD>$parentname</TD><TD>The parent class name (if any) for a method.</TD>
-</TR>
-<TR><TD>$parentsymname</TD><TD>The target language parent class name (if
- any) for a method.</TD></TR>
+<TR><TD>$parentclassname</TD><TD>The parent class name (if any) for a
+ method.</TD></TR>
+<TR><TD>$parentclasssymname</TD><TD>The target language parent class
+ name (if any) for a method.</TD></TR>
 </TABLE>
 <P> The special variables are often used in situations where method
  calls are logged. Exactly which form of the method call needs logging
@@ -17669,7 +17688,7 @@ something</TT> wrapper methods for Perl:</P>
 <P> The <TT>exception.i</TT> library file provides support for creating
  language independent exceptions in your interfaces. To use it, simply
  put an &quot;<TT>%include exception.i</TT>&quot; in your interface file. This
- creates a function <TT>SWIG_exception()</TT> that can be used to raise
+ provides a function <TT>SWIG_exception()</TT> that can be used to raise
  common scripting language exceptions in a portable manner. For example
  :</P>
 <DIV class="code">
@@ -18096,7 +18115,7 @@ int blue;                       // mutable
  overloaded methods that SWIG generates. For example:</P>
 <DIV class="code">
 <PRE>
-%feature(&quot;except&quot;) void hello(int i=0, double d=0.0) { ... }
+%feature(&quot;except&quot;) hello(int i=0, double d=0.0) { ... }
 void hello(int i=0, double d=0.0);
 </PRE>
 </DIV>
@@ -18111,7 +18130,7 @@ void hello();
 <P> If the default arguments are not specified in the feature:</P>
 <DIV class="code">
 <PRE>
-%feature(&quot;except&quot;) void hello(int i, double d) { ... }
+%feature(&quot;except&quot;) hello(int i, double d) { ... }
 void hello(int i=0, double d=0.0);
 </PRE>
 </DIV>
@@ -22173,7 +22192,7 @@ Android NDK</A> which can be installed as per instructions in the links.
 <PRE>
 $ export PATH=$HOME/android/android-sdk-linux_x86/tools:$HOME/android/android-sdk-linux_x86/platform-tools:$HOME/android/android-ndk-r6b:$PATH
 $ mkdir AndroidApps 
-$ cd AnrdoidApps
+$ cd AndroidApps
 </PRE>
 </DIV>
 <P> The examples use a target id of 1. This might need changing
@@ -23708,6 +23727,7 @@ try {
   $action
 } catch (std::out_of_range e) {
   SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, e.what());
+  return $null;
 }
 %}
 
@@ -26156,6 +26176,7 @@ corresponding C# section</A>.</P>
 <LI><A href="#Go_enumerations">Go Enumerations</A></LI>
 <LI><A href="#Go_classes">Go Classes</A>
 <UL>
+<LI><A href="#Go_class_memory">Go Class Memory Management</A></LI>
 <LI><A href="#Go_class_inheritance">Go Class Inheritance</A></LI>
 </UL>
 </LI>
@@ -26165,6 +26186,7 @@ corresponding C# section</A>.</P>
  mappings</A></LI>
 <LI><A href="#Go_output_arguments">Output arguments</A></LI>
 <LI><A href="#Go_adding_additional_code">Adding additional go code</A></LI>
+<LI><A href="#Go_typemaps">Go typemaps</A></LI>
 </UL>
 </LI>
 </UL>
@@ -26384,7 +26406,32 @@ MyClassMyFactoryFunction() MyClass {
 <P>Note that the factory function does not return a go pointer; it
  actually returns a go interface. If the returned pointer can be null,
  you can check for this by calling the Swigcptr() method.</P>
-<H4><A name="Go_class_inheritance"></A>23.3.5.1 Go Class Inheritance</H4>
+<H4><A name="Go_class_memory"></A>23.3.5.1 Go Class Memory Management</H4>
+<P> Calling <TT>NewClassName</TT> for some C++ class <TT>ClassName</TT>
+ will allocate memory using the C++ memory allocator. This memory will
+ not be automatically freed by Go's garbage collector. When you are done
+ with the C++ object you must free it using <TT>DeleteClassName</TT>.</P>
+<P> A common technique is to store the C++ object into a Go object, and
+ use the Go function <TT>runtime.SetFinalizer</TT> to free the C++
+ object when the Go object is freed. For example, if the SWIG package is
+ imported as &quot;wrap&quot;:</P>
+<DIV class="code">
+<PRE>
+type GoClassName struct {
+	w wrap.ClassName
+}
+
+func NewGoClassName() *GoClassName {
+	r := &amp;GoClassName{wrap.NewClassName()}
+	runtime.SetFinalizer(r,
+		func(r *GoClassName) {
+			wrap.DeleteClassName(r.w)
+		})
+	return r
+}
+</PRE>
+</DIV>
+<H4><A name="Go_class_inheritance"></A>23.3.5.2 Go Class Inheritance</H4>
 <P> C++ class inheritance is automatically represented in Go due to its
  use of interfaces. The interface for a child class will be a superset
  of the interface of its parent class. Thus a value of the child class
@@ -26595,7 +26642,67 @@ func bar() {
 
 %}
 </PRE>
-</DIV><HR NOSHADE>
+</DIV>
+<H3><A name="Go_typemaps"></A>23.3.11 Go typemaps</H3>
+<P> You can use the <TT>%typemap</TT> directive to modify SWIG's default
+ wrapping behavior for specific C/C++ types. You need to be familiar
+ with the material in the general &quot;<A href="#Typemaps">Typemaps</A>&quot;
+ chapter. That chapter explains how to define a typemap. This section
+ describes some specific typemaps used for Go.</P>
+<P> In general type conversion code may be written either in C/C++ or in
+ Go. The choice to make normally depends on where memory should be
+ allocated. To allocate memory controlled by the Go garbage collector,
+ write Go code. To allocate memory in the C/C++ heap, write C code.</P>
+<TABLE BORDER summary="Go Typemaps">
+<TR><TD><B>Typemap</B></TD><TD><B>Description</B></TD></TR>
+<TR><TD>gotype</TD><TD> The Go type to use for a C++ type. This type
+ will appear in the generated Go wrapper function. If this is not
+ defined SWIG will use a default as <A href="#Go_primitive_type_mappings">
+described above</A>.</TD></TR>
+<TR><TD>imtype</TD><TD> An intermediate Go type used by the &quot;goin&quot;,
+ &quot;goout&quot;, &quot;godirectorin&quot;, and &quot;godirectorout&quot; typemaps. If this typemap
+ is not defined for a C/C++ type, the gotype typemape will be used. This
+ is useful when gotype is best converted to C/C++ using Go code.</TD></TR>
+<TR><TD>goin</TD><TD> Go code to convert from gotype to imtype when
+ calling a C/C++ function. SWIG will then internally convert imtype to a
+ C/C++ type and pass it down. If this is not defined no conversion is
+ done.</TD></TR>
+<TR><TD>in</TD><TD> C/C++ code to convert the internally generated C/C++
+ type, based on imtype, into the C/C++ type that a function call
+ expects. If this is not defined the value will simply be cast to the
+ desired type.</TD></TR>
+<TR><TD>out</TD><TD> C/C++ code to convert the C/C++ type that a
+ function call returns into the internally generated C/C++ type, based
+ on imtype, that will be returned to Go. If this is not defined the
+ value will simply be cast to the desired type.</TD></TR>
+<TR><TD>goout</TD><TD> Go code to convert a value returned from a C/C++
+ function from imtype to gotype. If this is not defined no conversion is
+ done.</TD></TR>
+<TR><TD>argout</TD><TD> C/C++ code to adjust an argument value when
+ returning from a function. This is called after the real C/C++ function
+ has run. This uses the internally generated C/C++ type, based on
+ imtype. This is only useful for a pointer type of some sort. If this is
+ not defined nothing will be done.</TD></TR>
+<TR><TD>goargout</TD><TD> Go code to adjust an argument value when
+ returning from a function. This is called after the real C/C++ function
+ has run. The value will be in imtype. This is only useful for a pointer
+ type of some sort. If this is not defined nothing will be done.</TD></TR>
+<TR><TD>directorin</TD><TD> C/C++ code to convert the C/C++ type used to
+ call a director method into the internally generated C/C++ type, based
+ on imtype, that will be passed to Go. If this is not defined the value
+ will simply be cast to the desired type.</TD></TR>
+<TR><TD>godirectorin</TD><TD> Go code to convert a value used to call a
+ director method from imtype to gotype. If this is not defined no
+ conversion is done.</TD></TR>
+<TR><TD>godirectorout</TD><TD> Go code to convert a value returned from
+ a director method from gotype to imtype. If this is not defined no
+ conversion is done.</TD></TR>
+<TR><TD>directorout</TD><TD> C/C++ code to convert a value returned from
+ a director method from the internally generated C/C++ type, based on
+ imtype, into the type that the method should return If this is not
+ defined the value will simply be cast to the desired type.</TD></TR>
+</TABLE>
+<HR NOSHADE>
 
 <!-- Hand-written HTML -->
 <H1><A name="Guile"></A>24 SWIG and Guile</H1>
@@ -31865,6 +31972,11 @@ byte[]</TD><TD VALIGN="TOP">Java byte array is converted to char array</TD>
 <TR><TD>char **</TD><TD>STRING_ARRAY</TD><TD>various.i</TD><TD>input
 <BR> output</TD><TD>String[]</TD><TD>Use for mapping NULL terminated
  arrays of C strings to Java String arrays</TD></TR>
+<TR><TD>unsigned char *</TD><TD>NIOBUFFER</TD><TD>various.i</TD><TD>
+input
+<BR> output</TD><TD>java.nio.Buffer</TD><TD>Use for mapping directly
+ allocated buffers to c/c++. useful with directors and long lived memory
+ objects</TD></TR>
 </TABLE>
 <H3><A name="Java_typemap_attributes"></A>25.9.6 Java typemap attributes</H3>
 <P> There are a few additional typemap attributes that the Java module
@@ -34388,6 +34500,13 @@ $ swig -javascript -jsc example.i</PRE>
 <PRE>
 $ swig -c++ -javascript -jsc example.i</PRE>
 </DIV>
+<P>The V8 code that SWIG generates should work with most versions from
+ 3.11.10 up to 3.29.14 and later.</P>
+<P>Specify the V8 version when running SWIG (e.g. 3.25.30)</P>
+<DIV class="shell">
+<PRE>
+$ swig -c++ -javascript -v8 -DV8_VERSION=0x032530 example.i</PRE>
+</DIV>
 <P>This creates a C/C++ source file <CODE>example_wrap.c</CODE> or <CODE>
 example_wrap.cxx</CODE>. The generated C source file contains the
  low-level wrappers that need to be compiled and linked with the rest of
@@ -34438,6 +34557,12 @@ v8</CODE>.</P>
 <DIV class="shell">
 <PRE>
 $ make check-javascript-test-suite ENGINE=jsc</PRE>
+</DIV>
+<P>You can specify a specific <CODE>V8</CODE> version for running the
+ examples and tests</P>
+<DIV class="shell">
+<PRE>
+$ make check-javascript-examples V8_VERSION=0x032530 ENGINE=v8</PRE>
 </DIV>
 <H3><A name="Javascript_known_issues"></A>26.2.3 Known Issues</H3>
 <P>At the moment, the Javascript generators pass all tests
@@ -34516,7 +34641,7 @@ binding.gyp</CODE> which is basically in JSON format and conforms to the
 <P>First create the wrapper using SWIG:</P>
 <DIV class="shell">
 <PRE>
-$ swig -javascript -node -c++ example.cxx</PRE>
+$ swig -javascript -node -c++ example.i</PRE>
 </DIV>
 <P>Then run <CODE>node-gyp</CODE></P>
 <DIV class="shell">
@@ -34666,8 +34791,8 @@ Manifest</A> specification for more details.</P>
 <DIV class="code">
 <PRE>
 {
-  &quot;name&quot;: &quot;example&quot;
-  &quot;main&quot;: &quot;app.html&quot;
+  &quot;name&quot;: &quot;example&quot;,
+  &quot;main&quot;: &quot;app.html&quot;,
   &quot;window&quot;: {
     &quot;show&quot;: true,
     &quot;width&quot;: 800,
@@ -34753,7 +34878,7 @@ var x = 42;
 var y = 105;
 var g = example.gcd(x,y);
 
-// Accessing the globak variable
+// Accessing the global variable
 var f = example.Foo;
 example.Foo = 3.1415926;</PRE>
 </DIV>
@@ -34777,7 +34902,7 @@ public:
   }
   virtual ~Shape() {
     nshapes--;
-  };
+  }
   double  x, y;
   void    move(double dx, double dy);
   virtual double area(void) = 0;
@@ -34789,7 +34914,7 @@ class Circle : public Shape {
 private:
   double radius;
 public:
-  Circle(double r) : radius(r) { };
+  Circle(double r) : radius(r) { }
   virtual double area(void);
   virtual double perimeter(void);
 };
@@ -34798,7 +34923,7 @@ class Square : public Shape {
 private:
   double width;
 public:
-  Square(double w) : width(w) { };
+  Square(double w) : width(w) { }
   virtual double area(void);
   virtual double perimeter(void);
 };</PRE>
@@ -35094,7 +35219,7 @@ class JSEmitter {
    */
   virtual int exitClass(Node *) {
     return SWIG_OK;
-  };
+  }
 
   /**
    * Invoked at the beginning of the variableHandler.
@@ -35106,7 +35231,7 @@ class JSEmitter {
    */
   virtual int exitVariable(Node *) {
     return SWIG_OK;
-  };
+  }
 
   /**
    * Invoked at the beginning of the functionHandler.
@@ -35118,7 +35243,7 @@ class JSEmitter {
    */
   virtual int exitFunction(Node *) {
     return SWIG_OK;
-  };
+  }
 
   /**
    * Invoked by functionWrapper callback after call to Language::functionWrapper.
@@ -39631,10 +39756,9 @@ directorin, directorout, directorargout</TT></H4>
  Examples/octave directory, and hundreds in the test suite
  (Examples/test-suite and Examples/test-suite/octave).</P>
 <H2><A name="Octave_nn2"></A>32.1 Preliminaries</H2>
-<P> As of SWIG 3.0.0, the Octave module has been tested with Octave
- versions 3.0.5, 3.2.4, 3.4.3, 3.6.4, and 3.8.0. Use of Octave versions
- older than 3.x.x is not recommended, as these versions are no longer
- tested with SWIG.</P>
+<P> As of SWIG 3.0.3, the Octave module has been tested with Octave
+ versions 3.2.4, 3.4.3, 3.6.4, and 3.8.1. Use of older Octave versions
+ is not recommended, as these versions are no longer tested with SWIG.</P>
 <H2><A name="Octave_nn3"></A>32.2 Running SWIG</H2>
 <P> Let's start with a very simple SWIG interface file, example.i:</P>
 <DIV class="code">
@@ -42957,6 +43081,7 @@ director:except</TT> handler shown above. Here is an example of a
 <LI><A href="#Php_nn2_6_2">Constructors and Destructors</A></LI>
 <LI><A href="#Php_nn2_6_3">Static Member Variables</A></LI>
 <LI><A href="#Php_nn2_6_4">Static Member Functions</A></LI>
+<LI><A href="#Php_nn2_6_5">Specifying Implemented Interfaces</A></LI>
 </UL>
 </LI>
 <LI><A href="#Php_nn2_7">PHP Pragmas, Startup and Shutdown code</A></LI>
@@ -43018,9 +43143,7 @@ php_example.h</TT> contains the header information needed if you wish to
  more detail in <A href="#Php_nn2_6">section 27.2.6</A>.</P>
 <P> The usual (and recommended) way is to build the extension as a
  separate dynamically loaded module (which is supported by all modern
- operating systems). You can then specify that this be loaded
- automatically in <TT>php.ini</TT> or load it explicitly for any script
- which needs it.</P>
+ operating systems).</P>
 <P> It is also possible to rebuild PHP from source so that your module
  is statically linked into the php executable/library. This is a lot
  more work, and also requires a full rebuild of PHP to update your
@@ -43033,33 +43156,42 @@ php_example.h</TT> contains the header information needed if you wish to
  these commands should at least work for Linux though):</P>
 <DIV class="code">
 <PRE>
-	gcc `php-config --includes` -fpic -c example_wrap.c
-	gcc -shared example_wrap.o -o example.so
+	gcc `php-config --includes` -fpic -c example_wrap.c example.c
+	gcc -shared example_wrap.o example.o -o example.so
 </PRE>
 </DIV>
 <H3><A name="Php_nn1_3"></A>34.1.2 Using PHP Extensions</H3>
-<P> To test the extension from a PHP script, you need to load it first.
- You can load it for every script by adding this line to the <TT>[PHP]</TT>
+<P> To test the extension from a PHP script, you first need to tell PHP
+ to load it. To do this, add a line like this to the <TT>[PHP]</TT>
  section of <TT>php.ini</TT>:</P>
 <DIV class="code">
 <PRE>
 	extension=/path/to/modulename.so
 </PRE>
 </DIV>
-<P> Alternatively, you can load it explicitly only for scripts which
- need it by adding this line to the start of each such PHP script::</P>
+<P> If the module is in PHP's default extension directory, you can omit
+ the path.</P>
+<P> For some SAPIs (for example, the CLI SAPI) you can instead use the <A
+href="http://php.net/manual/en/function.dl.php">dl() function</A> to
+ load an extension at run time, by adding a like like this to the start
+ of each PHP script which uses your extension:</P>
 <DIV class="code">
 <PRE>
 	dl(&quot;/path/to/modulename.so&quot;);	// Load the module
 </PRE>
 </DIV>
-<P> SWIG also generates a php module, which attempts to do the <TT>dl()</TT>
- call for you:</P>
+<P> But note that this doesn't work when running PHP through a webserver
+ in PHP5.3 and later - you'll need to use <TT>extension</TT> in <TT>
+php.ini</TT> as described above.</P>
+<P> The PHP module which SWIG generates will also attempt to do the <TT>
+dl()</TT> call for you if the extension isn't already loaded:</P>
 <DIV class="code">
 <PRE>
 	include(&quot;example.php&quot;);
 </PRE>
 </DIV>
+<P> This PHP module also defines the PHP classes for the wrapped API, so
+ you'll almost certainly want to include it anyway.</P>
 <H2><A name="Php_nn2"></A>34.2 Basic PHP interface</H2>
 <P> It is important to understand that PHP uses a single global
  namespace into which all symbols from extension modules are loaded. It
@@ -43095,9 +43227,9 @@ echo &quot;E = &quot; . E . &quot;\n&quot;;
 </DIV>
 <P> There's one peculiarity of how constants work in PHP which it is
  useful to note (this is not specific to SWIG though) - if you try to
- use an undeclared constant, PHP will issue a warning and then expand
- the constant to a string version of the constant's name. The warning
- will often be missed though as if you're using PHP in a webserver, it
+ use an undeclared constant, PHP will emit a notice and then expand the
+ constant to a string version of the constant's name. Unfortunately it
+ is easy to miss the notice if you're using PHP in a webserver, as it
  will probably end up in error.log or similar.</P>
 <P> For example,</P>
 <DIV class="code">
@@ -43516,6 +43648,18 @@ include(&quot;example.php&quot;);
 Ko::threats();
 </PRE>
 </DIV>
+<H4><A name="Php_nn2_6_5"></A>34.2.6.5 Specifying Implemented Interfaces</H4>
+<P> PHP supports the concept of abstract interfaces which a class can
+ implement. Since SWIG 3.0.3, you can tell SWIG that a wrapped class
+ (for example <CODE>MyIterator</CODE>) implements the <CODE>Iterator</CODE>
+ interface like so:</P>
+<DIV class="code">
+<PRE>
+%typemap(&quot;phpinterfaces&quot;) MyIterator &quot;Iterator&quot;;
+</PRE>
+</DIV>
+<P> If there are multiple interfaces, just list them separated by
+ commas.</P>
 <H3><A name="Php_nn2_7"></A>34.2.7 PHP Pragmas, Startup and Shutdown
  code</H3>
 <P> To place PHP code in the generated &quot;example.php&quot; file one can use
@@ -49839,8 +49983,8 @@ b
  iterators can access and not modify the values they point at, while the
  non-const iterators can both read and modify the values.</P>
 <P>The Ruby STL wrappings support both type of iterators by using a
- proxy class in-between. This proxy class is <TT>swig::Iterator or
- swig::ConstIterator.</TT> Derived from them are template classes that
+ proxy class in-between. This proxy class is <TT>swig::Iterator</TT> or <TT>
+swig::ConstIterator</TT>. Derived from them are template classes that
  need to be initialized with the actual iterator for the container you
  are wrapping and often times with the beginning and ending points of
  the iteration range.</P>
@@ -53630,7 +53774,7 @@ public:
 % x insert Lager
 % x get 1
 Stout
-% puts [l cget -length]
+% puts [x cget -length]
 3
 %
 </PRE>
@@ -54425,7 +54569,7 @@ class DoubleArray {
     $action                // Gets substituted by actual function call
   }
   catch (RangeError) {
-    Tcl_SetStringObj(tcl_result,&quot;Array index out-of-bounds&quot;);
+    Tcl_SetResult(interp, (char *)&quot;Array index out-of-bounds&quot;, TCL_STATIC);
     return TCL_ERROR;
   }
 }
@@ -54442,7 +54586,7 @@ class DoubleArray {
     $action
   }
   catch (RangeError) {
-    Tcl_SetStringObj(tcl_result,&quot;Array index out-of-bounds&quot;);
+    Tcl_SetResult(interp, (char *)&quot;Array index out-of-bounds&quot;, TCL_STATIC);
     return TCL_ERROR;
   }
 }
@@ -54452,7 +54596,7 @@ class DoubleArray {
     $action
   }
   catch (RangeError) {
-    Tcl_SetStringObj(tcl_result,&quot;Array index out-of-bounds&quot;);
+    Tcl_SetResult(interp, (char *)&quot;Array index out-of-bounds&quot;, TCL_STATIC);
     return TCL_ERROR;
   }
 }
@@ -54470,7 +54614,7 @@ class DoubleArray {
     $action
   }
   catch (RangeError) {
-    Tcl_SetStringObj(tcl_result,&quot;Array index out-of-bounds&quot;);
+    Tcl_SetResult(interp, (char *)&quot;Array index out-of-bounds&quot;, TCL_STATIC);
     return TCL_ERROR;
   }
 }
@@ -54777,7 +54921,6 @@ int       Tcl_GetDoubleFromObj(Tcl_Interp *, Tcl_Obj *o, double *dp);
 <DIV class="code">
 <PRE>
 Tcl_Obj  *Tcl_NewStringObj(char *str, int len);
-void      Tcl_SetStringObj(Tcl_Obj *obj, char *str, int len);
 char     *Tcl_GetStringFromObj(Tcl_Obj *obj, int *len);
 void      Tcl_AppendToObj(Tcl_Obj *obj, char *str, int len);
 </PRE>
@@ -54858,9 +55001,10 @@ int      Tcl_IsShared(Tcl_Obj *obj);
 </DIV>
 <BR><DIV class="code">
 <PRE>
-%typemap(out) char * {
-   Tcl_SetStringObj($result,$1);
+%typemap(out,noblock=1,fragment=&quot;SWIG_FromCharPtr&quot;) char *, const char * {
+  Tcl_SetObjResult(interp,SWIG_FromCharPtr((const char *)$1));
 }
+
 </PRE>
 </DIV>
 <H3><A name="Tcl_nn42"></A>39.7.8 Pointer handling</H3>
