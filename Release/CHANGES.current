@@ -16,7 +16,7 @@ Version 3.0.4 (14 Jan 2015)
 
 2015-01-08: olly
 	    Allow C++11 "explicit constexpr".  Fixes github issue #284 reported
-	    by Paweł Tomulik.  Also handle "constexpr explicit" and "constexpr
+	    by Pawel Tomulik.  Also handle "constexpr explicit" and "constexpr
 	    static".
 
 2015-01-08: olly
