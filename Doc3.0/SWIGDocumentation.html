@@ -1031,32 +1031,33 @@ PRE { font-family: monospace }
 <B><A HREF="#Go">23 SWIG and Go</A></B>
 <UL>
 <LI><A HREF="#Go_overview">23.1 Overview</A></LI>
-<LI><A HREF="#Go_running_swig">23.2 Running SWIG with Go</A>
+<LI><A HREF="#Go_examples">23.2 Examples</A></LI>
+<LI><A HREF="#Go_running_swig">23.3 Running SWIG with Go</A>
 <UL>
-<LI><A HREF="#Go_commandline">23.2.1 Additional Commandline Options</A></LI>
-<LI><A HREF="#Go_outputs">23.2.2 Go Output Files</A></LI>
+<LI><A HREF="#Go_commandline">23.3.1 Additional Commandline Options</A></LI>
+<LI><A HREF="#Go_outputs">23.3.2 Go Output Files</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Go_basic_tour">23.3 A tour of basic C/C++ wrapping</A>
+<LI><A HREF="#Go_basic_tour">23.4 A tour of basic C/C++ wrapping</A>
 <UL>
-<LI><A HREF="#Go_package">23.3.1 Go Package Name</A></LI>
-<LI><A HREF="#Go_names">23.3.2 Go Names</A></LI>
-<LI><A HREF="#Go_constants">23.3.3 Go Constants</A></LI>
-<LI><A HREF="#Go_enumerations">23.3.4 Go Enumerations</A></LI>
-<LI><A HREF="#Go_classes">23.3.5 Go Classes</A>
+<LI><A HREF="#Go_package">23.4.1 Go Package Name</A></LI>
+<LI><A HREF="#Go_names">23.4.2 Go Names</A></LI>
+<LI><A HREF="#Go_constants">23.4.3 Go Constants</A></LI>
+<LI><A HREF="#Go_enumerations">23.4.4 Go Enumerations</A></LI>
+<LI><A HREF="#Go_classes">23.4.5 Go Classes</A>
 <UL>
-<LI><A HREF="#Go_class_memory">23.3.5.1 Go Class Memory Management</A></LI>
-<LI><A HREF="#Go_class_inheritance">23.3.5.2 Go Class Inheritance</A></LI>
+<LI><A HREF="#Go_class_memory">23.4.5.1 Go Class Memory Management</A></LI>
+<LI><A HREF="#Go_class_inheritance">23.4.5.2 Go Class Inheritance</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Go_templates">23.3.6 Go Templates</A></LI>
-<LI><A HREF="#Go_director_classes">23.3.7 Go Director Classes</A></LI>
-<LI><A HREF="#Go_primitive_type_mappings">23.3.8 Default Go primitive
+<LI><A HREF="#Go_templates">23.4.6 Go Templates</A></LI>
+<LI><A HREF="#Go_director_classes">23.4.7 Go Director Classes</A></LI>
+<LI><A HREF="#Go_primitive_type_mappings">23.4.8 Default Go primitive
  type mappings</A></LI>
-<LI><A HREF="#Go_output_arguments">23.3.9 Output arguments</A></LI>
-<LI><A HREF="#Go_adding_additional_code">23.3.10 Adding additional go
+<LI><A HREF="#Go_output_arguments">23.4.9 Output arguments</A></LI>
+<LI><A HREF="#Go_adding_additional_code">23.4.10 Adding additional go
  code</A></LI>
-<LI><A HREF="#Go_typemaps">23.3.11 Go typemaps</A></LI>
+<LI><A HREF="#Go_typemaps">23.4.11 Go typemaps</A></LI>
 </UL>
 </LI>
 </UL>
@@ -2158,7 +2159,7 @@ PRE { font-family: monospace }
 </UL>
 <HR NOSHADE>
 <H1><A name="Sections"></A>SWIG-3.0 Documentation</H1>
- Last update : SWIG-3.0.3 (30 Dec 2014)
+ Last update : SWIG-3.0.4 (14 Jan 2015)
 <H2><A NAME="1_1">Sections</A></H2>
 <H3><A NAME="1_1_1">SWIG Core Documentation</A></H3>
 <UL>
@@ -3696,6 +3697,7 @@ lang</EM> -help</TT>.</P>
 -xml                  Generate XML wrappers
 
 -c++                  Enable C++ parsing
+-cppext <EM>ext</EM>           Change file extension of C++ generated files to <EM>ext</EM> (default is cxx, except for PHP which uses cpp)
 -D<EM>symbol</EM>              Define a preprocessor symbol
 -Fstandard            Display error/warning messages in commonly used format
 -Fmicrosoft           Display error/warning messages in Microsoft format
@@ -3704,7 +3706,7 @@ lang</EM> -help</TT>.</P>
 -l<EM>file</EM>                Include a SWIG library file.
 -module <EM>name</EM>          Set the name of the SWIG module
 -o <EM>outfile</EM>            Name of output file
--outcurrentdir	      Set default output dir to current dir instead of input file's path
+-outcurrentdir        Set default output dir to current dir instead of input file's path
 -outdir <EM>dir</EM>           Set language specific files output directory
 -pcreversion          Display PCRE version information
 -swiglib              Show location of SWIG library
@@ -26162,6 +26164,7 @@ corresponding C# section</A>.</P>
 <DIV class="sectiontoc">
 <UL>
 <LI><A href="#Go_overview">Overview</A></LI>
+<LI><A href="#Go_examples">Examples</A></LI>
 <LI><A href="#Go_running_swig">Running SWIG with Go</A>
 <UL>
 <LI><A href="#Go_commandline">Additional Commandline Options</A></LI>
@@ -26208,11 +26211,21 @@ corresponding C# section</A>.</P>
 <P> Because Go is a type-safe compiled language, SWIG's runtime type
  checking and runtime library are not used with Go. This should be borne
  in mind when reading the rest of the SWIG documentation.</P>
-<H2><A name="Go_running_swig"></A>23.2 Running SWIG with Go</H2>
+<H2><A name="Go_examples"></A>23.2 Examples</H2>
+<P> Working examples can be found here:</P>
+<UL>
+<LI><A href="https://golang.org/misc/swig">Examples from the Go source
+ tree</A></LI>
+<LI><A href="https://github.com/swig/swig/tree/master/Examples/go">
+Examples from the SWIG source tree</A></LI>
+</UL>
+<P> The examples in the 2nd link are shipped with the SWIG distribution
+ under the Examples/go directory.</P>
+<H2><A name="Go_running_swig"></A>23.3 Running SWIG with Go</H2>
 <P> To generate Go code, use the <TT>-go</TT> option with SWIG. By
  default SWIG will generate code for the gc compilers. To generate code
  for gccgo, you should also use the <TT>-gccgo</TT> option.</P>
-<H3><A name="Go_commandline"></A>23.2.1 Additional Commandline Options</H3>
+<H3><A name="Go_commandline"></A>23.3.1 Additional Commandline Options</H3>
 <P> These are the command line options for SWIG's Go module. They can
  also be seen by using:</P>
 <DIV class="code">
@@ -26250,7 +26263,7 @@ swig -go -help
  to gccgo. If <TT>-go-pkgpath</TT> is used, <TT>-go-prefix</TT> will be
  ignored.</TD></TR>
 </TABLE>
-<H3><A name="Go_outputs"></A>23.2.2 Go Output Files</H3>
+<H3><A name="Go_outputs"></A>23.3.2 Go Output Files</H3>
 <P> When generating Go code, SWIG will generate the following files:</P>
 <UL>
 <LI> MODULE.go will contain the Go functions that your Go code will
@@ -26310,17 +26323,17 @@ swig -go -help
 % go tool 6l main.6
 </PRE>
 </DIV>
-<H2><A name="Go_basic_tour"></A>23.3 A tour of basic C/C++ wrapping</H2>
+<H2><A name="Go_basic_tour"></A>23.4 A tour of basic C/C++ wrapping</H2>
 <P> By default, SWIG attempts to build a natural Go interface to your
  C/C++ code. However, the languages are somewhat different, so some
  modifications have to occur. This section briefly covers the essential
  aspects of this wrapping.</P>
-<H3><A name="Go_package"></A>23.3.1 Go Package Name</H3>
+<H3><A name="Go_package"></A>23.4.1 Go Package Name</H3>
 <P> All Go source code lives in a package. The name of this package will
  default to the name of the module from SWIG's <TT>%module</TT>
  directive. You may override this by using SWIG's <TT>-package</TT>
  command line option.</P>
-<H3><A name="Go_names"></A>23.3.2 Go Names</H3>
+<H3><A name="Go_names"></A>23.4.2 Go Names</H3>
 <P> In Go, a function is only visible outside the current package if the
  first letter of the name is uppercase. This is quite different from
  C/C++. Because of this, C/C++ names are modified when generating the Go
@@ -26340,16 +26353,16 @@ swig -go -help
  the name of a type in Go. A constructor will be named <TT>New</TT>
  followed by that name, and the destructor will be named <TT>Delete</TT>
  followed by that name.</P>
-<H3><A name="Go_constants"></A>23.3.3 Go Constants</H3>
+<H3><A name="Go_constants"></A>23.4.3 Go Constants</H3>
 <P> C/C++ constants created via <TT>#define</TT> or the <TT>%constant</TT>
  directive become Go constants, declared with a <TT>const</TT>
  declaration.</P>
-<H3><A name="Go_enumerations"></A>23.3.4 Go Enumerations</H3>
+<H3><A name="Go_enumerations"></A>23.4.4 Go Enumerations</H3>
 <P> C/C++ enumeration types will cause SWIG to define an integer type
  with the name of the enumeration (with first letter forced to uppercase
  as usual). The values of the enumeration will become variables in Go;
  code should avoid modifying those variables.</P>
-<H3><A name="Go_classes"></A>23.3.5 Go Classes</H3>
+<H3><A name="Go_classes"></A>23.4.5 Go Classes</H3>
 <P> Go has interfaces, methods and inheritance, but it does not have
  classes in the same sense as C++. This sections describes how SWIG
  represents C++ classes represented in Go.</P>
@@ -26406,14 +26419,18 @@ MyClassMyFactoryFunction() MyClass {
 <P>Note that the factory function does not return a go pointer; it
  actually returns a go interface. If the returned pointer can be null,
  you can check for this by calling the Swigcptr() method.</P>
-<H4><A name="Go_class_memory"></A>23.3.5.1 Go Class Memory Management</H4>
+<H4><A name="Go_class_memory"></A>23.4.5.1 Go Class Memory Management</H4>
 <P> Calling <TT>NewClassName</TT> for some C++ class <TT>ClassName</TT>
  will allocate memory using the C++ memory allocator. This memory will
- not be automatically freed by Go's garbage collector. When you are done
- with the C++ object you must free it using <TT>DeleteClassName</TT>.</P>
+ not be automatically freed by Go's garbage collector as the object
+ ownership is not tracked. When you are done with the C++ object you
+ must free it manually using <TT>DeleteClassName</TT>.</P>
 <P> A common technique is to store the C++ object into a Go object, and
  use the Go function <TT>runtime.SetFinalizer</TT> to free the C++
- object when the Go object is freed. For example, if the SWIG package is
+ object when the Go object is freed. It is strongly recommended to read
+ the <A href="https://golang.org/pkg/runtime/#SetFinalizer">
+runtime.SetFinalizer</A> documentation before using this technique to
+ understand its limitations. For example, if the SWIG package is
  imported as &quot;wrap&quot;:</P>
 <DIV class="code">
 <PRE>
@@ -26431,18 +26448,18 @@ func NewGoClassName() *GoClassName {
 }
 </PRE>
 </DIV>
-<H4><A name="Go_class_inheritance"></A>23.3.5.2 Go Class Inheritance</H4>
+<H4><A name="Go_class_inheritance"></A>23.4.5.2 Go Class Inheritance</H4>
 <P> C++ class inheritance is automatically represented in Go due to its
  use of interfaces. The interface for a child class will be a superset
  of the interface of its parent class. Thus a value of the child class
  type in Go may be passed to a function which expects the parent class.
  Doing the reverse will require an explicit type assertion, which will
  be checked dynamically.</P>
-<H3><A name="Go_templates"></A>23.3.6 Go Templates</H3>
+<H3><A name="Go_templates"></A>23.4.6 Go Templates</H3>
 <P> In order to use C++ templates in Go, you must tell SWIG to create
  wrappers for a particular template instantation. To do this, use the <TT>
 %template</TT> directive.</P>
-<H3><A name="Go_director_classes"></A>23.3.7 Go Director Classes</H3>
+<H3><A name="Go_director_classes"></A>23.4.7 Go Director Classes</H3>
 <P> SWIG's director feature permits a Go type to act as the subclass of
  a C++ class with virtual methods. This is complicated by the fact that
  C++ and Go define inheritance differently. In Go, structs can inherit
@@ -26470,7 +26487,7 @@ func MakeClass() ClassName {
 <P> Any call in C++ code to the virtual function will wind up calling
  the method defined in Go. The Go code may of course call other methods
  on itself, and those methods may be defined either in Go or in C++.</P>
-<H3><A name="Go_primitive_type_mappings"></A>23.3.8 Default Go primitive
+<H3><A name="Go_primitive_type_mappings"></A>23.4.8 Default Go primitive
  type mappings</H3>
 <P> The following table lists the default type mapping from C/C++ to Go.
  This table will tell you which Go type to expect for a function which
@@ -26503,7 +26520,7 @@ func MakeClass() ClassName {
 <P> These type mappings are defined by the &quot;gotype&quot; typemap. You may
  change that typemap, or add new values, to control how C/C++ types are
  mapped into Go types.</P>
-<H3><A name="Go_output_arguments"></A>23.3.9 Output arguments</H3>
+<H3><A name="Go_output_arguments"></A>23.4.9 Output arguments</H3>
 <P>Because of limitations in the way output arguments are processed in
  swig, a function with output arguments will not have multiple return
  values. Instead, you must pass a pointer into the C++ function to tell
@@ -26551,7 +26568,7 @@ fraction := modulename.Modf(5.0, ptr)
 void f(char *output);
 </PRE>
 </DIV>
-<H3><A name="Go_adding_additional_code"></A>23.3.10 Adding additional go
+<H3><A name="Go_adding_additional_code"></A>23.4.10 Adding additional go
  code</H3>
 <P>Often the APIs generated by swig are not very natural in go,
  especially if there are output arguments. You can insert additional go
@@ -26643,7 +26660,7 @@ func bar() {
 %}
 </PRE>
 </DIV>
-<H3><A name="Go_typemaps"></A>23.3.11 Go typemaps</H3>
+<H3><A name="Go_typemaps"></A>23.4.11 Go typemaps</H3>
 <P> You can use the <TT>%typemap</TT> directive to modify SWIG's default
  wrapping behavior for specific C/C++ types. You need to be familiar
  with the material in the general &quot;<A href="#Typemaps">Typemaps</A>&quot;
@@ -46748,6 +46765,18 @@ print(&quot;Loading&quot;, &quot;Whizz&quot;, &quot;Bang&quot;, sep=' ... ')
 
 </PRE>
 </DIV>
+<P>When using <TT>%pythoncode</TT> and <TT>%pythonbegin</TT> you
+ generally want to make sure that the block is delimited by <TT>%{</TT>
+ and <TT>%}</TT>. If you delimit it with <TT>{</TT> and <TT>}</TT> then
+ any lines with a leading <TT>#</TT> will be handled by SWIG as
+ preprocessor directives, when you probably meant them as Python
+ comments. Prior to SWIG 3.0.3, invalid preprocessor directives were
+ silently ignored, so generally using the wrong delimiters resulted in
+ such comments not appearing in the generated output (though a comment
+ starting with a valid preprocessor directive could cause problems, for
+ example: <TT># error handling</TT>). SWIG 3.0.3 and later report an
+ error for invalid preprocessor directives, so you may have to update
+ existing interface files to delimit blocks of Python code correctly.</P>
 <P>Sometimes you may want to replace or modify the wrapper function that
  SWIG creates in the proxy <TT>.py</TT> file. The Python module in SWIG
  provides some features that enable you to do this. First, to entirely
@@ -49016,7 +49045,7 @@ slices)
 <!-- INDEX -->
 <P>This chapter describes SWIG's support of Ruby.</P>
 <H2><A name="Ruby_nn2"></A>38.1 Preliminaries</H2>
-<P> SWIG 1.3 is known to work with Ruby versions 1.6 and later. Given
+<P> SWIG 3.0 is known to work with Ruby versions 1.8 and later. Given
  the choice, you should use the latest stable version of Ruby. You
  should also determine if your system supports shared libraries and
  dynamic loading. SWIG will work with or without dynamic loading, but
@@ -49046,7 +49075,7 @@ ruby.h</TT> header file. This file is usually contained in a directory
  such as</P>
 <DIV class="code shell diagram">
 <PRE>/usr/lib/ruby/1.8/x86_64-linux-gnu/ruby.h
-/usr/local/lib/ruby/1.6/i686-linux/ruby.h
+/usr/include/ruby-2.1.0/ruby.h
 </PRE>
 </DIV>
 <P> The exact location may vary on your machine, but the above location
@@ -49054,8 +49083,14 @@ ruby.h</TT> header file. This file is usually contained in a directory
  can run Ruby to find out. For example:</P>
 <DIV class="code shell">
 <PRE>$ ruby -e 'puts $:.join(&quot;\n&quot;)'
-/usr/local/lib/ruby/site_ruby/1.6 /usr/local/lib/ruby/site_ruby/1.6/i686-linux
-/usr/local/lib/ruby/site_ruby /usr/local/lib/ruby/1.6 /usr/local/lib/ruby/1.6/i686-linux .
+/usr/local/lib/site_ruby/2.1.0
+/usr/local/lib/x86_64-linux-gnu/site_ruby
+/usr/local/lib/site_ruby
+/usr/lib/ruby/vendor_ruby/2.1.0
+/usr/lib/x86_64-linux-gnu/ruby/vendor_ruby/2.1.0
+/usr/lib/ruby/vendor_ruby
+/usr/lib/ruby/2.1.0
+/usr/lib/x86_64-linux-gnu/ruby/2.1.0
 </PRE>
 </DIV>
 <H3><A name="Ruby_nn5"></A>38.1.3 Compiling a dynamic module</H3>
@@ -49102,7 +49137,7 @@ example.c</TT>, a typical sequence of commands for the Linux operating
 <DIV class="code shell">
 <PRE>$ swig -ruby example.i
 $ gcc -O2 -fPIC -c example.c
-$ gcc -O2 -fPIC -c example_wrap.c -I/usr/local/lib/ruby/1.6/i686-linux
+$ gcc -O2 -fPIC -c example_wrap.c -I/usr/include/ruby-2.1.0
 $ gcc -shared example.o example_wrap.o -o example.so
 </PRE>
 </DIV>
@@ -49154,7 +49189,7 @@ puts &quot;Your login name: #{Etc.getlogin}&quot;
 <PRE>
 $ swig -c++ -ruby example.i
 $ g++ -fPIC -c example.cxx
-$ g++ -fPIC -c example_wrap.cxx -I/usr/local/lib/ruby/1.6/i686-linux
+$ g++ -fPIC -c example_wrap.cxx -I/usr/include/ruby-2.1.0
 $ g++ -shared example.o example_wrap.o -o example.so
 </PRE>
 </DIV>
@@ -51019,7 +51054,7 @@ int foo(int x, int y, int flags);</PRE>
  optional arguments, such as Java and C#, effectively ignore the value
  specified by this typemap as all arguments must be given.</P>
 <P> Once a default typemap has been applied to an argument, all
- arguments that follow must have default values. See the <A href="http://www.swig.org/Doc1.3/SWIGDocumentation.html#SWIG_default_args">
+ arguments that follow must have default values. See the <A href="#SWIG_default_args">
  Default/optional arguments</A> section for further information on
  default argument wrapping.</P>
 <H4><A name="Ruby_check_typemap"></A>38.7.6.6 &quot;check&quot; typemap</H4>
@@ -51158,7 +51193,7 @@ catch(char const *_e) {
 </DIV>
 <P> Note that if your methods do not have an exception specification yet
  they do throw exceptions, SWIG cannot know how to deal with them. For a
- neat way to handle these, see the <A href="http://www.swig.org/Doc1.3/SWIGDocumentation.html#exception">
+ neat way to handle these, see the <A href="#Customization_exception">
 Exception handling with %exception</A> section.</P>
 <H4><A name="Ruby_directorin_typemap"></A>38.7.6.14 directorin typemap</H4>
 <P>Converts C++ objects in director member functions to ruby objects. It
@@ -52062,7 +52097,7 @@ create_makefile('shape')</PRE>
 <PRE>$ <B>ruby extconf.rb</B>
 creating Makefile
 $ <B>make</B>
-g++ -fPIC -g -O2 -I. -I/usr/local/lib/ruby/1.7/i686-linux \
+g++ -fPIC -g -O2 -I. -I/usr/include/ruby-2.1.0 \
 -I. -c shape_wrap.cxx
 gcc -shared -L/usr/local/lib -o shape.so shape_wrap.o -L. \
 -lruby -lruby -lc</PRE>
@@ -52805,7 +52840,7 @@ irb(main):011:0&gt;</PRE>
  for callbacks, for example.</P>
 <P>To solve the problem, SWIG can now generate code with director
  functions containing the optional macros SWIG_INIT_STACK and
- SWIG_RELEASE_STACK. These macros will try to force Ruby to reinitiliaze
+ SWIG_RELEASE_STACK. These macros will try to force Ruby to reinitialize
  the beginning of the stack the first time a director function is
  called. This will lead Ruby to measure and not collect any VALUE
  objects defined from that point on.</P>
