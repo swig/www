@@ -7,7 +7,7 @@ This information is based on the SWIG-3.0.1 release.
 
 <h3>Code Generation</h3>
 
-SWIG currently generates wrapper code for twenty different target languages:
+SWIG currently generates wrapper code for twenty three different target languages:
 
 <ul>
 <li>Allegro CL
@@ -30,6 +30,7 @@ SWIG currently generates wrapper code for twenty different target languages:
 <li>Python
 <li>R
 <li>Ruby
+<li>Scilab
 <li>Tcl
 <li>UFFI
 </ul>

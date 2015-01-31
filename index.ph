@@ -11,7 +11,7 @@ languages.  SWIG is used with different types of target languages including comm
 Javascript, Perl, PHP, Python, Tcl and Ruby. The list of 
 <a href="compat.html#SupportedLanguages">supported languages</a> also includes 
 non-scripting languages such as C#, Common Lisp (CLISP, Allegro CL, CFFI, UFFI), D, Go language,
-Java including Android, Lua, Modula-3, OCAML, Octave and R.
+Java including Android, Lua, Modula-3, OCAML, Octave, Scilab and R.
 Also several interpreted and compiled Scheme implementations (Guile, MzScheme/Racket, Chicken)
 are supported. SWIG is most
 commonly used to create high-level interpreted or compiled programming
