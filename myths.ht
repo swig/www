@@ -19,8 +19,8 @@ each SWIG release.
 <p>
 C++ support in current SWIG releases is quite advanced--providing support for nearly
 every C++ feature including templates, namespaces, operators, overloaded methods,
-and more.  The only major C++ feature not supported is nested classes---and we're
-working on that. See the <a href="compare.html">Features</a> page for more information.
+nested classes and more. The vast majority of C++11 is even supported.
+See the <a href="compare.html">Features</a> page for more information.
 
 <h4><font color="#ff0000">Myth: SWIG wraps C++ into this unusable
 low-level "C-tran" interface.</font></h4>
