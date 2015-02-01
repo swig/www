@@ -2011,155 +2011,245 @@ PRE { font-family: monospace }
 </UL>
 </LI>
 </UL>
-<B><A HREF="#Tcl">39 SWIG and Tcl</A></B>
+<B><A HREF="#Scilab">39 SWIG and Scilab</A></B>
 <UL>
-<LI><A HREF="#Tcl_nn2">39.1 Preliminaries</A>
+<LI><A HREF="#Scilab_preliminaries">39.1 Preliminaries</A></LI>
+<LI><A HREF="#Scilab_running_swig">39.2 Running SWIG</A>
 <UL>
-<LI><A HREF="#Tcl_nn3">39.1.1 Getting the right header files</A></LI>
-<LI><A HREF="#Tcl_nn4">39.1.2 Compiling a dynamic module</A></LI>
-<LI><A HREF="#Tcl_nn5">39.1.3 Static linking</A></LI>
-<LI><A HREF="#Tcl_nn6">39.1.4 Using your module</A></LI>
-<LI><A HREF="#Tcl_nn7">39.1.5 Compilation of C++ extensions</A></LI>
-<LI><A HREF="#Tcl_nn8">39.1.6 Compiling for 64-bit platforms</A></LI>
-<LI><A HREF="#Tcl_nn9">39.1.7 Setting a package prefix</A></LI>
-<LI><A HREF="#Tcl_nn10">39.1.8 Using namespaces</A></LI>
+<LI><A HREF="#Scilab_running_swig_generating_module">39.2.1 Generating
+ the module</A></LI>
+<LI><A HREF="#Scilab_running_swig_building_module">39.2.2 Building the
+ module</A></LI>
+<LI><A HREF="#Scilab_running_swig_loading_module">39.2.3 Loading the
+ module</A></LI>
+<LI><A HREF="#Scilab_running_swig_using_module">39.2.4 Using the module</A>
+</LI>
+<LI><A HREF="#Scilab_running_swig_options">39.2.5 Scilab command line
+ options</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Tcl_nn11">39.2 Building Tcl/Tk Extensions under Windows
+<LI><A HREF="#Scilab_wrapping">39.3 A basic tour of C/C++ wrapping</A>
+<UL>
+<LI><A HREF="#Scilab_wrapping_overview">39.3.1 Overview</A></LI>
+<LI><A HREF="#Scilab_wrapping_identifiers">39.3.2 Identifiers</A></LI>
+<LI><A HREF="#Scilab_wrapping_functions">39.3.3 Functions</A>
+<UL>
+<LI><A HREF="#Scilab_nn13">39.3.3.1 Argument passing</A></LI>
+<LI><A HREF="#Scilab_nn14">39.3.3.2 Multiple output arguments</A></LI>
+</UL>
+</LI>
+<LI><A HREF="#Scilab_wrapping_global_variables">39.3.4 Global variables</A>
+</LI>
+<LI><A HREF="#Scilab_wrapping_constants_and_enums">39.3.5 Constants and
+ enumerations</A>
+<UL>
+<LI><A HREF="#Scilab_wrapping_constants">39.3.5.1 Constants</A></LI>
+<LI><A HREF="#Scilab_wrapping_enums">39.3.5.2 Enumerations</A></LI>
+</UL>
+</LI>
+<LI><A HREF="#Scilab_wrapping_pointers">39.3.6 Pointers</A>
+<UL>
+<LI><A HREF="#Scilab_wrapping_pointers_pointer_adresses">39.3.6.1
+ Utility functions</A></LI>
+<LI><A HREF="#Scilab_wrapping_pointers_null_pointers">39.3.6.2 Null
+ pointers</A></LI>
+</UL>
+</LI>
+<LI><A HREF="#Scilab_wrapping_structs">39.3.7 Structures</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_classes">39.3.8 C++ Classes</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_inheritance">39.3.9 C++ inheritance</A>
+</LI>
+<LI><A HREF="#Scilab_wrapping_pointers_references_values_arrays">39.3.10
+ Pointers, references, values, and arrays</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_templates">39.3.11 C++ templates</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_operators">39.3.12 C++ operators</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_namespaces">39.3.13 C++ namespaces</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_exceptions">39.3.14 C++ exceptions</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_stl">39.3.15 C++ STL</A></LI>
+</UL>
+</LI>
+<LI><A HREF="#Scilab_typemaps">39.4 Type mappings and libraries</A>
+<UL>
+<LI><A HREF="#Scilab_typemaps_primitive_types">39.4.1 Default primitive
+ type mappings</A></LI>
+<LI><A HREF="#Scilab_typemaps_non-primitive_types">39.4.2 Default type
+ mappings for non-primitive types</A></LI>
+<LI><A HREF="#Scilab_typemaps_arrays">39.4.3 Arrays</A></LI>
+<LI><A HREF="#Scilab_typemaps_pointer-to-pointers">39.4.4
+ Pointer-to-pointers</A></LI>
+<LI><A HREF="#Scilab_typemaps_matrices">39.4.5 Matrices</A></LI>
+<LI><A HREF="#Scilab_typemaps_stl">39.4.6 STL</A></LI>
+</UL>
+</LI>
+<LI><A HREF="#Scilab_module_initialization">39.5 Module initialization</A>
+</LI>
+<LI><A HREF="#Scilab_building_modes">39.6 Building modes</A>
+<UL>
+<LI><A HREF="#Scilab_building_modes_nobuilder_mode">39.6.1 No-builder
+ mode</A></LI>
+<LI><A HREF="#Scilab_building_modes_builder_mode">39.6.2 Builder mode</A>
+</LI>
+</UL>
+</LI>
+<LI><A HREF="#Scilab_generated_scripts">39.7 Generated scripts</A>
+<UL>
+<LI><A HREF="#Scilab_generated_scripts_builder_script">39.7.1 Builder
+ script</A></LI>
+<LI><A HREF="#Scilab_generated_scripts_loader_script">39.7.2 Loader
+ script</A></LI>
+</UL>
+</LI>
+<LI><A HREF="#Scilab_other_resources">39.8 Other resources</A></LI>
+</UL>
+<B><A HREF="#Tcl">40 SWIG and Tcl</A></B>
+<UL>
+<LI><A HREF="#Tcl_nn2">40.1 Preliminaries</A>
+<UL>
+<LI><A HREF="#Tcl_nn3">40.1.1 Getting the right header files</A></LI>
+<LI><A HREF="#Tcl_nn4">40.1.2 Compiling a dynamic module</A></LI>
+<LI><A HREF="#Tcl_nn5">40.1.3 Static linking</A></LI>
+<LI><A HREF="#Tcl_nn6">40.1.4 Using your module</A></LI>
+<LI><A HREF="#Tcl_nn7">40.1.5 Compilation of C++ extensions</A></LI>
+<LI><A HREF="#Tcl_nn8">40.1.6 Compiling for 64-bit platforms</A></LI>
+<LI><A HREF="#Tcl_nn9">40.1.7 Setting a package prefix</A></LI>
+<LI><A HREF="#Tcl_nn10">40.1.8 Using namespaces</A></LI>
+</UL>
+</LI>
+<LI><A HREF="#Tcl_nn11">40.2 Building Tcl/Tk Extensions under Windows
  95/NT</A>
 <UL>
-<LI><A HREF="#Tcl_nn12">39.2.1 Running SWIG from Developer Studio</A></LI>
-<LI><A HREF="#Tcl_nn13">39.2.2 Using NMAKE</A></LI>
+<LI><A HREF="#Tcl_nn12">40.2.1 Running SWIG from Developer Studio</A></LI>
+<LI><A HREF="#Tcl_nn13">40.2.2 Using NMAKE</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Tcl_nn14">39.3 A tour of basic C/C++ wrapping</A>
+<LI><A HREF="#Tcl_nn14">40.3 A tour of basic C/C++ wrapping</A>
 <UL>
-<LI><A HREF="#Tcl_nn15">39.3.1 Modules</A></LI>
-<LI><A HREF="#Tcl_nn16">39.3.2 Functions</A></LI>
-<LI><A HREF="#Tcl_nn17">39.3.3 Global variables</A></LI>
-<LI><A HREF="#Tcl_nn18">39.3.4 Constants and enums</A></LI>
-<LI><A HREF="#Tcl_nn19">39.3.5 Pointers</A></LI>
-<LI><A HREF="#Tcl_nn20">39.3.6 Structures</A></LI>
-<LI><A HREF="#Tcl_nn21">39.3.7 C++ classes</A></LI>
-<LI><A HREF="#Tcl_nn22">39.3.8 C++ inheritance</A></LI>
-<LI><A HREF="#Tcl_nn23">39.3.9 Pointers, references, values, and arrays</A>
+<LI><A HREF="#Tcl_nn15">40.3.1 Modules</A></LI>
+<LI><A HREF="#Tcl_nn16">40.3.2 Functions</A></LI>
+<LI><A HREF="#Tcl_nn17">40.3.3 Global variables</A></LI>
+<LI><A HREF="#Tcl_nn18">40.3.4 Constants and enums</A></LI>
+<LI><A HREF="#Tcl_nn19">40.3.5 Pointers</A></LI>
+<LI><A HREF="#Tcl_nn20">40.3.6 Structures</A></LI>
+<LI><A HREF="#Tcl_nn21">40.3.7 C++ classes</A></LI>
+<LI><A HREF="#Tcl_nn22">40.3.8 C++ inheritance</A></LI>
+<LI><A HREF="#Tcl_nn23">40.3.9 Pointers, references, values, and arrays</A>
 </LI>
-<LI><A HREF="#Tcl_nn24">39.3.10 C++ overloaded functions</A></LI>
-<LI><A HREF="#Tcl_nn25">39.3.11 C++ operators</A></LI>
-<LI><A HREF="#Tcl_nn26">39.3.12 C++ namespaces</A></LI>
-<LI><A HREF="#Tcl_nn27">39.3.13 C++ templates</A></LI>
-<LI><A HREF="#Tcl_nn28">39.3.14 C++ Smart Pointers</A></LI>
+<LI><A HREF="#Tcl_nn24">40.3.10 C++ overloaded functions</A></LI>
+<LI><A HREF="#Tcl_nn25">40.3.11 C++ operators</A></LI>
+<LI><A HREF="#Tcl_nn26">40.3.12 C++ namespaces</A></LI>
+<LI><A HREF="#Tcl_nn27">40.3.13 C++ templates</A></LI>
+<LI><A HREF="#Tcl_nn28">40.3.14 C++ Smart Pointers</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Tcl_nn29">39.4 Further details on the Tcl class interface</A>
+<LI><A HREF="#Tcl_nn29">40.4 Further details on the Tcl class interface</A>
 <UL>
-<LI><A HREF="#Tcl_nn30">39.4.1 Proxy classes</A></LI>
-<LI><A HREF="#Tcl_nn31">39.4.2 Memory management</A></LI>
+<LI><A HREF="#Tcl_nn30">40.4.1 Proxy classes</A></LI>
+<LI><A HREF="#Tcl_nn31">40.4.2 Memory management</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Tcl_nn32">39.5 Input and output parameters</A></LI>
-<LI><A HREF="#Tcl_nn33">39.6 Exception handling</A></LI>
-<LI><A HREF="#Tcl_nn34">39.7 Typemaps</A>
+<LI><A HREF="#Tcl_nn32">40.5 Input and output parameters</A></LI>
+<LI><A HREF="#Tcl_nn33">40.6 Exception handling</A></LI>
+<LI><A HREF="#Tcl_nn34">40.7 Typemaps</A>
 <UL>
-<LI><A HREF="#Tcl_nn35">39.7.1 What is a typemap?</A></LI>
-<LI><A HREF="#Tcl_nn36">39.7.2 Tcl typemaps</A></LI>
-<LI><A HREF="#Tcl_nn37">39.7.3 Typemap variables</A></LI>
-<LI><A HREF="#Tcl_nn38">39.7.4 Converting a Tcl list to a char **</A></LI>
-<LI><A HREF="#Tcl_nn39">39.7.5 Returning values in arguments</A></LI>
-<LI><A HREF="#Tcl_nn40">39.7.6 Useful functions</A></LI>
-<LI><A HREF="#Tcl_nn41">39.7.7 Standard typemaps</A></LI>
-<LI><A HREF="#Tcl_nn42">39.7.8 Pointer handling</A></LI>
+<LI><A HREF="#Tcl_nn35">40.7.1 What is a typemap?</A></LI>
+<LI><A HREF="#Tcl_nn36">40.7.2 Tcl typemaps</A></LI>
+<LI><A HREF="#Tcl_nn37">40.7.3 Typemap variables</A></LI>
+<LI><A HREF="#Tcl_nn38">40.7.4 Converting a Tcl list to a char **</A></LI>
+<LI><A HREF="#Tcl_nn39">40.7.5 Returning values in arguments</A></LI>
+<LI><A HREF="#Tcl_nn40">40.7.6 Useful functions</A></LI>
+<LI><A HREF="#Tcl_nn41">40.7.7 Standard typemaps</A></LI>
+<LI><A HREF="#Tcl_nn42">40.7.8 Pointer handling</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Tcl_nn43">39.8 Turning a SWIG module into a Tcl Package.</A>
+<LI><A HREF="#Tcl_nn43">40.8 Turning a SWIG module into a Tcl Package.</A>
 </LI>
-<LI><A HREF="#Tcl_nn44">39.9 Building new kinds of Tcl interfaces (in
+<LI><A HREF="#Tcl_nn44">40.9 Building new kinds of Tcl interfaces (in
  Tcl)</A>
 <UL>
-<LI><A HREF="#Tcl_nn45">39.9.1 Proxy classes</A></LI>
+<LI><A HREF="#Tcl_nn45">40.9.1 Proxy classes</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Tcl_nn46">39.10 Tcl/Tk Stubs</A></LI>
+<LI><A HREF="#Tcl_nn46">40.10 Tcl/Tk Stubs</A></LI>
 </UL>
-<B><A HREF="#Extending">40 Extending SWIG to support new languages</A></B>
+<B><A HREF="#Extending">41 Extending SWIG to support new languages</A></B>
 <UL>
-<LI><A HREF="#Extending_nn2">40.1 Introduction</A></LI>
-<LI><A HREF="#Extending_nn3">40.2 Prerequisites</A></LI>
-<LI><A HREF="#Extending_nn4">40.3 The Big Picture</A></LI>
-<LI><A HREF="#Extending_nn5">40.4 Execution Model</A>
+<LI><A HREF="#Extending_nn2">41.1 Introduction</A></LI>
+<LI><A HREF="#Extending_nn3">41.2 Prerequisites</A></LI>
+<LI><A HREF="#Extending_nn4">41.3 The Big Picture</A></LI>
+<LI><A HREF="#Extending_nn5">41.4 Execution Model</A>
 <UL>
-<LI><A HREF="#Extending_nn6">40.4.1 Preprocessing</A></LI>
-<LI><A HREF="#Extending_nn7">40.4.2 Parsing</A></LI>
-<LI><A HREF="#Extending_nn8">40.4.3 Parse Trees</A></LI>
-<LI><A HREF="#Extending_nn9">40.4.4 Attribute namespaces</A></LI>
-<LI><A HREF="#Extending_nn10">40.4.5 Symbol Tables</A></LI>
-<LI><A HREF="#Extending_nn11">40.4.6 The %feature directive</A></LI>
-<LI><A HREF="#Extending_nn12">40.4.7 Code Generation</A></LI>
-<LI><A HREF="#Extending_nn13">40.4.8 SWIG and XML</A></LI>
-</UL>
-</LI>
-<LI><A HREF="#Extending_nn14">40.5 Primitive Data Structures</A>
-<UL>
-<LI><A HREF="#Extending_nn15">40.5.1 Strings</A></LI>
-<LI><A HREF="#Extending_nn16">40.5.2 Hashes</A></LI>
-<LI><A HREF="#Extending_nn17">40.5.3 Lists</A></LI>
-<LI><A HREF="#Extending_nn18">40.5.4 Common operations</A></LI>
-<LI><A HREF="#Extending_nn19">40.5.5 Iterating over Lists and Hashes</A></LI>
-<LI><A HREF="#Extending_nn20">40.5.6 I/O</A></LI>
+<LI><A HREF="#Extending_nn6">41.4.1 Preprocessing</A></LI>
+<LI><A HREF="#Extending_nn7">41.4.2 Parsing</A></LI>
+<LI><A HREF="#Extending_nn8">41.4.3 Parse Trees</A></LI>
+<LI><A HREF="#Extending_nn9">41.4.4 Attribute namespaces</A></LI>
+<LI><A HREF="#Extending_nn10">41.4.5 Symbol Tables</A></LI>
+<LI><A HREF="#Extending_nn11">41.4.6 The %feature directive</A></LI>
+<LI><A HREF="#Extending_nn12">41.4.7 Code Generation</A></LI>
+<LI><A HREF="#Extending_nn13">41.4.8 SWIG and XML</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Extending_nn21">40.6 Navigating and manipulating parse
+<LI><A HREF="#Extending_nn14">41.5 Primitive Data Structures</A>
+<UL>
+<LI><A HREF="#Extending_nn15">41.5.1 Strings</A></LI>
+<LI><A HREF="#Extending_nn16">41.5.2 Hashes</A></LI>
+<LI><A HREF="#Extending_nn17">41.5.3 Lists</A></LI>
+<LI><A HREF="#Extending_nn18">41.5.4 Common operations</A></LI>
+<LI><A HREF="#Extending_nn19">41.5.5 Iterating over Lists and Hashes</A></LI>
+<LI><A HREF="#Extending_nn20">41.5.6 I/O</A></LI>
+</UL>
+</LI>
+<LI><A HREF="#Extending_nn21">41.6 Navigating and manipulating parse
  trees</A></LI>
-<LI><A HREF="#Extending_nn22">40.7 Working with attributes</A></LI>
-<LI><A HREF="#Extending_nn23">40.8 Type system</A>
+<LI><A HREF="#Extending_nn22">41.7 Working with attributes</A></LI>
+<LI><A HREF="#Extending_nn23">41.8 Type system</A>
 <UL>
-<LI><A HREF="#Extending_nn24">40.8.1 String encoding of types</A></LI>
-<LI><A HREF="#Extending_nn25">40.8.2 Type construction</A></LI>
-<LI><A HREF="#Extending_nn26">40.8.3 Type tests</A></LI>
-<LI><A HREF="#Extending_nn27">40.8.4 Typedef and inheritance</A></LI>
-<LI><A HREF="#Extending_nn28">40.8.5 Lvalues</A></LI>
-<LI><A HREF="#Extending_nn29">40.8.6 Output functions</A></LI>
+<LI><A HREF="#Extending_nn24">41.8.1 String encoding of types</A></LI>
+<LI><A HREF="#Extending_nn25">41.8.2 Type construction</A></LI>
+<LI><A HREF="#Extending_nn26">41.8.3 Type tests</A></LI>
+<LI><A HREF="#Extending_nn27">41.8.4 Typedef and inheritance</A></LI>
+<LI><A HREF="#Extending_nn28">41.8.5 Lvalues</A></LI>
+<LI><A HREF="#Extending_nn29">41.8.6 Output functions</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Extending_nn30">40.9 Parameters</A></LI>
-<LI><A HREF="#Extending_nn31">40.10 Writing a Language Module</A>
+<LI><A HREF="#Extending_nn30">41.9 Parameters</A></LI>
+<LI><A HREF="#Extending_nn31">41.10 Writing a Language Module</A>
 <UL>
-<LI><A HREF="#Extending_nn32">40.10.1 Execution model</A></LI>
-<LI><A HREF="#Extending_starting_out">40.10.2 Starting out</A></LI>
-<LI><A HREF="#Extending_nn34">40.10.3 Command line options</A></LI>
-<LI><A HREF="#Extending_nn35">40.10.4 Configuration and preprocessing</A>
+<LI><A HREF="#Extending_nn32">41.10.1 Execution model</A></LI>
+<LI><A HREF="#Extending_starting_out">41.10.2 Starting out</A></LI>
+<LI><A HREF="#Extending_nn34">41.10.3 Command line options</A></LI>
+<LI><A HREF="#Extending_nn35">41.10.4 Configuration and preprocessing</A>
 </LI>
-<LI><A HREF="#Extending_nn36">40.10.5 Entry point to code generation</A></LI>
-<LI><A HREF="#Extending_nn37">40.10.6 Module I/O and wrapper skeleton</A>
+<LI><A HREF="#Extending_nn36">41.10.5 Entry point to code generation</A></LI>
+<LI><A HREF="#Extending_nn37">41.10.6 Module I/O and wrapper skeleton</A>
 </LI>
-<LI><A HREF="#Extending_nn38">40.10.7 Low-level code generators</A></LI>
-<LI><A HREF="#Extending_configuration_files">40.10.8 Configuration files</A>
+<LI><A HREF="#Extending_nn38">41.10.7 Low-level code generators</A></LI>
+<LI><A HREF="#Extending_configuration_files">41.10.8 Configuration files</A>
 </LI>
-<LI><A HREF="#Extending_nn40">40.10.9 Runtime support</A></LI>
-<LI><A HREF="#Extending_nn41">40.10.10 Standard library files</A></LI>
-<LI><A HREF="#Extending_nn42">40.10.11 User examples</A></LI>
-<LI><A HREF="#Extending_test_suite">40.10.12 Test driven development and
+<LI><A HREF="#Extending_nn40">41.10.9 Runtime support</A></LI>
+<LI><A HREF="#Extending_nn41">41.10.10 Standard library files</A></LI>
+<LI><A HREF="#Extending_nn42">41.10.11 User examples</A></LI>
+<LI><A HREF="#Extending_test_suite">41.10.12 Test driven development and
  the test-suite</A>
 <UL>
-<LI><A HREF="#Extending_running_test_suite">40.10.12.1 Running the
+<LI><A HREF="#Extending_running_test_suite">41.10.12.1 Running the
  test-suite</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Extending_nn43">40.10.13 Documentation</A></LI>
-<LI><A HREF="#Extending_prerequisites">40.10.14 Prerequisites for adding
+<LI><A HREF="#Extending_nn43">41.10.13 Documentation</A></LI>
+<LI><A HREF="#Extending_prerequisites">41.10.14 Prerequisites for adding
  a new language module to the SWIG distribution</A></LI>
-<LI><A HREF="#Extending_coding_style_guidelines">40.10.15 Coding style
+<LI><A HREF="#Extending_coding_style_guidelines">41.10.15 Coding style
  guidelines</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Extending_debugging_options">40.11 Debugging Options</A></LI>
-<LI><A HREF="#Extending_nn46">40.12 Guide to parse tree nodes</A></LI>
-<LI><A HREF="#Extending_further_info">40.13 Further Development
+<LI><A HREF="#Extending_debugging_options">41.11 Debugging Options</A></LI>
+<LI><A HREF="#Extending_nn46">41.12 Guide to parse tree nodes</A></LI>
+<LI><A HREF="#Extending_further_info">41.13 Further Development
  Information</A></LI>
 </UL>
 <HR NOSHADE>
 <H1><A name="Sections"></A>SWIG-3.0 Documentation</H1>
- Last update : SWIG-3.0.4 (14 Jan 2015)
+ Last update : SWIG-3.0.5 (31 Jan 2015)
 <H2><A NAME="1_1">Sections</A></H2>
 <H3><A NAME="1_1_1">SWIG Core Documentation</A></H3>
 <UL>
@@ -2204,6 +2294,7 @@ PRE { font-family: monospace }
 <LI><A href="#Python">Python support</A></LI>
 <LI><A href="#R">R support</A></LI>
 <LI><A href="#Ruby">Ruby support</A></LI>
+<LI><A href="#Scilab">Scilab support</A></LI>
 <LI><A href="#Tcl">Tcl support</A></LI>
 </UL>
 <H3><A NAME="1_1_3">Developer Documentation</A></H3>
@@ -2791,9 +2882,8 @@ print $example::My_variable + 4.5, &quot;\n&quot;;
 <LI>Variable length arguments.</LI>
 <LI>C++ smart pointers.</LI>
 </UL>
-<P> Currently, the only major C++ feature not supported is nested
- classes--a limitation that should be removed in a future release, but
- has some workarounds for the moment.</P>
+<P> Most of C++11 is also supported. Details are in the <A href="CPlusPlus11.html">
+C++11</A> section.</P>
 <P> It is important to stress that SWIG is not a simplistic C++ lexing
  tool like several apparently similar wrapper generation tools. SWIG not
  only parses C++, it implements the full C++ type system and it is able
@@ -9076,10 +9166,42 @@ template&lt;class T&gt; void foo(T x, T y) { };
  point is that<B> SWIG does not perform extensive error checking of
  templates!</B> Specifically, SWIG does not perform type checking nor
  does it check to see if the actual contents of the template declaration
- make any sense. Since the C++ compiler will hopefully check this when
- it compiles the resulting wrapper file, there is no practical reason
- for SWIG to duplicate this functionality (besides, none of the SWIG
- developers are masochistic enough to want to implement this right now).</P>
+ make any sense. Since the C++ compiler checks this when it compiles the
+ resulting wrapper file, there is no practical reason for SWIG to
+ duplicate this functionality.</P>
+ <A name="SWIGPlus_template_nested_class_example"></A>
+<P> As SWIG's template support does not perform type checking <TT>
+%template</TT> can be used as early as after a template declaration. You
+ can, and rarely have to, use <TT>%template</TT> before the template
+ parameters have been declared. For example:</P>
+<DIV class="code">
+<PRE>
+template &lt;class T&gt; class OuterTemplateClass {};
+
+// The nested class OuterClass::InnerClass inherits from the template class
+// OuterTemplateClass&lt;OuterClass::InnerStruct&gt; and thus the template needs
+// to be expanded with %template before the OuterClass declaration.
+%template(OuterTemplateClass_OuterClass__InnerStruct)
+    OuterTemplateClass&lt;OuterClass::InnerStruct&gt;
+
+
+// Don't forget to use %feature(&quot;flatnested&quot;) for OuterClass::InnerStruct and
+// OuterClass::InnerClass if the target language doesn't support nested classes.
+class OuterClass {
+    public:
+        // Forward declarations:
+        struct InnerStruct;
+        class InnerClass;
+};
+
+struct OuterClass::InnerStruct {};
+
+// Expanding the template at this point with %template is too late as the
+// OuterClass::InnerClass declaration is processed inside OuterClass.
+
+class OuterClass::InnerClass : public OuterTemplateClass&lt;InnerStruct&gt; {};
+</PRE>
+</DIV>
 <P><B> Compatibility Note</B>: The first implementation of template
  support relied heavily on macro expansion in the preprocessor.
  Templates have been more tightly integrated into the parser and type
@@ -10187,6 +10309,11 @@ class Bar {
 };
 </PRE>
 </DIV>
+<P> If a nested class, within an outer class, has to be used as a
+ template parameter within the outer class, then the template will have
+ to be instantiated with <TT>%template</TT> before the beginning of the
+ outer class. An example can be found in the <A href="#SWIGPlus_template_nested_class_example">
+Templates</A> section.</P>
 <P><B> Compatibility Note:</B> Prior to SWIG-3.0.0, there was limited
  nested class support. Nested classes were treated as opaque pointers.
  However, there was a workaround for nested class support in these older
@@ -11444,7 +11571,7 @@ SWIG_JAVASCRIPT_JSC             Defined when using Javascript for JavascriptCore
 SWIG_JAVASCRIPT_V8              Defined when using Javascript for v8 or node.js 
 SWIGLUA                         Defined when using Lua
 SWIGMODULA3                     Defined when using Modula-3
-SWIGMZSCHEME                    Defined when using Mzscheme        
+SWIGMZSCHEME                    Defined when using Mzscheme
 SWIGOCAML                       Defined when using Ocaml
 SWIGOCTAVE                      Defined when using Octave
 SWIGPERL                        Defined when using Perl
@@ -11453,6 +11580,7 @@ SWIGPIKE                        Defined when using Pike
 SWIGPYTHON                      Defined when using Python
 SWIGR                           Defined when using R
 SWIGRUBY                        Defined when using Ruby
+SWIGSCILAB                      Defined when using Scilab
 SWIGSEXP                        Defined when using S-expressions
 SWIGTCL                         Defined when using Tcl
 SWIGXML                         Defined when using XML
@@ -19466,9 +19594,9 @@ example.i:24: Warning 901: You are really going to regret this usage of blah * s
 <DIV class="shell">
 <PRE>
 $ swig -python -Fstandard example.i
-example.i:4: Syntax error in input.
+example.i:4: Syntax error in input(1).
 $ swig -python -Fmicrosoft example.i
-example.i(4) : Syntax error in input.
+example.i(4) : Syntax error in input(1).
 </PRE>
 </DIV>
 <H2><A name="Warnings_nn9"></A>15.9 Warning number reference</H2>
@@ -52853,7 +52981,1774 @@ irb(main):011:0&gt;</PRE>
 %initstack;                         // all director functions will re-init the stack
 </PRE>
 </DIV><HR NOSHADE>
-<H1><A name="Tcl"></A>39 SWIG and Tcl</H1>
+<H1><A name="Scilab"></A>39 SWIG and Scilab</H1>
+
+<!-- INDEX -->
+<DIV class="sectiontoc">
+<UL>
+<LI><A href="#Scilab_preliminaries">Preliminaries</A></LI>
+<LI><A href="#Scilab_running_swig">Running SWIG</A>
+<UL>
+<LI><A href="#Scilab_running_swig_generating_module">Generating the
+ module</A></LI>
+<LI><A href="#Scilab_running_swig_building_module">Building the module</A>
+</LI>
+<LI><A href="#Scilab_running_swig_loading_module">Loading the module</A></LI>
+<LI><A href="#Scilab_running_swig_using_module">Using the module</A></LI>
+<LI><A href="#Scilab_running_swig_options">Scilab command line options</A>
+</LI>
+</UL>
+</LI>
+<LI><A href="#Scilab_wrapping">A basic tour of C/C++ wrapping</A>
+<UL>
+<LI><A href="#Scilab_wrapping_overview">Overview</A></LI>
+<LI><A href="#Scilab_wrapping_identifiers">Identifiers</A></LI>
+<LI><A href="#Scilab_wrapping_functions">Functions</A>
+<UL>
+<LI><A href="#Scilab_nn13">Argument passing</A></LI>
+<LI><A href="#Scilab_nn14">Multiple output arguments</A></LI>
+</UL>
+</LI>
+<LI><A href="#Scilab_wrapping_global_variables">Global variables</A></LI>
+<LI><A href="#Scilab_wrapping_constants_and_enums">Constants and
+ enumerations</A>
+<UL>
+<LI><A href="#Scilab_wrapping_constants">Constants</A></LI>
+<LI><A href="#Scilab_wrapping_enums">Enumerations</A></LI>
+</UL>
+</LI>
+<LI><A href="#Scilab_wrapping_pointers">Pointers</A>
+<UL>
+<LI><A href="#Scilab_wrapping_pointers_pointer_adresses">Utility
+ functions</A></LI>
+<LI><A href="#Scilab_wrapping_pointers_null_pointers">Null pointers</A></LI>
+</UL>
+</LI>
+<LI><A href="#Scilab_wrapping_structs">Structures</A></LI>
+<LI><A href="#Scilab_wrapping_cpp_classes">C++ Classes</A></LI>
+<LI><A href="#Scilab_wrapping_cpp_inheritance">C++ inheritance</A></LI>
+<LI><A href="#Scilab_wrapping_pointers_references_values_arrays">
+Pointers, references, values, and arrays</A></LI>
+<LI><A href="#Scilab_wrapping_cpp_templates">C++ templates</A></LI>
+<LI><A href="#Scilab_wrapping_cpp_operators">C++ operators</A></LI>
+<LI><A href="#Scilab_wrapping_cpp_namespaces">C++ namespaces</A></LI>
+<LI><A href="#Scilab_wrapping_cpp_exceptions">C++ exceptions</A></LI>
+<LI><A href="#Scilab_wrapping_cpp_stl">C++ STL</A></LI>
+</UL>
+</LI>
+<LI><A href="#Scilab_typemaps">Type mappings and libraries</A>
+<UL>
+<LI><A href="#Scilab_typemaps_primitive_types">Default primitive type
+ mappings</A></LI>
+<LI><A href="#Scilab_typemaps_non-primitive_types">Default type mappings
+ for non-primitive types</A></LI>
+<LI><A href="#Scilab_typemaps_arrays">Arrays</A></LI>
+<LI><A href="#Scilab_typemaps_pointer-to-pointers">Pointer-to-pointers</A>
+</LI>
+<LI><A href="#Scilab_typemaps_matrices">Matrices</A></LI>
+<LI><A href="#Scilab_typemaps_stl">STL</A></LI>
+</UL>
+</LI>
+<LI><A href="#Scilab_module_initialization">Module initialization</A></LI>
+<LI><A href="#Scilab_building_modes">Building modes</A>
+<UL>
+<LI><A href="#Scilab_building_modes_nobuilder_mode">No-builder mode</A></LI>
+<LI><A href="#Scilab_building_modes_builder_mode">Builder mode</A></LI>
+</UL>
+</LI>
+<LI><A href="#Scilab_generated_scripts">Generated scripts</A>
+<UL>
+<LI><A href="#Scilab_generated_scripts_builder_script">Builder script</A>
+</LI>
+<LI><A href="#Scilab_generated_scripts_loader_script">Loader script</A></LI>
+</UL>
+</LI>
+<LI><A href="#Scilab_other_resources">Other resources</A></LI>
+</UL>
+</DIV>
+<!-- INDEX -->
+<P> Scilab is a scientific software package for numerical computations
+ providing a powerful open computing environment for engineering and
+ scientific applications that is mostly compatible with MATLAB. More
+ information can be found at <A href="http://www.scilab.org">
+www.scilab.org</A>.</P>
+<P> This chapter explains how to use SWIG for Scilab. After this
+ introduction, you should be able to generate with SWIG a Scilab
+ external module from a C/C++ library.</P>
+<H2><A name="Scilab_preliminaries"></A>39.1 Preliminaries</H2>
+<P> SWIG for Scilab supports Linux. Other operating sytems haven't been
+ tested.</P>
+<P> Scilab is supported from version 5.3.3 onwards. The forthcoming
+ version 6, as of January 2015, is also supported.</P>
+<P> SWIG for Scilab supports C language. C++ is partially supported. See
+ <A href="#Scilab_wrapping">A basic tour of C/C++ wrapping</A> for
+ further details.</P>
+<H2><A name="Scilab_running_swig"></A>39.2 Running SWIG</H2>
+<P> Let's see how to use SWIG for Scilab on a small example.
+<BR> In this example we bind from C a function and a global variable
+ into Scilab. The SWIG interface (stored in a file named <TT>example.i</TT>
+), is the following:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%inline %{
+double Foo = 3.0;
+
+int fact(int n) {
+    if (n &lt; 0) {
+        return 0;
+    }
+    else if (n == 0) {
+        return 1;
+    }
+    else {
+        return n * fact(n-1);
+    }
+}
+%}
+</PRE>
+</DIV>
+<P> Note: a code in an <TT>%inline</TT> section is both parsed and
+ wrapped by SWIG, and inserted as is in the wrapper source file.</P>
+<H3><A name="Scilab_running_swig_generating_module"></A>39.2.1
+ Generating the module</H3>
+<P> The module is generated using the <TT>swig</TT> executable and its <TT>
+-scilab</TT> option.</P>
+<DIV class="shell">
+<PRE>
+$ swig -scilab example.i
+</PRE>
+</DIV>
+<P> This command generates two files:</P>
+<UL>
+<LI><TT>example_wrap.c</TT>: a C source file containing the wrapping
+ code and also here the wrapped code (the <TT>fact()</TT> and <TT>Foo</TT>
+ definitions)</LI>
+<LI><TT>loader.sce</TT>: a Scilab script used to load the module into
+ Scilab</LI>
+</UL>
+<P> Note: if the following error is returned:</P>
+<DIV class="shell">
+<PRE>
+:1: Error: Unable to find 'swig.swg'
+:3: Error: Unable to find 'scilab.swg'
+</PRE>
+</DIV>
+<P> it may be because the SWIG library is not found. Check the <TT>
+SWIG_LIB</TT> environment variable or your SWIG installation.</P>
+<P> Note: SWIG for Scilab can work in two modes related to the way the
+ module is built, see the <A href="#Scilab_building_modes">Building
+ modes</A> section for details. This example uses the <TT>builder</TT>
+ mode.</P>
+<P> The <TT>swig</TT> executable has several other command line options
+ you can use. See <A href="#Scilab_running_swig_options">Scilab command
+ line options</A> for further details.</P>
+<H3><A name="Scilab_running_swig_building_module"></A>39.2.2 Building
+ the module</H3>
+<P> To be loaded in Scilab, the wrapper has to be built into a dynamic
+ module (or shared library).</P>
+<P> The commands to compile and link the wrapper (with <TT>gcc</TT>)
+ into the shared library <TT>libexample.so</TT> are:</P>
+<DIV class="shell">
+<PRE>
+$ gcc -fPIC -c -I/usr/local/include/scilab example_wrap.c
+$ gcc -shared example_wrap.o -o libexample.so
+</PRE>
+</DIV>
+<P> Note: we supposed in this example that the path to the Scilab
+ include directory is <TT>/usr/local/include/scilab</TT> (which is the
+ case in a Debian environment), this should be changed for another
+ environment.</P>
+<H3><A name="Scilab_running_swig_loading_module"></A>39.2.3 Loading the
+ module</H3>
+<P> Loading a module is done by running the loader script in Scilab:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; exec loader.sce
+</PRE>
+</DIV>
+<P> Scilab should output the following messages:</P>
+<DIV class="targetlang">
+<PRE>
+Shared archive loaded.
+Link done.
+</PRE>
+</DIV>
+<P> which means that Scilab has successfully loaded the shared library.
+ The module functions and other symbols are now available in Scilab.</P>
+<H3><A name="Scilab_running_swig_using_module"></A>39.2.4 Using the
+ module</H3>
+<P> In Scilab, the function <TT>fact()</TT> is simply called as
+ following:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; fact(5)
+ans  =
+
+    120.
+</PRE>
+</DIV>
+<P>For the <TT>Foo</TT> global variable, the accessors need to be used:<DIV
+class="targetlang">
+<PRE>
+--&gt; Foo_get
+ans  =
+
+    3.
+
+--&gt; Foo_set(4);
+
+--&gt; Foo_get
+ans  =
+
+    4.
+</PRE>
+</DIV></P>
+<P> Note: for conciseness, we assume in the subsequent Scilab code
+ examples that the modules have been beforehand built and loaded in
+ Scilab.</P>
+<H3><A name="Scilab_running_swig_options"></A>39.2.5 Scilab command line
+ options</H3>
+<P> The following table lists the Scilab specific command line options
+ in addition to the generic SWIG options:</P>
+<TABLE summary="Scilab specific options">
+<TR><TD><TT>-builder</TT></TD><TD>Generate the Scilab builder script</TD>
+</TR>
+<TR><TD><TT>-buildercflags &lt;cflags&gt;</TT></TD><TD>Add &lt;cflags&gt; to the
+ builder compiler flags</TD></TR>
+<TR><TD><TT>-builderldflags &lt;ldflags&gt;</TT></TD><TD>Add &lt;ldlags&gt; to the
+ builder linker flags</TD></TR>
+<TR><TD><TT>-buildersources &lt;files&gt;</TT></TD><TD>Add the (comma
+ separated) files &lt;files&gt; to the builder sources</TD></TR>
+<TR><TD><TT>-builderverbositylevel &lt;level&gt;</TT></TD><TD>Set the build
+ verbosity level to &lt;level&gt; (default 0: off, 2: high)</TD></TR>
+<TR><TD><TT>-builderflagscript &lt;file&gt;</TT></TD><TD>Use the Scilab script
+ &lt;file&gt; to configure the compiler and linker flags</TD></TR>
+<TR><TD><TT>-gatewayxml &lt;gateway_id&gt;</TT></TD><TD>Generate the gateway
+ XML with the given &lt;gateway_id&gt;</TD></TR>
+</TABLE>
+<P> These options can be displayed with:</P>
+<DIV class="shell">
+<PRE>
+$ swig -scilab -help
+</PRE>
+</DIV>
+<H2><A name="Scilab_wrapping"></A>39.3 A basic tour of C/C++ wrapping</H2>
+<H3><A name="Scilab_wrapping_overview"></A>39.3.1 Overview</H3>
+<P> SWIG for Scilab provides only a low-level C interface for Scilab
+ (see <A href="Scripting.html">Scripting Languages</A> for the general
+ approach to wrapping). This means that functions, structs, classes,
+ variables, etc... are interfaced through C functions. These C functions
+ are mapped as Scilab functions. There are a few exceptions, such as
+ constants and enumerations, which can be wrapped directly as Scilab
+ variables.</P>
+<H3><A name="Scilab_wrapping_identifiers"></A>39.3.2 Identifiers</H3>
+<P> In Scilab 5.x, identifier names are composed of 24 characters
+ maximum (this limitation should disappear from Scilab 6.0 onwards).
+<BR> Thus long function or variable names may be truncated and this can
+ cause ambiguities.</P>
+<P>This happens especially when wrapping structs/classes, for which the
+ wrapped function name is composed of the struct/class name and field
+ names. In these cases, the <A href="#SWIG_rename_ignore">%rename
+ directive</A> can be used to choose a different Scilab name.</P>
+<H3><A name="Scilab_wrapping_functions"></A>39.3.3 Functions</H3>
+<P> Functions are wrapped as new Scilab built-in functions. For example:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%inline %{
+int fact(int n) {
+  if (n &gt; 1)
+    return n * fact(n - 1);
+  else
+    return 1;
+}
+%}
+</PRE>
+</DIV>
+<P> creates a built-in function <TT>fact(n)</TT> in Scilab:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; fact(4)
+ans  =
+
+    24.
+</PRE>
+</DIV>
+<H4><A name="Scilab_nn13"></A>39.3.3.1 Argument passing</H4>
+<P> In the above example, the function parameter is a primitive type and
+ is marshalled by value. So this function is wrapped without any
+ additional customization. Argument values are converted between C types
+ and Scilab types through type mappings. There are several default type
+ mappings for primitive and complex types, described later in the <A href="#Scilab_typemaps">
+Scilab typemaps</A> section.</P>
+<P> When a parameter is not passed by value, such as a pointer or
+ reference, SWIG does not know if it is an input, output (or both)
+ parameter. The INPUT, OUTPUT, INOUT typemaps defined in the <TT>
+typemaps.i</TT> library can be used to specify this.</P>
+<P> Let's see this on two simple functions: <TT>sub()</TT> which has an
+ output parameter, and <TT>inc()</TT>, which as input/output parameter:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%include &lt;typemaps.i&gt;
+
+extern void sub(int *INPUT, int *INPUT, int *OUTPUT);
+extern void inc(int *INOUT, int *INPUT);
+
+%{
+void sub(int *x, int *y, int *result) {
+  *result = *x - *y;
+}
+void inc(int *x, int *delta) {
+  *x = *x + *delta;
+}
+%}
+</PRE>
+</DIV>
+<P> In Scilab, parameters are passed by value. The output (and inout)
+ parameters are returned as the result of the functions:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; sub(5, 3)
+ ans  =
+
+    2.
+
+--&gt; inc(4, 3)
+ ans  =
+
+    7.
+</PRE>
+</DIV>
+<H4><A name="Scilab_nn14"></A>39.3.3.2 Multiple output arguments</H4>
+<P> A C function can have several output parameters. They can all be
+ returned as results of the wrapped function as Scilab supports multiple
+ return values from a function when using the <TT>typemaps.i</TT>
+ library. If the C function itself returns a result, this is returned
+ first before the parameter outputs.</P>
+<P> The example below shows this for a C function returning 2 values and
+ a result:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%include &lt;typemaps.i&gt;
+
+int divide(int n, int d, int *OUTPUT, int *OUTPUT);
+
+%{
+int divide(int n, int d, int q*, int *r) {
+   if (d != 0) {
+     *q = n / d;
+     *r = n % d;
+     return 1;
+   }
+   else return 0;
+}
+%}
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt; [ret, q, r] = divide(20, 6)
+ r  =
+
+    2.
+ q  =
+
+    3.
+ ret  =
+
+    1.
+</PRE>
+</DIV>
+<H3><A name="Scilab_wrapping_global_variables"></A>39.3.4 Global
+ variables</H3>
+<P> Global variables are manipulated through generated accessor
+ functions. For example, for a given <TT>Foo</TT> global variable, SWIG
+ actually generates two functions: <TT>Foo_get()</TT> to get the value
+ of <TT>Foo</TT>, and <TT>Foo_set()</TT> to set the value. These
+ functions are used as following:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; exec loader.sce;
+--&gt; c = Foo_get();
+
+--&gt; Foo_set(4);
+
+--&gt; c
+c =
+
+    3.
+
+--&gt; Foo_get()
+ans  =
+
+    4.
+</PRE>
+</DIV>
+<P> It works for variables of primitive type, but also for non-primitive
+ types: arrays, and structs/classes which are described later. For now,
+ an example with two global primitive arrays x and y is shown:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%inline %{
+int x[10];
+double y[7];
+
+void initArrays()
+{
+  int i;
+  for (i = 0; i &lt; 10; i++)
+    x[i] = 1;
+  for (i = 0; i &lt; 7; i++)
+    y[i] = 1.0f;
+}
+%}
+</PRE>
+</DIV>
+<P> It works the same:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; exec loader.sce
+
+--&gt; initArrays();
+--&gt; x_get()
+ ans  =
+
+    1.    1.    1.    1.    1.    1.    1.    1.    1.    1.
+
+--&gt; y_set([0:6] / 10);
+--&gt; y_get()
+ ans  =
+
+    0.    0.1    0.2    0.3    0.4    0.5    0.6
+</PRE>
+</DIV>
+<H3><A name="Scilab_wrapping_constants_and_enums"></A>39.3.5 Constants
+ and enumerations</H3>
+<H4><A name="Scilab_wrapping_constants"></A>39.3.5.1 Constants</H4>
+<P> There is not any constant in Scilab. By default, C/C++ constants are
+ wrapped as getter functions. For example, for the following constants:</P>
+<DIV class="code">
+<PRE>
+%module example
+#define    ICONST      42
+#define    FCONST      2.1828
+#define    CCONST      'x'
+#define    CCONST2     '\n'
+#define    SCONST      &quot;Hello World&quot;
+#define    SCONST2     &quot;\&quot;Hello World\&quot;&quot;
+</PRE>
+</DIV>
+<P> the following getter functions are generated:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; exec loader.sce;
+--&gt; ICONST_get();
+ ans  =
+
+    42.
+
+--&gt; FCONST_get();
+ ans  =
+
+    2.1828
+
+--&gt; CCONST_get();
+ ans  =
+
+    x
+
+--&gt; CCONST2_get();
+ ans  =
+
+--&gt; SCONST_get();
+ ans  =
+
+    Hello World
+
+--&gt; SCONST2_get();
+ ans  =
+
+    &quot;Hello World&quot;
+
+--&gt; EXPR_get();
+ ans  =
+
+    48.5484
+
+--&gt; iconst_get();
+ ans  =
+
+    37.
+
+--&gt; fconst_get();
+ ans  =
+
+    3.14
+</PRE>
+</DIV>
+<P> There is another mode in which constants are wrapped as Scilab
+ variables. The variables are easier to use than functions, but the
+ drawback is that variables are not constant and so can be modified.</P>
+<P> This mode can be enabled/disabled at any time in the interface file
+ with <TT>%scilabconst()</TT>, which works like all the other <A href="#Customization_features">
+%feature directives</A>. Use the argument value &quot;1&quot; to enable and &quot;0&quot; to
+ disable this mode. For example in this mode the previous constants:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%scilabconst(1);
+#define    ICONST      42
+#define    FCONST      2.1828
+#define    CCONST      'x'
+#define    CCONST2     '\n'
+#define    SCONST      &quot;Hello World&quot;
+#define    SCONST2     &quot;\&quot;Hello World\&quot;&quot;
+</PRE>
+</DIV>
+<P> are mapped to Scilab variables, with the same name:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; exec loader.sce;
+--&gt; ICONST
+ ans  =
+
+    42
+
+--&gt; FCONST
+ ans  =
+
+    2.1828
+
+--&gt; CCONST
+ ans  =
+
+    x
+
+--&gt; CCONST2
+ ans  =
+
+--&gt; SCONST
+ ans  =
+
+    Hello World
+
+--&gt; SCONST2
+ ans  =
+
+    &quot;Hello World&quot;
+
+--&gt; EXPR
+ ans  =
+
+    48.5484
+
+--&gt; iconst
+ ans  =
+
+    37
+
+--&gt; fconst
+ ans  =
+
+    3.14
+</PRE>
+</DIV>
+<H4><A name="Scilab_wrapping_enums"></A>39.3.5.2 Enumerations</H4>
+<P> The wrapping of enums is the same as for constants. By default,
+ enums are wrapped as getter functions. For example, with the following
+ enumeration:</P>
+<DIV class="code">
+<PRE>%module example
+typedef enum { RED, BLUE, GREEN } color;
+</PRE>
+</DIV>
+<P> a getter function will be generated for each value of the
+ enumeration:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; exec loader.sce;
+--&gt; RED_get()
+ ans  =
+
+    0.
+
+--&gt; BLUE_get()
+ ans  =
+
+    1.
+
+--&gt; GREEN_get()
+ ans  =
+
+    2.
+</PRE>
+</DIV>
+<P> The <TT>%scilabconst()</TT> feature is also available for
+ enumerations:</P>
+<DIV class="code">
+<PRE>%module example
+%scilabconst(1) color;
+typedef enum { RED, BLUE, GREEN } color;
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt; exec loader.sce;
+--&gt; RED
+ ans  =
+
+    0.
+
+--&gt; BLUE
+ ans  =
+
+    1.
+
+--&gt; GREEN
+ ans  =
+
+    2.
+
+</PRE>
+</DIV>
+<H3><A name="Scilab_wrapping_pointers"></A>39.3.6 Pointers</H3>
+<P> C/C++ pointers are fully supported by SWIG. They are mapped to the
+ Scilab pointer type (&quot;pointer&quot;, type ID: 128).</P>
+<P> Given a wrapping of some of the C file functions:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%{
+#include &lt;stdio.h&gt;
+%}
+
+FILE *fopen(const char *filename, const char *mode);
+int fputs(const char *, FILE *);
+int fclose(FILE *);
+</PRE>
+</DIV>
+<P> These functions can be used in a natural way from Scilab:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; f = fopen(&quot;junk&quot;, &quot;w&quot;);
+--&gt; typeof(f)
+ ans  =
+
+  pointer
+
+--&gt; fputs(&quot;Hello World&quot;, f);
+--&gt; fclose(f);
+</PRE>
+</DIV>
+<P> The user of a pointer is responsible for freeing it or, like in the
+ example, closing any resources associated with it (just as is required
+ in a C program).</P>
+<H4><A name="Scilab_wrapping_pointers_pointer_adresses"></A>39.3.6.1
+ Utility functions</H4>
+<P> Most of time pointer manipulation is not needed in a scripting
+ language such as Scilab. However, in some cases it can be useful, such
+ as for testing or debugging.</P>
+<P> SWIG comes with two pointer utility functions:</P>
+<UL>
+<LI><TT>SWIG_this()</TT>: returns the address value of a pointer</LI>
+<LI><TT>SWIG_ptr()</TT>: creates a pointer from an address value</LI>
+</UL>
+<P>Following illustrates their use on the last example:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; f = fopen(&quot;junk&quot;, &quot;w&quot;);
+--&gt; fputs(&quot;Hello&quot;, f);
+--&gt; addr = SWIG_this(f)
+ ans  =
+
+    8219088.
+
+--&gt; p = SWIG_ptr(addr);
+--&gt; fputs(&quot; World&quot;, p);
+--&gt; fclose(f);
+</PRE>
+</DIV>
+<H4><A name="Scilab_wrapping_pointers_null_pointers"></A>39.3.6.2 Null
+ pointers</H4>
+<P>By default, Scilab does not provide a way to test or create null
+ pointers. But it is possible to have a null pointer by using the
+ previous functions <TT>SWIG_this()</TT> and <TT>SWIG_ptr()</TT>, like
+ this:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; p = SWIG_ptr(0);
+--&gt; SWIG_this(p) == 0
+ ans  =
+
+    T
+</PRE>
+</DIV>
+<H3><A name="Scilab_wrapping_structs"></A>39.3.7 Structures</H3>
+<P> Structs exist in Scilab, but C structs are not (at least in this
+ version of SWIG) mapped to Scilab structs. A C structure is wrapped
+ through low-level accessor functions, i.e. functions that give access
+ to the member variables of this structure. In Scilab, a structure is
+ manipulated through a pointer which is passed as an argument to the
+ accessor functions.</P>
+<P> Let's see it on an example of a struct with two members:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%inline %{
+
+typedef struct {
+    int x;
+    int arr[4];
+} Foo;
+
+%}
+</PRE>
+</DIV>
+<P> Several functions are generated:</P>
+<UL>
+<LI>a constructor function <TT>new_Foo()</TT> which returns a pointer to
+ a newly created struct <TT>Foo</TT>.</LI>
+<LI>two member getter functions <TT>Foo_x_get()</TT>, <TT>Foo_arr_get()</TT>
+, to get the values of <TT>x</TT> and <TT>y</TT> for the struct pointer
+ (provided as the first parameter to these functions)</LI>
+<LI>two member setter functions <TT>Foo_x_set()</TT>, <TT>Foo_arr_set()</TT>
+, to set the values of <TT>x</TT> and <TT>y</TT> for the struct pointer
+ (provided as the first parameter to these functions).</LI>
+<LI>a destructor function <TT>delete_Foo()</TT> to release the struct
+ pointer.</LI>
+</UL>
+<P> Usage example:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; f = new_Foo();
+--&gt; Foo_x_set(f, 100);
+--&gt; Foo_x_get(f)
+ans  =
+
+    100.
+
+--&gt; Foo_arr_set(f, [0:3]);
+--&gt; Foo_arr_get(f)
+ans  =
+
+    0.    1.    2.    3.
+
+--&gt; delete_Foo(f);
+</PRE>
+</DIV>
+<P> Members of a structure that are also structures are also accepted
+ and wrapped as a pointer:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%inline %{
+
+typedef struct {
+  int x;
+} Bar;
+
+typedef struct {
+  Bar b;
+} Foo;
+
+%}
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt; b = new_Bar();
+--&gt; Bar_x_set(b, 20.);
+
+--&gt; f = new_Foo();
+--&gt; Foo_b_set(f, b);
+
+--&gt; b2 = Foo_b_get(f);
+--&gt; Bar_x_get(b2);
+ans  =
+
+    20.
+</PRE>
+</DIV>
+<H3><A name="Scilab_wrapping_cpp_classes"></A>39.3.8 C++ Classes</H3>
+<P> Classes do not exist in Scilab. The classes are wrapped the same way
+ as structs. Low-level accessor functions are generated for class
+ members. Also, constructor and destructor functions are generated to
+ create and destroy an instance of the class.</P>
+<P> For example, the following class:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%inline %{
+
+class Point {
+public:
+  int x, y;
+  Point(int _x, int _y) : x(_x), y(_y) {}
+  double distance(const Point&amp; rhs) {
+    return sqrt(pow(x-rhs.x, 2) + pow(y-rhs.y, 2));
+  }
+  void set(int _x, int _y) {
+    x=_x;
+    y=_y;
+  }
+};
+
+%}
+</PRE>
+</DIV>
+<P> can be used in Scilab like this:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; p1 = Point_new(3, 5);
+--&gt; p2 = Point_new(1, 2);
+--&gt; p1.distance(p2)
+ans  =
+
+    3.6056
+
+--&gt; delete_Point(p1);
+--&gt; delete_Point(p2);
+</PRE>
+</DIV>
+<H3><A name="Scilab_wrapping_cpp_inheritance"></A>39.3.9 C++ inheritance</H3>
+<P> Inheritance is supported. SWIG knows the inheritance relationship
+ between classes.</P>
+<P> A function is only generated for the class in which it is actually
+ declared. But if one of its parameters is a class, any instance of a
+ derived class is accepted as the argument.</P>
+<P> This mechanism also applies for accessor functions: they are
+ generated only in the class in which they are defined. But any instance
+ of a derived class can be used as the argument to these accessor
+ functions.</P>
+<P> For example, let's take a base class <TT>Shape</TT> and two derived
+ classes <TT>Circle</TT> and <TT>Square</TT>:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%inline %{
+
+class Shape {
+public:
+  double x, y;
+  void set_location(double _x, double _y) { x = _x; y = _y; }
+  virtual double get_perimeter() { return 0; };
+};
+
+class Circle : public Shape {
+public:
+  int radius;
+  Circle(int _radius): radius(_radius) {};
+  virtual double get_perimeter() { return 6.28 * radius; }
+};
+
+class Square : public Shape {
+public:
+  int size;
+  Square(int _size): size(_size) {};
+  virtual double get_perimeter() { return 4 * size; }
+};
+
+%}
+</PRE>
+</DIV>
+<P> To set the location of the <TT>Circle</TT>, we have to use the
+ function <TT>set_location()</TT> of the parent <TT>Shape</TT>. But we
+ can use either use the <TT>get_perimeter()</TT> function of the parent
+ class or the derived class:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; c = new_Circle(3);
+
+--&gt; Shape_set_location(c, 2, 3);
+--&gt; Shape_x_get(c)
+ ans  =
+
+    2.
+
+--&gt; Circle_get_perimeter(c)
+ ans  =
+
+    18.84
+
+--&gt; Shape_get_perimeter(c)
+ ans  =
+
+    18.84
+</PRE>
+</DIV>
+<H3><A name="Scilab_wrapping_pointers_references_values_arrays"></A>
+39.3.10 Pointers, references, values, and arrays</H3>
+<P> In C++ objects can be passed by value, pointer, reference, or by an
+ array:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%{
+#include &lt;sciprint.h&gt;
+%}
+
+%inline %{
+
+class Foo {
+public:
+  Foo(int _x) : x(_x) {}
+  int x;
+};
+
+void spam1(Foo *f)  { sciprint(&quot;%d\n&quot;, f-&gt;x); }   // Pass by pointer
+void spam2(Foo &amp;f)  { sciprint(&quot;%d\n&quot;, f.x); }    // Pass by reference
+void spam3(Foo f)   { sciprint(&quot;%d\n&quot;, f.x); }    // Pass by value
+void spam4(Foo f[]) { sciprint(&quot;%d\n&quot;, f[0].x); } // Array of objects
+
+%}
+</PRE>
+</DIV>
+<P> In SWIG, there is no real distinction between these. So in Scilab,
+ it is perfectly legal to do this:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; f = new_Foo()
+--&gt; spam1(f)
+3
+--&gt; spam2(f)
+3
+--&gt; spam3(f)
+3
+--&gt; spam4(f)
+3
+</PRE>
+</DIV>
+<P> Similar behaviour occurs for return values. For example, if you had
+ functions like this:</P>
+<DIV class="code">
+<PRE>
+Foo *spam5();
+Foo &amp;spam6();
+Foo  spam7();
+</PRE>
+</DIV>
+<P> All these functions will return a pointer to an instance of <TT>Foo</TT>
+. As the function <TT>spam7</TT> returns a value, new instance of <TT>
+Foo</TT> has to be allocated, and a pointer on this instance is
+ returned.</P>
+<H3><A name="Scilab_wrapping_cpp_templates"></A>39.3.11 C++ templates</H3>
+<P> As in other languages, function and class templates are supported in
+ SWIG Scilab.</P>
+<P> You have to tell SWIG to create wrappers for a particular template
+ instantiation. The <TT>%template</TT> directive is used for this
+ purpose. For example:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+template&lt;class T1, class T2, class T3&gt;
+struct triplet {
+  T1 first;
+  T2 second;
+  T3 third;
+  triplet(const T1&amp; a, const T2&amp; b, const T3&amp; c) {
+    third = a; second = b; third = c;
+  }
+};
+
+%template(IntTriplet) triplet&lt;int,int,int&gt;;
+</PRE>
+</DIV>
+<P> Then in Scilab:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; t = new_IntTriplet(3, 4, 1);
+
+--&gt; IntTriplet_first_get(t)
+ ans  =
+
+    3.
+
+--&gt; IntTriplet_second_get(t)
+ ans  =
+
+    4.
+
+--&gt; IntTriplet_third_get(t)
+ ans  =
+
+    1.
+
+--&gt; delete_IntTriplet(t);
+</PRE>
+</DIV>
+<P> More details on template support can be found in the <A href="#SWIGPlus_nn30">
+templates</A> documentation.</P>
+<H3><A name="Scilab_wrapping_cpp_operators"></A>39.3.12 C++ operators</H3>
+<P> C++ operators are partially supported. Operator overloading exists
+ in Scilab, but a C++ operator is not (in this version) wrapped by SWIG
+ as a Scilab operator, but as a function. It is not automatic, you have
+ to rename each operator (with the instruction <TT>%rename</TT>) with
+ the suitable wrapper name.</P>
+<P> Let's see it with an example of class with two operators <TT>+</TT>
+ and <TT>double()</TT>:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%rename(plus) operator +;
+%rename(toDouble) operator double();
+
+%inline %{
+
+class Complex {
+public:
+  Complex(double re, double im) : real(re), imag(im) {};
+
+  Complex operator+(const Complex&amp; other) {
+    double result_real = real + other.real;
+    double result_imaginary = imag + other.imag;
+    return Complex(result_real, result_imaginary);
+  }
+  operator double() { return real; }
+private:
+  double real;
+  double imag;
+};
+
+%}
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt; c1 = new_Complex(3, 7);
+
+--&gt; c2 = Complex_plus(c, new_Complex(1,1));
+
+--&gt; Complex_toDouble(c2)
+ ans  =
+
+    4.
+</PRE>
+</DIV>
+<H3><A name="Scilab_wrapping_cpp_namespaces"></A>39.3.13 C++ namespaces</H3>
+<P> SWIG is aware of C++ namespaces, but does not use it for wrappers.
+ The module is not broken into submodules, nor do namespace appear in
+ functions names. All the namespaces are all flattened in the module.
+ For example with one namespace <TT>Foo</TT>:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%inline %{
+
+namespace foo {
+  int fact(int n) {
+    if (n &gt; 1)
+      return n * fact(n-1);
+    else
+      return 1;
+  }
+
+  struct Vector {
+    double x,y,z;
+  };
+};
+
+%}
+
+</PRE>
+</DIV>
+<P> In Scilab, there is no need to the specify the <TT>Foo</TT>
+ namespace:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; fact(3)
+ ans  =
+
+   6.
+
+--&gt; v = new_Vector();
+--&gt; Vector_x_set(v, 3.4);
+--&gt; Vector_y_get(v)
+ ans  =
+
+   0.
+</PRE>
+</DIV>
+<P> If your program has more than one namespace, name conflicts can be
+ resolved using <TT>%rename</TT>. For example:</P>
+<DIV class="code">
+<PRE>
+%rename(Bar_spam) Bar::spam;
+
+namespace Foo {
+  int spam();
+}
+
+namespace Bar {
+  int spam();
+}
+</PRE>
+</DIV>
+<P> Note: the <A href="#SWIGPlus_nspace"><TT>nspace</TT></A> feature is
+ not supported.</P>
+<H3><A name="Scilab_wrapping_cpp_exceptions"></A>39.3.14 C++ exceptions</H3>
+<P> Scilab does not natively support exceptions, but has errors. When an
+ exception is thrown, SWIG catches it, and sets a Scilab error. An error
+ message is displayed in Scilab. For example:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%inline %{
+void throw_exception() throw(char const *) {
+  throw &quot;Bye world !&quot;;
+}
+%}
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt;throw_exception()
+  !--error 999
+SWIG/Scilab: Exception (char const *) occured: Bye world !
+</PRE>
+</DIV>
+<P> Scilab has a <TT>try-catch</TT> mechanism (and a similar instruction
+ <TT>execstr()</TT>) to handle exceptions. It can be used with the <TT>
+lasterror()</TT> function as following:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; execstr('throw_exception()', 'errcatch');
+ ans  =
+
+    999.
+
+--&gt; lasterror()
+ ans  =
+
+    SWIG/Scilab: Exception (char const *) occured: Bye world !
+</PRE>
+</DIV>
+<P> If the function has a <TT>throw</TT> exception specification, SWIG
+ can automatically map the exception type and set an appropriate Scilab
+ error message. It works for a few primitive types, and also for STL
+ exceptions (the library <TT>std_except.i</TT> has to be included to get
+ the STL exception support):</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%include &lt;std_except.i&gt;
+
+%inline %{
+void throw_int() throw(int) {
+  throw 12;
+}
+
+void throw_stl_invalid_arg(int i) throw(std::invalid_argument) {
+  if (i &amp;lt 0)
+    throw std::invalid_argument(&quot;argument is negative.&quot;);
+}
+%}
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt; throw_int();
+            !--error 999
+SWIG/Scilab: Exception (int) occured: 12
+
+--&gt;throw_stl_invalid_arg(-1);
+                          !--error 999
+SWIG/Scilab: ValueError: argument is negative.
+</PRE>
+</DIV>
+<P> More complex or custom exception types require specific exception
+ typemaps to be implemented in order to specifically handle a thrown
+ type. See the <A href="#SWIGPlus">SWIG C++ documentation</A> for more
+ details.</P>
+<H3><A name="Scilab_wrapping_cpp_stl"></A>39.3.15 C++ STL</H3>
+<P> The Standard Template Library (STL) is partially supported. See <A href="#Scilab_typemaps_stl">
+STL</A> for more details.</P>
+<H2><A name="Scilab_typemaps"></A>39.4 Type mappings and libraries</H2>
+<H3><A name="Scilab_typemaps_primitive_types"></A>39.4.1 Default
+ primitive type mappings</H3>
+<P> The following table provides the equivalent Scilab type for C/C++
+ primitive types.</P>
+<DIV class="table">
+<TABLE border="1" summary="Scilab default primitive type mappings">
+<TR><TD><B>C/C++ type</B></TD><TD><B>Scilab type</B></TD></TR>
+<TR><TD>bool</TD><TD>boolean</TD></TR>
+<TR><TD>char</TD><TD>string</TD></TR>
+<TR><TD>signed char</TD><TD>double or int8</TD></TR>
+<TR><TD>unsigned char</TD><TD>double or uint8</TD></TR>
+<TR><TD>short</TD><TD>double or int16</TD></TR>
+<TR><TD>unsigned short</TD><TD>double or uint16</TD></TR>
+<TR><TD>int</TD><TD>double or int32</TD></TR>
+<TR><TD>unsigned int</TD><TD>double or uint32</TD></TR>
+<TR><TD>long</TD><TD>double or int32</TD></TR>
+<TR><TD>unsigned long</TD><TD>double or uint32</TD></TR>
+<TR><TD>signed long long</TD><TD>not supported in Scilab 5.x</TD></TR>
+<TR><TD>unsigned long long</TD><TD>not supported in Scilab 5.x</TD></TR>
+<TR><TD>float</TD><TD>double</TD></TR>
+<TR><TD>double</TD><TD>double</TD></TR>
+<TR><TD>char * or char[]</TD><TD>string</TD></TR>
+</TABLE>
+</DIV>
+<P> Notes:</P>
+<UL>
+<LI>In Scilab the <TT>double</TT> type is far more used than any integer
+ type. This is why integer values (<TT>int32</TT>, <TT>uint32</TT>, ...)
+ are automatically converted to Scilab <TT>double</TT> values when
+ marshalled from C into Scilab. Additionally on input to a C function,
+ Scilab <TT>double</TT> values are converted into the related integer
+ type.</LI>
+<LI> When an integer is expected, if the input is a double, the value
+ must be an integer, i.e. it must not have any decimal part, otherwise a
+ SWIG value error occurs.</LI>
+<LI> In SWIG for Scilab 5.x, the <TT>long long</TT> type is not
+ supported, since Scilab 5.x does not have a 64-bit integer type. The
+ default behaviour is for SWIG to generate code that will give a runtime
+ error if <TT>long long</TT> type arguments are used from Scilab.</LI>
+</UL>
+<H3><A name="Scilab_typemaps_non-primitive_types"></A>39.4.2 Default
+ type mappings for non-primitive types</H3>
+<P> The default mapped type for C/C++ non-primitive types is the Scilab
+ pointer, for example for C structs, C++ classes, etc...</P>
+<H3><A name="Scilab_typemaps_arrays"></A>39.4.3 Arrays</H3>
+<P> Typemaps are available by default for arrays. Primitive type arrays
+ are automatically converted to/from Scilab matrices. Typemaps are also
+ provided to handle members of a struct or class that are arrays.</P>
+<P> In input, the matrix is usually one-dimensional (it can be either a
+ row or column vector). But it can also be a two-dimensional matrix.
+ Warning: in Scilab, the values are column-major ordered, unlike in C,
+ which is row-major ordered.</P>
+<P> The type mappings used for arrays is the same for primitive types,
+ described <A href="#Scilab_typemaps_primitive_types">earlier</A>. This
+ means that, if needed, a Scilab <TT>double</TT> vector is converted in
+ input into the related C integer array and this C integer array is
+ automatically converted on output into a Scilab <TT>double</TT> vector.
+ Note that unlike scalars, no control is done for arrays when a <TT>
+double</TT> is converted into an integer.</P>
+<P> The following example illustrates all this:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%#include &lt;stdio.h&gt;
+
+%inline %{
+
+void printArray(int values[], int len) {
+  int i = 0;
+  for (i = 0; i &lt; len; i++) {
+    printf(&quot;%s %d %s&quot;, i==0?&quot;[&quot;:&quot;&quot;, values[i], i==len-1?&quot;]\n&quot;:&quot;&quot;);
+  }
+}
+%}
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt; printArray([0 1 2 3], 4)
+[ 0  1  2  3 ]
+
+--&gt; printArray([0.2; -1.8; 2; 3.7], 4)
+[ 0  -1  2  3 ]
+
+--&gt; printArray([0 1; 2 3], 4)
+[ 0  2  1  3 ]
+
+--&gt; printArray([0; 1; 2; 3], 4)
+[ 0  1  2  3 ]
+</PRE>
+</DIV>
+<H3><A name="Scilab_typemaps_pointer-to-pointers"></A>39.4.4
+ Pointer-to-pointers</H3>
+<P> There are no specific typemaps for pointer-to-pointers, they are are
+ mapped as pointers in Scilab.</P>
+<P> Pointer-to-pointers are sometimes used to implement matrices in C.
+ The following is a an example of this:</P>
+<DIV class="code">
+<PRE>
+%module example
+%inline %{
+
+// Returns the matrix [1 2; 3 4];
+double **create_matrix() {
+  double **M;
+  int i;
+  M = (double **) malloc(2 * sizeof(double *));
+  for (i = 0; i &lt; 2; i++) {
+    M[i] = (double *) malloc(2 * sizeof(double));
+    M[i][0] = 2 * i + 1;
+    M[i][1] = 2 * i + 2;
+  }
+  return M;
+}
+
+// Gets the item M(i,j) value
+double get_matrix(double **M, int i, int j) {
+  return M[i][j];
+}
+
+// Sets the item M(i,j) value to be val
+void set_matrix(double **M, int i, int j, double val) {
+  M[i][j] = val;
+}
+
+// Prints a matrix (2,2) to console
+void print_matrix(double **M, int nbRows, int nbCols) {
+  int i, j;
+  for (i = 0; i &lt; 2; i++) {
+    for (j = 0; j &lt; 2; j++) {
+      printf(&quot;%3g &quot;, M[i][j]);
+    }
+    printf(&quot;\n&quot;);
+  }
+}
+
+%}
+</PRE>
+</DIV>
+<P> These functions are used like this in Scilab:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; m = create_matrix();
+
+--&gt; print_matrix(m);
+   1.   2.
+   3.   4.
+
+--&gt; set_matrix(m, 1, 1, 5.);
+
+--&gt; get_matrix(m, 1, 1)
+ ans  =
+
+    5.
+</PRE>
+</DIV>
+<H3><A name="Scilab_typemaps_matrices"></A>39.4.5 Matrices</H3>
+<P> The <TT>matrix.i</TT> library provides a set of typemaps which can
+ be useful when working with one-dimensional and two-dimensional
+ matrices.</P>
+<P> In order to use this library, just include it in the interface file:</P>
+<DIV class="code">
+<PRE>
+  %include &lt;matrix.i&gt;
+</PRE>
+</DIV>
+<P> Several typemaps are available for the common Scilab matrix types:</P>
+<UL>
+<LI><TT>double</TT></LI>
+<LI><TT>int</TT></LI>
+<LI><TT>char *</TT></LI>
+<LI><TT>bool</TT></LI>
+</UL>
+<P> For example: for a matrix of <TT>int</TT>, we have the typemaps, for
+ input:</P>
+<UL>
+<LI><TT>(int *IN, int IN_ROWCOUNT, int IN_COLCOUNT)</TT></LI>
+<LI><TT>(int IN_ROWCOUNT, int IN_COLCOUNT, int *IN)</TT></LI>
+<LI><TT>(int *IN, int IN_SIZE)</TT></LI>
+<LI><TT>(int IN_SIZE, int *IN)</TT></LI>
+</UL>
+<P> and output:</P>
+<UL>
+<LI><TT>(int **OUT, int *OUT_ROWCOUNT, int *OUT_COLCOUNT)</TT></LI>
+<LI><TT>(int *OUT_ROWCOUNT, int *OUT_COLCOUNT, int **OUT)</TT></LI>
+<LI><TT>(int **OUT, int *OUT_SIZE)</TT></LI>
+<LI><TT>(int *OUT_SIZE, int **OUT)</TT></LI>
+</UL>
+<P> They marshall a Scilab matrix type into the appropriate 2 or 3 C
+ parameters. The following is an example using the typemaps in this
+ library:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%include &lt;matrix.i&gt;
+
+%apply (int *IN, int IN_ROWCOUNT, int IN_COLCOUNT) { (int *matrix, int matrixNbRow, int matrixNbCol) };
+%apply (int **OUT, int *OUT_ROWCOUNT, int *OUT_COLCOUNT) { (int **outMatrix, int *outMatrixNbRow, int *outMatrixNbCol) };
+
+%inline %{
+
+void absolute(int *matrix, int matrixNbRow, int matrixNbCol,
+  int **outMatrix, int *outMatrixNbRow, int *outMatrixNbCol) {
+  int i, j;
+  *outMatrixNbRow = matrixNbRow;
+  *outMatrixNbCol = matrixNbCol;
+  *outMatrix = malloc(matrixNbRow * matrixNbCol * sizeof(int));
+  for (i=0; i &lt; matrixNbRow * matrixNbCol; i++) {
+    (*outMatrix)[i] = matrix[i] &gt; 0 ? matrix[i]:-matrix[i];
+  }
+}
+
+%}
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt; absolute([-0 1 -2; 3 4 -5])
+ ans  =
+
+    0.    1.    2.
+    3.    4.    5.
+</PRE>
+</DIV>
+<P> The remarks made earlier for arrays also apply here:</P>
+<UL>
+<LI>The values of matrices in Scilab are column-major orderered,</LI>
+<LI>There is no control while converting <TT>double</TT> values to
+ integers, <TT>double</TT> values are truncated without any checking or
+ warning.</LI>
+</UL>
+<H3><A name="Scilab_typemaps_stl"></A>39.4.6 STL</H3>
+<P> The STL library wraps some containers defined in the STL (Standard
+ Template Library), so that they can be manipulated in Scilab. This
+ library also provides the appropriate typemaps to use the containers in
+ functions and variables.</P>
+<P> The list of wrapped sequence containers are:</P>
+<UL>
+<LI><TT>std::vector</TT></LI>
+<LI><TT>std::list</TT></LI>
+<LI><TT>std::deque</TT></LI>
+</UL>
+<P> And associative containers are:</P>
+<UL>
+<LI><TT>std::set</TT></LI>
+<LI><TT>std::multiset</TT></LI>
+</UL>
+<P> Typemaps are available for the following container types:</P>
+<UL>
+<LI><TT>double</TT></LI>
+<LI><TT>float</TT></LI>
+<LI><TT>int</TT></LI>
+<LI><TT>string</TT></LI>
+<LI><TT>bool</TT></LI>
+<LI><TT>pointer</TT></LI>
+</UL>
+<P> Containers of other item types are not supported. Using them does
+ not break compilation, but provokes a runtime error. Containers of enum
+ are not supported yet.</P>
+<P> In order to use the STL, the library must first be included in the
+ SWIG interface file:</P>
+<DIV class="code">
+<PRE>
+%include &lt;stl.i&gt;
+</PRE>
+</DIV>
+<P>Then for each container used, the appropriate template must be
+ instantiated, in the <TT>std</TT> namespace:<DIV class="code">
+<PRE>
+namespace std {
+    %template(IntVector)    vector&lt;int&gt;;
+    %template(DoubleVector) vector&lt;double&gt;;
+}
+</PRE>
+</DIV></P>
+<P> Additionally, the module initialization function has to be executed
+ first in Scilab, so that all the types are known to Scilab. See the <A href="#Scilab_module_initialization">
+Module initialization</A> section for more details.</P>
+<P> Because in Scilab matrices exist for basic types only, a sequence
+ container of pointers is mapped to a Scilab list. For other item types
+ (double, int, string...) the sequence container is mapped to a Scilab
+ matrix.</P>
+<P> The first example below shows how to create a vector (of <TT>int</TT>
+) in Scilab, add some values to the vector and pass it as an argument of
+ a function. It also shows, thanks to the typemaps, that we can also
+ pass a Scilab matrix of values directly into the function:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%include &lt;stl.i&gt;
+
+namespace std {
+  %template(IntVector) vector&lt;int&gt;;
+}
+
+%{
+#include &lt;numeric&gt;
+%}
+
+%inline %{
+
+double average(std::vector&lt;int&gt; v) {
+  return std::accumulate(v.begin(), v.end(), 0.0) / v.size();
+}
+
+%}
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt; example_Init();
+
+--&gt; v = new_IntVector();
+
+--&gt; for i = 1:4
+--&gt;     IntVector_push_back(v, i);
+--&gt; end;
+
+--&gt; average(v)
+ ans  =
+
+    2.5
+
+--&gt; average([0 1 2 3])
+ ans  =
+
+    2.5
+
+--&gt; delete_IntVector();
+</PRE>
+</DIV>
+<P> In the second example, a set of struct (<TT>Person</TT>) is wrapped.
+ A function performs a search in this set, and returns a subset. As one
+ can see, the result in Scilab is a list of pointers:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+%include &lt;stl.i&gt;
+
+%{
+#include &lt;string&gt;
+%}
+
+%inline %{
+
+struct Person {
+  Person(std::string _name, int _age) : name(_name), age(_age) {};
+  std::string name;
+  int age;
+};
+typedef Person * PersonPtr;
+
+%}
+
+namespace std {
+  %template(PersonPtrSet) set&lt;PersonPtr&gt;;
+}
+
+%inline %{
+
+std::set&lt;PersonPtr&gt; findPersonsByAge(std::set&lt;PersonPtr&gt; persons, int minAge, int maxAge) {
+  std::set&lt;PersonPtr&gt; foundPersons;
+  for (std::set&lt;PersonPtr&gt;::iterator it = persons.begin(); it != persons.end(); it++) {
+    if (((*it)-&gt;age &gt;= minAge) &amp;&amp; ((*it)-&gt;age &lt;= maxAge)) {
+      foundPersons.insert(*it);
+    }
+  }
+  return foundPersons;
+}
+
+%}
+</PRE>
+</DIV>
+<BR><DIV class="targetlang">
+<PRE>
+--&gt; example_Init();
+
+--&gt; joe = new_Person(&quot;Joe&quot;, 25);
+--&gt; susan = new_Person(&quot;Susan&quot;, 32);
+--&gt; bill = new_Person(&quot;Bill&quot;, 50);
+
+--&gt; p = new_PersonPtrSet();
+--&gt; PersonPtrSet_insert(p, susan);
+--&gt; PersonPtrSet_insert(p, joe);
+--&gt; PersonPtrSet_insert(p, bill);
+
+--&gt; l = findPersonsByAge(p, 20, 40);
+
+--&gt; size(l)
+ ans  =
+
+    2.
+
+--&gt; Person_name_get(l(1))
+ans  =
+
+    Susan
+
+--&gt; Person_name_get(l(2))
+ ans  =
+
+    Joe
+
+--&gt; delete_PersonPtrSet(p);
+</PRE>
+</DIV>
+<H2><A name="Scilab_module_initialization"></A>39.5 Module
+ initialization</H2>
+<P> The wrapped module contains an initialization function to:</P>
+<UL>
+<LI>initialize the SWIG runtime, which is necessary when working with
+ the STL</LI>
+<LI>initialize in Scilab the module constants and enumerations declared
+ with <TT>%scilabconst()</TT></LI>
+</UL>
+<P> This initialization function should be executed at the start of a
+ script, before the wrapped library has to be used.</P>
+<P> The function has the name of the module suffixed by <TT>_Init</TT>.
+ For example, to initialize the module <TT>example</TT>:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; example_Init();
+</PRE>
+</DIV>
+<H2><A name="Scilab_building_modes"></A>39.6 Building modes</H2>
+<P> The mechanism to load an external module in Scilab is called<I>
+ Dynamic Link</I> and works with dynamic modules (or shared libraries, <TT>
+.so</TT> files).</P>
+<P> To produce a dynamic module, when generating the wrapper, there are
+ two possibilities, or build modes:</P>
+<UL>
+<LI>the <TT>nobuilder</TT> mode, this is the default mode in SWIG. The
+ user is responsible of the build.</LI>
+<LI>the <TT>builder</TT> mode. In this mode, Scilab is responsible of
+ building.</LI>
+</UL>
+<H3><A name="Scilab_building_modes_nobuilder_mode"></A>39.6.1 No-builder
+ mode</H3>
+<P> In this mode, used by default, SWIG generates the wrapper sources,
+ which have to be manually compiled and linked. A loader script <TT>
+loader.sce</TT> is also produced, this one is executed further in Scilab
+ to load the module.</P>
+<P> This mode is the best option to use when you have to integrate the
+ module build into a larger build process.</P>
+<H3><A name="Scilab_building_modes_builder_mode"></A>39.6.2 Builder mode</H3>
+<P> In this mode, in addition to the wrapper sources, SWIG produces a
+ builder Scilab script (<TT>builder.sce</TT>), which is executed in
+ Scilab to build the module. In a few words, the Scilab <TT>ilib_build()</TT>
+ command is used, which produces the shared library file, and the loader
+ script <TT>loader.sce</TT> (and also a cleaner script <TT>cleaner.sce</TT>
+).</P>
+<P> An advantage of this mode is that it hides all the complexity of the
+ build and other platform issues. Also it allows the module to conform
+ to a Scilab external module convention which is that an external module
+ should be simply built by calling a builder script.</P>
+<P> The builder mode is activated with the <TT>-builder</TT> SWIG
+ option. In this mode, the following SWIG options may be used to setup
+ the build:</P>
+<UL>
+<LI><TT><B>-buildersources</B></TT>: to add sources to the build
+ (several files must be separated by a comma)</LI>
+<LI><TT><B>-buildercflags</B></TT>: to add flags to the builder compiler
+ flags, for example to set library dependencies include paths</LI>
+<LI><TT><B>-builderldflags</B></TT>: to add flags to the linker flags,
+ for example to set library dependency names and paths</LI>
+</UL>
+<P> Let's give an example how to build a module <TT>example</TT>,
+ composed of two sources, and using a library dependency:</P>
+<UL>
+<LI>the sources are <TT>baa1.c</TT> and <TT>baa2.c</TT> (and are stored
+ in in the current directory)</LI>
+<LI>the library is <TT>libfoo</TT> in <TT>/opt/foo</TT> (headers stored
+ in <TT>/opt/foo/include</TT>, and shared library in <TT>/opt/foo/lib</TT>
+)</LI>
+</UL>
+<P> The command is:</P>
+<DIV class="shell">
+<PRE>
+$ swig -scilab -builder -buildercflags -I/opt/foo/include -builderldflags &quot;-L/opt/foo/lib -lfoo&quot; -buildersources baa1.cxx,baa2.cxx example.i
+</PRE>
+</DIV>
+<H2><A name="Scilab_generated_scripts"></A>39.7 Generated scripts</H2>
+<P> In this part we give some details about the generated Scilab
+ scripts.</P>
+<H3><A name="Scilab_generated_scripts_builder_script"></A>39.7.1 Builder
+ script</H3>
+<P> <TT>builder.sce</TT> is the name of the builder script generated by
+ SWIG in <TT>builder</TT> mode. It contains code like this:</P>
+<DIV class="code">
+<PRE>
+ilib_name = &quot;examplelib&quot;;
+files = [&quot;example_wrap.c&quot;];
+libs = [];
+table = [&quot;fact&quot;,&quot;_wrap_fact&quot;;&quot;Foo_set&quot;,&quot;_wrap_Foo_set&quot;;&quot;Foo_get&quot;,&quot;_wrap_Foo_get&quot;;];
+ilib_build(ilib_name,table,files,libs);
+</PRE>
+</DIV>
+<P> <TT>ilib_build(lib_name,table,files,libs)</TT> is used to create
+ shared libraries, and to generate a loader file used to dynamically
+ load the shared library into Scilab.</P>
+<UL>
+<LI><TT><B>ilib_name</B></TT>: a character string, the generic name of
+ the library without path and extension.</LI>
+<LI><TT><B>files</B></TT>: string matrix containing objects files needed
+ for shared library creation.</LI>
+<LI><TT><B>libs</B></TT>: string matrix containing extra libraries
+ needed for shared library creation.</LI>
+<LI><TT><B>table</B></TT>: two column string matrix containing a table
+ of pairs of 'scilab function name', 'C function name'.</LI>
+</UL>
+<H3><A name="Scilab_generated_scripts_loader_script"></A>39.7.2 Loader
+ script</H3>
+<P> The loader script is used to load in Scilab all the module
+ functions. When loaded, these functions can be used as other Scilab
+ functions.</P>
+<P> The loader script <TT>loader.sce</TT> contains code similar to:</P>
+<DIV class="code">
+<PRE>
+// ------------------------------------------------------
+// generated by builder.sce: Please do not edit this file
+// ------------------------------------------------------
+
+libexamplelib_path = get_file_path('loader.sce');
+list_functions = [             'fact';
+            'Foo_set';
+            'Foo_get';
+];
+addinter(libexamplelib_path+'/libexamplelib.so','libexamplelib',list_functions);
+// remove temp. variables on stack
+clear libexamplelib_path;
+clear list_functions;
+clear get_file_path;
+// ------------------------------------------------------
+</PRE>
+</DIV>
+<P> <TT>addinter(files,spname,fcts)</TT> performs dynamic linking of a
+ compiled C interface function.</P>
+<UL>
+<LI><TT><B>files</B></TT>: a character string or a vector of character
+ strings defining the object files (containing the C interface
+ functions) to link with.</LI>
+<LI><TT><B>spname</B></TT>: a character string. Name of interface
+ routine entry point.</LI>
+<LI><TT><B>fcts</B></TT>: vector of character strings. The name of new
+ Scilab function.</LI>
+</UL>
+<H2><A name="Scilab_other_resources"></A>39.8 Other resources</H2>
+<UL>
+<LI>Example use cases can be found in the <TT>Examples/scilab</TT>
+ directory.</LI>
+<LI>The test suite in the <TT>Examples/test-suite/scilab</TT> can be
+ another source of useful use cases.</LI>
+<LI>The <A href="http://help.scilab.org/docs/5.5.0/en_US/api_scilab.html">
+Scilab API</A> is used in the generated code and is a useful reference
+ when examining the output.</LI>
+<LI>This <A href="http://wiki.scilab.org/howto/Create%20a%20toolbox">
+guide</A> describes the Scilab external modules structure and files, in
+ particular the files that are generated by SWIG for Scilab.</LI>
+</UL>
+<HR NOSHADE>
+<H1><A name="Tcl"></A>40 SWIG and Tcl</H1>
 
 <!-- INDEX -->
 <DIV class="sectiontoc">
@@ -52928,7 +54823,7 @@ irb(main):011:0&gt;</PRE>
 <P> This chapter discusses SWIG's support of Tcl. SWIG currently
  requires Tcl 8.0 or a later release. Earlier releases of SWIG supported
  Tcl 7.x, but this is no longer supported.</P>
-<H2><A name="Tcl_nn2"></A>39.1 Preliminaries</H2>
+<H2><A name="Tcl_nn2"></A>40.1 Preliminaries</H2>
 <P> To build a Tcl module, run SWIG using the <TT>-tcl</TT> option :</P>
 <DIV class="code">
 <PRE>
@@ -52945,7 +54840,7 @@ $ swig -c++ -tcl example.i
  that contains all of the code needed to build a Tcl extension module.
  To finish building the module, you need to compile this file and link
  it with the rest of your program.</P>
-<H3><A name="Tcl_nn3"></A>39.1.1 Getting the right header files</H3>
+<H3><A name="Tcl_nn3"></A>40.1.1 Getting the right header files</H3>
 <P> In order to compile the wrapper code, the compiler needs the <TT>
 tcl.h</TT> header file. This file is usually contained in the directory</P>
 <DIV class="code">
@@ -52957,7 +54852,7 @@ tcl.h</TT> header file. This file is usually contained in the directory</P>
  version number attached to it. If this is the case, you should probably
  make a symbolic link so that <TT>tcl.h</TT> points to the correct
  header file.</P>
-<H3><A name="Tcl_nn4"></A>39.1.2 Compiling a dynamic module</H3>
+<H3><A name="Tcl_nn4"></A>40.1.2 Compiling a dynamic module</H3>
 <P> The preferred approach to building an extension module is to compile
  it into a shared object file or DLL. Assuming you have code you need to
  link to in a file called <TT>example.c</TT>, you will need to compile
@@ -52982,7 +54877,7 @@ SWIG Wiki</A> for additional information.</P>
 &quot;, the name of the corresponding object file should be &quot;<TT>example.so</TT>
 &quot;. The name of the module is specified using the <TT>%module</TT>
  directive or the <TT>-module</TT> command line option.</P>
-<H3><A name="Tcl_nn5"></A>39.1.3 Static linking</H3>
+<H3><A name="Tcl_nn5"></A>40.1.3 Static linking</H3>
 <P> An alternative approach to dynamic linking is to rebuild the Tcl
  interpreter with your extension module added to it. In the past, this
  approach was sometimes necessary due to limitations in dynamic loading
@@ -53034,7 +54929,7 @@ $ gcc example.c example_wrap.c \
  performance gained by static linking tends to be rather minimal in most
  situations (and quite frankly not worth the extra hassle in the opinion
  of this author).</P>
-<H3><A name="Tcl_nn6"></A>39.1.4 Using your module</H3>
+<H3><A name="Tcl_nn6"></A>40.1.4 Using your module</H3>
 <P> To use your module, simply use the Tcl <TT>load</TT> command. If all
  goes well, you will be able to this:</P>
 <DIV class="code">
@@ -53126,7 +55021,7 @@ $ env LD_LIBRARY_PATH=/home/beazley/projects/lib tclsh
 <P> Finally, you can use a command such as <TT>ldconfig</TT> to add
  additional search paths to the default system configuration (this
  requires root access and you will need to read the man pages).</P>
-<H3><A name="Tcl_nn7"></A>39.1.5 Compilation of C++ extensions</H3>
+<H3><A name="Tcl_nn7"></A>40.1.5 Compilation of C++ extensions</H3>
 <P> Compilation of C++ extensions has traditionally been a tricky
  problem. Since the Tcl interpreter is written in C, you need to take
  steps to make sure C++ is properly initialized and that modules are
@@ -53189,7 +55084,7 @@ $
  you will need to take steps to avoid segmentation faults and other
  erratic program behavior. If working with lots of software components,
  you might want to investigate using a more formal standard such as COM.</P>
-<H3><A name="Tcl_nn8"></A>39.1.6 Compiling for 64-bit platforms</H3>
+<H3><A name="Tcl_nn8"></A>40.1.6 Compiling for 64-bit platforms</H3>
 <P> On platforms that support 64-bit applications (Solaris, Irix, etc.),
  special care is required when building extension modules. On these
  machines, 64-bit applications are compiled and linked using a different
@@ -53206,7 +55101,7 @@ $
  that software. This may prevent the use of 64-bit extensions. It may
  also introduce problems on platforms that support more than one linking
  standard (e.g., -o32 and -n32 on Irix).</P>
-<H3><A name="Tcl_nn9"></A>39.1.7 Setting a package prefix</H3>
+<H3><A name="Tcl_nn9"></A>40.1.7 Setting a package prefix</H3>
 <P> To avoid namespace problems, you can instruct SWIG to append a
  package prefix to all of your functions and variables. This is done
  using the -prefix option as follows :</P>
@@ -53218,7 +55113,7 @@ swig -tcl -prefix Foo example.i
 <P> If you have a function &quot;<TT>bar</TT>&quot; in the SWIG file, the prefix
  option will append the prefix to the name when creating a command and
  call it &quot;<TT>Foo_bar</TT>&quot;.</P>
-<H3><A name="Tcl_nn10"></A>39.1.8 Using namespaces</H3>
+<H3><A name="Tcl_nn10"></A>40.1.8 Using namespaces</H3>
 <P> Alternatively, you can have SWIG install your module into a Tcl
  namespace by specifying the <TT>-namespace</TT> option :</P>
 <DIV class="code">
@@ -53230,14 +55125,14 @@ swig -tcl -namespace example.i
  name, but you can override it using the <TT>-prefix</TT> option.</P>
 <P> When the <TT>-namespace</TT> option is used, objects in the module
  are always accessed with the namespace name such as <TT>Foo::bar</TT>.</P>
-<H2><A name="Tcl_nn11"></A>39.2 Building Tcl/Tk Extensions under Windows
+<H2><A name="Tcl_nn11"></A>40.2 Building Tcl/Tk Extensions under Windows
  95/NT</H2>
 <P> Building a SWIG extension to Tcl/Tk under Windows 95/NT is roughly
  similar to the process used with Unix. Normally, you will want to
  produce a DLL that can be loaded into tclsh or wish. This section
  covers the process of using SWIG with Microsoft Visual C++. although
  the procedure may be similar with other compilers.</P>
-<H3><A name="Tcl_nn12"></A>39.2.1 Running SWIG from Developer Studio</H3>
+<H3><A name="Tcl_nn12"></A>40.2.1 Running SWIG from Developer Studio</H3>
 <P> If you are developing your application within Microsoft developer
  studio, SWIG can be invoked as a custom build option. The process
  roughly follows these steps :</P>
@@ -53280,7 +55175,7 @@ MSDOS &gt; tclsh80
 %
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn13"></A>39.2.2 Using NMAKE</H3>
+<H3><A name="Tcl_nn13"></A>40.2.2 Using NMAKE</H3>
 <P> Alternatively, SWIG extensions can be built by writing a Makefile
  for NMAKE. To do this, make sure the environment variables for MSVC++
  are available and the MSVC++ tools are in your path. Now, just write a
@@ -53336,13 +55231,13 @@ tcl::
  first). This is a pretty minimal Makefile, but hopefully its enough to
  get you started. With a little practice, you'll be making lots of Tcl
  extensions.</P>
-<H2><A name="Tcl_nn14"></A>39.3 A tour of basic C/C++ wrapping</H2>
+<H2><A name="Tcl_nn14"></A>40.3 A tour of basic C/C++ wrapping</H2>
 <P> By default, SWIG tries to build a very natural Tcl interface to your
  C/C++ code. Functions are wrapped as functions, classes are wrapped in
  an interface that mimics the style of Tk widgets and [incr Tcl]
  classes. This section briefly covers the essential aspects of this
  wrapping.</P>
-<H3><A name="Tcl_nn15"></A>39.3.1 Modules</H3>
+<H3><A name="Tcl_nn15"></A>40.3.1 Modules</H3>
 <P> The SWIG <TT>%module</TT> directive specifies the name of the Tcl
  module. If you specify `<TT>%module example</TT>', then everything is
  compiled into an extension module <TT>example.so</TT>. When choosing a
@@ -53363,7 +55258,7 @@ couldn't find procedure Md_Init
 % load ./md5.so md5
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn16"></A>39.3.2 Functions</H3>
+<H3><A name="Tcl_nn16"></A>40.3.2 Functions</H3>
 <P> Global functions are wrapped as new Tcl built-in commands. For
  example,</P>
 <DIV class="code">
@@ -53383,7 +55278,7 @@ int fact(int n);
 %
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn17"></A>39.3.3 Global variables</H3>
+<H3><A name="Tcl_nn17"></A>40.3.3 Global variables</H3>
 <P> C/C++ global variables are wrapped by Tcl global variables. For
  example:</P>
 <DIV class="code">
@@ -53444,7 +55339,7 @@ extern char *path;
 extern char *path;      // Read-only (due to %immutable)
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn18"></A>39.3.4 Constants and enums</H3>
+<H3><A name="Tcl_nn18"></A>40.3.4 Constants and enums</H3>
 <P> C/C++ constants are installed as global Tcl variables containing the
  appropriate value. To create a constant, use <TT>#define</TT>, <TT>enum</TT>
 , or the <TT>%constant</TT> directive. For example:</P>
@@ -53506,7 +55401,7 @@ proc blah {} {
 <P> When an identifier name is given, it is used to perform an implicit
  hash-table lookup of the value during argument conversion. This allows
  the <TT>global</TT> statement to be omitted.</P>
-<H3><A name="Tcl_nn19"></A>39.3.5 Pointers</H3>
+<H3><A name="Tcl_nn19"></A>40.3.5 Pointers</H3>
 <P> C/C++ pointers are fully supported by SWIG. Furthermore, SWIG has no
  problem working with incomplete type information. Here is a rather
  simple interface:</P>
@@ -53577,7 +55472,7 @@ Foo *IncrFoo(Foo *f, int i) {
  style casts. For example, in the above code, the C-style cast may
  return a bogus result whereas as the C++-style cast will return <TT>
 None</TT> if the conversion can't be performed.</P>
-<H3><A name="Tcl_nn20"></A>39.3.6 Structures</H3>
+<H3><A name="Tcl_nn20"></A>40.3.6 Structures</H3>
 <P> If you wrap a C structure, it is wrapped by a Tcl interface that
  somewhat resembles a Tk widget. This provides a very natural interface.
  For example,</P>
@@ -53783,7 +55678,7 @@ _108fea88_p_Bar
 </DIV>
 <P> Note: Tcl only destroys the underlying object if it has ownership.
  See the memory management section that appears shortly.</P>
-<H3><A name="Tcl_nn21"></A>39.3.7 C++ classes</H3>
+<H3><A name="Tcl_nn21"></A>40.3.7 C++ classes</H3>
 <P> C++ classes are wrapped as an extension of structure wrapping. For
  example, if you have this class,</P>
 <DIV class="code">
@@ -53834,7 +55729,7 @@ public:
 % puts $Spam_bar  # Spam::bar
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn22"></A>39.3.8 C++ inheritance</H3>
+<H3><A name="Tcl_nn22"></A>40.3.8 C++ inheritance</H3>
 <P> SWIG is fully aware of issues related to C++ inheritance. Therefore,
  if you have classes like this</P>
 <DIV class="code">
@@ -53866,7 +55761,7 @@ void spam(Foo *f);
 </PRE>
 </DIV>
 <P> It is safe to use multiple inheritance with SWIG.</P>
-<H3><A name="Tcl_nn23"></A>39.3.9 Pointers, references, values, and
+<H3><A name="Tcl_nn23"></A>40.3.9 Pointers, references, values, and
  arrays</H3>
 <P> In C++, there are many different ways a function might receive and
  manipulate objects. For example:</P>
@@ -53905,7 +55800,7 @@ Foo  spam7();
  allocated memory is used to hold the result and a pointer is returned
  (Tcl will release this memory when the return value is garbage
  collected).</P>
-<H3><A name="Tcl_nn24"></A>39.3.10 C++ overloaded functions</H3>
+<H3><A name="Tcl_nn24"></A>40.3.10 C++ overloaded functions</H3>
 <P> C++ overloaded functions, methods, and constructors are mostly
  supported by SWIG. For example, if you have two functions like this:</P>
 <DIV class="code">
@@ -53988,7 +55883,7 @@ void spam(short);   // Ignored
  arises--in this case, the first declaration takes precedence.</P>
 <P> Please refer to the &quot;SWIG and C++&quot; chapter for more information
  about overloading.</P>
-<H3><A name="Tcl_nn25"></A>39.3.11 C++ operators</H3>
+<H3><A name="Tcl_nn25"></A>40.3.11 C++ operators</H3>
 <P> Certain C++ overloaded operators can be handled automatically by
  SWIG. For example, consider a class like this:</P>
 <DIV class="code">
@@ -54067,7 +55962,7 @@ Complex operator+(double, const Complex &amp;c);
 </DIV>
 <P> There are ways to make this operator appear as part of the class
  using the <TT>%extend</TT> directive. Keep reading.</P>
-<H3><A name="Tcl_nn26"></A>39.3.12 C++ namespaces</H3>
+<H3><A name="Tcl_nn26"></A>40.3.12 C++ namespaces</H3>
 <P> SWIG is aware of C++ namespaces, but namespace names do not appear
  in the module nor do namespaces result in a module that is broken up
  into submodules or packages. For example, if you have a file like this,</P>
@@ -54114,7 +56009,7 @@ namespace Bar {
  extension modules for each namespace separately. If your program
  utilizes thousands of small deeply nested namespaces each with
  identical symbol names, well, then you get what you deserve.</P>
-<H3><A name="Tcl_nn27"></A>39.3.13 C++ templates</H3>
+<H3><A name="Tcl_nn27"></A>40.3.13 C++ templates</H3>
 <P> C++ templates don't present a huge problem for SWIG. However, in
  order to create wrappers, you have to tell SWIG to create wrappers for
  a particular template instantiation. To do this, you use the <TT>
@@ -54153,7 +56048,7 @@ struct pair {
 <P> Obviously, there is more to template wrapping than shown in this
  example. More details can be found in the <A href="#SWIGPlus">SWIG and
  C++</A> chapter. Some more complicated examples will appear later.</P>
-<H3><A name="Tcl_nn28"></A>39.3.14 C++ Smart Pointers</H3>
+<H3><A name="Tcl_nn28"></A>40.3.14 C++ Smart Pointers</H3>
 <P> In certain C++ programs, it is common to use classes that have been
  wrapped by so-called &quot;smart pointers.&quot; Generally, this involves the use
  of a template class that implements <TT>operator-&gt;()</TT> like this:</P>
@@ -54212,7 +56107,7 @@ operator-&gt;()</TT> itself, simply use the <TT>__deref__()</TT> method.
 % set f [$p __deref__]    # Returns underlying Foo *
 </PRE>
 </DIV>
-<H2><A name="Tcl_nn29"></A>39.4 Further details on the Tcl class
+<H2><A name="Tcl_nn29"></A>40.4 Further details on the Tcl class
  interface</H2>
 <P> In the previous section, a high-level view of Tcl wrapping was
  presented. A key component of this wrapping is that structures and
@@ -54221,7 +56116,7 @@ operator-&gt;()</TT> itself, simply use the <TT>__deref__()</TT> method.
  features such as operator overloading. However, a number of low-level
  details were omitted. This section provides a brief overview of how the
  proxy classes work.</P>
-<H3><A name="Tcl_nn30"></A>39.4.1 Proxy classes</H3>
+<H3><A name="Tcl_nn30"></A>40.4.1 Proxy classes</H3>
 <P> In the <A href="#SWIG">&quot;SWIG basics&quot;</A> and <A href="#SWIGPlus">
 &quot;SWIG and C++&quot;</A> chapters, details of low-level structure and class
  wrapping are described. To summarize those chapters, if you have a
@@ -54272,7 +56167,7 @@ int Foo_spam(Foo *f, int arg1) {
 <P> However, in addition to this, the classname <TT>Foo</TT> is used as
  an object constructor function. This allows objects to be encapsulated
  objects that look a lot like Tk widgets as shown in the last section.</P>
-<H3><A name="Tcl_nn31"></A>39.4.2 Memory management</H3>
+<H3><A name="Tcl_nn31"></A>40.4.2 Memory management</H3>
 <P> Associated with each wrapped object, is an ownership flag <TT>
 thisown</TT> The value of this flag determines who is responsible for
  deleting the underlying C++ object. If set to 1, the Tcl interpreter
@@ -54413,7 +56308,7 @@ public:
 </DIV>
 <P> It is also possible to deal with situations like this using
  typemaps--an advanced topic discussed later.</P>
-<H2><A name="Tcl_nn32"></A>39.5 Input and output parameters</H2>
+<H2><A name="Tcl_nn32"></A>40.5 Input and output parameters</H2>
 <P> A common problem in some C programs is handling parameters passed as
  simple pointers. For example:</P>
 <DIV class="code">
@@ -54546,7 +56441,7 @@ set r  [lindex $dim 0]
 set c  [lindex $dim 1]
 </PRE>
 </DIV>
-<H2><A name="Tcl_nn33"></A>39.6 Exception handling</H2>
+<H2><A name="Tcl_nn33"></A>40.6 Exception handling</H2>
 <P> The <TT>%exception</TT> directive can be used to create a
  user-definable exception handler in charge of converting exceptions in
  your C/C++ program into Tcl exceptions. The chapter on customization
@@ -54662,7 +56557,7 @@ class DoubleArray {
 <P> Since SWIG's exception handling is user-definable, you are not
  limited to C++ exception handling. See the chapter on &quot;<A href="#Customization">
 Customization Features</A>&quot; for more examples.</P>
-<H2><A name="Tcl_nn34"></A>39.7 Typemaps</H2>
+<H2><A name="Tcl_nn34"></A>40.7 Typemaps</H2>
 <P> This section describes how you can modify SWIG's default wrapping
  behavior for various C/C++ datatypes using the <TT>%typemap</TT>
  directive. This is an advanced topic that assumes familiarity with the
@@ -54672,7 +56567,7 @@ Customization Features</A>&quot; for more examples.</P>
  required part of using SWIG---the default wrapping behavior is enough
  in most cases. Typemaps are only used if you want to change some aspect
  of the primitive C-Tcl interface.</P>
-<H3><A name="Tcl_nn35"></A>39.7.1 What is a typemap?</H3>
+<H3><A name="Tcl_nn35"></A>40.7.1 What is a typemap?</H3>
 <P> A typemap is nothing more than a code generation rule that is
  attached to a specific C datatype. For example, to convert integers
  from Tcl to C, you might define a typemap like this:</P>
@@ -54766,7 +56661,7 @@ int count(char c, char *str, int len);
 1
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn36"></A>39.7.2 Tcl typemaps</H3>
+<H3><A name="Tcl_nn36"></A>40.7.2 Tcl typemaps</H3>
 <P> The previous section illustrated an &quot;in&quot; typemap for converting Tcl
  objects to C. A variety of different typemap methods are defined by the
  Tcl module. For example, to convert a C integer back into a Tcl object,
@@ -54812,7 +56707,7 @@ int count(char c, char *str, int len);
 <DIV class="indent"> Initialize an argument to a value before any
  conversions occur.</DIV>
 <P> Examples of these methods will appear shortly.</P>
-<H3><A name="Tcl_nn37"></A>39.7.3 Typemap variables</H3>
+<H3><A name="Tcl_nn37"></A>40.7.3 Typemap variables</H3>
 <P> Within typemap code, a number of special variables prefaced with a <TT>
 $</TT> may appear. A full list of variables can be found in the &quot;<A href="#Typemaps">
 Typemaps</A>&quot; chapter. This is a list of the most common variables:</P>
@@ -54841,7 +56736,7 @@ Typemaps</A>&quot; chapter. This is a list of the most common variables:</P>
  their values can be properly assigned.</DIV>
 <P> <TT>$symname</TT></P>
 <DIV class="indent"> The Tcl name of the wrapper function being created.</DIV>
-<H3><A name="Tcl_nn38"></A>39.7.4 Converting a Tcl list to a char **</H3>
+<H3><A name="Tcl_nn38"></A>40.7.4 Converting a Tcl list to a char **</H3>
 <P> A common problem in many C programs is the processing of command
  line arguments, which are usually passed in an array of NULL terminated
  strings. The following SWIG interface file allows a Tcl list to be used
@@ -54897,7 +56792,7 @@ argv[2] = Larry
 3
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn39"></A>39.7.5 Returning values in arguments</H3>
+<H3><A name="Tcl_nn39"></A>40.7.5 Returning values in arguments</H3>
 <P> The &quot;argout&quot; typemap can be used to return a value originating from
  a function argument. For example :</P>
 <DIV class="code">
@@ -54933,7 +56828,7 @@ double *outvalue</TT>&quot; argument. The numinputs=0 specification tells
 %
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn40"></A>39.7.6 Useful functions</H3>
+<H3><A name="Tcl_nn40"></A>40.7.6 Useful functions</H3>
 <P> The following tables provide some functions that may be useful in
  writing Tcl typemaps.</P>
 <P><B> Integers</B></P>
@@ -54984,7 +56879,7 @@ void     Tcl_DecrRefCount(Tcl_Obj *obj);
 int      Tcl_IsShared(Tcl_Obj *obj);
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn41"></A>39.7.7 Standard typemaps</H3>
+<H3><A name="Tcl_nn41"></A>40.7.7 Standard typemaps</H3>
 <P> The following typemaps show how to convert a few common kinds of
  objects between Tcl and C (and to give a better idea of how typemaps
  work)</P>
@@ -55042,7 +56937,7 @@ int      Tcl_IsShared(Tcl_Obj *obj);
 
 </PRE>
 </DIV>
-<H3><A name="Tcl_nn42"></A>39.7.8 Pointer handling</H3>
+<H3><A name="Tcl_nn42"></A>40.7.8 Pointer handling</H3>
 <P> SWIG pointers are mapped into Tcl strings containing the hexadecimal
  value and type. The following functions can be used to create and read
  pointer values.</P>
@@ -55093,7 +56988,7 @@ $descriptor()</TT> macro in a typemap. For example:</P>
 }
 </PRE>
 </DIV>
-<H2><A name="Tcl_nn43"></A>39.8 Turning a SWIG module into a Tcl
+<H2><A name="Tcl_nn43"></A>40.8 Turning a SWIG module into a Tcl
  Package.</H2>
 <P> Tcl 7.4 introduced the idea of an extension package. By default,
  SWIG generates all of the code necessary to create a package. To set
@@ -55150,7 +57045,7 @@ unix &gt; tclsh
 <P> As a final note, most SWIG examples do not yet use the <TT>package</TT>
  commands. For simple extensions it may be easier just to use the <TT>
 load</TT> command instead.</P>
-<H2><A name="Tcl_nn44"></A>39.9 Building new kinds of Tcl interfaces (in
+<H2><A name="Tcl_nn44"></A>40.9 Building new kinds of Tcl interfaces (in
  Tcl)</H2>
 <P> One of the most interesting aspects of Tcl and SWIG is that you can
  create entirely new kinds of Tcl interfaces in Tcl using the low-level
@@ -55239,7 +57134,7 @@ $ia delete                                 ;# Destroy ia
  requested, the Tcl code would simply return with an error so there is
  very little danger of blowing something up (although it is easily
  accomplished with an out of bounds array access).</P>
-<H3><A name="Tcl_nn45"></A>39.9.1 Proxy classes</H3>
+<H3><A name="Tcl_nn45"></A>40.9.1 Proxy classes</H3>
 <P> A similar approach can be applied to proxy classes (also known as
  shadow classes). The following example is provided by Erik Bierwagen
  and Paul Saxe. To use it, run SWIG with the <TT>-noobject</TT> option
@@ -55349,7 +57244,7 @@ delete l
  object wrapped by SWIG and requires no special compilation. Proof that
  a short, but clever Tcl script can be combined with SWIG to do many
  interesting things.</P>
-<H2><A name="Tcl_nn46"></A>39.10 Tcl/Tk Stubs</H2>
+<H2><A name="Tcl_nn46"></A>40.10 Tcl/Tk Stubs</H2>
 <P> For background information about the Tcl Stubs feature, see <A href="http://www.tcl.tk/doc/howto/stubs.html">
 http://www.tcl.tk/doc/howto/stubs.html</A>.</P>
 <P> As of SWIG 1.3.10, the generated C/C++ wrapper will use the Tcl
@@ -55361,7 +57256,7 @@ Tcl_InitStubs()</TT> and <TT>Tk_InitStubs()</TT> with <TT>
 -DSWIG_TCL_STUBS_VERSION=&quot;8.3&quot;</TT> or the version being compiled with
  using <TT>-DSWIG_TCL_STUBS_VERSION=TCL_VERSION</TT>.</P>
 <HR NOSHADE>
-<H1><A name="Extending"></A>40 Extending SWIG to support new languages</H1>
+<H1><A name="Extending"></A>41 Extending SWIG to support new languages</H1>
 
 <!-- INDEX -->
 <DIV class="sectiontoc">
@@ -55438,7 +57333,7 @@ Tcl_InitStubs()</TT> and <TT>Tk_InitStubs()</TT> with <TT>
 </UL>
 </DIV>
 <!-- INDEX -->
-<H2><A name="Extending_nn2"></A>40.1 Introduction</H2>
+<H2><A name="Extending_nn2"></A>41.1 Introduction</H2>
 <P> This chapter describes SWIG's internal organization and the process
  by which new target languages can be developed. First, a brief word of
  warning---SWIG is continually evolving. The information in this chapter
@@ -55447,7 +57342,7 @@ Tcl_InitStubs()</TT> and <TT>Tk_InitStubs()</TT> with <TT>
 <P> Also, this chapter is not meant to be a hand-holding tutorial. As a
  starting point, you should probably look at one of SWIG's existing
  modules.</P>
-<H2><A name="Extending_nn3"></A>40.2 Prerequisites</H2>
+<H2><A name="Extending_nn3"></A>41.2 Prerequisites</H2>
 <P> In order to extend SWIG, it is useful to have the following
  background:</P>
 <UL>
@@ -55467,7 +57362,7 @@ Tcl_InitStubs()</TT> and <TT>Tk_InitStubs()</TT> with <TT>
  an extension of the C++<EM> type</EM> system. At first glance, this
  might not be obvious, but almost all SWIG directives as well as the
  low-level generation of wrapper code are driven by C++ datatypes.</P>
-<H2><A name="Extending_nn4"></A>40.3 The Big Picture</H2>
+<H2><A name="Extending_nn4"></A>41.3 The Big Picture</H2>
 <P> SWIG is a special purpose compiler that parses C++ declarations to
  generate wrapper code. To make this conversion possible, SWIG makes
  three fundamental extensions to the C++ language:</P>
@@ -55495,7 +57390,7 @@ Tcl_InitStubs()</TT> and <TT>Tk_InitStubs()</TT> with <TT>
  matching rules also play a critical role in making the system work. For
  example, both typemaps and declaration annotation are based on pattern
  matching and interact heavily with the underlying type system.</P>
-<H2><A name="Extending_nn5"></A>40.4 Execution Model</H2>
+<H2><A name="Extending_nn5"></A>41.4 Execution Model</H2>
 <P> When you run SWIG on an interface, processing is handled in stages
  by a series of system components:</P>
 <UL>
@@ -55524,7 +57419,7 @@ Tcl_InitStubs()</TT> and <TT>Tk_InitStubs()</TT> with <TT>
  stage of compilation.</LI>
 </UL>
 <P> The next few sections briefly describe some of these stages.</P>
-<H3><A name="Extending_nn6"></A>40.4.1 Preprocessing</H3>
+<H3><A name="Extending_nn6"></A>41.4.1 Preprocessing</H3>
 <P> The preprocessor plays a critical role in the SWIG implementation.
  This is because a lot of SWIG's processing and internal configuration
  is managed not by code written in C, but by configuration files in the
@@ -55588,7 +57483,7 @@ python.swg</TT> or <TT>perl5.swg</TT>.</P>
  probably isn't too useful in general, but it will show how macros have
  been expanded as well as everything else that goes into the low-level
  construction of the wrapper code.</P>
-<H3><A name="Extending_nn7"></A>40.4.2 Parsing</H3>
+<H3><A name="Extending_nn7"></A>41.4.2 Parsing</H3>
 <P> The current C++ parser handles a subset of C++. Most
  incompatibilities with C are due to subtle aspects of how SWIG parses
  declarations. Specifically, SWIG expects all C/C++ declarations to
@@ -55660,7 +57555,7 @@ foo(a,b) {
  interprets the above code as an abstract declarator for a function
  returning a <TT>foo</TT> and taking types <TT>a</TT> and <TT>b</TT> as
  arguments).</P>
-<H3><A name="Extending_nn8"></A>40.4.3 Parse Trees</H3>
+<H3><A name="Extending_nn8"></A>41.4.3 Parse Trees</H3>
 <P> The SWIG parser produces a complete parse tree of the input file
  before any wrapper code is actually generated. Each item in the tree is
  known as a &quot;Node&quot;. Each node is identified by a symbolic tag.
@@ -55906,7 +57801,7 @@ $ swig -c++ -python -debug-module 4 example.i
                         | sym:symtab   - 0x40194788
 </PRE>
 </DIV>
-<H3><A name="Extending_nn9"></A>40.4.4 Attribute namespaces</H3>
+<H3><A name="Extending_nn9"></A>41.4.4 Attribute namespaces</H3>
 <P> Attributes of parse tree nodes are often prepended with a namespace
  qualifier. For example, the attributes <TT>sym:name</TT> and <TT>
 sym:symtab</TT> are attributes related to symbol table management and
@@ -55917,7 +57812,7 @@ sym:symtab</TT> are attributes related to symbol table management and
  assist the generation of wrapper code. The convention for doing this is
  to place these attributes in a namespace that matches the name of the
  target language. For example, <TT>python:foo</TT> or <TT>perl:foo</TT>.</P>
-<H3><A name="Extending_nn10"></A>40.4.5 Symbol Tables</H3>
+<H3><A name="Extending_nn10"></A>41.4.5 Symbol Tables</H3>
 <P> During parsing, all symbols are managed in the space of the target
  language. The <TT>sym:name</TT> attribute of each node contains the
  symbol name selected by the parser. Normally, <TT>sym:name</TT> and <TT>
@@ -55993,7 +57888,7 @@ example.i:7. Overloaded declaration ignored.  foo(Bar *)
 example.i:5. Previous declaration is foo_i(int )
 </PRE>
 </DIV>
-<H3><A name="Extending_nn11"></A>40.4.6 The %feature directive</H3>
+<H3><A name="Extending_nn11"></A>41.4.6 The %feature directive</H3>
 <P> A number of SWIG directives such as <TT>%exception</TT> are
  implemented using the low-level <TT>%feature</TT> directive. For
  example:</P>
@@ -56038,7 +57933,7 @@ public:
  recognize. The data stored in a feature attribute is usually just a raw
  unparsed string. For example, the exception code above is simply stored
  without any modifications.</P>
-<H3><A name="Extending_nn12"></A>40.4.7 Code Generation</H3>
+<H3><A name="Extending_nn12"></A>41.4.7 Code Generation</H3>
 <P> Language modules work by defining handler functions that know how to
  respond to different types of parse-tree nodes. These handlers simply
  look at the attributes of each node in order to produce low-level code.</P>
@@ -56133,7 +58028,7 @@ public :
 </PRE>
 </DIV>
 <P> The role of these functions is described shortly.</P>
-<H3><A name="Extending_nn13"></A>40.4.8 SWIG and XML</H3>
+<H3><A name="Extending_nn13"></A>41.4.8 SWIG and XML</H3>
 <P> Much of SWIG's current parser design was originally motivated by
  interest in using XML to represent SWIG parse trees. Although XML is
  not currently used in any direct manner, the parse tree structure, use
@@ -56141,7 +58036,7 @@ public :
  by aspects of XML parsing. Therefore, in trying to understand SWIG's
  internal data structures, it may be useful to keep XML in the back of
  your mind as a model.</P>
-<H2><A name="Extending_nn14"></A>40.5 Primitive Data Structures</H2>
+<H2><A name="Extending_nn14"></A>41.5 Primitive Data Structures</H2>
 <P> Most of SWIG is constructed using three basic data structures:
  strings, hashes, and lists. These data structures are dynamic in same
  way as similar structures found in many scripting languages. For
@@ -56171,7 +58066,7 @@ typedef Hash   Symtab;
 typedef Hash   Typetab;
 </PRE>
 </DIV>
-<H3><A name="Extending_nn15"></A>40.5.1 Strings</H3>
+<H3><A name="Extending_nn15"></A>41.5.1 Strings</H3>
 <P><B> <TT>String *NewString(const String_or_char *val)</TT></B></P>
 <DIV class="indent"> Creates a new string with initial value <TT>val</TT>
 . <TT>val</TT> may be a <TT>char *</TT> or another <TT>String</TT>
@@ -56232,7 +58127,7 @@ DOH_REPLACE_FIRST     - Replace first occurrence only.
 </DIV>
 <P> Returns the number of replacements made (if any).</P>
 </DIV>
-<H3><A name="Extending_nn16"></A>40.5.2 Hashes</H3>
+<H3><A name="Extending_nn16"></A>41.5.2 Hashes</H3>
 <P><B> <TT>Hash *NewHash()</TT></B></P>
 <DIV class="indent"> Creates a new empty hash table.</DIV>
 <P><B> <TT>Hash *Copy(Hash *h)</TT></B></P>
@@ -56259,7 +58154,7 @@ DOH_REPLACE_FIRST     - Replace first occurrence only.
  Returns 1 if an object was removed, 0 otherwise.</DIV>
 <P><B> <TT>List *Keys(Hash *h)</TT></B></P>
 <DIV class="indent"> Returns the list of hash table keys.</DIV>
-<H3><A name="Extending_nn17"></A>40.5.3 Lists</H3>
+<H3><A name="Extending_nn17"></A>41.5.3 Lists</H3>
 <P><B> <TT>List *NewList()</TT></B></P>
 <DIV class="indent"> Creates a new empty list.</DIV>
 <P><B> <TT>List *Copy(List *x)</TT></B></P>
@@ -56295,7 +58190,7 @@ pos</TT>. The contents of <TT>s</TT> are shifted accordingly. The
  insertion at the end of the list (appending). If <TT>t</TT> is not a
  standard object, it is assumed to be a <TT>char *</TT> and is used to
  create a String object.</DIV>
-<H3><A name="Extending_nn18"></A>40.5.4 Common operations</H3>
+<H3><A name="Extending_nn18"></A>41.5.4 Common operations</H3>
  The following operations are applicable to all datatypes.
 <P><B> <TT>Object *Copy(Object *x)</TT></B></P>
 <DIV class="indent"> Make a copy of the object <TT>x</TT>.</DIV>
@@ -56311,7 +58206,7 @@ pos</TT>. The contents of <TT>s</TT> are shifted accordingly. The
  Used to track objects and report errors.</DIV>
 <P><B> <TT>int Getline(Object *x)</TT></B></P>
 <DIV class="indent"> Gets the line number associated with <TT>x</TT>.</DIV>
-<H3><A name="Extending_nn19"></A>40.5.5 Iterating over Lists and Hashes</H3>
+<H3><A name="Extending_nn19"></A>41.5.5 Iterating over Lists and Hashes</H3>
  To iterate over the elements of a list or a hash table, the following
  functions are used:
 <P><B> <TT>Iterator First(Object *x)</TT></B></P>
@@ -56343,7 +58238,7 @@ for (j = First(j); j.item; j= Next(j)) {
 }
 </PRE>
 </DIV></DIV>
-<H3><A name="Extending_nn20"></A>40.5.6 I/O</H3>
+<H3><A name="Extending_nn20"></A>41.5.6 I/O</H3>
  Special I/O functions are used for all internal I/O. These operations
  work on C <TT>FILE *</TT> objects, String objects, and special <TT>File</TT>
  objects (which are merely a wrapper around <TT>FILE *</TT>).
@@ -56403,7 +58298,7 @@ Printf(f, &quot;%s\n&quot;, s);
 </PRE>
 </DIV>
 <P> Similarly, the preprocessor and parser all operate on string-files.</P>
-<H2><A name="Extending_nn21"></A>40.6 Navigating and manipulating parse
+<H2><A name="Extending_nn21"></A>41.6 Navigating and manipulating parse
  trees</H2>
  Parse trees are built as collections of hash tables. Each node is a
  hash table in which arbitrary attributes can be stored. Certain
@@ -56453,7 +58348,7 @@ Printf(f, &quot;%s\n&quot;, s);
 <DIV class="indent"> Deletes a node from the parse tree. Deletion
  reconnects siblings and properly updates the parent so that sibling
  nodes are unaffected.</DIV>
-<H2><A name="Extending_nn22"></A>40.7 Working with attributes</H2>
+<H2><A name="Extending_nn22"></A>41.7 Working with attributes</H2>
 <P> Since parse tree nodes are just hash tables, attributes are accessed
  using the <TT>Getattr()</TT>, <TT>Setattr()</TT>, and <TT>Delattr()</TT>
  operations. For example:</P>
@@ -56538,12 +58433,12 @@ int variableHandler(Node *n) {
  copy of the attribute is saved as with <TT>Swig_save()</TT>. If an
  attribute is specified as &quot;?<EM>name</EM>&quot;, the attribute is optional. <TT>
 Swig_restore()</TT> must always be called after using this function.</DIV>
-<H2><A name="Extending_nn23"></A>40.8 Type system</H2>
+<H2><A name="Extending_nn23"></A>41.8 Type system</H2>
 <P> SWIG implements the complete C++ type system including typedef,
  inheritance, pointers, references, and pointers to members. A detailed
  discussion of type theory is impossible here. However, let's cover the
  highlights.</P>
-<H3><A name="Extending_nn24"></A>40.8.1 String encoding of types</H3>
+<H3><A name="Extending_nn24"></A>41.8.1 String encoding of types</H3>
 <P> All types in SWIG consist of a base datatype and a collection of
  type operators that are applied to the base. A base datatype is almost
  always some kind of primitive type such as <TT>int</TT> or <TT>double</TT>
@@ -56613,7 +58508,7 @@ int *a[30];
 int</TT>&quot; and the declarator of type &quot;<TT>a(30).p.</TT>&quot;. To make the
  final type, the two parts are just joined together using string
  concatenation.</P>
-<H3><A name="Extending_nn25"></A>40.8.2 Type construction</H3>
+<H3><A name="Extending_nn25"></A>41.8.2 Type construction</H3>
 <P> The following functions are used to construct types. You should use
  these functions instead of trying to build the type strings yourself.</P>
 <P><B> <TT>void SwigType_add_pointer(SwigType *ty)</TT></B></P>
@@ -56681,7 +58576,7 @@ ty</TT> is <TT>&quot;p.a(20).int&quot;</TT>, this function would return <TT>&quo
 <DIV class="indent"> Returns the prefix of a type. For example, if <TT>
 ty</TT> is <TT>&quot;p.a(20).int&quot;</TT>, this function would return <TT>
 &quot;p.a(20).&quot;</TT>. <TT>ty</TT> is unmodified.</DIV>
-<H3><A name="Extending_nn26"></A>40.8.3 Type tests</H3>
+<H3><A name="Extending_nn26"></A>41.8.3 Type tests</H3>
 <P> The following functions can be used to test properties of a
  datatype.</P>
 <P><B> <TT>int SwigType_ispointer(SwigType *ty)</TT></B></P>
@@ -56705,7 +58600,7 @@ ty</TT> is <TT>&quot;p.a(20).int&quot;</TT>, this function would return <TT>
 <DIV class="indent"> Checks if <TT>ty</TT> is a varargs type.</DIV>
 <P><B> <TT>int SwigType_istemplate(SwigType *ty)</TT></B></P>
 <DIV class="indent"> Checks if <TT>ty</TT> is a templatized type.</DIV>
-<H3><A name="Extending_nn27"></A>40.8.4 Typedef and inheritance</H3>
+<H3><A name="Extending_nn27"></A>41.8.4 Typedef and inheritance</H3>
 <P> The behavior of <TT>typedef</TT> declaration is to introduce a type
  alias. For instance, <TT>typedef int Integer</TT> makes the identifier <TT>
 Integer</TT> an alias for <TT>int</TT>. The treatment of typedef in SWIG
@@ -56770,7 +58665,7 @@ p.f(int, p.p.int, int).int                        : End
 <P><B> <TT>SwigType *SwigType_typedef_resolve_all(SwigType *ty)</TT></B></P>
 <DIV class="indent"> Fully reduces <TT>ty</TT> according to typedef
  rules. Resulting datatype will consist only of primitive typenames.</DIV>
-<H3><A name="Extending_nn28"></A>40.8.5 Lvalues</H3>
+<H3><A name="Extending_nn28"></A>41.8.5 Lvalues</H3>
 <P> When generating wrapper code, it is necessary to emit datatypes that
  can be used on the left-hand side of an assignment operator (an
  lvalue). However, not all C datatypes can be used in this
@@ -56792,7 +58687,7 @@ typedef const char * Literal;
 Literal y;    // type = 'Literal', ltype='p.char'
 </PRE>
 </DIV>
-<H3><A name="Extending_nn29"></A>40.8.6 Output functions</H3>
+<H3><A name="Extending_nn29"></A>41.8.6 Output functions</H3>
 <P> The following functions produce strings that are suitable for
  output.</P>
 <P><B> <TT>String *SwigType_str(SwigType *ty, const String_or_char *id =
@@ -56827,7 +58722,7 @@ q(const).p.char</TT>&quot; and <TT>id</TT> is &quot;<TT>foo</TT>&quot;, this fun
  identifier. The resulting string is used in various parts of SWIG, but
  is most commonly associated with type-descriptor objects that appear in
  wrappers (e.g., <TT>SWIGTYPE_p_double</TT>).</DIV>
-<H2><A name="Extending_nn30"></A>40.9 Parameters</H2>
+<H2><A name="Extending_nn30"></A>41.9 Parameters</H2>
 <P> Several type-related functions involve parameter lists. These
  include functions and templates. Parameter list are represented as a
  list of nodes with the following attributes:</P>
@@ -56874,7 +58769,7 @@ for (p = parms; p; p = nextSibling(p)) {
 <P><B> <TT>int ParmList_numrequired(ParmList *p);</TT></B></P>
 <DIV class="indent"> Returns the number of required (non-optional)
  arguments in <TT>p</TT>.</DIV>
-<H2><A name="Extending_nn31"></A>40.10 Writing a Language Module</H2>
+<H2><A name="Extending_nn31"></A>41.10 Writing a Language Module</H2>
 <P> One of the easiest routes to supporting a new language module is to
  copy an already supported language module implementation and modify it.
  Be sure to choose a language that is similar in nature to the new
@@ -56883,13 +58778,13 @@ for (p = parms; p; p = nextSibling(p)) {
  language module from scratch. Since the code is relatively easy to
  read, this section describes the creation of a minimal Python module.
  You should be able to extrapolate this to other languages.</P>
-<H3><A name="Extending_nn32"></A>40.10.1 Execution model</H3>
+<H3><A name="Extending_nn32"></A>41.10.1 Execution model</H3>
 <P> Code generation modules are defined by inheriting from the <TT>
 Language</TT> class, currently defined in the <TT>Source/Modules</TT>
  directory of SWIG. Starting from the parsing of command line options,
  all aspects of code generation are controlled by different methods of
  the <TT>Language</TT> that must be defined by your module.</P>
-<H3><A name="Extending_starting_out"></A>40.10.2 Starting out</H3>
+<H3><A name="Extending_starting_out"></A>41.10.2 Starting out</H3>
 <P> To define a new language module, first create a minimal
  implementation using this example as a guide:</P>
 <DIV class="code">
@@ -56970,7 +58865,7 @@ $ <B>make</B>
 <P> Once it finishes compiling, try running SWIG with the command-line
  option that activates your module. For example, <TT>swig -python foo.i</TT>
 . The messages from your new module should appear.</P>
-<H3><A name="Extending_nn34"></A>40.10.3 Command line options</H3>
+<H3><A name="Extending_nn34"></A>41.10.3 Command line options</H3>
 <P> When SWIG starts, the command line options are passed to your
  language module. This occurs before any other processing occurs
  (preprocessing, parsing, etc.). To capture the command line options,
@@ -57020,7 +58915,7 @@ void Language::main(int argc, char *argv[]) {
 Swig_mark_arg()</TT> to mark the option as valid. If you forget to do
  this, SWIG will terminate with an unrecognized command line option
  error.</P>
-<H3><A name="Extending_nn35"></A>40.10.4 Configuration and preprocessing</H3>
+<H3><A name="Extending_nn35"></A>41.10.4 Configuration and preprocessing</H3>
 <P> In addition to looking at command line options, the <TT>main()</TT>
  method is responsible for some initial configuration of the SWIG
  library and preprocessor. To do this, insert some code like this:</P>
@@ -57055,7 +58950,7 @@ void main(int argc, char *argv[]) {
 <P> Just to review, your language module should now consist of two
  files-- an implementation file <TT>python.cxx</TT> and a configuration
  file <TT>python.swg</TT>.</P>
-<H3><A name="Extending_nn36"></A>40.10.5 Entry point to code generation</H3>
+<H3><A name="Extending_nn36"></A>41.10.5 Entry point to code generation</H3>
 <P> SWIG is a multi-pass compiler. Once the <TT>main()</TT> method has
  been invoked, the language module does not execute again until
  preprocessing, parsing, and a variety of semantic analysis passes have
@@ -57100,7 +58995,7 @@ int Python::top(Node *n) {
 }
 </PRE>
 </DIV>
-<H3><A name="Extending_nn37"></A>40.10.6 Module I/O and wrapper skeleton</H3>
+<H3><A name="Extending_nn37"></A>41.10.6 Module I/O and wrapper skeleton</H3>
 
 <!-- please report bugs in this section to mgossage -->
 <P> Within SWIG wrappers, there are five main sections. These are (in
@@ -57229,7 +59124,7 @@ functionWrapper   : void Shape_y_set(Shape *self,double y)
 ...
 </PRE>
 </DIV>
-<H3><A name="Extending_nn38"></A>40.10.7 Low-level code generators</H3>
+<H3><A name="Extending_nn38"></A>41.10.7 Low-level code generators</H3>
 
 <!-- please report bugs in this section to mgossage -->
 <P> As ingenious as SWIG is, and despite all its capabilities and the
@@ -57364,7 +59259,7 @@ virtual int functionWrapper(Node *n) {
 </DIV>
 <P> Executing this code will produce wrappers which have our basic
  skeleton but without the typemaps, there is still work to do.</P>
-<H3><A name="Extending_configuration_files"></A>40.10.8 Configuration
+<H3><A name="Extending_configuration_files"></A>41.10.8 Configuration
  files</H3>
 
 <!-- please report bugs in this section to ttn -->
@@ -57455,11 +59350,11 @@ Lib</TT>. Use (optional) file <TT>extra-install.list</TT> in that
  check-test-suite</TT> politely displays the ignoring language message.</P>
 </DD>
 </DL>
-<H3><A name="Extending_nn40"></A>40.10.9 Runtime support</H3>
+<H3><A name="Extending_nn40"></A>41.10.9 Runtime support</H3>
 <P> Discuss the kinds of functions typically needed for SWIG runtime
  support (e.g. <TT>SWIG_ConvertPtr()</TT> and <TT>SWIG_NewPointerObj()</TT>
 ) and the names of the SWIG files that implement those functions.</P>
-<H3><A name="Extending_nn41"></A>40.10.10 Standard library files</H3>
+<H3><A name="Extending_nn41"></A>41.10.10 Standard library files</H3>
 <P> The standard library files that most languages supply keeps growing
  as SWIG matures. The following are the minimum that are usually
  supported:</P>
@@ -57470,7 +59365,7 @@ Lib</TT>. Use (optional) file <TT>extra-install.list</TT> in that
 <LI> stl.i</LI>
 </UL>
 <P> Please copy these and modify for any new language.</P>
-<H3><A name="Extending_nn42"></A>40.10.11 User examples</H3>
+<H3><A name="Extending_nn42"></A>41.10.11 User examples</H3>
 <P> Each of the language modules provides one or more examples. These
  examples are used to demonstrate different features of the language
  module to SWIG end-users, but you'll find that they're useful during
@@ -57489,7 +59384,7 @@ Examples/python/class</TT>.</P>
  types <TT>make check</TT>. To ensure that your examples are
  automatically run during this process, see the section on <A href="#Extending_configuration_files">
 configuration files</A>.</P>
-<H3><A name="Extending_test_suite"></A>40.10.12 Test driven development
+<H3><A name="Extending_test_suite"></A>41.10.12 Test driven development
  and the test-suite</H3>
 <P> A test driven development approach is central to the improvement and
  development of SWIG. Most modifications to SWIG are accompanied by
@@ -57541,7 +59436,7 @@ Examples/test-suite/python/ret_by_value_runme.py</TT>.</P>
  is therefore essential that the runtime tests are written in a manner
  that displays nothing to stdout/stderr on success but error/exception
  out with an error message on stderr on failure.</P>
-<H4><A name="Extending_running_test_suite"></A>40.10.12.1 Running the
+<H4><A name="Extending_running_test_suite"></A>41.10.12.1 Running the
  test-suite</H4>
 <P> In order for the test-suite to work for a particular target
  language, the language must be correctly detected and configured during
@@ -57721,7 +59616,7 @@ make ret_by_value.ctest SWIG_FEATURES=&quot;-debug-tmsearch&quot;
  with errors, such as <TT>make check-errors-test-suite</TT>. The test
  cases used and the way it works is described in <TT>
 Examples/test-suite/errors/Makefile.in</TT>.</P>
-<H3><A name="Extending_nn43"></A>40.10.13 Documentation</H3>
+<H3><A name="Extending_nn43"></A>41.10.13 Documentation</H3>
 <P> Don't forget to write end-user documentation for your language
  module. Currently, each language module has a dedicated chapter You
  shouldn't rehash things that are already covered in sufficient detail
@@ -57744,7 +59639,7 @@ Examples/test-suite/errors/Makefile.in</TT>.</P>
  process. Provide as much detail as appropriate, and links to other
  resources if available.</LI>
 </UL>
-<H3><A name="Extending_prerequisites"></A>40.10.14 Prerequisites for
+<H3><A name="Extending_prerequisites"></A>41.10.14 Prerequisites for
  adding a new language module to the SWIG distribution</H3>
 <P> If you wish for a new language module to be distributed with SWIG,
  which we encourage for all popular languages, there are a few
@@ -57785,7 +59680,7 @@ coding style guidelines</A>.</LI>
  of runtime tests. Runtime tests should be for existing testcases and
  new test cases should be added should there be an area not already
  covered by the existing tests.</P>
-<H3><A name="Extending_coding_style_guidelines"></A>40.10.15 Coding
+<H3><A name="Extending_coding_style_guidelines"></A>41.10.15 Coding
  style guidelines</H3>
 <P> The coding guidelines for the C/C++ source code are pretty much K&amp;R
  C style. The style can be inferred from the existing code base and is
@@ -57803,7 +59698,7 @@ $ make beautify-file INDENTFILE=Modules/emit.cxx
  this style as close as possible. However, tabs should be avoided as
  unlike the SWIG developers, users will never have consistent tab
  settings.</P>
-<H2><A name="Extending_debugging_options"></A>40.11 Debugging Options</H2>
+<H2><A name="Extending_debugging_options"></A>41.11 Debugging Options</H2>
 <P> There are various command line options which can aid debugging a
  SWIG interface as well as debugging the development of a language
  module. These are as follows:</P>
@@ -57826,7 +59721,7 @@ $ make beautify-file INDENTFILE=Modules/emit.cxx
 </DIV>
 <P> The complete list of command line options for SWIG are available by
  running <TT>swig -help</TT>.</P>
-<H2><A name="Extending_nn46"></A>40.12 Guide to parse tree nodes</H2>
+<H2><A name="Extending_nn46"></A>41.12 Guide to parse tree nodes</H2>
 <P> This section describes the different parse tree nodes and their
  attributes.</P>
 <P><B> cdecl</B></P>
@@ -58049,7 +59944,7 @@ $ make beautify-file INDENTFILE=Modules/emit.cxx
 &quot;name&quot;       - Name &quot;C&quot;, &quot;Fortran&quot;, etc.
 </PRE>
 </DIV>
-<H2><A name="Extending_further_info"></A>40.13 Further Development
+<H2><A name="Extending_further_info"></A>41.13 Further Development
  Information</H2>
 <P> There is further documentation available on the internals of SWIG,
  API documentation and debugging information. This is shipped with SWIG
