@@ -196,6 +196,9 @@ The FEniCS Project is a collaborative project for the development of innovative 
 a suite of libraries for gravitational-wave data analysis, used by the <a href="http://www.ligo.org/">LIGO Scientific Collaboration</a>.
 </li>
 
+<li> <a href=" http://www.grammatech.com/blog/adding-c-python-java-and-c-bindings-codesonar-api-part-3">GrammaTech blog about language bindings for CodeSonar</a>: CodeSonar is a source code and binary code analysis tool that performs a whole-program, interprocedural analysis on C, C++, Java, and binary executables. It identifies programming bugs and security vulnerabilities in software. 
+</li>
+
 </ul>
 
 <h1>Other projects using SWIG</h1>
