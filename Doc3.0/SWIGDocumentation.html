@@ -10,11 +10,11 @@ div.sectiontoc {
   padding: 2pt;
 }
 
-h2 { 
+h2 {
   padding: 3px;
   color: #000000;
-  border-bottom: 2px 
-  solid #dddddd; 
+  border-bottom: 2px
+  solid #dddddd;
 }
 
 h3, h4 {
@@ -32,18 +32,18 @@ div.indent {
 }
 
 div.code {
-  border-style: solid; 
-  border-width: 1px; 
-  padding: 2pt; 
+  border-style: solid;
+  border-width: 1px;
+  padding: 2pt;
   margin-left: 4em;
   margin-right: 4em;
   background-color: #F0FFFF;
 }
 
 div.targetlang {
-  border-style: solid; 
-  border-width: 1px; 
-  padding: 2pt; 
+  border-style: solid;
+  border-width: 1px;
+  padding: 2pt;
   margin-left: 4em;
   margin-right: 4em;
   background-color: #d7f6bb;
@@ -51,18 +51,18 @@ div.targetlang {
 
 
 div.shell {
-  border-style: solid; 
-  border-width: 1px; 
-  padding: 2pt; 
+  border-style: solid;
+  border-width: 1px;
+  padding: 2pt;
   margin-left: 4em;
   margin-right: 4em;
   background-color: #DCDCDC;
 }
 
 div.diagram {
-  border-style: solid; 
-  border-width: 1px; 
-  padding: 2pt; 
+  border-style: solid;
+  border-width: 1px;
+  padding: 2pt;
   margin-left: 4em;
   margin-right: 4em;
   background-color: #FFEBCD;
@@ -2830,7 +2830,7 @@ unix &gt; <B>gcc -shared example.o example_wrap.o -o _example.so</B>
 unix &gt; <B>python</B>
 Python 2.0 (#6, Feb 21 2001, 13:29:45)
 [GCC egcs-2.91.66 19990314/Linux (egcs-1.1.2 release)] on linux2
-Type &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.     
+Type &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
 &gt;&gt;&gt; <B>import example</B>
 &gt;&gt;&gt; <B>example.fact(4)</B>
 24
@@ -3217,9 +3217,9 @@ MinGW SourceForge download page</A>. Note that at the time of writing,
 <LI> Start the MSYS command prompt and execute:<DIV class="shell">
 <PRE>
 cd /
-tar -jxf msys-automake-1.8.2.tar.bz2 
+tar -jxf msys-automake-1.8.2.tar.bz2
 tar -jxf msys-autoconf-2.59.tar.bz2
-tar -zxf bison-2.0-MSYS.tar.gz   
+tar -zxf bison-2.0-MSYS.tar.gz
 </PRE>
 </DIV></LI>
 <LI> The very latest development version of SWIG is available from <A href="https://github.com/swig/swig">
@@ -3292,7 +3292,23 @@ __declspec(dllimport)</TT>, <TT>__stdcall</TT> etc. There is a Windows
 
 __declspec(dllexport) ULONG __stdcall foo(DWORD, __int32);
 </PRE>
-</DIV><HR NOSHADE>
+</DIV>
+<P>Note that if you follow Microsoft's recommendation of wrapping the
+<TT>__declspec</TT> calls in a preprocessor definition, you will need to
+make sure that the definition is included by SWIG as well, whether you define it
+manually or it is included in a header. For example, if you have specified the
+preprocessor definition in a header named <TT>export_lib.h</TT> and include
+other headers which depend on it, you should use the <TT>%include</TT> directive
+to include the definition explicitly. For example, if you had a header file,
+<TT>bar.h</TT>, which depended on <TT>export_lib.h</TT>, your SWIG definition
+file might look like:</P>
+
+<DIV class="code"><PRE>
+%module bar
+%include &lt;windows.i&gt;
+%include "export_lib.h"
+%include "bar.h"
+</PRE></DIV><HR NOSHADE>
 <H1><A name="Scripting"></A>4 Scripting Languages</H1>
 
 <!-- INDEX -->
@@ -3619,7 +3635,7 @@ Traceback (innermost last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in ?
   File &quot;/home/sci/data1/beazley/graph/graph.py&quot;, line 2, in ?
     import graphc
-ImportError:  1101:/home/sci/data1/beazley/bin/python: rld: Fatal Error: cannot 
+ImportError:  1101:/home/sci/data1/beazley/bin/python: rld: Fatal Error: cannot
 successfully map soname 'libgraph.so' under any of the filenames /usr/lib/libgraph.so:/
 lib/libgraph.so:/lib/cmplrs/cc/libgraph.so:/usr/lib/cmplrs/cc/libgraph.so:
 &gt;&gt;&gt;
@@ -3815,7 +3831,7 @@ lang</EM> -help</TT>.</P>
 <P> The most common format of a SWIG interface is as follows:</P>
 <DIV class="code">
 <PRE>
-%module mymodule 
+%module mymodule
 %{
 #include &quot;myheader.h&quot;
 %}
@@ -3922,7 +3938,7 @@ pyfiles/example.py
 <PRE>
 /* header.h  --- Some header file */
 
-/* SWIG directives -- only seen if SWIG is running */ 
+/* SWIG directives -- only seen if SWIG is running */
 #ifdef SWIG
 %module foo
 #endif
@@ -3968,7 +3984,7 @@ void bar(Spam (Grok)(Doh));
  parsed earlier. For example</P>
 <DIV class="code">
 <PRE>
-/* bar not wrapped unless foo has been defined and 
+/* bar not wrapped unless foo has been defined and
    the declaration of bar within foo has already been parsed */
 int foo::bar(int) {
     ... whatever ...
@@ -4460,7 +4476,7 @@ void free(void *);
  you expect :</P>
 <DIV class="targetlang">
 <PRE>
-# Copy a file 
+# Copy a file
 def filecopy(source,target):
 	f1 = fopen(source,&quot;r&quot;)
 	f2 = fopen(target,&quot;w&quot;)
@@ -5452,10 +5468,10 @@ struct Vector {
 double Vector_x_get(struct Vector *obj) {
 	return obj-&gt;x;
 }
-double Vector_y_get(struct Vector *obj) { 
+double Vector_y_get(struct Vector *obj) {
 	return obj-&gt;y;
 }
-double Vector_z_get(struct Vector *obj) { 
+double Vector_z_get(struct Vector *obj) {
 	return obj-&gt;z;
 }
 void Vector_x_set(struct Vector *obj, double value) {
@@ -5678,7 +5694,7 @@ malloc()</TT> only applies when SWIG is used on C code (i.e., when the <TT>
 -nodefaultctor</TT> command line option. For example:</P>
 <DIV class="shell">
 <PRE>
-swig -nodefaultctor example.i 
+swig -nodefaultctor example.i
 </PRE>
 </DIV>
 <P> or</P>
@@ -6068,11 +6084,11 @@ double Vector_x_get(Vector *v) {
 <DIV class="code">
 <PRE>
 static int
-_wrap_Vector_x_get(ClientData clientData, Tcl_Interp *interp, 
+_wrap_Vector_x_get(ClientData clientData, Tcl_Interp *interp,
                    int objc, Tcl_Obj *CONST objv[]) {
     struct Vector *arg1 ;
     double result ;
-    
+
     if (SWIG_GetArgs(interp, objc, objv,&quot;p:Vector_x_get self &quot;,&amp;arg0,
                      SWIGTYPE_p_Vector) == TCL_ERROR)
          return TCL_ERROR;
@@ -6180,7 +6196,7 @@ static Vector *new_Vector() {
 }
 
 %}
-// Now wrap it 
+// Now wrap it
 Vector *new_Vector();
 </PRE>
 </DIV>
@@ -6556,7 +6572,7 @@ extern void dump(FILE *f);
 <DIV class="shell">
 <PRE>
 $ swig -c++ -tcl example.i
-$ c++ -fPIC -c example_wrap.cxx 
+$ c++ -fPIC -c example_wrap.cxx
 $ c++ example_wrap.o $(OBJS) -o example.so
 </PRE>
 </DIV>
@@ -6670,7 +6686,7 @@ s = Spam()              # Creates a new Spam
 s.value = f             # Stores a reference to f inside s
 g = s.value             # Returns stored reference
 g = 4                   # Reassign g to some other value
-del f                   # Destroy f 
+del f                   # Destroy f
 </PRE>
 </DIV>
 <P> Now, ponder the resulting memory management issues. When objects are
@@ -6871,7 +6887,7 @@ class Bar {          // A default constructor is generated, if possible
 class Foo {     // No default constructor is generated, unless one is declared
 ...
 };
-class Bar {   
+class Bar {
 public:
   Bar();        // The default constructor is generated, since one is declared
 };
@@ -6936,7 +6952,7 @@ public:
 class Bar {
 public:
      Bar();               // Not wrapped.  Bar is abstract.
-     virtual void spam(void) = 0; 
+     virtual void spam(void) = 0;
 };
 
 class Grok : public Bar {
@@ -6962,7 +6978,7 @@ public:
 
 class Foo : public Bar {
 public:
-     Foo();    // Generated no matter what---not abstract. 
+     Foo();    // Generated no matter what---not abstract.
      ...
 };
 </PRE>
@@ -6978,7 +6994,7 @@ Customization features</A> chapter.</P>
 <PRE>
 class List {
 public:
-    List();    
+    List();
     List(const List &amp;);      // Copy constructor
     ...
 };
@@ -7018,7 +7034,7 @@ X(const X &amp;)</TT>, <TT>X(X &amp;)</TT>, and <TT>X(X *)</TT> are handled as
 
 class List {
 public:
-    List();    
+    List();
 };
 </PRE>
 </DIV>
@@ -7375,7 +7391,7 @@ public:
     ...
 };
 
-void blah(Foo *f);    
+void blah(Foo *f);
 </PRE>
 </DIV>
 <P> A friend declaration, as in C++, is understood to be in the same
@@ -7517,14 +7533,14 @@ Vector cross_product(Vector *a, Vector *b) {
  is not used:</P>
 <DIV class="code">
 <PRE>
-%feature(&quot;novaluewrapper&quot;) A;    
+%feature(&quot;novaluewrapper&quot;) A;
 class A;
 
 %feature(&quot;valuewrapper&quot;) B;
-struct B { 
+struct B {
     B();
     // ....
-};   
+};
 </PRE>
 </DIV>
 <P> It is well worth considering turning this feature on for classes
@@ -7669,7 +7685,7 @@ typedef struct {
    ...
 } Foo;
 
-class Bar : public Foo {    // Ok. 
+class Bar : public Foo {    // Ok.
 ...
 };
 </PRE>
@@ -7760,7 +7776,7 @@ int y = B_function((B *) p);
             |     A      |
             |------------|   &lt;--- (B *)
             |     B      |
-             ------------   
+             ------------
 </PRE>
 </DIV>
 <P> Because of this stacking, a pointer of type <TT>C *</TT> may change
@@ -8048,7 +8064,7 @@ void foo(long);       // Accessed as foo_long()
 <DIV class="code">
 <PRE>
 /* Forward renaming declarations */
-%rename(foo_i) foo(int); 
+%rename(foo_i) foo(int);
 %rename(foo_d) foo(double);
 ...
 void foo(int);           // Becomes 'foo_i'
@@ -8164,7 +8180,7 @@ public:
 %module foo
 
 /* Rename these overloaded functions */
-%rename(foo_i) foo(int); 
+%rename(foo_i) foo(int);
 %rename(foo_d) foo(double);
 
 %include &quot;header.h&quot;
@@ -8461,8 +8477,8 @@ c = a.add(b)      # Call a.operator+(b)
 %ignore *::operator=;                   // Ignore = in all classes
 %ignore operator=;                      // Ignore = everywhere.
 
-%rename(__sub__) Complex::operator-; 
-%rename(__neg__) Complex::operator-();  // Unary - 
+%rename(__sub__) Complex::operator-;
+%rename(__neg__) Complex::operator-();  // Unary -
 </PRE>
 </DIV>
 <P> The last part of this example illustrates how multiple definitions
@@ -8788,8 +8804,8 @@ class UltraList : public List&lt;int&gt; {
 , you will get a warning message similar to this:</P>
 <DIV class="shell">
 <PRE>
-example.h:42: Warning 401. Nothing known about class 'List&lt;int &gt;'. Ignored. 
-example.h:42: Warning 401. Maybe you forgot to instantiate 'List&lt;int &gt;' using %template. 
+example.h:42: Warning 401. Nothing known about class 'List&lt;int &gt;'. Ignored.
+example.h:42: Warning 401. Maybe you forgot to instantiate 'List&lt;int &gt;' using %template.
 </PRE>
 </DIV>
 <P> If a template class inherits from another template class, you need
@@ -8805,7 +8821,7 @@ template&lt;class T&gt; class Bar : public Foo&lt;T&gt; {
 ...
 };
 
-// Instantiate base classes first 
+// Instantiate base classes first
 %template(intFoo) Foo&lt;int&gt;;
 %template(doubleFoo) Foo&lt;double&gt;;
 
@@ -8835,7 +8851,7 @@ template&lt;class T&gt; class Bar : public Foo&lt;T&gt; {
  different types, you might consider writing a SWIG macro. For example:</P>
 <DIV class="code">
 <PRE>
-%define TEMPLATE_WRAP(prefix, T...) 
+%define TEMPLATE_WRAP(prefix, T...)
 %template(prefix ## Foo) Foo&lt;T &gt;;
 %template(prefix ## Bar) Bar&lt;T &gt;;
 ...
@@ -9026,7 +9042,7 @@ template&lt;class T1, class T2&gt; struct pair {
    T2 second;
    pair() : first(T1()), second(T2()) { }
    pair(const T1 &amp;x, const T2 &amp;y) : first(x), second(y) { }
-   template&lt;class U1, class U2&gt; pair(const pair&lt;U1,U2&gt; &amp;x) 
+   template&lt;class U1, class U2&gt; pair(const pair&lt;U1,U2&gt; &amp;x)
                                         : first(x.first),second(x.second) { }
 };
 </PRE>
@@ -9052,12 +9068,12 @@ template&lt;class T1, class T2&gt; struct pair {
 %template(pairii) pair&lt;int,int&gt;;
 %template(pairdd) pair&lt;double,double&gt;;
 
-// Create a default constructor only 
+// Create a default constructor only
 %extend pair&lt;int,int&gt; {
    %template(paird) pair&lt;int,int&gt;;         // Default constructor
 };
 
-// Create default and conversion constructors 
+// Create default and conversion constructors
 %extend pair&lt;double,double&gt; {
    %template(paird) pair&lt;double,dobule&gt;;   // Default constructor
    %template(pairc) pair&lt;int,int&gt;;         // Conversion constructor
@@ -9068,7 +9084,7 @@ template&lt;class T1, class T2&gt; struct pair {
  instead:</P>
 <DIV class="code">
 <PRE>
-// Create default and conversion constructors 
+// Create default and conversion constructors
 %extend pair&lt;double,double&gt; {
    %template(pair) pair&lt;double,dobule&gt;;   // Default constructor
    %template(pair) pair&lt;int,int&gt;;         // Conversion constructor
@@ -9966,7 +9982,7 @@ public:
 
 class Bar {
 public:
-    int x;       
+    int x;
     Foo *operator-&gt;();
 };
 </PRE>
@@ -10035,7 +10051,7 @@ public:
     if (ref_count() == 0 || del_ref() == 0 ) {
 	delete this;
 	return 0;
-      } 
+      }
     return ref_count();
   }
 };
@@ -10052,12 +10068,12 @@ class B {
   A *_a;
 
 public:
-  B(A *a) : _a(a) { 
-    a-&gt;ref(); 
+  B(A *a) : _a(a) {
+    a-&gt;ref();
   }
 
-  ~B() { 
-    a-&gt;unref(); 
+  ~B() {
+    a-&gt;unref();
   }
 };
 
@@ -10168,7 +10184,7 @@ public:
 
 class FooBar : public Foo, public Bar {
 public:
-      using Foo::blah;  
+      using Foo::blah;
       using Bar::blah;
       char *blah(const char *x);
 };
@@ -10234,7 +10250,7 @@ public:
 class FooBar : public Foo, public Bar {
 public:
 #ifndef SWIG
-      using Foo::blah;  
+      using Foo::blah;
       using Bar::blah;
 #else
       int blah(int x);         // explicitly tell SWIG about other declarations
@@ -10366,7 +10382,7 @@ void blah() {
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; bar(foo())         # Okay
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> Although this is clearly a violation of the C++ type-system, fixing
@@ -10682,10 +10698,10 @@ struct BasicStruct {
  int x;
  double y;
 };
- 
+
 struct AltStruct {
   AltStruct(int x, double y) : x_{x}, y_{y} {}
- 
+
   int x_;
   double y_;
 };
@@ -10766,7 +10782,7 @@ struct SomeStruct {
 struct SomeStruct {
   auto FuncName(int x, int y) -&gt; int;
 };
- 
+
 auto SomeStruct::FuncName(int x, int y) -&gt; int {
   return x + y;
 }
@@ -10885,7 +10901,7 @@ struct Color {
   enum class RainbowColors : unsigned int {
     Red, Orange, Yellow, Green, Blue, Indigo, Violet
   };
-  
+
   enum class WarmColors {
     Yellow, Orange, Red
   };
@@ -11568,7 +11584,7 @@ SWIGGUILE                       Defined when using Guile
 SWIGJAVA                        Defined when using Java
 SWIGJAVASCRIPT                  Defined when using Javascript
 SWIG_JAVASCRIPT_JSC             Defined when using Javascript for JavascriptCore
-SWIG_JAVASCRIPT_V8              Defined when using Javascript for v8 or node.js 
+SWIG_JAVASCRIPT_V8              Defined when using Javascript for v8 or node.js
 SWIGLUA                         Defined when using Lua
 SWIGMODULA3                     Defined when using Modula-3
 SWIGMZSCHEME                    Defined when using Mzscheme
@@ -13408,7 +13424,7 @@ extern void add(double a, double b, double *OUTPUT);
  holds a single input value:</P>
 <DIV class="code">
 <PRE>
-int *INPUT		
+int *INPUT
 short *INPUT
 long *INPUT
 unsigned int *INPUT
@@ -13888,7 +13904,7 @@ PyObject *wrap_gcd(PyObject *self, PyObject *args) {
 
    if (!PyArg_ParseTuple(&quot;OO:gcd&quot;, &amp;obj1, &amp;obj2)) return NULL;
 
-   /* &quot;in&quot; typemap, argument 1 */<B>   
+   /* &quot;in&quot; typemap, argument 1 */<B>
    {
       arg1 = PyInt_AsLong(obj1);
    }
@@ -14006,7 +14022,7 @@ int count(<B>char *str, int len</B>, char c);
  do this is to use assignment like this:</P>
 <DIV class="code">
 <PRE>
-%typemap(in) Integer = int;   
+%typemap(in) Integer = int;
 %typemap(in) (char *buffer, int size) = (char *str, int len);
 </PRE>
 </DIV>
@@ -14024,7 +14040,7 @@ int count(<B>char *str, int len</B>, char c);
 }
 
 /* Apply all of the integer typemaps to size_t */
-%apply int { size_t };    
+%apply int { size_t };
 </PRE>
 </DIV>
 <P> <TT>%apply</TT> merely takes<EM> all</EM> of the typemaps that are
@@ -14254,7 +14270,7 @@ Preprocessor and Typemaps</A>. Here are some examples of valid typemap
    $1 = PyInt_AsLong($input);
 }
 %typemap(in) int &quot;$1 = PyInt_AsLong($input);&quot;;
-%typemap(in) int %{ 
+%typemap(in) int %{
    $1 = PyInt_AsLong($input);
 %}
 
@@ -14264,7 +14280,7 @@ Preprocessor and Typemaps</A>. Here are some examples of valid typemap
 }
 
 /* Multiple types in one typemap */
-%typemap(in) int, short, long { 
+%typemap(in) int, short, long {
    $1 = SvIV($input);
 }
 
@@ -14328,7 +14344,7 @@ class Foo {
 }
 
 %extend Foo {
-   int blah(int x);    // typemap has no effect.  Declaration is attached to Foo which 
+   int blah(int x);    // typemap has no effect.  Declaration is attached to Foo which
                        // appears before the %typemap declaration.
 };
 </PRE>
@@ -14378,7 +14394,7 @@ class Foo {
 <PRE>
 %typemap(in) int;               // Clears typemap for int
 %typemap(in) int, long, short;  // Clears typemap for int, long, short
-%typemap(in) int *output;       
+%typemap(in) int *output;
 </PRE>
 </DIV>
 <P> The <TT>%clear</TT> directive clears all typemaps for a given type.
@@ -14675,7 +14691,7 @@ Struct</TT> is fully reduced:</P>
 struct Struct {...};
 typedef Struct StructTypedef;
 
-%typemap(in) StructTypedef { 
+%typemap(in) StructTypedef {
   ...
 }
 
@@ -14741,7 +14757,7 @@ SWIGTYPE</TT>.</P>
  don't match any other rules:</P>
 <DIV class="code">
 <PRE>
-%typemap(in) SWIGTYPE              { ... simple default handling ...                          } 
+%typemap(in) SWIGTYPE              { ... simple default handling ...                          }
 </PRE>
 </DIV>
 <P> This typemap is important because it is the rule that gets triggered
@@ -15005,10 +15021,10 @@ SWIGTYPE []</TT> typemap. As the example shows, the successful match
 <PRE>
 %typemap(in, noblock=1) SWIGTYPE [] (void *argp = 0, int res = 0) {
   res = SWIG_ConvertPtr($input, &amp;argp,$descriptor, $disown |  0 );
-  if (!SWIG_IsOK(res)) { 
+  if (!SWIG_IsOK(res)) {
     SWIG_exception_fail(SWIG_ArgError(res), &quot;in method '&quot; &quot;$symname&quot; &quot;', argument &quot;
-                       &quot;$argnum&quot;&quot; of type '&quot; &quot;$type&quot;&quot;'&quot;); 
-  } 
+                       &quot;$argnum&quot;&quot; of type '&quot; &quot;$type&quot;&quot;'&quot;);
+  }
   $1 = ($ltype)(argp);
 }
 </PRE>
@@ -15028,8 +15044,8 @@ SWIGINTERN PyObject *_wrap_foo(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   res1 = SWIG_ConvertPtr(obj0, &amp;argp1,SWIGTYPE_p_a_4__int, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), &quot;in method '&quot; &quot;foo&quot; &quot;', argument &quot;
-                       &quot;1&quot;&quot; of type '&quot; &quot;int [10][4]&quot;&quot;'&quot;); 
-  } 
+                       &quot;1&quot;&quot; of type '&quot; &quot;int [10][4]&quot;&quot;'&quot;);
+  }
   arg1 = (int (*)[4])(argp1);
 ...
 }
@@ -15139,7 +15155,7 @@ const char*</TT>.</LI>
 wrap_whatever() {
     ...
     // Typemap code
-    {                    
+    {
        arg1 = PyInt_AsLong(obj1);
     }
     ...
@@ -15229,7 +15245,7 @@ wrap_foo() {
       ...
       temp.assign(s,len);
       ...
-   } 
+   }
    ...
 }
 </PRE>
@@ -15705,10 +15721,10 @@ $symname          - Name of function/method being wrapped
 <PRE>
 // Get a list of integers
 %typemap(in) int *items {
-   int nitems = Length($input);    
+   int nitems = Length($input);
    $1 = (int *) malloc(sizeof(int)*nitems);
 }
-// Free the list 
+// Free the list
 %typemap(freearg) int *items {
    free($1);
 }
@@ -15792,7 +15808,7 @@ try {
 catch(char const *_e) {
     PyErr_SetString(PyExc_RuntimeError, _e);
     SWIG_fail;
-    
+
 }
 ...
 </PRE>
@@ -15833,7 +15849,7 @@ void set_vector(int type, float value[4]);
     if (PyNumber_Check(o)) {
       temp[i] = (float) PyFloat_AsDouble(o);
     } else {
-      PyErr_SetString(PyExc_ValueError,&quot;Sequence elements must be numbers&quot;);      
+      PyErr_SetString(PyExc_ValueError,&quot;Sequence elements must be numbers&quot;);
       return NULL;
     }
   }
@@ -15870,7 +15886,7 @@ void set_vector(int type, float value[4]);
     if (PyNumber_Check(o)) {
       temp[i] = (float) PyFloat_AsDouble(o);
     } else {
-      PyErr_SetString(PyExc_ValueError,&quot;Sequence elements must be numbers&quot;);      
+      PyErr_SetString(PyExc_ValueError,&quot;Sequence elements must be numbers&quot;);
       return NULL;
     }
   }
@@ -15909,7 +15925,7 @@ void set_vector(int type, float value[4]);
     if (PyNumber_Check(o)) {
       $1[i] = (float) PyFloat_AsDouble(o);
     } else {
-      PyErr_SetString(PyExc_ValueError,&quot;Sequence elements must be numbers&quot;);      
+      PyErr_SetString(PyExc_ValueError,&quot;Sequence elements must be numbers&quot;);
       free($1);
       return NULL;
     }
@@ -15980,7 +15996,7 @@ example.i:10: Warning 462: Unable to set variable of type float [4].
 &gt;&gt;&gt; s.x = [1, 2.5, 5, 10]
 &gt;&gt;&gt; print s.x
 _1008fea8_p_float
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> To fix this, you can write an &quot;out&quot; typemap. For example:</P>
@@ -16107,7 +16123,7 @@ struct XX {
   XX(const XX &amp;other) { cout &lt;&lt; &quot;XX(const XX &amp;)&quot; &lt;&lt; endl; }
   XX &amp; operator =(const XX &amp;other) { cout &lt;&lt; &quot;operator=(const XX &amp;)&quot; &lt;&lt; endl; return *this; }
   ~XX() { cout &lt;&lt; &quot;~XX()&quot; &lt;&lt; endl; }
-  static XX create() { 
+  static XX create() {
     return XX(0);
   }
 };
@@ -16207,7 +16223,7 @@ try {
 <PRE>
 example.i:28: Warning 474: Method XX::create() usage of the optimal attribute ignored
 example.i:14: Warning 474: in the out typemap as the following cannot be used to generate
-optimal code: 
+optimal code:
 try {
   result = XX::create();
 } catch(const std::exception &amp;e) {
@@ -16686,7 +16702,7 @@ struct A {
 }
 
 // %my_typemaps macro definition
-%define %my_typemaps(Type) 
+%define %my_typemaps(Type)
 %typemap(in, fragment=&quot;incode&quot;{Type}) Type {
   value = in_method_##Type(obj);
 }
@@ -17017,7 +17033,7 @@ _wrap_foo(argc, args[]) {
    if (argc == 1) {
        if (IsInteger(args[0])) {
            return _wrap_foo_0(argc,args);
-       } 
+       }
        if (IsDouble(args[0])) {
            return _wrap_foo_1(argc,args);
        }
@@ -17048,37 +17064,37 @@ _wrap_foo(argc, args[]) {
 <PRE>
 Symbolic Name                   Precedence Value
 ------------------------------  ------------------
-SWIG_TYPECHECK_POINTER           0  
-SWIG_TYPECHECK_VOIDPTR           10 
-SWIG_TYPECHECK_BOOL              15 
-SWIG_TYPECHECK_UINT8             20 
-SWIG_TYPECHECK_INT8              25 
-SWIG_TYPECHECK_UINT16            30 
-SWIG_TYPECHECK_INT16             35 
-SWIG_TYPECHECK_UINT32            40 
-SWIG_TYPECHECK_INT32             45 
-SWIG_TYPECHECK_UINT64            50 
-SWIG_TYPECHECK_INT64             55 
-SWIG_TYPECHECK_UINT128           60 
-SWIG_TYPECHECK_INT128            65 
-SWIG_TYPECHECK_INTEGER           70 
-SWIG_TYPECHECK_FLOAT             80 
-SWIG_TYPECHECK_DOUBLE            90 
-SWIG_TYPECHECK_COMPLEX           100 
-SWIG_TYPECHECK_UNICHAR           110 
-SWIG_TYPECHECK_UNISTRING         120 
-SWIG_TYPECHECK_CHAR              130 
-SWIG_TYPECHECK_STRING            140 
-SWIG_TYPECHECK_BOOL_ARRAY        1015 
-SWIG_TYPECHECK_INT8_ARRAY        1025 
-SWIG_TYPECHECK_INT16_ARRAY       1035 
-SWIG_TYPECHECK_INT32_ARRAY       1045 
-SWIG_TYPECHECK_INT64_ARRAY       1055 
-SWIG_TYPECHECK_INT128_ARRAY      1065 
-SWIG_TYPECHECK_FLOAT_ARRAY       1080 
-SWIG_TYPECHECK_DOUBLE_ARRAY      1090 
-SWIG_TYPECHECK_CHAR_ARRAY        1130 
-SWIG_TYPECHECK_STRING_ARRAY      1140 
+SWIG_TYPECHECK_POINTER           0
+SWIG_TYPECHECK_VOIDPTR           10
+SWIG_TYPECHECK_BOOL              15
+SWIG_TYPECHECK_UINT8             20
+SWIG_TYPECHECK_INT8              25
+SWIG_TYPECHECK_UINT16            30
+SWIG_TYPECHECK_INT16             35
+SWIG_TYPECHECK_UINT32            40
+SWIG_TYPECHECK_INT32             45
+SWIG_TYPECHECK_UINT64            50
+SWIG_TYPECHECK_INT64             55
+SWIG_TYPECHECK_UINT128           60
+SWIG_TYPECHECK_INT128            65
+SWIG_TYPECHECK_INTEGER           70
+SWIG_TYPECHECK_FLOAT             80
+SWIG_TYPECHECK_DOUBLE            90
+SWIG_TYPECHECK_COMPLEX           100
+SWIG_TYPECHECK_UNICHAR           110
+SWIG_TYPECHECK_UNISTRING         120
+SWIG_TYPECHECK_CHAR              130
+SWIG_TYPECHECK_STRING            140
+SWIG_TYPECHECK_BOOL_ARRAY        1015
+SWIG_TYPECHECK_INT8_ARRAY        1025
+SWIG_TYPECHECK_INT16_ARRAY       1035
+SWIG_TYPECHECK_INT32_ARRAY       1045
+SWIG_TYPECHECK_INT64_ARRAY       1055
+SWIG_TYPECHECK_INT128_ARRAY      1065
+SWIG_TYPECHECK_FLOAT_ARRAY       1080
+SWIG_TYPECHECK_DOUBLE_ARRAY      1090
+SWIG_TYPECHECK_CHAR_ARRAY        1130
+SWIG_TYPECHECK_STRING_ARRAY      1140
 </PRE>
 </DIV>
 <P> (These precedence levels are defined in <TT>swig.swg</TT>, a library
@@ -17104,7 +17120,7 @@ SWIG_TYPECHECK_STRING_ARRAY      1140
  	 const unsigned int &amp;, const unsigned short &amp;, const unsigned long &amp;,
 	 const long long &amp;, const unsigned long long &amp;,
 	 enum SWIGTYPE,
-         bool, const bool &amp; 
+         bool, const bool &amp;
 {
   $1 = (PyInt_Check($input) || PyLong_Check($input)) ? 1 : 0;
 }
@@ -17188,7 +17204,7 @@ SWIG_TYPECHECK_STRING_ARRAY      1140
          SWIG_exception(SWIG_TypeError, &quot;string expected&quot;);
      }
 }
-// Copy the typecheck code for &quot;char *&quot;.  
+// Copy the typecheck code for &quot;char *&quot;.
 %typemap(typecheck) std::string = char *;
 </PRE>
 </DIV>
@@ -17662,7 +17678,7 @@ class OutOfMemory {};
 %exception allocate {
     try {
         $action
-    } 
+    }
     catch (MemoryError) {
         croak(&quot;Out of memory&quot;);
     }
@@ -17680,7 +17696,7 @@ Ambiguity resolution and renaming</A>. For example, if you wanted to
 %exception Object::allocate {
     try {
         $action
-    } 
+    }
     catch (MemoryError) {
         croak(&quot;Out of memory&quot;);
     }
@@ -17697,7 +17713,7 @@ Ambiguity resolution and renaming</A>. For example, if you wanted to
 %exception Object::allocate(int) {
     try {
         $action
-    } 
+    }
     catch (MemoryError) {
         croak(&quot;Out of memory&quot;);
     }
@@ -17718,7 +17734,7 @@ Ambiguity resolution and renaming</A>. For example, if you wanted to
 %exception Object::allocate(int) {
     try {
         $action
-    } 
+    }
     catch (MemoryError) {
         croak(&quot;Out of memory&quot;);
     }
@@ -17784,7 +17800,7 @@ Ambiguity resolution and renaming</A>. For example, if you wanted to
   log(&quot;fulldecl: $fulldecl&quot;);
   try {
     $action
-  } 
+  }
   catch (MemoryError) {
       croak(&quot;Out of memory in $decl&quot;);
   }
@@ -17807,7 +17823,7 @@ something</TT> wrapper methods for Perl:</P>
   log(&quot;fulldecl: void Special::something(char const *)&quot;);
   try {
     (arg1)-&gt;something((char const *)arg2);
-  } 
+  }
   catch (MemoryError) {
     croak(&quot;Out of memory in Special::something(char const *)&quot;);
   }
@@ -17824,7 +17840,7 @@ something</TT> wrapper methods for Perl:</P>
 <DIV class="code">
 <PRE>
 // Language independent exception handler
-%include exception.i       
+%include exception.i
 
 %exception {
     try {
@@ -17987,7 +18003,7 @@ char *strdup(const char *s);
 %feature(&quot;except&quot;) Object::allocate {
     try {
         $action
-    } 
+    }
     catch (MemoryError) {
         croak(&quot;Out of memory&quot;);
     }
@@ -18059,7 +18075,7 @@ Ambiguity resolution and renaming</A> section applies to all <TT>
  class for adding to the throws clause.</P>
 <DIV class="code">
 <PRE>
-%feature(&quot;except&quot;, throws=&quot;MyExceptionClass&quot;) Object::method { 
+%feature(&quot;except&quot;, throws=&quot;MyExceptionClass&quot;) Object::method {
    try {
      $action
    } catch (...) {
@@ -18305,7 +18321,7 @@ def bar(*args):
          return apply(examplec.Foo_bar_id,args)
     return apply(examplec.Foo_bar,args)
 %}
-    
+
 class Foo {
 public:
     int bar(int x);
@@ -18762,9 +18778,9 @@ int execlp(const char *path, const char *arg, ...);
 <P> and is effectively seen as:</P>
 <DIV class="code">
 <PRE>
-int execlp(const char *path, const char *arg, 
-           char *str1 = NULL, 
-           char *str2 = NULL, 
+int execlp(const char *path, const char *arg,
+           char *str1 = NULL,
+           char *str2 = NULL,
            char *str3 = NULL);
 </PRE>
 </DIV>
@@ -18909,7 +18925,7 @@ wrap_printf() {
     pystr = PyUnicode_AsUTF8String(pyobj);
     str = strdup(PyBytes_AsString(pystr));
     Py_XDECREF(pystr);
-%#else  
+%#else
     if (!PyString_Check(pyobj)) {
        PyErr_SetString(PyExc_ValueError, &quot;Expected a string&quot;);
        return NULL;
@@ -19002,7 +19018,7 @@ http://sources.redhat.com/libffi</A>). libffi is a library that allows
    $1 = (void *) argv;
 }
 
-/* Rewrite the function call, using libffi */    
+/* Rewrite the function call, using libffi */
 
 %feature(&quot;action&quot;) execlp {
   int       i, vc;
@@ -19019,7 +19035,7 @@ http://sources.redhat.com/libffi</A>). libffi is a library that allows
   /* Set up path parameter */
   types[0] = &amp;ffi_type_pointer;
   values[0] = &amp;arg1;
-  
+
   /* Set up first argument */
   types[1] = &amp;ffi_type_pointer;
   values[1] = &amp;arg2;
@@ -19104,7 +19120,7 @@ int execlp(const char *path, const char *arg1, ...);
   $2 = (void *) argv;
 }
 
-/* Rewrite the function call using libffi */    
+/* Rewrite the function call using libffi */
 %feature(&quot;action&quot;) printf {
   int       i, vc;
   ffi_cif   cif;
@@ -19138,7 +19154,7 @@ int execlp(const char *path, const char *arg1, ...);
       break;
     default:
       abort();    /* Whoa! We're seriously hosed */
-      break;   
+      break;
     }
   }
   if (ffi_prep_cif(&amp;cif, FFI_DEFAULT_ABI, vc+1,
@@ -20849,11 +20865,11 @@ EXPORT int ACL___fact__SWIG_0 (char *larg1) {
     int lresult = (int)0 ;
     char *arg1 = (char *) 0 ;
     int result;
-    
+
     arg1 = larg1;
     try {
         result = (int)fact(arg1);
-        
+
         lresult = result;
         return lresult;
     } catch (...) {
@@ -20866,11 +20882,11 @@ EXPORT int ACL___fact__SWIG_1 (int larg1) {
     int lresult = (int)0 ;
     int arg1 ;
     int result;
-    
+
     arg1 = larg1;
     try {
         result = (int)fact(arg1);
-        
+
         lresult = result;
         return lresult;
     } catch (...) {
@@ -20922,10 +20938,10 @@ EXPORT int ACL___fact__SWIG_1 (int larg1) {
 <PRE>
 swig -allegrocl [ options ] filename
 
-   -identifier-converter [name] - Binds the variable swig:*swig-identifier-convert* 
+   -identifier-converter [name] - Binds the variable swig:*swig-identifier-convert*
                                   in the generated .cl file to <TT>name</TT>.
 				  This function is used to generate symbols
-				  for the lisp side of the interface. 
+				  for the lisp side of the interface.
 
    -cwrap - [default] Generate a .cxx file containing C wrapper function when
             wrapping C code. The interface generated is similar to what is
@@ -20937,7 +20953,7 @@ swig -allegrocl [ options ] filename
    -isolate - With this command-line argument, all lisp helper functions are defined
               in a unique package named <TT>swig.&lt;module-name&gt;</TT> rather than
 	      <TT>swig</TT>. This prevents conflicts when the module is
-	      intended to be used with other swig generated interfaces that may, 
+	      intended to be used with other swig generated interfaces that may,
 	      for instance, make use of different identifier converters.
 </PRE>
 </DIV>
@@ -20997,7 +21013,7 @@ int fact(int n);
 	       |
         _______v______
        |              |  (foreign side)
-       | Wrapper code |  extern &quot;C&quot; wrappers calling C++ 
+       | Wrapper code |  extern &quot;C&quot; wrappers calling C++
        |______________|  functions and methods.
                |
     .  . . - - + - - . .  .
@@ -21008,7 +21024,7 @@ int fact(int n);
                |
 	       +----------------------------
         _______v______              _______v______
-       |              |            |              | (lisp side)    
+       |              |            |              | (lisp side)
        |    Defuns    |            |  Defmethods  | wrapper for overloaded
        |______________|            |______________| functions or those with
         (lisp side)                        |        defaulted arguments
@@ -21212,7 +21228,7 @@ namespace car {
  -nocwrap.</P>
 <DIV class="code">
 <PRE>
-#define A 1                    =&gt; (swig-defconstant &quot;A&quot; 1)  
+#define A 1                    =&gt; (swig-defconstant &quot;A&quot; 1)
 #define B 'c'                  =&gt; (swig-defconstant &quot;B&quot; #\c)
 #define C B                    =&gt; (swig-defconstant &quot;C&quot; #\c)
 #define D 1.0e2                =&gt; (swig-defconstant &quot;D&quot; 1.0d2)
@@ -21298,7 +21314,7 @@ t
 user&gt; (load &quot;globalvar.cl&quot;)
 ; Loading c:\mikel\src\swig\test\globalvar.cl
 t
-user&gt; 
+user&gt;
 globalvar&gt; (globalvar.nnn::global_var)
 2
 globalvar&gt; (globalvar.nnn::glob_float)
@@ -21327,7 +21343,7 @@ globalvar&gt; (globalvar.nnn::glob_float)
  into lisp.</P>
 <P>For example, the following header file<DIV class="code">enum.h:
 <PRE>
-enum COL { RED, GREEN, BLUE };	
+enum COL { RED, GREEN, BLUE };
 enum FOO { FOO1 = 10, FOO2, FOO3 };
       </PRE>
 </DIV></P>
@@ -21565,7 +21581,7 @@ private</TT> or <TT>protected</TT>), because the C++ compiler won't
  can lead to confusion. Assume the below C++ header file:</P>
 <DIV class="code">synonyms.h
 <PRE>
-class A { 
+class A {
    int x;
    int y;
 };
@@ -21607,7 +21623,7 @@ t
 CL-USER&gt; (load &quot;synonym.cl&quot;)
 ; Loading c:\mikel\src\swig\test\synonym.cl
 t
-CL-USER&gt; 
+CL-USER&gt;
 synonym&gt; (setf a (xxx 3))
 #&lt;A nil #x3261a0 @ #x207299da&gt;
 synonym&gt; (setf foo (yyy 10))
@@ -21616,7 +21632,7 @@ synonym&gt; (zzz a)
 6
 synonym&gt; (zzz foo)
 20
-synonym&gt; 
+synonym&gt;
     </PRE>
 </DIV>
 <H4><A name="Allegrocl_nn29"></A>18.3.8.1 Choosing a primary type</H4>
@@ -21660,13 +21676,13 @@ float xxx(A *inst, int x);     /* return x + A-&gt;x + A-&gt;y */
 <PRE>
 EXPORT void ACL___delete_A__SWIG_0 (A *larg1) {
     A *arg1 = (A *) 0 ;
-    
+
     arg1 = larg1;
     try {
         delete arg1;
-        
+
     } catch (...) {
-        
+
     }
 }
 
@@ -21676,12 +21692,12 @@ EXPORT float ACL___xxx__SWIG_0 (int larg1, int larg2) {
     int arg1 ;
     int arg2 ;
     float result;
-    
+
     arg1 = larg1;
     arg2 = larg2;
     try {
         result = (float)xxx(arg1,arg2);
-        
+
         lresult = result;
         return lresult;
     } catch (...) {
@@ -21694,11 +21710,11 @@ EXPORT float ACL___xxx__SWIG_1 (int larg1) {
     float lresult = (float)0 ;
     int arg1 ;
     float result;
-    
+
     arg1 = larg1;
     try {
         result = (float)xxx(arg1);
-        
+
         lresult = result;
         return lresult;
     } catch (...) {
@@ -21712,12 +21728,12 @@ EXPORT float ACL___xxx__SWIG_2 (A *larg1, int larg2) {
     A *arg1 = (A *) 0 ;
     int arg2 ;
     float result;
-    
+
     arg1 = larg1;
     arg2 = larg2;
     try {
         result = (float)xxx(arg1,arg2);
-        
+
         lresult = result;
         return lresult;
     } catch (...) {
@@ -21775,7 +21791,7 @@ overload&gt; (xxx a 1)
 31.0
 overload&gt; (xxx a 2)
 32.0
-overload&gt; 
+overload&gt;
     </PRE>
 </DIV>
 <H3><A name="Allegrocl_nn31"></A>18.3.10 Operator wrapping and Operator
@@ -21904,7 +21920,7 @@ opoverload&gt; (B___eq__ x1 x2)
 nil
 opoverload&gt; (B___eq__ x1 3)
 nil
-opoverload&gt; 
+opoverload&gt;
     </PRE>
 </DIV>
 <H3><A name="Allegrocl_nn32"></A>18.3.11 Varargs</H3>
@@ -22184,7 +22200,7 @@ $1</TT> is the local variable to which it is being assigned. The default
 %typemap(lin)       wchar_t &quot;(cl:let (($out (cl:char-code $in)))\n  $body)&quot;;
 %typemap(lin)       wchar_t* &quot;(excl:with-native-string
                                          ($out $in
-                                          :external-format #+little-endian :fat-le 
+                                          :external-format #+little-endian :fat-le
                                                            #-little-endian :fat)\n
                                  $body)&quot;
 
@@ -22321,7 +22337,7 @@ Android NDK</A> which can be installed as per instructions in the links.
 <DIV class="shell">
 <PRE>
 $ export PATH=$HOME/android/android-sdk-linux_x86/tools:$HOME/android/android-sdk-linux_x86/platform-tools:$HOME/android/android-ndk-r6b:$PATH
-$ mkdir AndroidApps 
+$ mkdir AndroidApps
 $ cd AndroidApps
 </PRE>
 </DIV>
@@ -22392,7 +22408,7 @@ public class SwigSimple extends Activity
       outputText.append(&quot;Started...\n&quot;);
       nativeCall();
       outputText.append(&quot;Finished!\n&quot;);
-      
+
       // Ensure scroll to end of text
       scroller.post(new Runnable() {
         public void run() {
@@ -22421,10 +22437,10 @@ public class SwigSimple extends Activity
     android:layout_height=&quot;fill_parent&quot;
     &gt;
 &lt;Button
-    android:id=&quot;@+id/RunButton&quot;  
-    android:layout_width=&quot;wrap_content&quot;  
-    android:layout_height=&quot;wrap_content&quot;  
-    android:text=&quot;Run...&quot;  
+    android:id=&quot;@+id/RunButton&quot;
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:text=&quot;Run...&quot;
     android:onClick=&quot;onRunButtonClick&quot;
     /&gt;
 &lt;ScrollView
@@ -22457,14 +22473,14 @@ Using hardware devices</A> on the Android developer's site. When
 <DIV class="shell">
 <PRE>
 $ adb devices
-List of devices attached 
+List of devices attached
 A32-6DBE0001-9FF80000-015D62C3-02018028	device
 </PRE>
 </DIV>
 <P> This means you are now ready to install the application...</P>
 <DIV class="shell">
 <PRE>
-$ adb install bin/SwigSimple-debug.apk 
+$ adb install bin/SwigSimple-debug.apk
 95 KB/s (4834 bytes in 0.049s)
 	pkg: /data/local/tmp/SwigSimple-debug.apk
 Success
@@ -22572,7 +22588,7 @@ src/org/swig/simple/SwigSimple.java</TT> to call the JNI code as follows
     public void nativeCall()
     {
       // Call our gcd() function
-      
+
       int x = 42;
       int y = 105;
       int g = example.gcd(x,y);
@@ -22606,7 +22622,7 @@ src/org/swig/simple/SwigSimple.java</TT> to call the JNI code as follows
 <PRE>
 $ ant debug
 $ adb uninstall org.swig.simple
-$ adb install bin/SwigSimple-debug.apk 
+$ adb install bin/SwigSimple-debug.apk
 </PRE>
 </DIV>
 <P> Run the app again and this time you will see the output pictured
@@ -22642,7 +22658,7 @@ public:
   virtual ~Shape() {
     nshapes--;
   }
-  double  x, y;   
+  double  x, y;
   void    move(double dx, double dy);
   virtual double area() = 0;
   virtual double perimeter() = 0;
@@ -22801,7 +22817,7 @@ public class SwigClass extends Activity
       outputText.append(&quot;Started...\n&quot;);
       nativeCall();
       outputText.append(&quot;Finished!\n&quot;);
-      
+
       // Ensure scroll to end of text
       scroller.post(new Runnable() {
         public void run() {
@@ -22889,10 +22905,10 @@ res/layout/main.xml</TT> to contain the xml for the 'Run' button and
     android:layout_height=&quot;fill_parent&quot;
     &gt;
 &lt;Button
-    android:id=&quot;@+id/RunButton&quot;  
-    android:layout_width=&quot;wrap_content&quot;  
-    android:layout_height=&quot;wrap_content&quot;  
-    android:text=&quot;Run...&quot;  
+    android:id=&quot;@+id/RunButton&quot;
+    android:layout_width=&quot;wrap_content&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:text=&quot;Run...&quot;
     android:onClick=&quot;onRunButtonClick&quot;
     /&gt;
 &lt;ScrollView
@@ -22915,7 +22931,7 @@ res/layout/main.xml</TT> to contain the xml for the 'Run' button and
 <PRE>
 $ ant debug
 $ adb uninstall org.swig.classexample
-$ adb install bin/SwigClass-debug.apk 
+$ adb install bin/SwigClass-debug.apk
 </PRE>
 </DIV>
 <P> Run the app to see the result of calling the C++ code from Java:</P>
@@ -23500,7 +23516,7 @@ public static void myArrayCopy(int[] sourceArray, int[] targetArray, int nitems)
 <DIV class="code">
 <PRE>
 [global::System.Runtime.InteropServices.DllImport(&quot;example&quot;, EntryPoint=&quot;CSharp_myArrayCopy&quot;)]
-public static extern void myArrayCopy([global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(UnmanagedType.LPArray)]int[] jarg1, 
+public static extern void myArrayCopy([global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(UnmanagedType.LPArray)]int[] jarg1,
                                       [global::System.Runtime.InteropServices.Out, global::System.Runtime.InteropServices.MarshalAs(UnmanagedType.LPArray)]int[] jarg2,
                                        int jarg3);
 </PRE>
@@ -23534,7 +23550,7 @@ void myArraySwap(int *array1, int *array2, int nitems);
 <DIV class="code">
 <PRE>
   [global::System.Runtime.InteropServices.DllImport(&quot;example&quot;, EntryPoint=&quot;CSharp_myArraySwap&quot;)]
-  public static extern void myArraySwap([global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.Out, global::System.Runtime.InteropServices.MarshalAs(UnmanagedType.LPArray)]int[] jarg1, 
+  public static extern void myArraySwap([global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.Out, global::System.Runtime.InteropServices.MarshalAs(UnmanagedType.LPArray)]int[] jarg1,
                                         [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.Out, global::System.Runtime.InteropServices.MarshalAs(UnmanagedType.LPArray)]int[] jarg2,
                                          int jarg3);
 </PRE>
@@ -23763,17 +23779,17 @@ in &lt;0x0000c&gt; runme:Main ()
 <PRE>
 SWIGEXPORT void SWIGSTDCALL CSharp_positivesonly(int jarg1) {
     int arg1 ;
-    
-    arg1 = (int)jarg1; 
-    
+
+    arg1 = (int)jarg1;
+
     if (arg1 &lt; 0) {
         SWIG_CSharpSetPendingExceptionArgument(SWIG_CSharpArgumentOutOfRangeException,
                                                &quot;only positive numbers accepted&quot;, &quot;number&quot;);
         return ;
     }
-    
+
     positivesonly(arg1);
-    
+
 }
 </PRE>
 </DIV>
@@ -23876,17 +23892,17 @@ void negativesonly(int value) {
 <PRE>
 SWIGEXPORT void SWIGSTDCALL CSharp_negativesonly(int jarg1) {
     int arg1 ;
-    
-    arg1 = (int)jarg1; 
-    
+
+    arg1 = (int)jarg1;
+
     try {
         negativesonly(arg1);
-        
+
     } catch (std::out_of_range e) {
         SWIG_CSharpSetPendingException(SWIG_CSharpApplicationException, e.what());
         return ;
     }
-    
+
 }
 </PRE>
 </DIV>
@@ -23934,8 +23950,8 @@ void evensonly(int input) throw (std::out_of_range) {
 <PRE>
 SWIGEXPORT void SWIGSTDCALL CSharp_evensonly(int jarg1) {
     int arg1 ;
-    
-    arg1 = (int)jarg1; 
+
+    arg1 = (int)jarg1;
     try {
         evensonly(arg1);
     }
@@ -23945,7 +23961,7 @@ SWIGEXPORT void SWIGSTDCALL CSharp_evensonly(int jarg1) {
           return ;
       }
     }
-    
+
 }
 </PRE>
 </DIV>
@@ -24044,7 +24060,7 @@ SWIG_CSharpSetPendingExceptionArgument()</TT> does. In fact the method
 <PRE>
 // Custom C# Exception
 class CustomApplicationException : global::System.ApplicationException {
-  public CustomApplicationException(string message) 
+  public CustomApplicationException(string message)
     : base(message) {
   }
 }
@@ -24157,7 +24173,7 @@ public class CSharpDerived : Base
 <PRE>
 public class runme
 {
-  static void Main() 
+  static void Main()
   {
     Caller myCaller = new Caller();
 
@@ -24305,7 +24321,7 @@ CSharp_Base_director_connect()</TT>. This method simply maps each C#
  delegate onto a C function pointer.</P>
 <DIV class="code">
 <PRE>
-SWIGEXPORT void SWIGSTDCALL CSharp_Base_director_connect(void *objarg, 
+SWIGEXPORT void SWIGSTDCALL CSharp_Base_director_connect(void *objarg,
                                         SwigDirector_Base::SWIG_Callback0_t callback0,
                                         SwigDirector_Base::SWIG_Callback1_t callback1) {
   Base *obj = (Base *)objarg;
@@ -24324,7 +24340,7 @@ public:
 
     typedef unsigned int (SWIGSTDCALL* SWIG_Callback0_t)(unsigned int);
     typedef void (SWIGSTDCALL* SWIG_Callback1_t)(void *, unsigned int);
-    void swig_connect_director(SWIG_Callback0_t callbackUIntMethod, 
+    void swig_connect_director(SWIG_Callback0_t callbackUIntMethod,
                                SWIG_Callback1_t callbackBaseBoolMethod);
 
 private:
@@ -24333,7 +24349,7 @@ private:
     void swig_init_callbacks();
 };
 
-void SwigDirector_Base::swig_connect_director(SWIG_Callback0_t callbackUIntMethod, 
+void SwigDirector_Base::swig_connect_director(SWIG_Callback0_t callbackUIntMethod,
                                               SWIG_Callback1_t callbackBaseBoolMethod) {
   swig_callbackUIntMethod = callbackUIntMethod;
   swig_callbackBaseBoolMethod = callbackBaseBoolMethod;
@@ -24355,12 +24371,12 @@ SwigDirector_Base::BaseBoolMethod</TT> shows this - the callback is made
 void SwigDirector_Base::BaseBoolMethod(Base const &amp;b, bool flag) {
   void * jb = 0 ;
   unsigned int jflag  ;
-  
+
   if (!swig_callbackBaseBoolMethod) {
     Base::BaseBoolMethod(b,flag);
     return;
   } else {
-    jb = (Base *) &amp;b; 
+    jb = (Base *) &amp;b;
     jflag = flag;
     swig_callbackBaseBoolMethod(jb, jflag);
   }
@@ -24684,17 +24700,17 @@ dateOut</TT> is a non-const output type.</P>
 <PRE>
 public class Action : global::System.IDisposable {
   ...
-  public Action(CDate dateIn, CDate dateOut) 
+  public Action(CDate dateIn, CDate dateOut)
       : this(examplePINVOKE.new_Action(CDate.getCPtr(dateIn), CDate.getCPtr(dateOut)), true) {
-    if (examplePINVOKE.SWIGPendingException.Pending) 
+    if (examplePINVOKE.SWIGPendingException.Pending)
       throw examplePINVOKE.SWIGPendingException.Retrieve();
   }
 
   public int doSomething(CDate dateIn, CDate dateOut) {
-    int ret = examplePINVOKE.Action_doSomething(swigCPtr, 
-                                                CDate.getCPtr(dateIn), 
+    int ret = examplePINVOKE.Action_doSomething(swigCPtr,
+                                                CDate.getCPtr(dateIn),
                                                 CDate.getCPtr(dateOut));
-    if (examplePINVOKE.SWIGPendingException.Pending) 
+    if (examplePINVOKE.SWIGPendingException.Pending)
       throw examplePINVOKE.SWIGPendingException.Retrieve();
     return ret;
   }
@@ -24718,7 +24734,7 @@ CDate</TT> and '$csinput' is translated into the name of the parameter,
 System.DateTime dateIn = new System.DateTime(2011, 4, 13);
 System.DateTime dateOut = new System.DateTime();
 
-// Note in calls below, dateIn remains unchanged and dateOut 
+// Note in calls below, dateIn remains unchanged and dateOut
 // is set to a new value by the C++ call
 Action action = new Action(dateIn, out dateOut);
 dateIn = new System.DateTime(2012, 7, 14);
@@ -24732,16 +24748,16 @@ dateIn = new System.DateTime(2012, 7, 14);
 <DIV class="code">
 <PRE>
 %typemap(cstype) const CDate &amp; &quot;System.DateTime&quot;
-%typemap(csin, 
+%typemap(csin,
          pre=&quot;    CDate temp$csinput = new CDate($csinput.Year, $csinput.Month, $csinput.Day);&quot;
         ) const CDate &amp;
          &quot;$csclassname.getCPtr(temp$csinput)&quot;
 
 %typemap(cstype) CDate &amp; &quot;out System.DateTime&quot;
-%typemap(csin, 
-         pre=&quot;    CDate temp$csinput = new CDate();&quot;, 
+%typemap(csin,
+         pre=&quot;    CDate temp$csinput = new CDate();&quot;,
          post=&quot;      $csinput = new System.DateTime(temp$csinput.getYear(),&quot;
-              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;, 
+              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;,
          cshin=&quot;out $csinput&quot;
         ) CDate &amp;
          &quot;$csclassname.getCPtr(temp$csinput)&quot;
@@ -24758,14 +24774,14 @@ public class Action : global::System.IDisposable {
     CDate tempdateIn = new CDate(dateIn.Year, dateIn.Month, dateIn.Day);
     CDate tempdateOut = new CDate();
     try {
-      int ret = examplePINVOKE.Action_doSomething(swigCPtr, 
-                                                  CDate.getCPtr(tempdateIn), 
+      int ret = examplePINVOKE.Action_doSomething(swigCPtr,
+                                                  CDate.getCPtr(tempdateIn),
                                                   CDate.getCPtr(tempdateOut));
-      if (examplePINVOKE.SWIGPendingException.Pending) 
+      if (examplePINVOKE.SWIGPendingException.Pending)
         throw examplePINVOKE.SWIGPendingException.Retrieve();
       return ret;
     } finally {
-      dateOut = new System.DateTime(tempdateOut.getYear(), 
+      dateOut = new System.DateTime(tempdateOut.getYear(),
                                     tempdateOut.getMonth(), tempdateOut.getDay(), 0, 0, 0);
     }
   }
@@ -24776,14 +24792,14 @@ public class Action : global::System.IDisposable {
     try {
       return examplePINVOKE.new_Action(CDate.getCPtr(tempdateIn), CDate.getCPtr(tempdateOut));
     } finally {
-      dateOut = new System.DateTime(tempdateOut.getYear(), 
+      dateOut = new System.DateTime(tempdateOut.getYear(),
                                     tempdateOut.getMonth(), tempdateOut.getDay(), 0, 0, 0);
     }
   }
 
-  public Action(System.DateTime dateIn, out System.DateTime dateOut) 
+  public Action(System.DateTime dateIn, out System.DateTime dateOut)
       : this(Action.SwigConstructAction(dateIn, out dateOut), true) {
-    if (examplePINVOKE.SWIGPendingException.Pending) 
+    if (examplePINVOKE.SWIGPendingException.Pending)
       throw examplePINVOKE.SWIGPendingException.Retrieve();
   }
 }
@@ -24848,7 +24864,7 @@ example.addYears(ref christmasEve, 10); // christmasEve now contains 2010-12-24
 %typemap(csin,
          pre=&quot;    CDate temp$csinput = new CDate($csinput.Year, $csinput.Month, $csinput.Day);&quot;,
          post=&quot;      $csinput = new System.DateTime(temp$csinput.getYear(),&quot;
-              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;, 
+              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;,
          cshin=&quot;ref $csinput&quot;
         ) CDate *
          &quot;$csclassname.getCPtr(temp$csinput)&quot;
@@ -24882,7 +24898,7 @@ public class example {
 %typemap(csin,
   pre=&quot;    using (CDate temp$csinput = new CDate($csinput.Year, $csinput.Month, $csinput.Day)) {&quot;,
   post=&quot;      $csinput = new System.DateTime(temp$csinput.getYear(),&quot;
-       &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;, 
+       &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;,
   terminator=&quot;    } // terminate temp$csinput using block&quot;,
   cshin=&quot;ref $csinput&quot;
  ) CDate *
@@ -24946,7 +24962,7 @@ Structure data members</A>. The typemap type required is thus <TT>CDate
 %typemap(csin,
          pre=&quot;    CDate temp$csinput = new CDate($csinput.Year, $csinput.Month, $csinput.Day);&quot;,
          post=&quot;      $csinput = new System.DateTime(temp$csinput.getYear(),&quot;
-              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;, 
+              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;,
          cshin=&quot;ref $csinput&quot;
         ) CDate *
          &quot;$csclassname.getCPtr(temp$csinput)&quot;
@@ -24978,14 +24994,14 @@ public class example {
     set {
       CDate tempvalue = new CDate(value.Year, value.Month, value.Day);
       examplePINVOKE.ImportantDate_set(CDate.getCPtr(tempvalue));
-    } 
+    }
     /* csvarout typemap code */
     get {
       global::System.IntPtr cPtr = examplePINVOKE.ImportantDate_get();
       CDate tempDate = (cPtr == global::System.IntPtr.Zero) ? null : new CDate(cPtr, false);
       return new System.DateTime(tempDate.getYear(), tempDate.getMonth(), tempDate.getDay(),
                                  0, 0, 0);
-    } 
+    }
   }
   ...
 }
@@ -25388,8 +25404,8 @@ SFRI-12</A>. Since the exception values are thrown directly, if <CODE>
 %module exception_test
 
 %inline %{
-  void test_throw(int i) throws (int) { 
-    if (i == 1) throw 15; 
+  void test_throw(int i) throws (int) {
+    if (i == 1) throw 15;
   }
 %}
 </PRE>
@@ -25397,9 +25413,9 @@ SFRI-12</A>. Since the exception values are thrown directly, if <CODE>
 <P>could be run with</P>
 <DIV class="targetlang">
 <PRE>
-(handle-exceptions exvar 
+(handle-exceptions exvar
   (if (= exvar 15)
-    (print &quot;Correct!&quot;) 
+    (print &quot;Correct!&quot;)
     (print &quot;Threw something else &quot; exvar))
   (test-throw 1))
 </PRE>
@@ -27020,7 +27036,7 @@ inner_main()</CODE> function.</LI>
 <PRE>
 (define my-so (dynamic-link &quot;./libfoo&quot;))
 ;; create new module and put bindings there:
-(dynamic-call &quot;scm_init_my_modules_foo_module&quot; my-so) 
+(dynamic-call &quot;scm_init_my_modules_foo_module&quot; my-so)
 </PRE>
 </DIV> Newer Guile versions have a shorthand procedure for this:<DIV class="targetlang">
 <PRE>
@@ -27218,7 +27234,7 @@ The run-time type checker</A>. If the Scheme object passed was not a
  this:<DIV class="targetlang">
 <PRE>
 (use-modules (ice-9 documentation))
-(set! documentation-files 
+(set! documentation-files
       (cons &quot;<VAR>file</VAR>&quot; documentation-files))
 </PRE>
 </DIV></P>
@@ -27271,7 +27287,7 @@ module</I>.scm</CODE> file in the directory specified by -outdir or the
       int a;
       int getMultBy(int i) { return a * i; }
       Foo getFooMultBy(int i) { return Foo(a * i); }
-  }; 
+  };
   Foo getFooPlus(int i) { return Foo(a + i); }
 </PRE>
 </DIV>
@@ -27280,8 +27296,8 @@ module</I>.scm</CODE> file in the directory specified by -outdir or the
 <DIV class="targetlang">
 <PRE>
 (define-class &lt;Foo&gt; (&lt;swig&gt;)
-  (a #:allocation #:swig-virtual 
-     #:slot-ref primitive:Foo-a-get 
+  (a #:allocation #:swig-virtual
+     #:slot-ref primitive:Foo-a-get
      #:slot-set! primitive:Foo-a-set)
   #:metaclass &lt;swig-metaclass&gt;
   #:new-function primitive:new-Foo
@@ -27302,9 +27318,9 @@ module</I>.scm</CODE> file in the directory specified by -outdir or the
 <DIV class="targetlang">
 <PRE>
 (define-class &lt;Foo&gt; (&lt;swig&gt;)
-  (a #:allocation #:swig-virtual 
-     #:slot-ref primitive:Foo-a-get 
-     #:slot-set! primitive:Foo-a-set 
+  (a #:allocation #:swig-virtual
+     #:slot-ref primitive:Foo-a-get
+     #:slot-set! primitive:Foo-a-set
      <B>#:accessor a</B>)
   #:metaclass &lt;swig-metaclass&gt;
   #:new-function primitive:new-Foo
@@ -27459,7 +27475,7 @@ Test-primitive.scm</CODE>. The string &quot;primitive&quot; can be changed by th
 (define-module (my modules foo))
 
 ;; %goops directive goes here
-(load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) 
+(load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;)
 
 (use-modules (oop goops) (Swig common))
 </PRE>
@@ -27481,8 +27497,8 @@ Package</I><I> Module-primitive</I>))</CODE> into the GOOPS
 %scheme %{ (load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) %}
 // only include the following definition if (my modules foo) cannot
 // be loaded automatically
-%goops %{ 
-  (primitive-load &quot;/path/to/foo-primitive.scm&quot;) 
+%goops %{
+  (primitive-load &quot;/path/to/foo-primitive.scm&quot;)
   (primitive-load &quot;/path/to/Swig/common.scm&quot;)
 %}
 </PRE>
@@ -27521,7 +27537,7 @@ Package</I><I> Module-primitive</I>))</CODE> into the GOOPS
 (define-module (my modules foo))
 
 ;; %goops directive goes here (if any)
-(load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;) 
+(load-extension &quot;./libfoo.so&quot; &quot;scm_init_my_modules_foo_module&quot;)
 
 (use-modules (oop goops) (Swig common))
 (use-modules ((my modules foo-primitive) :renamer (symbol-prefix-proc
@@ -27858,7 +27874,7 @@ later</A>. Note that the module name does not define a Java package and
  available for the Java module. They can also be seen by using:</P>
 <DIV class="code">
 <PRE>
-swig -java -help 
+swig -java -help
 </PRE>
 </DIV>
 <TABLE summary="Java specific options">
@@ -28159,13 +28175,13 @@ MACHINE       = IX86
 
 # C Library needed to build a DLL
 
-DLLIBC        = msvcrt.lib oldnames.lib  
+DLLIBC        = msvcrt.lib oldnames.lib
 
 # Windows libraries that are apparently needed
 WINLIB        = kernel32.lib advapi32.lib user32.lib gdi32.lib comdlg32.lib winspool.lib
 
 # Libraries common to all DLLs
-LIBS          = $(DLLIBC) $(WINLIB) 
+LIBS          = $(DLLIBC) $(WINLIB)
 
 # Linker options
 LOPT      = -debug:full -debugtype:cv /NODEFAULTLIB /RELEASE /NOLOGO \
@@ -28896,7 +28912,7 @@ Foo *x = &amp;b-&gt;f;       /* Points inside b */
 <PRE>
 Bar b = new Bar();
 b.getF().setA(3);   // Modify b.f.a
-Foo x = b.getF();                   
+Foo x = b.getF();
 x.setA(3);          // Modify x.a - this is the same as b.f.a
 </PRE>
 </DIV>
@@ -29114,7 +29130,7 @@ rename or ignore</A> one of the methods. For example:</P>
 <PRE>
 %rename(spam_ushort) spam(unsigned short);
 ...
-void spam(int);    
+void spam(int);
 void spam(unsigned short);   // Now renamed to spam_ushort
 </PRE>
 </DIV>
@@ -29123,7 +29139,7 @@ void spam(unsigned short);   // Now renamed to spam_ushort
 <PRE>
 %ignore spam(unsigned short);
 ...
-void spam(int);    
+void spam(int);
 void spam(unsigned short);   // Ignored
 </PRE>
 </DIV>
@@ -29218,7 +29234,7 @@ com.myco.MyWorld.Material.Color</TT>. If you don't specify a package,
  you will get the following warning:</P>
 <DIV class="shell">
 <PRE>
-example.i:16: Warning 826: The nspace feature is used on 'MyWorld::Material::Color' without -package. The generated code 
+example.i:16: Warning 826: The nspace feature is used on 'MyWorld::Material::Color' without -package. The generated code
 may not compile as Java does not support types declared in a named package accessing types declared in an unnamed package.
 </PRE>
 </DIV>
@@ -29915,7 +29931,7 @@ Java web site</A> and search for <TT>runFinalizersOnExit</TT>.</P>
 <DIV class="code">
 <PRE>
   static {
-    Runtime.getRuntime().addShutdownHook( 
+    Runtime.getRuntime().addShutdownHook(
       new Thread() {
         public void run() { System.gc(); System.runFinalization(); }
       }
@@ -29940,7 +29956,7 @@ Java web site</A> and search for <TT>runFinalizersOnExit</TT>.</P>
 A myA = new A();
 // use myA ...
 myA.delete();
-// any use of myA here would crash the JVM 
+// any use of myA here would crash the JVM
 myA=null;
 // any use of myA here would cause a Java null pointer exception to be thrown
 </PRE>
@@ -30454,10 +30470,10 @@ public final class Beverage {
 <DIV class="code">
 <PRE>
 // generate directors for all classes that have virtual methods
-%feature(&quot;director&quot;);         
+%feature(&quot;director&quot;);
 
 // generate directors for all virtual methods in class Foo
-%feature(&quot;director&quot;) Foo;      
+%feature(&quot;director&quot;) Foo;
 </PRE>
 </DIV>
 <P> You can use the %feature(&quot;nodirector&quot;) directive to turn off
@@ -30747,7 +30763,7 @@ if (swigerror) {
   if (Swig::ExceptionMatches(jenv, swigerror, &quot;java/lang/IndexOutOfBoundsException&quot;)) {
     throw std::out_of_range(Swig::JavaExceptionMessage(jenv, swigerror).message());
   }
-  
+
   throw Swig::DirectorException(jenv, swigerror);
 }
 </PRE>
@@ -31603,7 +31619,7 @@ void binaryChar1(const char data[], size_t len) {
 <DIV class="code">
 <PRE>
 byte[] data = &quot;hi\0jk&quot;.getBytes();
-example.binaryChar1(data);     
+example.binaryChar1(data);
 </PRE>
 </DIV>
 <P> resulting in the output</P>
@@ -32041,7 +32057,7 @@ Aliasing, pointer casts and gcc 3.3</A> elaborates further on the
     %}
     %typemap(out) struct Bar * %{
       *(struct Bar **)&amp;$result = $1; /* cast C ptr into jlong */
-    %} 
+    %}
     struct Bar {...};
     struct Foo {...};
     struct Bar * FooBar(struct Foo *f);
@@ -32055,13 +32071,13 @@ SWIGEXPORT jlong JNICALL Java_exampleJNI_FooBar(JNIEnv *jenv, jclass jcls,
   jlong jresult = 0 ;
   struct Foo *arg1 = (struct Foo *) 0 ;
   struct Bar *result = 0 ;
-  
+
   (void)jenv;
   (void)jcls;
   (void)jarg1_;
-  arg1 = *(struct Foo **)&amp;jarg1; 
+  arg1 = *(struct Foo **)&amp;jarg1;
   result = (struct Bar *)FooBar(arg1);
-  *(struct Bar **)&amp;jresult = result; 
+  *(struct Bar **)&amp;jresult = result;
   return jresult;
 }
 </PRE>
@@ -32204,7 +32220,7 @@ Namespace1_Namespace2_Klass_</TT>. This special variable is usually used
  either void or a non-void return type. Example:</P>
 <DIV class="code">
 <PRE>
-%typemap(check) int * %{ 
+%typemap(check) int * %{
   if (error) {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, &quot;Array element error&quot;);
     return $null;
@@ -33110,7 +33126,7 @@ public class example {
     jstring temp_string;
     const jclass clazz = (*jenv)-&gt;FindClass(jenv, &quot;java/lang/String&quot;);
 
-    while ($1[len]) len++;    
+    while ($1[len]) len++;
     jresult = (*jenv)-&gt;NewObjectArray(jenv, len, clazz, NULL);
     /* exception checking omitted */
 
@@ -33315,9 +33331,9 @@ int spam(double a, double b, double *out1, double *out2) {
 }
 %}
 
-/* 
+/*
 This typemap will make any double * function parameters with name <TT>OUTVALUE</TT> take an
-argument of MyDouble instead of double *. This will 
+argument of MyDouble instead of double *. This will
 allow the calling function to read the double * value after returning from the function.
 */
 %typemap(in) double *OUTVALUE {
@@ -33545,7 +33561,7 @@ ambulance.sound_siren();
             jmethodID mid = jenv-&gt;GetMethodID(clazz, &quot;&lt;init&gt;&quot;, &quot;(JZ)V&quot;);
             if (mid) {
                 jlong cptr = 0;
-                *(Ambulance **)&amp;cptr = ambulance; 
+                *(Ambulance **)&amp;cptr = ambulance;
                 $result = jenv-&gt;NewObject(clazz, mid, cptr, false);
             }
         }
@@ -33556,7 +33572,7 @@ ambulance.sound_siren();
             jmethodID mid = jenv-&gt;GetMethodID(clazz, &quot;&lt;init&gt;&quot;, &quot;(JZ)V&quot;);
             if (mid) {
                 jlong cptr = 0;
-                *(FireEngine **)&amp;cptr = fireengine; 
+                *(FireEngine **)&amp;cptr = fireengine;
                 $result = jenv-&gt;NewObject(clazz, mid, cptr, false);
             }
         }
@@ -33633,10 +33649,10 @@ System.out.println(&quot;foo1? &quot; + foo1.equals(foo2));
  classes:</P>
 <DIV class="code">
 <PRE>
-%typemap(javabase) SWIGTYPE, SWIGTYPE *, SWIGTYPE &amp;, SWIGTYPE [], 
+%typemap(javabase) SWIGTYPE, SWIGTYPE *, SWIGTYPE &amp;, SWIGTYPE [],
                                                          SWIGTYPE (CLASS::*) &quot;SWIG&quot;
 
-%typemap(javacode) SWIGTYPE, SWIGTYPE *, SWIGTYPE &amp;, SWIGTYPE [], 
+%typemap(javacode) SWIGTYPE, SWIGTYPE *, SWIGTYPE &amp;, SWIGTYPE [],
                                                          SWIGTYPE (CLASS::*) %{
   protected long getPointer() {
     return swigCPtr;
@@ -33656,7 +33672,7 @@ public abstract class SWIG {
       equal = (((SWIG)obj).getPointer() == this.getPointer());
     return equal;
   }
-  
+
   SWIGTYPE_p_void getVoidPointer() {
     return new SWIGTYPE_p_void(getPointer(), false);
   }
@@ -33685,7 +33701,7 @@ typedef struct {
   char *greeting;
 } Butler;
 
-// Note: HireButler will allocate the memory 
+// Note: HireButler will allocate the memory
 // The caller must free the memory by calling FireButler()!!
 extern int HireButler(Butler **ppButler);
 extern void FireButler(Butler *pButler);
@@ -33906,7 +33922,7 @@ getWheel()</TT> method is called using the following typemaps.</P>
 <PRE>
 public class Wheel {
   ...
-  // Ensure that the GC doesn't collect any bike set from Java 
+  // Ensure that the GC doesn't collect any bike set from Java
   private Bike bikeReference;
   protected void addReference(Bike bike) {
     bikeReference = bike;
@@ -34059,12 +34075,12 @@ dateOut</TT> is a non-const output type.</P>
 public class Action {
   ...
   public static int doSomething(CDate dateIn, CDate dateOut) {
-    return exampleJNI.Action_doSomething(CDate.getCPtr(dateIn), dateIn, 
+    return exampleJNI.Action_doSomething(CDate.getCPtr(dateIn), dateIn,
                                          CDate.getCPtr(dateOut), dateOut);
   }
 
   public Action(CDate date, CDate dateOut) {
-    this(exampleJNI.new_Action(CDate.getCPtr(date), date, 
+    this(exampleJNI.new_Action(CDate.getCPtr(date), date,
                                CDate.getCPtr(dateOut), dateOut), true);
   }
 }
@@ -34084,11 +34100,11 @@ CDate</TT> and '$javainput' is translated into the name of the
  into a modifed API with something like:</P>
 <DIV class="code">
 <PRE>
-java.util.GregorianCalendar calendarIn = 
+java.util.GregorianCalendar calendarIn =
     new java.util.GregorianCalendar(2011, java.util.Calendar.APRIL, 13, 0, 0, 0);
 java.util.GregorianCalendar calendarOut = new java.util.GregorianCalendar();
 
-// Note in calls below, calendarIn remains unchanged and calendarOut 
+// Note in calls below, calendarIn remains unchanged and calendarOut
 // is set to a new value by the C++ call
 Action.doSomething(calendarIn, calendarOut);
 Action action = new Action(calendarIn, calendarOut);
@@ -34102,18 +34118,18 @@ Action action = new Action(calendarIn, calendarOut);
 <DIV class="code">
 <PRE>
 %typemap(jstype) const CDate&amp; &quot;java.util.GregorianCalendar&quot;
-%typemap(javain, 
+%typemap(javain,
          pre=&quot;    CDate temp$javainput = new CDate($javainput.get(java.util.Calendar.YEAR), &quot;
-             &quot;$javainput.get(java.util.Calendar.MONTH), $javainput.get(java.util.Calendar.DATE));&quot;, 
+             &quot;$javainput.get(java.util.Calendar.MONTH), $javainput.get(java.util.Calendar.DATE));&quot;,
          pgcppname=&quot;temp$javainput&quot;) const CDate &amp;
          &quot;$javaclassname.getCPtr(temp$javainput)&quot;
 
 %typemap(jstype) CDate&amp; &quot;java.util.Calendar&quot;
-%typemap(javain, 
+%typemap(javain,
          pre=&quot;    CDate temp$javainput = new CDate($javainput.get(java.util.Calendar.YEAR), &quot;
-             &quot;$javainput.get(java.util.Calendar.MONTH), $javainput.get(java.util.Calendar.DATE));&quot;, 
+             &quot;$javainput.get(java.util.Calendar.MONTH), $javainput.get(java.util.Calendar.DATE));&quot;,
          post=&quot;      $javainput.set(temp$javainput.getYear(), temp$javainput.getMonth(), &quot;
-              &quot;temp$javainput.getDay(), 0, 0, 0);&quot;, 
+              &quot;temp$javainput.getDay(), 0, 0, 0);&quot;,
          pgcppname=&quot;temp$javainput&quot;) CDate &amp;
          &quot;$javaclassname.getCPtr(temp$javainput)&quot;
 </PRE>
@@ -34124,32 +34140,32 @@ Action action = new Action(calendarIn, calendarOut);
 <PRE>
 public class Action {
   ...
-  public static int doSomething(java.util.GregorianCalendar dateIn, 
+  public static int doSomething(java.util.GregorianCalendar dateIn,
                                 java.util.Calendar dateOut) {
-    CDate tempdateIn = new CDate(dateIn.get(java.util.Calendar.YEAR), 
-                                 dateIn.get(java.util.Calendar.MONTH), 
+    CDate tempdateIn = new CDate(dateIn.get(java.util.Calendar.YEAR),
+                                 dateIn.get(java.util.Calendar.MONTH),
                                  dateIn.get(java.util.Calendar.DATE));
-    CDate tempdateOut = new CDate(dateOut.get(java.util.Calendar.YEAR), 
-                                  dateOut.get(java.util.Calendar.MONTH), 
+    CDate tempdateOut = new CDate(dateOut.get(java.util.Calendar.YEAR),
+                                  dateOut.get(java.util.Calendar.MONTH),
                                   dateOut.get(java.util.Calendar.DATE));
     try {
-      return exampleJNI.Action_doSomething(CDate.getCPtr(tempdateIn), tempdateIn, 
+      return exampleJNI.Action_doSomething(CDate.getCPtr(tempdateIn), tempdateIn,
                                            CDate.getCPtr(tempdateOut), tempdateOut);
     } finally {
       dateOut.set(tempdateOut.getYear(), tempdateOut.getMonth(), tempdateOut.getDay(), 0, 0, 0);
     }
   }
 
-  static private long SwigConstructAction(java.util.GregorianCalendar date, 
+  static private long SwigConstructAction(java.util.GregorianCalendar date,
                                           java.util.Calendar dateOut) {
-    CDate tempdate = new CDate(date.get(java.util.Calendar.YEAR), 
-                               date.get(java.util.Calendar.MONTH), 
+    CDate tempdate = new CDate(date.get(java.util.Calendar.YEAR),
+                               date.get(java.util.Calendar.MONTH),
                                date.get(java.util.Calendar.DATE));
-    CDate tempdateOut = new CDate(dateOut.get(java.util.Calendar.YEAR), 
-                                  dateOut.get(java.util.Calendar.MONTH), 
+    CDate tempdateOut = new CDate(dateOut.get(java.util.Calendar.YEAR),
+                                  dateOut.get(java.util.Calendar.MONTH),
                                   dateOut.get(java.util.Calendar.DATE));
     try {
-      return exampleJNI.new_Action(CDate.getCPtr(tempdate), tempdate, 
+      return exampleJNI.new_Action(CDate.getCPtr(tempdate), tempdate,
                                    CDate.getCPtr(tempdateOut), tempdateOut);
     } finally {
       dateOut.set(tempdateOut.getYear(), tempdateOut.getMonth(), tempdateOut.getDay(), 0, 0, 0);
@@ -34369,7 +34385,7 @@ jniclassclassmodifiers</TT> pragmas can also be used for adding
 %javamethodmodifiers Barmy::lose_marbles() &quot;
   /**
     * Calling this method will make you mad.
-    * Use with &lt;b&gt;utmost&lt;/b&gt; caution. 
+    * Use with &lt;b&gt;utmost&lt;/b&gt; caution.
     */
   public&quot;;
 
@@ -34392,7 +34408,7 @@ public class Barmy {
 ...
   /**
     * Calling this method will make you mad.
-    * Use with &lt;b&gt;utmost&lt;/b&gt; caution. 
+    * Use with &lt;b&gt;utmost&lt;/b&gt; caution.
     */
   public void lose_marbles() {
     ...
@@ -35622,7 +35638,7 @@ here</A></P>
  need to run:</P>
 <DIV class="code">
 <PRE>
-swig -cffi -module <I>module-name</I>   <I>file-name</I> 
+swig -cffi -module <I>module-name</I>   <I>file-name</I>
 
 </PRE>
 </DIV>
@@ -35634,7 +35650,7 @@ swig -cffi -module <I>module-name</I>   <I>file-name</I>
  available for the CLISP module. They can also be seen by using:</P>
 <DIV class="code">
 <PRE>
-swig -cffi -help 
+swig -cffi -help
 </PRE>
 </DIV>
 <BR>
@@ -35668,13 +35684,13 @@ struct bar {
     int *z[1000];
     struct bar * n;
 };
-  
+
 struct   bar * my_struct;
 
 struct foo {
     int a;
     struct foo * b[100];
-  
+
 };
 
 int pointer_func(void (*ClosureFun)( void* _fun, void* _data, void* _evt ), int p);
@@ -35719,7 +35735,7 @@ enum color { RED, BLUE, GREEN};
                       ((cl:lower-case-p c)
                        (helper (cl:cdr lst) 'lower (cl:cons (cl:char-upcase c) rest)))
                       ((cl:digit-char-p c)
-                       (helper (cl:cdr lst) 'digit 
+                       (helper (cl:cdr lst) 'digit
                                (cl:case last
                                  ((upper lower) (cl:list* c #\- rest))
                                  (cl:t (cl:cons c rest)))))
@@ -36116,7 +36132,7 @@ int fact(int n);
  just need to execute:</P>
 <DIV class="code">
 <PRE>
-swig -clisp -module <I>module-name</I>   <I>file-name</I> 
+swig -clisp -module <I>module-name</I>   <I>file-name</I>
 
 </PRE>
 </DIV>
@@ -36130,7 +36146,7 @@ swig -clisp -module <I>module-name</I>   <I>file-name</I>
  available for the CLISP module. They can also be seen by using:</P>
 <DIV class="code">
 <PRE>
-swig -clisp -help 
+swig -clisp -help
 </PRE>
 </DIV>
 <BR>
@@ -36431,7 +36447,7 @@ $ swig -lua -eluac example.i
  available for the Lua module. They can also be seen by using:</P>
 <DIV class="code">
 <PRE>
-swig -lua -help 
+swig -lua -help
 </PRE>
 </DIV>
 <TABLE summary="Lua specific options">
@@ -37090,7 +37106,7 @@ public:
 <DIV class="code">
 <PRE>
 &gt; example.Spam.foo()            -- calling Spam::foo()
-&gt; a=example.Spam.bar            -- reading Spam::bar 
+&gt; a=example.Spam.bar            -- reading Spam::bar
 &gt; example.Spam.bar=b            -- writing to Spam::bar
 </PRE>
 </DIV>
@@ -37108,7 +37124,7 @@ public:
 <DIV class="code">
 <PRE>
 &gt; example.Spam_foo()            -- calling Spam::foo()
-&gt; a=example.Spam_bar            -- reading Spam::bar 
+&gt; a=example.Spam_bar            -- reading Spam::bar
 &gt; example.Spam_bar=b            -- writing to Spam::bar
 </PRE>
 </DIV>
@@ -37628,7 +37644,7 @@ stack traceback:
 <DIV class="targetlang">
 <PRE>
 &gt; function a() b() end -- function a() calls function b()
-&gt; function b() message() end -- function b() calls C++ function message(), which throws 
+&gt; function b() message() end -- function b() calls C++ function message(), which throws
 &gt; ok,res=pcall(a)  -- call the function
 &gt; print(ok,res)
 false   I died.
@@ -37685,7 +37701,7 @@ stack traceback:
 <DIV class="code">
 <PRE>
 %typemap(throws) my_except
-%{ 
+%{
   lua_pushstring(L,$1.what()); // assuming my_except::what() returns a const char* message
   SWIG_fail; // trigger the error handler
 %}
@@ -37711,7 +37727,7 @@ public:
 
 void throw_exc() throw(Exc) {
   throw(Exc(42,&quot;Hosed&quot;));
-} 
+}
 </PRE>
 </DIV>
 <P> Then the following code can be used (note: we use pcall to catch the
@@ -38232,8 +38248,8 @@ int native_function(lua_State*L) // my native code
 <PRE>%module example;
 
 %luacode {
-  function example.greet() 
-    print &quot;hello world&quot; 
+  function example.greet()
+    print &quot;hello world&quot;
   end
 
   print &quot;Module loaded ok&quot;
@@ -38963,7 +38979,7 @@ handle_ptr(struct diag_cntrs, cntrs);
 <P> Then in scheme, you can use regular struct access procedures like</P>
 <DIV class="code">
 <PRE>
-	; suppose a function created a struct foo as 
+	; suppose a function created a struct foo as
 	; (define foo (make-diag-cntrs (#x1 #x2 #x3) (make-inspector))
 	; Then you can do
 	(format &quot;0x~x&quot; (diag-cntrs-field1 foo))
@@ -39408,7 +39424,7 @@ val enum_to_int c_enum_type -&gt; c_obj -&gt; c_obj
 <DIV class="code">
 <PRE>
 bash-2.05a$ ocamlmktop -custom enum_test_wrap.o enum_test.cmo -o enum_test_top
-bash-2.05a$ ./enum_test_top 
+bash-2.05a$ ./enum_test_top
         Objective Caml version 3.04
 
 # open Enum_test ;;
@@ -39481,7 +39497,7 @@ void printfloats( float *tab, int len ) {
 		printf( &quot;%f &quot;, tab[i] );
 	}
 
-	printf( &quot;\n&quot; );  
+	printf( &quot;\n&quot; );
 }
 %}
 
@@ -39578,7 +39594,7 @@ namespace std {
  camlp4 module.</P>
 <DIV class="code">
 <PRE>
-bash-2.05a$ ./example_top 
+bash-2.05a$ ./example_top
         Objective Caml version 3.06
 
         Camlp4 Parsing version 3.06
@@ -39606,14 +39622,14 @@ C_list
 - : Example.c_obj = C_void
 # x '[1] ;;
 - : Example.c_obj = C_string &quot;spam&quot;
-# for i = 0 to (x -&gt; size() as int) - 1 do 
-    print_endline ((x '[i to int]) as string) 
+# for i = 0 to (x -&gt; size() as int) - 1 do
+    print_endline ((x '[i to int]) as string)
   done ;;
 foo
 bar
 baz
 - : unit = ()
-# 
+#
 </PRE>
 </DIV>
 <H4><A name="Ocaml_nn19"></A>31.2.4.2 C++ Class Example</H4>
@@ -39654,7 +39670,7 @@ bash-2.05a$ ocamlc -c swig.mli ; ocamlc -c swig.ml
 bash-2.05a$ ocamlc -I `camlp4 -where` -pp &quot;camlp4o pa_extend.cmo q_MLast.cmo&quot; -c swigp4.ml
 bash-2.05a$ swig -ocaml -c++ -I$QTPATH/include  qt.i
 bash-2.05a$ mv qt_wrap.cxx qt_wrap.c
-bash-2.05a$ ocamlc -c -ccopt -xc++ -ccopt -g -g -ccopt -I$QTPATH/include qt_wrap.c 
+bash-2.05a$ ocamlc -c -ccopt -xc++ -ccopt -g -g -ccopt -I$QTPATH/include qt_wrap.c
 bash-2.05a$ ocamlc -c qt.mli
 bash-2.05a$ ocamlc -c qt.ml
 bash-2.05a$ ocamlmktop -custom swig.cmo -I `camlp4 -where` \
@@ -39665,7 +39681,7 @@ bash-2.05a$ ocamlmktop -custom swig.cmo -I `camlp4 -where` \
 <H4><A name="Ocaml_nn21"></A>31.2.4.4 Sample Session</H4>
 <DIV class="code">
 <PRE>
-bash-2.05a$ ./qt_top 
+bash-2.05a$ ./qt_top
         Objective Caml version 3.06
 
         Camlp4 Parsing version 3.06
@@ -39751,7 +39767,7 @@ let triangle_class pts ob meth args =
     | _ -&gt; (invoke ob) meth args ;;
 
 let triangle =
-  new_derived_object 
+  new_derived_object
     new_shape
     (triangle_class ((0.0,0.0),(0.5,1.0),(1.0,0.0)))
     '() ;;
@@ -39787,7 +39803,7 @@ let _ = _draw_shape_coverage '(triangle, C_int 60, C_int 20) ;;
 <DIV class="code">
 <PRE>
 let triangle =
-  new_derived_object 
+  new_derived_object
     new_shape
     (triangle_class ((0.0,0.0),(0.5,1.0),(1.0,0.0)))
     '()
@@ -40179,7 +40195,7 @@ octave:3&gt; p.x=3;
 octave:4&gt; p.y=5;
 octave:5&gt; p.x, p.y
 ans =  3
-ans =  5 
+ans =  5
 </PRE>
 </DIV>
 <P> In C++, invoking the type object in this way calls the object's
@@ -40966,7 +40982,7 @@ BEGIN failed--compilation aborted at - line 1.
 <DIV class="targetlang">
 <PRE>
 use example;
-Can't load './example.so' for module example: ./example.so: 
+Can't load './example.so' for module example: ./example.so:
 undefined symbol: Foo at /usr/lib/perl/5.14/i386-linux/DynaLoader.pm line 169.
 
  at - line 1
@@ -40999,12 +41015,12 @@ $ gcc -shared example.o example_wrap.o -L/home/beazley/projects/lib -lfoo \
 <DIV class="targetlang">
 <PRE>
 use example;
-Can't load './example.so' for module example: libfoo.so: cannot open shared object file: 
+Can't load './example.so' for module example: libfoo.so: cannot open shared object file:
 No such file or directory at /usr/lib/perl/5.14/i386-linux/DynaLoader.pm line 169.
 
  at - line 1
 BEGIN failed--compilation aborted at - line 1.
-&gt;&gt;&gt;                 
+&gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> This error is generated because the dynamic linker can't locate the <TT>
@@ -41297,7 +41313,7 @@ Creating read-only variables</A> section for further details.</P>
 %{
 extern char *path;
 %}
-%immutable path; 
+%immutable path;
 ...
 ...
 extern char *path;       // Declared later in the input
@@ -41604,7 +41620,7 @@ void spam(Foo *f);
 <DIV class="code">
 <PRE>
 /* Forward renaming declarations */
-%rename(foo_i) foo(int); 
+%rename(foo_i) foo(int);
 %rename(foo_d) foo(double);
 ...
 void foo(int);           // Becomes 'foo_i'
@@ -42248,7 +42264,7 @@ int       sv_isa(SV *, char *0;
 	len = av_len(tempav);
 	$1 = (char **) malloc((len+2)*sizeof(char *));
 	for (i = 0; i &lt;= len; i++) {
-	    tv = av_fetch(tempav, i, 0);	
+	    tv = av_fetch(tempav, i, 0);
 	    $1[i] = (char *) SvPV(*tv,PL_na);
         }
 	$1[i] = NULL;
@@ -42290,7 +42306,7 @@ int print_args(char **argv) {
     return i;
 }
 
-// Returns a char ** list 
+// Returns a char ** list
 char **get_args() {
     static char *values[] = { &quot;Dave&quot;, &quot;Mike&quot;, &quot;Susan&quot;, &quot;John&quot;, &quot;Michelle&quot;, 0};
     return &amp;values[0];
@@ -42323,7 +42339,7 @@ print @$b,&quot;\n&quot;;                                  # Print it out
 <DIV class="code">
 <PRE>
 %typemap(argout) int *OUTPUT {
-	if (argvi &gt;= items) {            
+	if (argvi &gt;= items) {
 		EXTEND(sp,1);              /* Extend the stack by 1 object */
 	}
 	$result = sv_newmortal();
@@ -42341,7 +42357,7 @@ OUTPUT</TT> typemap.</P>
 %module return
 
 // This tells SWIG to treat an double * argument with name 'OutDouble' as
-// an output value.  
+// an output value.
 
 %typemap(argout) double *OUTPUT {
 	$result = sv_newmortal();
@@ -42729,7 +42745,7 @@ Vector *new_Vector(double x, double y, double z) {
 <PRE>
 # Perl code to change ownership of an object
 $v = new Vector(x,y,z);
-$v-&gt;DISOWN();     
+$v-&gt;DISOWN();
 </PRE>
 </DIV>
 <P> To acquire ownership of an object, the <TT>ACQUIRE</TT> method can
@@ -42785,7 +42801,7 @@ package Particle;
 # Perl access of nested structure
 $p = new Particle();
 $p-&gt;{f}-&gt;{x} = 0.0;
-%${$p-&gt;{v}} = ( x=&gt;0, y=&gt;0, z=&gt;0);         
+%${$p-&gt;{v}} = ( x=&gt;0, y=&gt;0, z=&gt;0);
 </PRE>
 </DIV>
 <H3><A name="Perl5_nn44"></A>33.9.5 Proxy Functions</H3>
@@ -42982,10 +42998,10 @@ set_transform($im, $a);
 <DIV class="code">
 <PRE>
 // generate directors for all classes that have virtual methods
-%feature(&quot;director&quot;);         
+%feature(&quot;director&quot;);
 
 // generate directors for all virtual methods in class Foo
-%feature(&quot;director&quot;) Foo;      
+%feature(&quot;director&quot;) Foo;
 </PRE>
 </DIV>
 <P> You can use the %feature(&quot;nodirector&quot;) directive to turn off
@@ -43917,10 +43933,10 @@ include \&quot;include.php\&quot;;
 <DIV class="code">
 <PRE>
 // generate directors for all classes that have virtual methods
-%feature(&quot;director&quot;);         
+%feature(&quot;director&quot;);
 
 // generate directors for all virtual methods in class Foo
-%feature(&quot;director&quot;) Foo;      
+%feature(&quot;director&quot;) Foo;
 </PRE>
 </DIV>
 <P> You can use the %feature(&quot;nodirector&quot;) directive to turn off
@@ -44755,7 +44771,7 @@ ImportError: No module named _example
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in ?
 ImportError: dynamic module does not define init function (init_example)
-&gt;&gt;&gt;                                                               
+&gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> This error is almost always caused when a bad name is given to the
@@ -44804,7 +44820,7 @@ $ gcc -shared example.o example_wrap.o -L/home/beazley/projects/lib <B>-lfoo</B>
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in ?
 ImportError: libfoo.so: cannot open shared object file: No such file or directory
-&gt;&gt;&gt;                 
+&gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> This error is generated because the dynamic linker can't locate the <TT>
@@ -45118,7 +45134,7 @@ extern double density;
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in ?
 TypeError: C variable 'density (double )'
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> If a variable is declared as <TT>const</TT>, it is wrapped as a
@@ -45319,7 +45335,7 @@ struct Vector {
 &gt;&gt;&gt; v.y = 7.2
 &gt;&gt;&gt; print v.x, v.y, v.z
 7.8 -4.5 0.0
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> Similar access is provided for unions and the data members of C++
@@ -45381,7 +45397,7 @@ struct Bar {
 &gt;&gt;&gt; b = example.Bar()
 &gt;&gt;&gt; print b.x
 _801861a4_p_int
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> This pointer can be passed around to functions that expect to
@@ -45434,7 +45450,7 @@ Foo *x = &amp;b-&gt;f;       /* Points inside b */
 <PRE>
 &gt;&gt;&gt; b = Bar()
 &gt;&gt;&gt; b.f.a = 3               # Modify attribute of structure member
-&gt;&gt;&gt; x = b.f                   
+&gt;&gt;&gt; x = b.f
 &gt;&gt;&gt; x.a = 3                 # Modifies the same structure
 </PRE>
 </DIV>
@@ -45651,7 +45667,7 @@ example.i:11: Warning 509: as it is shadowed by spam(int).
 <PRE>
 %rename(spam_short) spam(short);
 ...
-void spam(int);    
+void spam(int);
 void spam(short);   // Accessed as spam_short
 </PRE>
 </DIV>
@@ -45660,7 +45676,7 @@ void spam(short);   // Accessed as spam_short
 <PRE>
 %ignore spam(short);
 ...
-void spam(int);    
+void spam(int);
 void spam(short);   // Ignored
 </PRE>
 </DIV>
@@ -45689,7 +45705,7 @@ public:
   Complex operator-(const Complex &amp;c) const;
   Complex operator*(const Complex &amp;c) const;
   Complex operator-() const;
-  
+
   double re() const { return rpart; }
   double im() const { return ipart; }
 };
@@ -46348,7 +46364,7 @@ Foo *head = 0;
 &gt;&gt;&gt; f = example.Foo()
 &gt;&gt;&gt; f.thisown
 1
-&gt;&gt;&gt; example.cvar.head = f           
+&gt;&gt;&gt; example.cvar.head = f
 &gt;&gt;&gt; f.thisown
 0
 &gt;&gt;&gt;
@@ -46475,10 +46491,10 @@ www.python.org</A> and is not repeated here.</P>
 <DIV class="code">
 <PRE>
 // generate directors for all classes that have virtual methods
-%feature(&quot;director&quot;);         
+%feature(&quot;director&quot;);
 
 // generate directors for all virtual methods in class Foo
-%feature(&quot;director&quot;) Foo;      
+%feature(&quot;director&quot;) Foo;
 </PRE>
 </DIV>
 <P> You can use the %feature(&quot;nodirector&quot;) directive to turn off
@@ -46517,7 +46533,7 @@ import mymodule
 
 class MyFoo(mymodule.Foo):
   def __init__(self, foo):
-     mymodule.Foo(self, foo)  
+     mymodule.Foo(self, foo)
 
   def one(self):
      print &quot;one from python&quot;
@@ -46922,7 +46938,7 @@ def bar(*args):
     $action
     #do something after
 %}
-    
+
 class Foo {
 public:
     int bar(int x);
@@ -46942,7 +46958,7 @@ public:
 <PRE>
 %module example
 
-// Add python code to bar() 
+// Add python code to bar()
 
 %feature(&quot;pythonprepend&quot;) Foo::bar(int) %{
    #do something before C++ call
@@ -46952,7 +46968,7 @@ public:
    #do something after C++ call
 %}
 
-    
+
 class Foo {
 public:
     int bar(int x);
@@ -46967,7 +46983,7 @@ public:
 <PRE>
 %module example
 
-// Add python code to bar() 
+// Add python code to bar()
 
 %pythonprepend Foo::bar(int) %{
    #do something before C++ call
@@ -46977,7 +46993,7 @@ public:
    #do something after C++ call
 %}
 
-    
+
 class Foo {
 public:
     int bar(int x);
@@ -47077,7 +47093,7 @@ Vector(2,3,4)
 &gt;&gt;&gt; w = example.Vector(10,11,12)
 &gt;&gt;&gt; print v+w
 Vector(12,14,16)
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> <TT>%extend</TT> works with both C and C++ code. It does not modify
@@ -47895,7 +47911,7 @@ int spam(double a, double b, double *out1, double *out2) {
 %module outarg
 
 // This tells SWIG to treat an double * argument with name 'OutValue' as
-// an output value.  We'll append the value to the current result which 
+// an output value.  We'll append the value to the current result which
 // is guaranteed to be a List object by SWIG.
 
 %typemap(argout) double *OutValue {
@@ -48125,7 +48141,7 @@ $descriptor()</TT> macro in a typemap. For example:</P>
 <DIV class="code">
 <PRE>
 %typemap(in) Foo * {
-if ((SWIG_ConvertPtr($input,(void **) &amp;$1, $descriptor(Foo *), 
+if ((SWIG_ConvertPtr($input,(void **) &amp;$1, $descriptor(Foo *),
                                                SWIG_POINTER_EXCEPTION)) == -1)
   return NULL;
 }
@@ -48171,7 +48187,7 @@ bool function_name(int x, int y, Foo* foo=NULL, Bar* bar=NULL);
 <DIV class="code">
 <PRE>
 %define DOCSTRING
-&quot;The `XmlResource` class allows program resources defining menus, 
+&quot;The `XmlResource` class allows program resources defining menus,
 layout of controls on a panel, etc. to be loaded from an XML file.&quot;
 %enddef
 
@@ -48758,7 +48774,7 @@ int snprintf(char *str, size_t size, const char *format, ...);
 &gt;&gt;&gt; snprintf(buf, &quot;Hello world!&quot;)
 &gt;&gt;&gt; print(buf)
 bytearray(b'Hello\x00')
-&gt;&gt;&gt; 
+&gt;&gt;&gt;
 </PRE>
 </DIV></DIV>
 <P><B> %pybuffer_mutable_string(parm)</B></P>
@@ -49700,7 +49716,7 @@ l.insert(&quot;Stout&quot;)
 l.insert(&quot;Lager&quot;)
 Example.print(l)
 l.length()
------ produces the following output 
+----- produces the following output
 Lager
 Stout
 Ale
@@ -49882,14 +49898,14 @@ example.i:11: Warning 509: as it is shadowed by spam(int).
 <DIV class="code">
 <PRE>%rename(spam_short) spam(short);
 ...
-void spam(int); 
+void spam(int);
 void spam(short); // Accessed as spam_short</PRE>
 </DIV>
 <P>or</P>
 <DIV class="code">
 <PRE>%ignore spam(short);
 ...
-void spam(int); 
+void spam(int);
 void spam(short); // Ignored</PRE>
 </DIV>
 <P> SWIG resolves overloaded functions and methods using a
@@ -50347,7 +50363,7 @@ class MyArray {
 public:
   // Construct an empty array
   MyArray();
- 
+
   // Return the size of this array
   size_t length() const;
 };</PRE>
@@ -50579,17 +50595,17 @@ public:
     ptr = new double[size];
     n = size;
   }
- 
+
   // Destroy an array
   ~DoubleArray() {
     delete ptr;
-  } 
- 
+  }
+
   // Return the length of the array
   int length() {
     return n;
   }
- 
+
   // Get an array item and perform bounds checking.
   double getitem(int i) {
     if ((i &gt;= 0) &amp;&amp; (i &lt; n))
@@ -50597,7 +50613,7 @@ public:
     else
       throw RangeError();
   }
- 
+
   // Set an array item and perform bounds checking.
   void setitem(int i, double val) {
     if ((i &gt;= 0) &amp;&amp; (i &lt; n))
@@ -50643,7 +50659,7 @@ class DoubleArray {
     rb_raise(cpperror, &quot;Range error in getitem.&quot;);
   }
 }
- 
+
 %exception setitem {
   try {
     $action
@@ -50786,7 +50802,7 @@ rb_eRuntimeError</TT>. This allows C++ exceptions to be directly mapped
 %inline %{
   class CustomError { };
 
-  class Foo { 
+  class Foo {
   public:
     void test() { throw CustomError; }
   };
@@ -50973,7 +50989,7 @@ int isprime(int); // typemap2</PRE>
 }
 
 %extend Foo {
-  int blah(int x); // typemap has no effect. Declaration is attached to Foo which 
+  int blah(int x); // typemap has no effect. Declaration is attached to Foo which
   // appears before the %typemap declaration.
 };</PRE>
 </DIV>
@@ -51237,10 +51253,10 @@ width="100%"><TBODY></TBODY>
 <DIV class="code">
 <PRE>// Get a list of integers
 %typemap(in) int *items {
-  int nitems = Length($input); 
+  int nitems = Length($input);
   $1 = (int *) malloc(sizeof(int)*nitems);
 }
-// Free the list 
+// Free the list
 %typemap(freearg) int *items {
   free($1);
 }</PRE>
@@ -51612,19 +51628,19 @@ printf()</TT>.</DIV>
 // This tells SWIG to treat char ** as a special case
 %typemap(in) char ** {
   /* Get the length of the array */
-  int size = RARRAY($input)-&gt;len; 
+  int size = RARRAY($input)-&gt;len;
   int i;
   $1 = (char **) malloc((size+1)*sizeof(char *));
   /* Get the first element in memory */
-  VALUE *ptr = RARRAY($input)-&gt;ptr; 
+  VALUE *ptr = RARRAY($input)-&gt;ptr;
   for (i=0; i &lt; size; i++, ptr++) {
     /* Convert Ruby Object String to char* */
-    $1[i]= StringValuePtr(*ptr); 
+    $1[i]= StringValuePtr(*ptr);
   }
   $1[i]=NULL; /* End of list */
 }
 
-// This cleans up the char ** array created before 
+// This cleans up the char ** array created before
 // the function call
 
 %typemap(freearg) char ** {
@@ -51674,9 +51690,9 @@ argv[4] = John</PRE>
 <P> and you'd like to be able to call it from Ruby by passing in an
  arbitrary number of key-value pairs as inputs, e.g.</P>
 <DIV class="code targetlang">
-<PRE>setVitalStats(&quot;Fred&quot;, 
-  'weight' =&gt; 270, 
-  'age' =&gt; 42 
+<PRE>setVitalStats(&quot;Fred&quot;,
+  'weight' =&gt; 270,
+  'age' =&gt; 42
 )</PRE>
 </DIV>
 <P> To make this work, you need to write a typemap that expects a Ruby <TT>
@@ -51964,14 +51980,14 @@ Data_Wrap_Struct()</TT> as above.</DIV>
 <DIV class="code">
 <PRE>%define VECTOR_TO_RUBY_ARRAY(vectorclassname, classname)
 %typemap(out) vectorclassname &amp;, const vectorclassname &amp; {
-  VALUE arr = rb_ary_new2($1-&gt;size()); 
+  VALUE arr = rb_ary_new2($1-&gt;size());
   vectorclassname::iterator i = $1-&gt;begin(), iend = $1-&gt;end();
   for ( ; i!=iend; i++ )
     rb_ary_push(arr, Data_Wrap_Struct(c ## classname.klass, 0, 0, &amp;(*i)));
   $result = arr;
 }
 %typemap(out) vectorclassname, const vectorclassname {
-  VALUE arr = rb_ary_new2($1.size()); 
+  VALUE arr = rb_ary_new2($1.size());
   vectorclassname::iterator i = $1.begin(), iend = $1.end();
   for ( ; i!=iend; i++ )
     rb_ary_push(arr, Data_Wrap_Struct(c ## classname.klass, 0, 0, &amp;(*i)));
@@ -52018,7 +52034,7 @@ $ rdoc -r file_wrap.c
  For example:</P>
 <DIV class="code">
 <PRE>%define DOCSTRING
-&quot;The `XmlResource` class allows program resources defining menus, 
+&quot;The `XmlResource` class allows program resources defining menus,
 layout of controls on a panel, etc. to be loaded from an XML file.&quot;
 %enddef
 
@@ -52269,7 +52285,7 @@ include</TT> method. For example, if you have a Ruby class that defines
   def initialize
   @members = []
   end
- 
+
   def each
   @members.each { |m| yield m }
   end
@@ -52299,7 +52315,7 @@ class Set {
 public:
   // Constructor
   Set();
- 
+
   // Iterates through set members
   void each();
 };</PRE>
@@ -52501,7 +52517,7 @@ protected:
 public:
   // Construct an animal with this name
   Animal(const char* name) : name_(name) {}
- 
+
   // Return the animal's name
   const char* get_name() const { return name.c_str(); }
 };
@@ -52510,38 +52526,38 @@ class Zoo
 {
 protected:
  std::vector&lt;animal *=&quot;&quot;&gt; animals;
- 
+
 public:
   // Construct an empty zoo
   Zoo() {}
-  
+
   /* Create a new animal. */
   static Animal* Zoo::create_animal(const char* name) {
     return new Animal(name);
   }
- 
+
   // Add a new animal to the zoo
   void add_animal(Animal* animal) {
-    animals.push_back(animal); 
+    animals.push_back(animal);
   }
- 
+
   Animal* remove_animal(size_t i) {
     Animal* result = this-&gt;animals[i];
     IterType iter = this-&gt;animals.begin();
     std::advance(iter, i);
     this-&gt;animals.erase(iter);
-   
+
     return result;
   }
-  
+
   // Return the number of animals in the zoo
   size_t get_num_animals() const {
-    return animals.size(); 
+    return animals.size();
   }
-  
+
   // Return a pointer to the ith animal
   Animal* get_animal(size_t i) const {
-    return animals[i]; 
+    return animals[i];
   }
 };</PRE>
 </DIV>
@@ -52738,15 +52754,15 @@ rb_gc_mark()</TT> for any instances that are reachable from the current
 
 static void mark_Zoo(void* ptr) {
   Zoo* zoo = (Zoo*) ptr;
- 
+
   /* Loop over each object and tell the garbage collector
   that we are holding a reference to them. */
   int count = zoo-&gt;get_num_animals();
- 
+
   for(int i = 0; i &lt; count; ++i) {
     Animal* animal = zoo-&gt;get_animal(i);
     VALUE object = SWIG_RubyInstanceFor(animal);
- 
+
     if (object != Qnil) {
       rb_gc_mark(object);
     }
@@ -54946,7 +54962,7 @@ $ tclsh
 <PRE>
 % load ./example.so
 couldn't find procedure Example_Init
-% 
+%
 </PRE>
 </DIV>
 <P> This error is almost always caused when the name of the shared
@@ -54961,7 +54977,7 @@ couldn't find procedure Example_Init
 <PRE>
 % load ./example.so
 couldn't load file &quot;./example.so&quot;: ./example.so: undefined symbol: fact
-% 
+%
 </PRE>
 </DIV>
 <P> This error usually indicates that you forgot to include some object
@@ -54991,7 +55007,7 @@ $ gcc -shared example.o example_wrap.o -L/home/beazley/projects/lib -lfoo \
 % load ./example.so
 couldn't load file &quot;./example.so&quot;: libfoo.so: cannot open shared object file:
 No such file or directory
-%        
+%
 </PRE>
 </DIV>
 <P> This error is generated because the dynamic linker can't locate the <TT>
@@ -55200,14 +55216,14 @@ MACHINE       = IX86
 
 # C Library needed to build a DLL
 
-DLLIBC        = msvcrt.lib oldnames.lib  
+DLLIBC        = msvcrt.lib oldnames.lib
 
 # Windows libraries that are apparently needed
-WINLIB        = kernel32.lib advapi32.lib user32.lib gdi32.lib comdlg32.lib 
+WINLIB        = kernel32.lib advapi32.lib user32.lib gdi32.lib comdlg32.lib
 winspool.lib
 
 # Libraries common to all DLLs
-LIBS          = $(DLLIBC) $(WINLIB) 
+LIBS          = $(DLLIBC) $(WINLIB)
 
 # Linker options
 LOPT      = -debug:full -debugtype:cv /NODEFAULTLIB /RELEASE /NOLOGO /
@@ -55432,7 +55448,7 @@ int fclose(FILE *);
 <PRE>
 % puts $f
 _c0671108_p_FILE
-% 
+%
 </PRE>
 </DIV>
 <P> This pointer value can be freely passed around to different C
@@ -55491,7 +55507,7 @@ struct Vector {
 % v configure -x 3.5 -y 7.2
 % puts &quot;[v cget -x] [v cget -y] [v cget -z]&quot;
 3.5 7.2 0.0
-% 
+%
 </PRE>
 </DIV>
 <P> Similar access is provided for unions and the data members of C++
@@ -55544,7 +55560,7 @@ struct Bar {
 % Bar b
 % puts [b cget -x]
 _801861a4_p_int
-% 
+%
 </PRE>
 </DIV>
 <P> This pointer can be passed around to functions that expect to
@@ -55638,7 +55654,7 @@ void blah(Foo *f);
 <P> you can call the function in Tcl as follows:</P>
 <DIV class="code">
 <PRE>
-% Foo x            # Create a Foo object 
+% Foo x            # Create a Foo object
 % blah x           # Pass the object to a function
 </PRE>
 </DIV>
@@ -55863,7 +55879,7 @@ example.i:11: Warning 509: as it is shadowed by spam(int).
 <PRE>
 %rename(spam_short) spam(short);
 ...
-void spam(int);    
+void spam(int);
 void spam(short);   // Accessed as spam_short
 </PRE>
 </DIV>
@@ -55872,7 +55888,7 @@ void spam(short);   // Accessed as spam_short
 <PRE>
 %ignore spam(short);
 ...
-void spam(int);    
+void spam(int);
 void spam(short);   // Ignored
 </PRE>
 </DIV>
@@ -55899,7 +55915,7 @@ public:
   Complex operator-(const Complex &amp;c) const;
   Complex operator*(const Complex &amp;c) const;
   Complex operator-() const;
-  
+
   double re() const { return rpart; }
   double im() const { return ipart; }
 };
@@ -56215,7 +56231,7 @@ public:
 % set s [f spam]
 % $s cget -thisown
 0
-% 
+%
 </PRE>
 </DIV>
 <P> This behavior is especially important for classes that act as
@@ -56262,7 +56278,7 @@ Foo *head = 0;
 % g cget -thisown
 1
 % f configure -next g
-% g cget -thisown 
+% g cget -thisown
 0
 %
 </PRE>
@@ -56289,7 +56305,7 @@ public:
 % n setvalue v             # Set value
 % v cget -thisown
 1
-% 
+%
 </PRE>
 </DIV>
 <P> In this case, the object <TT>n</TT> is holding a reference to <TT>v</TT>

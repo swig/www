@@ -46,7 +46,7 @@
 
 
 <p>
-This chapter describes SWIG usage on Microsoft Windows. 
+This chapter describes SWIG usage on Microsoft Windows.
 Installing SWIG and running the examples is covered as well as building the SWIG executable.
 Usage within the Unix like environments MinGW and Cygwin is also detailed.
 </p>
@@ -76,12 +76,12 @@ If you want to build your own swig.exe have a look at <a href="#Windows_swig_exe
 
 
 <p>
-Using Microsoft Visual C++ is the most common approach to compiling and linking SWIG's output. 
-The Examples directory has a few Visual C++ project files (.dsp files). 
+Using Microsoft Visual C++ is the most common approach to compiling and linking SWIG's output.
+The Examples directory has a few Visual C++ project files (.dsp files).
 These were produced by Visual C++ 6.
 Newer versions of Visual Studio should be able to open and convert these project files.
 Each C# example comes with a Visual Studio 2005 solution and associated project files instead of Visual C++ 6 project files.
-The project files have been set up to execute SWIG in a custom build rule for the SWIG interface (.i) file. 
+The project files have been set up to execute SWIG in a custom build rule for the SWIG interface (.i) file.
 Alternatively run the <a href="#Windows_examples_cygwin">examples using Cygwin</a>.
 
 <p>
@@ -91,10 +91,10 @@ More information on each of the examples is available with the examples distribu
 
 
 <p>
-Ensure the SWIG executable is as supplied in the SWIG root directory in order for the examples to work. 
-Most languages require some environment variables to be set <b>before</b> running Visual C++. 
-Note that Visual C++ must be re-started to pick up any changes in environment variables. 
-Open up an example .dsp file, Visual C++ will create a workspace for you (.dsw file). 
+Ensure the SWIG executable is as supplied in the SWIG root directory in order for the examples to work.
+Most languages require some environment variables to be set <b>before</b> running Visual C++.
+Note that Visual C++ must be re-started to pick up any changes in environment variables.
+Open up an example .dsp file, Visual C++ will create a workspace for you (.dsw file).
 Ensure the Release build is selected then do a Rebuild All from the Build menu.
 The required environment variables are displayed with their current values.
 </p>
@@ -210,7 +210,7 @@ If you do not have access to Visual C++ you will have to set up project files / 
 
 
 <p>
-SWIG can also be compiled and run using <a href="http://www.cygwin.com">Cygwin</a> or <a href="http://www.mingw.org">MinGW</a> which provides a Unix like front end to Windows and comes free with gcc, an ANSI C/C++ compiler. However, this is not a recommended approach as the prebuilt executable is supplied. 
+SWIG can also be compiled and run using <a href="http://www.cygwin.com">Cygwin</a> or <a href="http://www.mingw.org">MinGW</a> which provides a Unix like front end to Windows and comes free with gcc, an ANSI C/C++ compiler. However, this is not a recommended approach as the prebuilt executable is supplied.
 </p>
 
 <H3><a name="Windows_swig_exe"></a>3.3.1 Building swig.exe on Windows</H3>
@@ -218,9 +218,9 @@ SWIG can also be compiled and run using <a href="http://www.cygwin.com">Cygwin</
 
 <p>
 If you want to replicate the build of swig.exe that comes with the download, follow the MinGW instructions below.
-This is not necessary to use the supplied swig.exe. 
-This information is provided for those that want to modify the SWIG source code in a Windows environment. 
-Normally this is not needed, so most people will want to ignore this section. 
+This is not necessary to use the supplied swig.exe.
+This information is provided for those that want to modify the SWIG source code in a Windows environment.
+Normally this is not needed, so most people will want to ignore this section.
 </p>
 
 <H4><a name="Windows_mingw_msys"></a>3.3.1.1 Building swig.exe using MinGW and MSYS</H4>
@@ -293,9 +293,9 @@ Execute the steps in the order shown and don't use spaces in path names. In fact
   Start the MSYS command prompt and execute:
 <div class="shell"><pre>
 cd /
-tar -jxf msys-automake-1.8.2.tar.bz2 
+tar -jxf msys-automake-1.8.2.tar.bz2
 tar -jxf msys-autoconf-2.59.tar.bz2
-tar -zxf bison-2.0-MSYS.tar.gz   
+tar -zxf bison-2.0-MSYS.tar.gz
 </pre></div>
   </li>
 
@@ -318,8 +318,8 @@ the autotools will fail miserably on those.
   </li>
 
   <li>
-The PCRE third party library needs to be built next. 
-Download the latest PCRE source tarball, such as <tt>pcre-8.10.tar.bz2</tt>, from 
+The PCRE third party library needs to be built next.
+Download the latest PCRE source tarball, such as <tt>pcre-8.10.tar.bz2</tt>, from
 <a href=http://www.pcre.org>PCRE</a> and place in the <tt>/usr/src/swig</tt> directory.
 Build PCRE as a static library using the Tools/pcre-build.sh script as follows:
 
@@ -346,9 +346,9 @@ make
 
 <p>
 Note that SWIG can also be built using Cygwin.
-However, SWIG will then require the Cygwin DLL when executing. 
+However, SWIG will then require the Cygwin DLL when executing.
 Follow the Unix instructions in the README file in the SWIG root directory.
-Note that the Cygwin environment will also allow one to regenerate the autotool generated files which are supplied with the release distribution. 
+Note that the Cygwin environment will also allow one to regenerate the autotool generated files which are supplied with the release distribution.
 These files are generated using the <tt>autogen.sh</tt> script and will only need regenerating in circumstances such as changing the build system.
 </p>
 
@@ -356,8 +356,8 @@ These files are generated using the <tt>autogen.sh</tt> script and will only nee
 
 
 <p>
-If you don't want to install Cygwin or MinGW, use a different compiler to build 
-SWIG. For example, all the source code files can be added to a Visual C++ project 
+If you don't want to install Cygwin or MinGW, use a different compiler to build
+SWIG. For example, all the source code files can be added to a Visual C++ project
 file in order to build swig.exe from the Visual C++ IDE.
 </p>
 
@@ -366,7 +366,7 @@ file in order to build swig.exe from the Visual C++ IDE.
 
 
 <p>
-The examples and test-suite work as successfully on Cygwin as on any other Unix operating system. 
+The examples and test-suite work as successfully on Cygwin as on any other Unix operating system.
 The modules which are known to work are Python, Tcl, Perl, Ruby, Java and C#.
 Follow the Unix instructions in the README file in the SWIG root directory to build the examples.
 </p>
@@ -386,6 +386,22 @@ Include it like you would any other interface file, for example:
 %include &lt;windows.i&gt;
 
 __declspec(dllexport) ULONG __stdcall foo(DWORD, __int32);
+</pre></div>
+<p>Note that if you follow Microsoft's recommendation of wrapping the
+<tt>__declspec</tt> calls in a preprocessor definition, you will need to
+make sure that the definition is included by SWIG as well, whether you define it
+manually or it is included in a header. For example, if you have specified the
+preprocessor definition in a header named <tt>export_lib.h</tt> and include
+other headers which depend on it, you should use the <tt>%include</tt> directive
+to include the definition explicitly. For example, if you had a header file,
+<tt>bar.h</tt>, which depended on <tt>export_lib.h</tt>, your SWIG definition
+file might look like:</p>
+
+<div class="code"><pre>
+%module bar
+%include &lt;windows.i&gt;
+%include "export_lib.h"
+%include "bar.h"
 </pre></div>
 
 
