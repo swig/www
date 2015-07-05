@@ -893,6 +893,8 @@ PRE { font-family: monospace }
 <UL>
 <LI><A HREF="#CSharp_introduction_swig2_compatibility">20.1.1 SWIG 2
  Compatibility</A></LI>
+<LI><A HREF="#CSharp_commandline">20.1.2 Additional command line options</A>
+</LI>
 </UL>
 </LI>
 <LI><A HREF="#CSharp_differences_java">20.2 Differences to the Java
@@ -928,7 +930,7 @@ PRE { font-family: monospace }
 <LI><A HREF="#CSharp_director_caveats">20.6.3 Director caveats</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#CSharp_multiple_modules">20.7 Multiples modules</A></LI>
+<LI><A HREF="#CSharp_multiple_modules">20.7 Multiple modules</A></LI>
 <LI><A HREF="#CSharp_typemap_examples">20.8 C# Typemap examples</A>
 <UL>
 <LI><A HREF="#CSharp_memory_management_member_variables">20.8.1 Memory
@@ -1331,7 +1333,7 @@ PRE { font-family: monospace }
  Applications with node-webkit</A></LI>
 </UL>
 </LI>
-<LI><A HREF="#Javascript_nn14">26.4 Examples</A>
+<LI><A HREF="#Javascript_examples">26.4 Examples</A>
 <UL>
 <LI><A HREF="#Javascript_simple_example">26.4.1 Simple</A></LI>
 <LI><A HREF="#Javascript_class_example">26.4.2 Class</A></LI>
@@ -1792,6 +1794,7 @@ PRE { font-family: monospace }
 <LI><A HREF="#Python_nn47">36.7.2 Simple pointers</A></LI>
 <LI><A HREF="#Python_nn48">36.7.3 Unbounded C Arrays</A></LI>
 <LI><A HREF="#Python_nn49">36.7.4 String handling</A></LI>
+<LI><A HREF="#Python_default_args">36.7.5 Default arguments</A></LI>
 </UL>
 </LI>
 <LI><A HREF="#Python_nn53">36.8 Typemaps</A>
@@ -2056,7 +2059,7 @@ PRE { font-family: monospace }
 </UL>
 </LI>
 <LI><A HREF="#Scilab_wrapping_structs">39.3.7 Structures</A></LI>
-<LI><A HREF="#Scilab_wrapping_cpp_classes">39.3.8 C++ Classes</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_classes">39.3.8 C++ classes</A></LI>
 <LI><A HREF="#Scilab_wrapping_cpp_inheritance">39.3.9 C++ inheritance</A>
 </LI>
 <LI><A HREF="#Scilab_wrapping_pointers_references_values_arrays">39.3.10
@@ -2249,7 +2252,7 @@ PRE { font-family: monospace }
 </UL>
 <HR NOSHADE>
 <H1><A name="Sections"></A>SWIG-3.0 Documentation</H1>
- Last update : SWIG-3.0.5 (31 Jan 2015)
+ Last update : SWIG-3.0.6 (5 Jul 2015)
 <H2><A NAME="1_1">Sections</A></H2>
 <H3><A NAME="1_1_1">SWIG Core Documentation</A></H3>
 <UL>
@@ -2981,7 +2984,12 @@ SWIG_LINK_LIBRARIES(example ${PYTHON_LIBRARIES})
  used on any platform. Again, this is an important part of staying out
  of the programmer's way----the last thing any developer wants to do is
  to spend their time debugging the output of a tool that relies on
- non-portable or unreliable programming features.</P>
+ non-portable or unreliable programming features. Dependencies are often
+ a source of incompatibilities and problems and so additional third
+ party libraries are not used in the generated code. SWIG will also
+ generally avoid generating code that introduces a dependency on the C++
+ Standard Template Library (STL). SWIG will generate code that depends
+ on the C libraries though.</P>
 <HR NOSHADE>
 <H1><A name="Windows"></A>3 Getting started on Windows</H1>
 
@@ -3217,9 +3225,9 @@ MinGW SourceForge download page</A>. Note that at the time of writing,
 <LI> Start the MSYS command prompt and execute:<DIV class="shell">
 <PRE>
 cd /
-tar -jxf msys-automake-1.8.2.tar.bz2 
+tar -jxf msys-automake-1.8.2.tar.bz2
 tar -jxf msys-autoconf-2.59.tar.bz2
-tar -zxf bison-2.0-MSYS.tar.gz   
+tar -zxf bison-2.0-MSYS.tar.gz
 </PRE>
 </DIV></LI>
 <LI> The very latest development version of SWIG is available from <A href="https://github.com/swig/swig">
@@ -3291,6 +3299,50 @@ __declspec(dllimport)</TT>, <TT>__stdcall</TT> etc. There is a Windows
 %include &lt;windows.i&gt;
 
 __declspec(dllexport) ULONG __stdcall foo(DWORD, __int32);
+</PRE>
+</DIV>
+<P>Note that if you follow Microsoft's recommendation of wrapping the <TT>
+__declspec</TT> calls in a preprocessor definition, you will need to
+ make sure that the definition is included by SWIG as well, by either
+ defining it manually or via a header. For example, if you have
+ specified the preprocessor definition in a header named <TT>
+export_lib.h</TT> and include other headers which depend on it, you
+ should use the <TT>%include</TT> directive to include the definition
+ explicitly. For example, if you had a header file, <TT>bar.h</TT>,
+ which depended on <TT>export_lib.h</TT>, your SWIG definition file
+ might look like:</P>
+<DIV class="code">
+<PRE>
+// bar.i
+%module bar
+%include &lt;windows.i&gt;
+%include &quot;export_lib.h&quot;
+%include &quot;bar.h&quot;
+</PRE>
+</DIV>
+<P> where export_lib.h may contain:</P>
+<DIV class="code">
+<PRE>
+// export_lib.h
+#define BAR_API __declspec(dllexport)
+</PRE>
+</DIV>
+<P> and bar.h may look like:</P>
+<DIV class="code">
+<PRE>
+// bar.h
+#include &quot;export_lib.h&quot;
+BAR_API void bar_function(int, double);
+</PRE>
+</DIV>
+<P> Using the preprocessor to remove BAR_API is a popular simpler
+ solution:</P>
+<DIV class="code">
+<PRE>
+// bar.i
+%module bar
+#define BAR_API
+%include &quot;bar.h&quot;
 </PRE>
 </DIV><HR NOSHADE>
 <H1><A name="Scripting"></A>4 Scripting Languages</H1>
@@ -3795,7 +3847,8 @@ lang</EM> -help</TT>.</P>
 -I<EM>dir</EM>                 Add a directory to the file include path
 -l<EM>file</EM>                Include a SWIG library file.
 -module <EM>name</EM>          Set the name of the SWIG module
--o <EM>outfile</EM>            Name of output file
+-o <EM>outfile</EM>            Set name of C/C++ output file to &lt;outfile&gt;
+-oh <EM>headfile</EM>          Set name of C++ output header file for directors to &lt;headfile&gt;
 -outcurrentdir        Set default output dir to current dir instead of input file's path
 -outdir <EM>dir</EM>           Set language specific files output directory
 -pcreversion          Display PCRE version information
@@ -3846,12 +3899,12 @@ Modules Introduction</A> section.</P>
  additional files depending on the target language. By default, an input
  file with the name <TT>file.i</TT> is transformed into a file <TT>
 file_wrap.c</TT> or <TT>file_wrap.cxx</TT> (depending on whether or not
- the <TT>-c++</TT> option has been used). The name of the output file
- can be changed using the <TT>-o</TT> option. In certain cases, file
- suffixes are used by the compiler to determine the source language (C,
- C++, etc.). Therefore, you have to use the <TT>-o</TT> option to change
- the suffix of the SWIG-generated wrapper file if you want something
- different than the default. For example:</P>
+ the <TT>-c++</TT> option has been used). The name of the output C/C++
+ file can be changed using the <TT>-o</TT> option. In certain cases,
+ file suffixes are used by the compiler to determine the source language
+ (C, C++, etc.). Therefore, you have to use the <TT>-o</TT> option to
+ change the suffix of the SWIG-generated wrapper file if you want
+ something different than the default. For example:</P>
 <DIV class="shell">
 <PRE>
 $ swig -c++ -python -o example_wrap.cpp example.i
@@ -7989,18 +8042,19 @@ at example.i:3 used.
  they appear in the interface file. Therefore, earlier methods will
  shadow methods that appear later.</P>
 <P> When wrapping an overloaded function, there is a chance that you
- will get an error message like this:</P>
+ will get a warning message like this:</P>
 <DIV class="shell">
 <PRE>
-example.i:3: Warning 467: Overloaded foo(int) not supported (no type checking
-rule for 'int').
+example.i:3: Warning 467: Overloaded foo(int) not supported (incomplete type checking rule - 
+no precedence level in typecheck typemap for 'int').
 </PRE>
 </DIV>
 <P> This error means that the target language module supports
  overloading, but for some reason there is no type-checking rule that
  can be used to generate a working dispatch function. The resulting
  behavior is then undefined. You should report this as a bug to the <A href="http://www.swig.org/bugs.html">
-SWIG bug tracking database</A>.</P>
+SWIG bug tracking database</A> if this is due to one of the typemaps
+ supplied with SWIG.</P>
 <P> If you get an error message such as the following,</P>
 <DIV class="shell">
 <PRE>
@@ -13170,8 +13224,10 @@ example.i:16: Warning 520: Derived class 'Child' of 'Parent' is not similarly ma
 ... as before ...
 </PRE>
 </DIV>
-<P><B> Note:</B> There is currently no support for <TT>%shared_ptr</TT>
- and the director feature.</P>
+<P><B> Note:</B> There is somewhat limited support for <TT>%shared_ptr</TT>
+ and the director feature and the degress of success varies among the
+ different target languages. Please help to improve this support by
+ providing patches with improvements.</P>
 <H3><A name="Library_std_auto_ptr"></A>9.4.5 auto_ptr smart pointer</H3>
 <P> While <TT>std::auto_ptr</TT> is deprecated in C++11, some existing
  code may still be using it, so SWIG provides limited support for this
@@ -17088,8 +17144,8 @@ SWIG_TYPECHECK_STRING_ARRAY      1140
  higher values. For example, integers are checked before floats, single
  values are checked before arrays, and so forth.</P>
 <P> Using the above table as a guide, each target language defines a
- collection of &quot;typecheck&quot; typemaps. The follow excerpt from the Python
- module illustrates this:</P>
+ collection of &quot;typecheck&quot; typemaps. The following excerpt from the
+ Python module illustrates this:</P>
 <DIV class="code">
 <PRE>
 /* Python type checking rules */
@@ -17193,10 +17249,24 @@ SWIG_TYPECHECK_STRING_ARRAY      1140
 </PRE>
 </DIV>
 <P> The bottom line: If you are writing new typemaps and you are using
- overloaded methods, you will probably have to write typecheck code or
- copy existing code. Since this is a relatively new SWIG feature, there
- are few examples to work with. However, you might look at some of the
- existing library files likes 'typemaps.i' for a guide.</P>
+ overloaded methods, you will probably have to write new typecheck code
+ or copy and modify existing typecheck code.</P>
+<P> If you write a typecheck typemap and omit the precedence level, for
+ example commenting it out as shown below:</P>
+<DIV class="code">
+<PRE>
+%typemap(typecheck /*,precedence=SWIG_TYPECHECK_INTEGER*/) int {
+   $1 = PyInt_Check($input) ? 1 : 0;
+}
+</PRE>
+</DIV>
+<P> then the type is given a precedence higher than any other known
+ precedence level and a <A href="#Warnings">warning</A> is issued:</P>
+<DIV class="shell">
+<PRE>
+example.i:18: Warning 467: Overloaded method foo(int) not supported (incomplete type checking rule - no precedence level in typecheck typemap for 'int').
+</PRE>
+</DIV>
 <P><B> Notes:</B></P>
 <UL>
 <LI>Typecheck typemaps are not used for non-overloaded methods. Because
@@ -19734,8 +19804,9 @@ name</EM>'</LI>
 <LI>464. Unsupported constant value.</LI>
 <LI>465. Unable to handle type<EM> type</EM>.</LI>
 <LI>466. Unsupported variable type<EM> type</EM>.</LI>
-<LI>467. Overloaded<EM> declaration</EM> not supported (no type checking
- rule for '<EM>type</EM>')</LI>
+<LI>467. Overloaded<EM> declaration</EM> not supported (incomplete type
+ checking rule - no precedence level in typecheck typemap for '<EM>type</EM>
+')</LI>
 <LI>468. No 'throw' typemap defined for exception type<EM> type</EM></LI>
 <LI>469. No or improper directorin typemap defined for<EM> type</EM></LI>
 <LI>470. Thread/reentrant unsafe wrapping, consider returning by value
@@ -20053,7 +20124,9 @@ SWIG_NewPointerObj</TT>, and others sometimes need to be called. Calling
  embedded into the <TT>_wrap.c</TT> file, which has those declarations
  available. If you need to call the SWIG run-time functions from another
  C file, there is one header you need to include. To generate the header
- that needs to be included, run the following command:<DIV class="shell">
+ that needs to be included, SWIG can be run in a different mode via <TT>
+-external-runtime</TT> to generate the run-time instead of the normal
+ mode of processing an input interface file. For example:<DIV class="shell">
 <PRE>
 $ swig -python -external-runtime &lt;filename&gt;
 </PRE>
@@ -22951,6 +23024,7 @@ APP_STL := gnustl_static
 <UL>
 <LI><A href="#CSharp_introduction_swig2_compatibility">SWIG 2
  Compatibility</A></LI>
+<LI><A href="#CSharp_commandline">Additional command line options</A></LI>
 </UL>
 </LI>
 <LI><A href="#CSharp_differences_java">Differences to the Java module</A>
@@ -22984,7 +23058,7 @@ APP_STL := gnustl_static
 <LI><A href="#CSharp_director_caveats">Director caveats</A></LI>
 </UL>
 </LI>
-<LI><A href="#CSharp_multiple_modules">Multiples modules</A></LI>
+<LI><A href="#CSharp_multiple_modules">Multiple modules</A></LI>
 <LI><A href="#CSharp_typemap_examples">C# Typemap examples</A>
 <UL>
 <LI><A href="#CSharp_memory_management_member_variables">Memory
@@ -23042,6 +23116,35 @@ Interop with native libraries</A>.</P>
  code similar to those generated by SWIG 2. This can be done without
  modifying any of the input code by passing the <TT>-DSWIG2_CSHARP</TT>
  commandline parameter when executing <TT>swig</TT>.</P>
+<H3><A name="CSharp_commandline"></A>20.1.2 Additional command line
+ options</H3>
+<P> The following table lists the additional commandline options
+ available for the C# module. They can also be seen by using:</P>
+<DIV class="code">
+<PRE>
+swig -csharp -help 
+</PRE>
+</DIV>
+<TABLE summary="C# specific options">
+<TR><TH>C# specific options</TH></TR>
+<TR><TD>-dllimport &lt;dl&gt;</TD><TD>Override DllImport attribute name to
+ &lt;dl&gt;</TD></TR>
+<TR><TD>-namespace &lt;nm&gt;</TD><TD>Generate wrappers into C# namespace &lt;nm&gt;</TD>
+</TR>
+<TR><TD>-noproxy</TD><TD>Generate the low-level functional interface
+ instead of proxy classes</TD></TR>
+<TR><TD>-oldvarnames</TD><TD>Old intermediary method names for variable
+ wrappers</TD></TR>
+<TR><TD>-outfile &lt;file&gt;</TD><TD>Write all C# into a single &lt;file&gt;
+ located in the output directory</TD></TR>
+</TABLE>
+<P> The -outfile option combines all the generated C# code into a single
+ output file instead of creating multiple C# files. The default, when
+ this option is not provided, is to generate separate .cs files for the
+ module class, intermediary class and each of the generated proxy and
+ type wrapper classes. Note that the file extension (.cs) will not be
+ automatically added and needs to be provided. Due to possible compiler
+ limits it is not advisable to use <TT>-outfile</TT> for large projects.</P>
 <H2><A name="CSharp_differences_java"></A>20.2 Differences to the Java
  module</H2>
 <P> The C# module is very similar to the Java module, so until some more
@@ -24412,7 +24515,7 @@ CSharpDefaults.DefaultMethod()</TT> will of course call this exact
  the implementation should pass the call on to <TT>
 CSharpDefaults.DefaultMethod(int)</TT>using the C++ default value, as
  shown above.</P>
-<H2><A name="CSharp_multiple_modules"></A>20.7 Multiples modules</H2>
+<H2><A name="CSharp_multiple_modules"></A>20.7 Multiple modules</H2>
 <P> When using <A href="Modules.html">multiple modules</A> it is is
  possible to compile each SWIG generated wrapper into a different
  assembly. However, by default the generated code may not compile if
@@ -26363,6 +26466,10 @@ swig -go -help
 </DIV>
 <TABLE summary="Go specific options">
 <TR><TH>Go specific options</TH></TR>
+<TR><TD>-cgo</TD><TD>Generate files to be used as input for the Go cgo
+ tool. This option is required for Go 1.5 and later, and works for Go
+ 1.2 and later. In the future this option will likely become the
+ default.</TD></TR>
 <TR><TD>-intgosize &lt;s&gt;</TD><TD>Set the size for the Go type <TT>int</TT>
 . This controls the size that the C/C++ code expects to see. The &lt;s&gt;
  argument should be 32 or 64. This option is currently required during
@@ -26392,7 +26499,12 @@ swig -go -help
  ignored.</TD></TR>
 </TABLE>
 <H3><A name="Go_outputs"></A>23.3.2 Go Output Files</H3>
-<P> When generating Go code, SWIG will generate the following files:</P>
+<P>There are two different approaches to generating output files,
+ controlled by SWIG's <TT>-cgo</TT> option. The <TT>-cgo</TT> option
+ works with Go version 1.2 or later. It is required when using Go
+ version 1.5 or later.</P>
+<P>With or without the <TT>-cgo</TT> option, SWIG will generate the
+ following files when generating Go code:</P>
 <UL>
 <LI> MODULE.go will contain the Go functions that your Go code will
  call. These functions will be wrappers for the C++ functions defined by
@@ -26400,28 +26512,44 @@ swig -go -help
  compiler.</LI>
 <LI> MODULE_wrap.c or MODULE_wrap.cxx will contain C/C++ functions will
  be invoked by the Go wrapper code. This file should be compiled with
- the usual C or C++ compiler and linked into a shared library.</LI>
+ the usual C or C++ compiler.</LI>
 <LI> MODULE_wrap.h will be generated if you use the directors feature.
  It provides a definition of the generated C++ director classes. It is
  generally not necessary to use this file, but in some special cases it
  may be helpful to include it in your code, compiled with the usual C or
  C++ compiler.</LI>
-<LI> If using the gc compiler, MODULE_gc.c will contain C code which
- should be compiled with the C compiler distributed as part of the gc
- compiler. It should then be combined with the compiled MODULE.go using
- gopack. This file will not be generated when using gccgo.</LI>
+</UL>
+<P>When neither the <TT>-cgo</TT> nor the <TT>-gccgo</TT> option is
+ used, SWIG will also generate an additional file:</P>
+<UL>
+<LI> MODULE_gc.c will contain C code which should be compiled with the C
+ compiler distributed as part of the gc compiler. It should then be
+ combined with the compiled MODULE.go using go tool pack.</LI>
 </UL>
 <P> Most Go programs are built using the go tool. The go tool has
  limited support for SWIG. To use it, put your SWIG interface into a
  file with the extension .swig, or, if you are wrapping C++ code,
  .swigcxx. Put that file in a GOPATH/src directory as usual for Go
  sources. Put other interface code in the same directory with extensions
- of .c and .cxx. The go build command and go install commands will
- automatically run SWIG for you and will build the interface code.</P>
-<P> You can also use SWIG directly yourself. When using the gc compiler
- version 1.2 or later, or when using gccgo, the code generated by SWIG
- can be linked directly into the Go program. A typical command sequence
- when using the gc compiler would look like this:</P>
+ of .c and .cxx. The <TT>go build</TT> and <TT>go install</TT> commands
+ will automatically run SWIG for you and will build the interface code.</P>
+<P> You can also use SWIG directly yourself. When using the <TT>-cgo</TT>
+ option, SWIG will generate files that can be used directly by <TT>go
+ build</TT>. Put your SWIG input file in a directory under GOPATH/src,
+ and give it a name that does not end in .swig or .swigcxx.</P>
+<DIV class="code">
+<PRE>
+% swig -go -cgo example.i
+% go install
+</PRE>
+</DIV>
+<P> You will now have a Go package that you can import from other Go
+ packages as usual.</P>
+<P> To use SWIG without the <TT>-cgo</TT> option, more steps are
+ required. Recall that this only works with Go versions before 1.5. When
+ using Go version 1.2 or later, or when using gccgo, the code generated
+ by SWIG can be linked directly into the Go program. A typical command
+ sequence when using the gc compiler would look like this:</P>
 <DIV class="code">
 <PRE>
 % swig -go example.i
@@ -26435,9 +26563,8 @@ swig -go -help
 </PRE>
 </DIV>
 <P> You can also put the wrapped code into a shared library, and when
- using the gc compiler before version 1.2 this is the only supported
- option. A typical command sequence for this approach would look like
- this:</P>
+ using the Go versions before 1.2 this is the only supported option. A
+ typical command sequence for this approach would look like this:</P>
 <DIV class="code">
 <PRE>
 % swig -go -use-shlib example.i
@@ -26548,31 +26675,105 @@ MyClassMyFactoryFunction() MyClass {
  actually returns a go interface. If the returned pointer can be null,
  you can check for this by calling the Swigcptr() method.</P>
 <H4><A name="Go_class_memory"></A>23.4.5.1 Go Class Memory Management</H4>
-<P> Calling <TT>NewClassName</TT> for some C++ class <TT>ClassName</TT>
+<P> Calling <TT>NewClassName</TT> for a C++ class <TT>ClassName</TT>
  will allocate memory using the C++ memory allocator. This memory will
  not be automatically freed by Go's garbage collector as the object
  ownership is not tracked. When you are done with the C++ object you
- must free it manually using <TT>DeleteClassName</TT>.</P>
-<P> A common technique is to store the C++ object into a Go object, and
- use the Go function <TT>runtime.SetFinalizer</TT> to free the C++
- object when the Go object is freed. It is strongly recommended to read
- the <A href="https://golang.org/pkg/runtime/#SetFinalizer">
-runtime.SetFinalizer</A> documentation before using this technique to
- understand its limitations. For example, if the SWIG package is
- imported as &quot;wrap&quot;:</P>
+ must free it using <TT>DeleteClassName</TT>.
+<BR>
+<BR> The most Go idiomatic way to manage the memory for some C++ class
+ is to call <TT>NewClassName</TT> followed by a <TT><A href="https://golang.org/doc/effective_go.html#defer">
+defer</A></TT> of the <TT>DeleteClassName</TT> call. Using <TT>defer</TT>
+ ensures that the memory of the C++ object is freed as soon as the
+ function containing the <TT>defer</TT> statement returns. Furthemore <TT>
+defer</TT> works great for short-lived objects and fits nicely C++'s
+ RAII idiom. Example:</P>
 <DIV class="code">
 <PRE>
+func UseClassName(...) ... {
+	o := NewClassName(...)
+	defer DeleteClassName(o)
+	// Use the ClassName object
+	return ...
+}
+</PRE>
+</DIV>
+<P> With increasing complexity, especially complex C++ object
+ hierarchies, the correct placement of <TT>defer</TT> statements becomes
+ harder and harder as C++ objects need to be freed in the correct order.
+ This problem can be eased by keeping a C++ object function local so
+ that it is only available to the function that creates a C++ object and
+ functions called by this function. Example:</P>
+<DIV class="code">
+<PRE>
+func WithClassName(constructor args, f func(ClassName, ...interface{}) error, data ...interface{}) error {
+	o := NewClassName(constructor args)
+	defer DeleteClassName(o)
+	return f(o, data...)
+}
+
+func UseClassName(o ClassName, data ...interface{}) (err error) {
+	// Use the ClassName object and additional data and return error.
+}
+
+func main() {
+	WithClassName(constructor args, UseClassName, additional data)
+}
+</PRE>
+</DIV>
+<P> Using <TT>defer</TT> has limitations though, especially when it
+ comes to long-lived C++ objects whichs lifetimes are hard to predict.
+ For such C++ objects a common technique is to store the C++ object into
+ a Go object, and to use the Go function <TT>runtime.SetFinalizer</TT>
+ to add a finalizer which frees the C++ object when the Go object is
+ freed. It is strongly recommended to read the <A href="https://golang.org/pkg/runtime/#SetFinalizer">
+runtime.SetFinalizer</A> documentation before using this technique to
+ understand the <TT>runtime.SetFinalizer</TT> limitations.
+<BR></P>
+<P> Common pitfalls with <TT>runtime.SetFinalizer</TT> are:</P>
+<UL>
+<LI> If a hierarchy of C++ objects will be automatically freed by Go
+ finalizers then the Go objects that store the C++ objects need to
+ replicate the hierarchy of the C++ objects to prevent that C++ objects
+ are freed prematurely while other C++ objects still rely on them.</LI>
+<LI> The usage of Go finalizers is problematic with C++'s RAII idiom as
+ it isn't predictable when the finalizer will run and this might require
+ a Close or Delete method to be added the Go object that stores a C++
+ object to mitigate.</LI>
+<LI> The Go finalizer function typically runs in a different OS thread
+ which can be problematic with C++ code that uses thread-local storage.</LI>
+</UL>
+<P> <TT>runtime.SetFinalizer</TT> Example:</P>
+<DIV class="code">
+<PRE>
+import (
+	&quot;runtime&quot;
+	&quot;wrap&quot; // SWIG generated wrapper code
+)
+
 type GoClassName struct {
-	w wrap.ClassName
+	wcn wrap.ClassName
 }
 
 func NewGoClassName() *GoClassName {
-	r := &amp;GoClassName{wrap.NewClassName()}
-	runtime.SetFinalizer(r,
-		func(r *GoClassName) {
-			wrap.DeleteClassName(r.w)
-		})
-	return r
+	o := &amp;GoClassName{wcn: wrap.NewClassName()}
+	runtime.SetFinalizer(o, deleteGoClassName)
+	return o
+}
+
+func deleteGoClassName(o *GoClassName) {
+	// Runs typically in a different OS thread!
+	wrap.DeleteClassName(o.wcn)
+	o.wcn = nil
+}
+
+func (o *GoClassName) Close() {
+	// If the C++ object has a Close method.
+	o.wcn.Close()
+
+	// If the GoClassName object is no longer in an usable state.
+	runtime.SetFinalizer(o, nil) // Remove finalizer.
+	deleteGoClassName() // Free the C++ object.
 }
 </PRE>
 </DIV>
@@ -26810,8 +27011,8 @@ described above</A>.</TD></TR>
  is useful when gotype is best converted to C/C++ using Go code.</TD></TR>
 <TR><TD>goin</TD><TD> Go code to convert from gotype to imtype when
  calling a C/C++ function. SWIG will then internally convert imtype to a
- C/C++ type and pass it down. If this is not defined no conversion is
- done.</TD></TR>
+ C/C++ type and pass it down. If this is not defined, or is the empty
+ string, no conversion is done.</TD></TR>
 <TR><TD>in</TD><TD> C/C++ code to convert the internally generated C/C++
  type, based on imtype, into the C/C++ type that a function call
  expects. If this is not defined the value will simply be cast to the
@@ -26821,8 +27022,8 @@ described above</A>.</TD></TR>
  on imtype, that will be returned to Go. If this is not defined the
  value will simply be cast to the desired type.</TD></TR>
 <TR><TD>goout</TD><TD> Go code to convert a value returned from a C/C++
- function from imtype to gotype. If this is not defined no conversion is
- done.</TD></TR>
+ function from imtype to gotype. If this is not defined, or is the empty
+ string, no conversion is done.</TD></TR>
 <TR><TD>argout</TD><TD> C/C++ code to adjust an argument value when
  returning from a function. This is called after the real C/C++ function
  has run. This uses the internally generated C/C++ type, based on
@@ -26831,17 +27032,18 @@ described above</A>.</TD></TR>
 <TR><TD>goargout</TD><TD> Go code to adjust an argument value when
  returning from a function. This is called after the real C/C++ function
  has run. The value will be in imtype. This is only useful for a pointer
- type of some sort. If this is not defined nothing will be done.</TD></TR>
+ type of some sort. If this is not defined, or is the empty string,
+ nothing will be done.</TD></TR>
 <TR><TD>directorin</TD><TD> C/C++ code to convert the C/C++ type used to
  call a director method into the internally generated C/C++ type, based
  on imtype, that will be passed to Go. If this is not defined the value
  will simply be cast to the desired type.</TD></TR>
 <TR><TD>godirectorin</TD><TD> Go code to convert a value used to call a
- director method from imtype to gotype. If this is not defined no
- conversion is done.</TD></TR>
+ director method from imtype to gotype. If this is not defined, or is
+ the empty string, no conversion is done.</TD></TR>
 <TR><TD>godirectorout</TD><TD> Go code to convert a value returned from
- a director method from gotype to imtype. If this is not defined no
- conversion is done.</TD></TR>
+ a director method from gotype to imtype. If this is not defined, or is
+ the empty string, no conversion is done.</TD></TR>
 <TR><TD>directorout</TD><TD> C/C++ code to convert a value returned from
  a director method from the internally generated C/C++ type, based on
  imtype, into the type that the method should return If this is not
@@ -34577,7 +34779,7 @@ arrays_java.i</TT>. Try and minimise the expensive JNI calls to C/C++
  node-webkit</A></LI>
 </UL>
 </LI>
-<LI><A href="#Javascript_nn14">Examples</A>
+<LI><A href="#Javascript_examples">Examples</A>
 <UL>
 <LI><A href="#Javascript_simple_example">Simple</A></LI>
 <LI><A href="#Javascript_class_example">Class</A></LI>
@@ -34788,10 +34990,10 @@ binding.gyp</CODE> which is basically in JSON format and conforms to the
 <PRE>
 $ swig -javascript -node -c++ example.i</PRE>
 </DIV>
-<P>Then run <CODE>node-gyp</CODE></P>
+<P>Then run <CODE>node-gyp build</CODE> to actually create the module:</P>
 <DIV class="shell">
 <PRE>
-$ node-gyp</PRE>
+$ node-gyp build</PRE>
 </DIV>
 <P>This will create a <CODE>build</CODE> folder containing the native
  module. To use the extension you need to 'require' it in your
@@ -34980,7 +35182,7 @@ Manifest</A> specification for more details.</P>
   document.querySelector('#z').innerHTML = z;
 };</PRE>
 </DIV>
-<H2><A name="Javascript_nn14"></A>26.4 Examples</H2>
+<H2><A name="Javascript_examples"></A>26.4 Examples</H2>
 <P>Some basic examples are shown here in more detail.</P>
 <H3><A name="Javascript_simple_example"></A>26.4.1 Simple</H3>
 <P>The common example <CODE>simple</CODE> looks like this:</P>
@@ -37225,8 +37427,8 @@ void spam(short);
 </PRE>
 </DIV>
 <P> or</P>
-<DIV CLASS="CODE">
-<PRE>VOID FOO(bAR *B);
+<DIV class="code">
+<PRE>void foo(Bar *b);
 void foo(Bar &amp;b);
 </PRE>
 </DIV>
@@ -39070,7 +39272,6 @@ here</A>.</P>
 <P> Tip: mzc's --vv option is very useful for debugging the inevitable
  library problems you'll encounter.</P>
 <HR NOSHADE>
- <A name="n1"></A>
 <H1><A name="Ocaml"></A>31 SWIG and Ocaml</H1>
 
 <!-- INDEX -->
@@ -39129,24 +39330,24 @@ here</A>.</P>
 </UL>
 </DIV>
 <!-- INDEX -->
-<P> This chapter describes SWIG's support of Ocaml. Ocaml is a
- relatively recent addition to the ML family, and is a recent addition
- to SWIG. It's the second compiled, typed language to be added. Ocaml
- has widely acknowledged benefits for engineers, mostly derived from a
- sophisticated type system, compile-time checking which eliminates
- several classes of common programming errors, and good native
- performance. While all of this is wonderful, there are well-written C
- and C++ libraries that Ocaml users will want to take advantage of as
- part of their arsenal (such as SSL and gdbm), as well as their own
- mature C and C++ code. SWIG allows this code to be used in a natural,
- type-safe way with Ocaml, by providing the necessary, but repetitive
- glue code which creates and uses Ocaml values to communicate with C and
- C++ code. In addition, SWIG also produces the needed Ocaml source that
- binds variants, functions, classes, etc.</P>
+<P> This chapter describes SWIG's support of Ocaml.</P>
+<P> Ocaml is a relatively recent addition to the ML family, and is a
+ recent addition to SWIG. It's the second compiled, typed language to be
+ added. Ocaml has widely acknowledged benefits for engineers, mostly
+ derived from a sophisticated type system, compile-time checking which
+ eliminates several classes of common programming errors, and good
+ native performance. While all of this is wonderful, there are
+ well-written C and C++ libraries that Ocaml users will want to take
+ advantage of as part of their arsenal (such as SSL and gdbm), as well
+ as their own mature C and C++ code. SWIG allows this code to be used in
+ a natural, type-safe way with Ocaml, by providing the necessary, but
+ repetitive glue code which creates and uses Ocaml values to communicate
+ with C and C++ code. In addition, SWIG also produces the needed Ocaml
+ source that binds variants, functions, classes, etc.</P>
 <P> If you're not familiar with the Objective Caml language, you can
  visit <A href="http://www.ocaml.org/">The Ocaml Website</A>.</P>
 <H2><A name="Ocaml_nn2"></A>31.1 Preliminaries</H2>
-<P> SWIG 1.3 works with Ocaml 3.04 and above. Given the choice, you
+<P> SWIG 3.0 works with Ocaml 3.08.3 and above. Given the choice, you
  should use the latest stable release. The SWIG Ocaml module has been
  tested on Linux (x86,PPC,Sparc) and Cygwin on Windows. The best way to
  determine whether your system will work is to compile the examples and
@@ -39154,7 +39355,7 @@ here</A>.</P>
  check</TT> from the SWIG root directory after installing SWIG. The
  Ocaml module has been tested using the system's dynamic linking (the
  usual -lxxx against libxxx.so, as well as with Gerd Stolpmann's <A href="http://download.camlcity.org/download/">
-Dl package</A> . The ocaml_dynamic and ocaml_dynamic_cpp targets in the
+Dl package</A>. The ocaml_dynamic and ocaml_dynamic_cpp targets in the
  file Examples/Makefile illustrate how to compile and link SWIG modules
  that will be loaded dynamically. This has only been tested on Linux so
  far.</P>
@@ -39165,9 +39366,9 @@ Dl package</A> . The ocaml_dynamic and ocaml_dynamic_cpp targets in the
 <DIV class="code">
 <PRE>
 %swig -ocaml example.i
-  </PRE>
+</PRE>
 </DIV>
-<P> This will produce 3 files. The file <TT>example_wrap.c</TT> contains
+<P>This will produce 3 files. The file <TT>example_wrap.c</TT> contains
  all of the C code needed to build an Ocaml module. To build the module,
  you will compile the file <TT>example_wrap.c</TT> with <TT>ocamlc</TT>
  or <TT>ocamlopt</TT> to create the needed .o file. You will need to
@@ -39190,18 +39391,17 @@ Dl package</A> . The ocaml_dynamic and ocaml_dynamic_cpp targets in the
 % ocamlc -c -ccopt &quot;-I/usr/include/foo&quot; example_wrap.c
 % ocamlc -c example.mli
 % ocamlc -c example.ml
-  </PRE>
+</PRE>
 </DIV>
-<P> <TT>ocamlc</TT> is aware of .c files and knows how to handle them.
+<P><TT>ocamlc</TT> is aware of .c files and knows how to handle them.
  Unfortunately, it does not know about .cxx, .cc, or .cpp files, so when
  SWIG is invoked in C++ mode, you must:</P>
 <DIV class="code">
 <PRE>
 % cp example_wrap.cxx example_wrap.cxx.c
-<BR>% ocamlc -c ... -ccopt -xc++ example_wrap.cxx.c
-<BR>% ...
-<BR>
-  </PRE>
+% ocamlc -c ... -ccopt -xc++ example_wrap.cxx.c
+% ...
+</PRE>
 </DIV>
 <H3><A name="Ocaml_nn5"></A>31.1.3 The camlp4 module</H3>
 <P> The camlp4 module (swigp4.ml -&gt; swigp4.cmo) contains a simple
@@ -39271,8 +39471,7 @@ Dl package</A> . The ocaml_dynamic and ocaml_dynamic_cpp targets in the
 <P> In the code as seen by the typemap writer, there is a value,
  swig_result, that always contains the current return data. It is a
  list, and must be appended with the caml_list_append function, or with
- functions and macros provided by objective caml.
-<BR></P>
+ functions and macros provided by objective caml.</P>
 <DIV class="code">
 <PRE>
 type c_obj =
@@ -39298,11 +39497,10 @@ type c_obj =
 </DIV>
 <P> A few functions exist which generate and return these:</P>
 <UL>
-<LI>caml_ptr_val receives a c_obj and returns a void *. &nbsp;This should be
+<LI>caml_ptr_val receives a c_obj and returns a void *. This should be
  used for all pointer purposes.</LI>
-<LI>caml_long_val receives a c_obj and returns a long. &nbsp;This should be
- used for most integral purposes.
-<BR></LI>
+<LI>caml_long_val receives a c_obj and returns a long. This should be
+ used for most integral purposes.</LI>
 <LI>caml_val_ptr receives a void * and returns a c_obj.</LI>
 <LI>caml_val_bool receives a C int and returns a c_obj representing its
  bool value.</LI>
@@ -39315,18 +39513,18 @@ type c_obj =
  C_obj, which contains a closure giving method access.</LI>
 </UL>
 <P> Because of this style, a typemap can return any kind of value it
- wants from a function. &nbsp;This enables out typemaps and inout typemaps to
- work well. &nbsp;The one thing to remember about outputting values is that
+ wants from a function. This enables out typemaps and inout typemaps to
+ work well. The one thing to remember about outputting values is that
  you must append them to the return list with swig_result =
  caml_list_append(swig_result,v).</P>
-<P> &nbsp;This function will return a new list that has your element
- appended. Upon return to caml space, the fnhelper function beautifies
- the result. A list containing a single item degrades to only that item
- (i.e. [ C_int 3 ] -&gt; C_int 3), and a list containing more than one item
- is wrapped in C_list (i.e. [ C_char 'a' ; C_char 'b' -&gt; C_list [ C_char
- 'a' ; C_char b ]). &nbsp;This is in order to make return values easier to
+<P> This function will return a new list that has your element appended.
+ Upon return to caml space, the fnhelper function beautifies the result.
+ A list containing a single item degrades to only that item (i.e. [
+ C_int 3 ] -&gt; C_int 3), and a list containing more than one item is
+ wrapped in C_list (i.e. [ C_char 'a' ; C_char 'b' -&gt; C_list [ C_char
+ 'a' ; C_char b ]). This is in order to make return values easier to
  handle when functions have only one return value, such as constructors,
- and operators. &nbsp;In addition, string, pointer, and object values are
+ and operators. In addition, string, pointer, and object values are
  interchangeable with respect to caml_ptr_val, so you can allocate
  memory as caml strings and still use the resulting pointers for C
  purposes, even using them to construct simple objects on. Note, though,
@@ -39334,7 +39532,7 @@ type c_obj =
  the SWIG interface does.</P>
 <P> The wild card type that you can use in lots of different ways is
  C_obj. It allows you to wrap any type of thing you like as an object
- using the same mechanism that the ocaml module does. &nbsp;When evaluated in
+ using the same mechanism that the ocaml module does. When evaluated in
  caml_ptr_val, the returned value is the result of a call to the
  object's &quot;&amp;&quot; operator, taken as a pointer.</P>
 <P> You should only construct values using objective caml, or using the
@@ -39371,10 +39569,10 @@ type c_obj =
 </TABLE>
 <H3><A name="Ocaml_nn10"></A>31.2.2 Enums</H3>
 <P> SWIG will wrap enumerations as polymorphic variants in the output
- Ocaml code, as above in C_enum.&nbsp; In order to support all C++-style uses
+ Ocaml code, as above in C_enum. In order to support all C++-style uses
  of enums, the function int_to_enum and enum_to_int are provided for
- ocaml code to produce and consume these values as integers. &nbsp;Other than
- that, correct uses of enums will not have a problem. &nbsp;Since enum labels
+ ocaml code to produce and consume these values as integers. Other than
+ that, correct uses of enums will not have a problem. Since enum labels
  may overlap between enums, the enum_to_int and int_to_enum functions
  take an enum type label as an argument. Example:</P>
 <DIV class="code">
@@ -39408,7 +39606,7 @@ val enum_to_int c_enum_type -&gt; c_obj -&gt; c_obj
 <DIV class="code">
 <PRE>
 bash-2.05a$ ocamlmktop -custom enum_test_wrap.o enum_test.cmo -o enum_test_top
-bash-2.05a$ ./enum_test_top 
+bash-2.05a$ ./enum_test_top
         Objective Caml version 3.04
 
 # open Enum_test ;;
@@ -39481,7 +39679,7 @@ void printfloats( float *tab, int len ) {
 		printf( &quot;%f &quot;, tab[i] );
 	}
 
-	printf( &quot;\n&quot; );  
+	printf( &quot;\n&quot; );
 }
 %}
 
@@ -39510,12 +39708,12 @@ void printfloats( float *tab, int len );
 </TABLE>
 <H3><A name="Ocaml_nn17"></A>31.2.4 C++ Classes</H3>
 <P> C++ classes, along with structs and unions are represented by C_obj
- (string -&gt; c_obj -&gt; c_obj) wrapped closures. &nbsp;These objects contain a
+ (string -&gt; c_obj -&gt; c_obj) wrapped closures. These objects contain a
  method list, and a type, which allow them to be used like C++ objects.
  When passed into typemaps that use pointers, they degrade to pointers
- through their &quot;&amp;&quot; method. &nbsp;Every method an object has is represented as
+ through their &quot;&amp;&quot; method. Every method an object has is represented as
  a string in the object's method table, and each method table exists in
- memory only once. &nbsp;In addition to any other operators an object might
+ memory only once. In addition to any other operators an object might
  have, certain builtin ones are provided by SWIG: (all of these take no
  arguments (C_void))</P>
 <TABLE summary="SWIG provided operators">
@@ -39578,7 +39776,7 @@ namespace std {
  camlp4 module.</P>
 <DIV class="code">
 <PRE>
-bash-2.05a$ ./example_top 
+bash-2.05a$ ./example_top
         Objective Caml version 3.06
 
         Camlp4 Parsing version 3.06
@@ -39606,14 +39804,14 @@ C_list
 - : Example.c_obj = C_void
 # x '[1] ;;
 - : Example.c_obj = C_string &quot;spam&quot;
-# for i = 0 to (x -&gt; size() as int) - 1 do 
-    print_endline ((x '[i to int]) as string) 
+# for i = 0 to (x -&gt; size() as int) - 1 do
+    print_endline ((x '[i to int]) as string)
   done ;;
 foo
 bar
 baz
 - : unit = ()
-# 
+#
 </PRE>
 </DIV>
 <H4><A name="Ocaml_nn19"></A>31.2.4.2 C++ Class Example</H4>
@@ -39652,9 +39850,9 @@ bash-2.05a$ QTPATH=/your/qt/path
 bash-2.05a$ for file in swig.mli swig.ml swigp4.ml ; do swig -ocaml -co $file ; done
 bash-2.05a$ ocamlc -c swig.mli ; ocamlc -c swig.ml
 bash-2.05a$ ocamlc -I `camlp4 -where` -pp &quot;camlp4o pa_extend.cmo q_MLast.cmo&quot; -c swigp4.ml
-bash-2.05a$ swig -ocaml -c++ -I$QTPATH/include  qt.i
+bash-2.05a$ swig -ocaml -c++ -I$QTPATH/include qt.i
 bash-2.05a$ mv qt_wrap.cxx qt_wrap.c
-bash-2.05a$ ocamlc -c -ccopt -xc++ -ccopt -g -g -ccopt -I$QTPATH/include qt_wrap.c 
+bash-2.05a$ ocamlc -c -ccopt -xc++ -ccopt -g -g -ccopt -I$QTPATH/include qt_wrap.c
 bash-2.05a$ ocamlc -c qt.mli
 bash-2.05a$ ocamlc -c qt.ml
 bash-2.05a$ ocamlmktop -custom swig.cmo -I `camlp4 -where` \
@@ -39665,7 +39863,7 @@ bash-2.05a$ ocamlmktop -custom swig.cmo -I `camlp4 -where` \
 <H4><A name="Ocaml_nn21"></A>31.2.4.4 Sample Session</H4>
 <DIV class="code">
 <PRE>
-bash-2.05a$ ./qt_top 
+bash-2.05a$ ./qt_top
         Objective Caml version 3.06
 
         Camlp4 Parsing version 3.06
@@ -39751,7 +39949,7 @@ let triangle_class pts ob meth args =
     | _ -&gt; (invoke ob) meth args ;;
 
 let triangle =
-  new_derived_object 
+  new_derived_object
     new_shape
     (triangle_class ((0.0,0.0),(0.5,1.0),(1.0,0.0)))
     '() ;;
@@ -39787,7 +39985,7 @@ let _ = _draw_shape_coverage '(triangle, C_int 60, C_int 20) ;;
 <DIV class="code">
 <PRE>
 let triangle =
-  new_derived_object 
+  new_derived_object
     new_shape
     (triangle_class ((0.0,0.0),(0.5,1.0),(1.0,0.0)))
     '()
@@ -44394,6 +44592,7 @@ public:
 <LI><A href="#Python_nn47">Simple pointers</A></LI>
 <LI><A href="#Python_nn48">Unbounded C Arrays</A></LI>
 <LI><A href="#Python_nn49">String handling</A></LI>
+<LI><A href="#Python_default_args">Default arguments</A></LI>
 </UL>
 </LI>
 <LI><A href="#Python_nn53">Typemaps</A>
@@ -45952,15 +46151,15 @@ int Foo_spam(Foo *f, int arg1) {
 import _example
 
 class Foo(object):
-     def __init__(self):
-         self.this = _example.new_Foo()
-         self.thisown = 1
-     def __del__(self):
-         if self.thisown:
-               _example.delete_Foo(self.this)
-     def spam(self,arg1):
-         return _example.Foo_spam(self.this,arg1)
-     x = property(_example.Foo_x_get, _example.Foo_x_set)
+    def __init__(self):
+        self.this = _example.new_Foo()
+        self.thisown = 1
+    def __del__(self):
+        if self.thisown:
+            _example.delete_Foo(self.this)
+    def spam(self,arg1):
+        return _example.Foo_spam(self.this,arg1)
+    x = property(_example.Foo_x_get, _example.Foo_x_set)
 </PRE>
 </DIV>
 <P> This class merely holds a pointer to the underlying C++ object (<TT>
@@ -45989,9 +46188,9 @@ __init__</TT> method looks like in a proxy class:</P>
 <DIV class="targetlang">
 <PRE>
 class Foo(object):
-     def __init__(self):
-         self.this = _example.new_Foo()
-         self.thisown = 1
+    def __init__(self):
+        self.this = _example.new_Foo()
+        self.thisown = 1
 </PRE>
 </DIV>
 <P>When a <TT>Foo</TT> instance is created, the call to <TT>
@@ -46083,11 +46282,11 @@ private:
  exception:</P>
 <DIV class="targetlang">
 <PRE>
-class MyPyException (Exception) :
-    def __init__(self, msg, *args) :
+class MyPyException(Exception):
+    def __init__(self, msg, *args):
         Exception.__init__(self, *args)
         self.myexc = MyException(msg)
-    def what (self) :
+    def what(self):
         return self.myexc.what()
 </PRE>
 </DIV></LI>
@@ -46500,6 +46699,7 @@ www.python.org</A> and is not repeated here.</P>
 class Foo {
 public:
     Foo(int foo);
+    virtual ~Foo();
     virtual void one();
     virtual void two();
 };
@@ -46516,11 +46716,12 @@ public:
 import mymodule
 
 class MyFoo(mymodule.Foo):
-  def __init__(self, foo):
-     mymodule.Foo(self, foo)  
+    def __init__(self, foo):
+        mymodule.Foo.__init__(self, foo)
+#       super().__init__(foo) # Alternative construction for Python3
 
-  def one(self):
-     print &quot;one from python&quot;
+    def one(self):
+        print &quot;one from python&quot;
 </PRE>
 </DIV>
 <H3><A name="Python_nn34"></A>36.5.2 Director classes</H3>
@@ -46905,6 +47106,17 @@ print(&quot;Loading&quot;, &quot;Whizz&quot;, &quot;Bang&quot;, sep=' ... ')
  example: <TT># error handling</TT>). SWIG 3.0.3 and later report an
  error for invalid preprocessor directives, so you may have to update
  existing interface files to delimit blocks of Python code correctly.</P>
+<P>As an alternative to providing a block containing Python code, you
+ can include python code from a file. The code is inserted exactly as in
+ the file, so this avoids any issues with the SWIG preprocessor. It's a
+ good approach if you have a non-trivial chunk of Python code to insert.
+ To use this feature you specify a filename in double quotes, for
+ example:</P>
+<DIV class="code">
+<PRE>
+%pythoncode &quot;somecode.py&quot;
+</PRE>
+</DIV>
 <P>Sometimes you may want to replace or modify the wrapper function that
  SWIG creates in the proxy <TT>.py</TT> file. The Python module in SWIG
  provides some features that enable you to do this. First, to entirely
@@ -46926,7 +47138,7 @@ def bar(*args):
 class Foo {
 public:
     int bar(int x);
-}
+};
 </PRE>
 </DIV>
 <P> where <TT>$action</TT> will be replaced by the call to the C/C++
@@ -46956,7 +47168,7 @@ public:
 class Foo {
 public:
     int bar(int x);
-}
+};
 </PRE>
 </DIV>
 <P> Notes: Usually the <TT>pythonappend</TT> and <TT>pythonprepend</TT>
@@ -46981,7 +47193,7 @@ public:
 class Foo {
 public:
     int bar(int x);
-}
+};
 </PRE>
 </DIV>
 <P> Note that when the underlying C++ method is overloaded, there is
@@ -47009,7 +47221,7 @@ class Foo {
 public:
     int bar(int x);
     int bar();
-}
+};
 </PRE>
 </DIV>
 <P> The same applies for overloaded constructors.</P>
@@ -47483,6 +47695,77 @@ int parity(char *data, int size, int initial);
 <P> If you need to return binary data, you might use the <TT>cstring.i</TT>
  library file. The <TT>cdata.i</TT> library can also be used to extra
  binary data from arbitrary pointers.</P>
+<H3><A name="Python_default_args"></A>36.7.5 Default arguments</H3>
+<P> C++ default argument code generation is documented in the main <A href="#SWIGPlus_default_args">
+Default arguments</A> section. There is also an optional Python specific
+ feature that can be used called the <TT>python:cdefaultargs</TT> <A href="#Customization_feature_flags">
+feature flag</A>. By default, SWIG attempts to convert C++ default
+ argument values into Python values and generates code into the Python
+ layer containing these values. For example:</P>
+<DIV class="code">
+<PRE>
+struct CDA {
+  int fff(int a = 1, bool b = false);
+};
+</PRE>
+</DIV>
+<P> From Python this can be called as follows:</P>
+<DIV class="targetlang">
+<PRE>
+&gt;&gt;&gt; CDA().fff()        # C++ layer receives a=1 and b=false
+&gt;&gt;&gt; CDA().fff(2)       # C++ layer receives a=2 and b=false
+&gt;&gt;&gt; CDA().fff(3, True) # C++ layer receives a=3 and b=true
+</PRE>
+</DIV>
+<P> The default code generation in the Python layer is:</P>
+<DIV class="targetlang">
+<PRE>
+class CDA(object):
+    ...
+    def fff(self, a=1, b=False):
+        return _default_args.CDA_fff(self, a, b)
+</PRE>
+</DIV>
+<P> Adding the feature:</P>
+<DIV class="code">
+<PRE>
+%feature(&quot;python:cdefaultargs&quot;) CDA::fff;
+struct CDA {
+  int fff(int a = 1, bool b = false);
+</PRE>
+</DIV>
+<P> results in identical behaviour when called from Python, however, it
+ results in different code generation:</P>
+<DIV class="targetlang">
+<PRE>
+class CDA(object):
+    ...
+    def fff(self, *args):
+        return _default_args.CDA_fff(self, *args)
+</PRE>
+</DIV>
+<P> The default arguments are obtained in the C++ wrapper layer instead
+ of the Python layer. Some code generation modes are quite different, eg
+ <TT>-builtin</TT> and <TT>-fastproxy</TT>, and are unaffected by <TT>
+python:cdefaultargs</TT> as the default values are always obtained from
+ the C++ layer.</P>
+<P> Note that not all default arguments can be converted into a Python
+ equivalent. When SWIG does not convert them, it will generate code to
+ obtain them from the C++ layer as if <TT>python:cdefaultargs</TT> was
+ specified. This will happen if just one argument cannot be converted
+ into a Python equivalent. This occurs typically when the argument is
+ not fully numeric, such as <TT>int(1)</TT>:</P>
+<DIV class="code">
+<PRE>
+struct CDA {
+  int fff(int a = int(1), bool b = false);
+};
+</PRE>
+</DIV>
+<P><B> Compatibility Note:</B> SWIG-3.0.6 introduced the <TT>
+python:cdefaultargs</TT> feature. Versions of SWIG prior to this varied
+ in their ability to convert C++ default values into equivalent Python
+ default argument values.</P>
 <H2><A name="Python_nn53"></A>36.8 Typemaps</H2>
 <P> This section describes how you can modify SWIG's default wrapping
  behavior for various C/C++ datatypes using the <TT>%typemap</TT>
@@ -48990,6 +49273,25 @@ cacheMetaData(1)
 </DIV> The cacheMetaData(1) will cause R to refresh its object tables.
  Without it, inheritance of wrapped objects may fail.
 <P> These two files can be loaded in any order</P>
+<P> If you are compiling code yourself (not using R itself), there are a
+ few things to watch out for:</P>
+<UL>
+<LI>The output shared library name (to the left of the file extension)
+ MUST match the module name, or alternatively, you can also set the
+ -package NAME command line argument. See swig -r -help for more
+ information</LI>
+<LI>If you do not set the output file name appropriately, you might see
+ errors like<DIV class="shell">
+<PRE>
+&gt; fact(4)
+Error in .Call(&quot;R_swig_fact&quot;, s_arg1, as.logical(.copy), PACKAGE = &quot;example&quot;) :
+  &quot;R_swig_fact&quot; not available for .Call() for package &quot;example&quot;
+</PRE>
+</DIV></LI>
+<LI>Make sure the architecture of the shared library(x64 for instance),
+ matches the architecture of the R program you want to load your shared
+ library into</LI>
+</UL>
 <H2><A name="R_nn4"></A>37.3 Precompiling large R files</H2>
  In cases where the R file is large, one make save a lot of loading time
  by precompiling the R wrapper. This can be done by creating the file
@@ -53025,7 +53327,7 @@ irb(main):011:0&gt;</PRE>
 </UL>
 </LI>
 <LI><A href="#Scilab_wrapping_structs">Structures</A></LI>
-<LI><A href="#Scilab_wrapping_cpp_classes">C++ Classes</A></LI>
+<LI><A href="#Scilab_wrapping_cpp_classes">C++ classes</A></LI>
 <LI><A href="#Scilab_wrapping_cpp_inheritance">C++ inheritance</A></LI>
 <LI><A href="#Scilab_wrapping_pointers_references_values_arrays">
 Pointers, references, values, and arrays</A></LI>
@@ -53782,7 +54084,7 @@ ans  =
     20.
 </PRE>
 </DIV>
-<H3><A name="Scilab_wrapping_cpp_classes"></A>39.3.8 C++ Classes</H3>
+<H3><A name="Scilab_wrapping_cpp_classes"></A>39.3.8 C++ classes</H3>
 <P> Classes do not exist in Scilab. The classes are wrapped the same way
  as structs. Low-level accessor functions are generated for class
  members. Also, constructor and destructor functions are generated to
@@ -54159,7 +54461,7 @@ void throw_int() throw(int) {
 }
 
 void throw_stl_invalid_arg(int i) throw(std::invalid_argument) {
-  if (i &amp;lt 0)
+  if (i &lt; 0)
     throw std::invalid_argument(&quot;argument is negative.&quot;);
 }
 %}
