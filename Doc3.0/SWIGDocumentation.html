@@ -602,6 +602,10 @@ PRE { font-family: monospace }
  typepattern)</A></LI>
 </UL>
 </LI>
+<LI><A HREF="#Typemaps_special_variable_attributes">11.4.5 Special
+ variables and typemap attributes</A></LI>
+<LI><A HREF="#Typemaps_special_variables_and_macros">11.4.6 Special
+ variables combined with special variable macros</A></LI>
 </UL>
 </LI>
 <LI><A HREF="#Typemaps_nn25">11.5 Common typemap methods</A>
@@ -1325,7 +1329,7 @@ PRE { font-family: monospace }
 </LI>
 <LI><A HREF="#Javascript_embedded_webkit">26.3.2 Embedded Webkit</A>
 <UL>
-<LI><A HREF="#Javascript_osx">26.3.2.1 OSX</A></LI>
+<LI><A HREF="#Javascript_osx">26.3.2.1 Mac OS X</A></LI>
 <LI><A HREF="#Javascript_gtk">26.3.2.2 GTK</A></LI>
 </UL>
 </LI>
@@ -2252,7 +2256,7 @@ PRE { font-family: monospace }
 </UL>
 <HR NOSHADE>
 <H1><A name="Sections"></A>SWIG-3.0 Documentation</H1>
- Last update : SWIG-3.0.6 (5 Jul 2015)
+ Last update : SWIG-3.0.7 (3 Aug 2015)
 <H2><A NAME="1_1">Sections</A></H2>
 <H3><A NAME="1_1_1">SWIG Core Documentation</A></H3>
 <UL>
@@ -13759,6 +13763,10 @@ NONNULL                      Non-NULL pointer (pointers only).
  typepattern)</A></LI>
 </UL>
 </LI>
+<LI><A href="#Typemaps_special_variable_attributes">Special variables
+ and typemap attributes</A></LI>
+<LI><A href="#Typemaps_special_variables_and_macros">Special variables
+ combined with special variable macros</A></LI>
 </UL>
 </LI>
 <LI><A href="#Typemaps_nn25">Common typemap methods</A>
@@ -15586,6 +15594,51 @@ Defining a typemap</A> section.</P>
     // do something
   }
 %}
+</PRE>
+</DIV>
+<H3><A name="Typemaps_special_variable_attributes"></A>11.4.5 Special
+ variables and typemap attributes</H3>
+<P> As of SWIG-3.0.7 typemap attributes will also expand special
+ variables and special variable macros.</P>
+<P> Example usage showing the expansion in the 'out' attribute (C#
+ specific) as well as the main typemap body:</P>
+<DIV class="code">
+<PRE>
+%typemap(ctype, out=&quot;$*1_ltype&quot;) unsigned int&amp; &quot;$*1_ltype&quot;
+</PRE>
+</DIV>
+<P> is equivalent to the following as <TT>$*1_ltype</TT> expands to <TT>
+unsigned int</TT>:</P>
+<DIV class="code">
+<PRE>
+%typemap(ctype, out=&quot;unsigned int&quot;) unsigned int&amp; &quot;unsigned int&quot;
+</PRE>
+</DIV>
+<H3><A name="Typemaps_special_variables_and_macros"></A>11.4.6 Special
+ variables combined with special variable macros</H3>
+<P> Special variables can also be used within special variable macros.
+ The special variables are expanded before they are used in the special
+ variable macros.</P>
+<P> Consider the following C# typemaps:</P>
+<DIV class="code">
+<PRE>
+%typemap(cstype) unsigned int &quot;uint&quot;
+%typemap(cstype, out=&quot;$typemap(cstype, $*1_ltype)&quot;) unsigned int&amp; &quot;$typemap(cstype, $*1_ltype)&quot;
+</PRE>
+</DIV>
+<P> Special variables are expanded first and hence the above is
+ equivalent to:</P>
+<DIV class="code">
+<PRE>
+%typemap(cstype) unsigned int &quot;uint&quot;
+%typemap(cstype, out=&quot;$typemap(cstype, unsigned int)&quot;) unsigned int&amp; &quot;$typemap(cstype, unsigned int)&quot;
+</PRE>
+</DIV>
+<P> which then expands to:</P>
+<DIV class="code">
+<PRE>
+%typemap(cstype) unsigned int &quot;uint&quot;
+%typemap(cstype, out=&quot;uint&quot;) unsigned int&amp; &quot;uint&quot;
 </PRE>
 </DIV>
 <H2><A name="Typemaps_nn25"></A>11.5 Common typemap methods</H2>
@@ -29773,8 +29826,8 @@ peer classes</A>. The default proxy class for our previous example looks
 <DIV class="code">
 <PRE>
 public class Foo {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected Foo(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -29979,8 +30032,8 @@ public:
 <DIV class="code">
 <PRE>
 public class Base {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected Base(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -30019,7 +30072,7 @@ public class Base {
 <DIV class="code">
 <PRE>
 public class Derived extends Base {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
   protected Derived(long cPtr, boolean cMemoryOwn) {
     super(exampleJNI.SWIGDerivedUpcast(cPtr), cMemoryOwn);
@@ -30297,8 +30350,8 @@ public:
 <DIV class="code">
 <PRE>
 public class Test {
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected Test(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -30373,7 +30426,7 @@ for (int i=0; i&lt;100000; i++) {
 <DIV class="code">
 <PRE>
 public class SWIGTYPE_p_int {
-  private long swigCPtr;
+  private transient long swigCPtr;
 
   protected SWIGTYPE_p_int(long cPtr, boolean bFutureUse) {
     swigCPtr = cPtr;
@@ -32678,8 +32731,8 @@ public synchronized void <I>delete</I>() [ javadestruct OR javadestruct_derived 
 <DIV class="code">
 <PRE>
 %typemap(javabody) SWIGTYPE %{
-  private long swigCPtr;
-  protected boolean swigCMemOwn;
+  private transient long swigCPtr;
+  protected transient boolean swigCMemOwn;
 
   protected $javaclassname(long cPtr, boolean cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -32704,7 +32757,7 @@ public synchronized void <I>delete</I>() [ javadestruct OR javadestruct_derived 
 <DIV class="code">
 <PRE>
 %typemap(javabody) SWIGTYPE *, SWIGTYPE &amp;, SWIGTYPE [], SWIGTYPE (CLASS::*) %{
-  private long swigCPtr;
+  private transient long swigCPtr;
 
   protected $javaclassname(long cPtr, boolean bFutureUse) {
     swigCPtr = cPtr;
@@ -34771,7 +34824,7 @@ arrays_java.i</TT>. Try and minimise the expensive JNI calls to C/C++
 </LI>
 <LI><A href="#Javascript_embedded_webkit">Embedded Webkit</A>
 <UL>
-<LI><A href="#Javascript_osx">OSX</A></LI>
+<LI><A href="#Javascript_osx">Mac OS X</A></LI>
 <LI><A href="#Javascript_gtk">GTK</A></LI>
 </UL>
 </LI>
@@ -34940,7 +34993,7 @@ $ make check-javascript-examples V8_VERSION=0x032530 ENGINE=v8</PRE>
 </LI>
 </UL>
 <P>The primary development environment has been Linux (Ubuntu 12.04).
- Windows and OSX have been tested sporadically. Therefore, the
+ Windows and Mac OS X have been tested sporadically. Therefore, the
  generators might have more issues on those platforms. Please report
  back any problem you observe to help us improving this module quickly.</P>
 <H2><A name="Javascript_integration"></A>26.3 Integration</H2>
@@ -34951,9 +35004,9 @@ $ make check-javascript-examples V8_VERSION=0x032530 ENGINE=v8</PRE>
  Extensions</H3>
 <P>To install <CODE>node.js</CODE> you can download an installer from
  their <A href="https://launchpad.net/~chris-lea/+archive/node.js">
-web-site</A> for OSX and Windows. For Linux you can either build the
- source yourself and run <CODE>sudo checkinstall</CODE> or keep to the
- (probably stone-age) packaged version. For Ubuntu there is a <A href="https://launchpad.net/~chris-lea/+archive/node.js/">
+web-site</A> for Mac OS X and Windows. For Linux you can either build
+ the source yourself and run <CODE>sudo checkinstall</CODE> or keep to
+ the (probably stone-age) packaged version. For Ubuntu there is a <A href="https://launchpad.net/~chris-lea/+archive/node.js/">
 PPA</A> available.</P>
 <DIV class="shell">
 <PRE>
@@ -35016,8 +35069,9 @@ Examples</A> section.</P>
 $ sudo apt-get remove gyp</PRE>
 </DIV>
 <H3><A name="Javascript_embedded_webkit"></A>26.3.2 Embedded Webkit</H3>
-<P>Webkit is pre-installed on OSX and available as a library for GTK.</P>
-<H4><A name="Javascript_osx"></A>26.3.2.1 OSX</H4>
+<P>Webkit is pre-installed on Mac OS X and available as a library for
+ GTK.</P>
+<H4><A name="Javascript_osx"></A>26.3.2.1 Mac OS X</H4>
 <P>There is general information about programming with WebKit on <A href="https://developer.apple.com/library/mac/documentation/cocoa/conceptual/DisplayWebContent/DisplayWebContent.html">
 Apple Developer Documentation</A>. Details about <CODE>Cocoa</CODE>
  programming are not covered here.</P>
@@ -40099,9 +40153,9 @@ directorin, directorout, directorargout</TT></H4>
  Examples/octave directory, and hundreds in the test suite
  (Examples/test-suite and Examples/test-suite/octave).</P>
 <H2><A name="Octave_nn2"></A>32.1 Preliminaries</H2>
-<P> As of SWIG 3.0.3, the Octave module has been tested with Octave
- versions 3.2.4, 3.4.3, 3.6.4, and 3.8.1. Use of older Octave versions
- is not recommended, as these versions are no longer tested with SWIG.</P>
+<P> As of SWIG 3.0.7, the Octave module is regularly tested with Octave
+ versions 3.2.4, 3.8.1, and 4.0.0. Use of older Octave versions is not
+ recommended, as these versions are no longer tested with SWIG.</P>
 <H2><A name="Octave_nn3"></A>32.2 Running SWIG</H2>
 <P> Let's start with a very simple SWIG interface file, example.i:</P>
 <DIV class="code">
