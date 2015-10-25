@@ -75,34 +75,8 @@ Half-day tutorial presented at the 6th International Python Conference, October,
 <h3> Other Resources </h3>
 
 <ul>
-<li> Klaus Kaempf gave an introductory SWIG tutorial in July 2008 as an OpenSUSE talk - 
-<a href="http://files.opensuse.org/opensuse/en/e/eb/Kkaempf_KnowledgeSharing_Swig.pdf">Slides (pdf)</a> and 
-<a href="http://blip.tv/file/1179673/">Video recording</a>. <br>
-
 <li><p> Perl users can find more information about SWIG in the O'Reilly book 
 <a href="http://www.ora.com/catalog/advperl">"Advanced Perl Programming"</a>. <br>
-
-<li><p> Daniel Blezek wrote an article about SWIG in the November, 1998 issue
-of the <a href="http://www.cuj.com/archive/1611/index.html">C/C++ Users Journal</a>.
-
-<li><p>An article about SWIG appeared in the February, 1998 issue 
-of <a href="http://www.ddj.com/ddj/1998/1998_02/index.htm">Dr. Dobb's Journal</a> on
-Scripting and Alternative Languages. <br>
-
-<li><p>Scott Bolte wrote an article about SWIG in the Winter, 1997 issue of 
-<a href="http://www.tpj.com">The Perl Journal</a>. <br>
-
-
-<li><p> John Ousterhout's <a href="http://home.pacbell.net/ouster/scripting.html">
-paper </a> on scripting languages provides a good  overview
-of the use of scripting languages and their relationship to
-systems programming languages.  SWIG was developed with many of these issues
-in mind so this paper might be of interest to users who are new to
-SWIG and its goals. <br>
-
-<li><p> <b><a href="http://www.supercomp.org/sc96/proceedings/SC96PROC/BEAZLEY/INDEX.HTM"> Lightweight Computational Steering of Very Large Scale Molecular Dynamics Simulations </a></b>.
-Presented at Supercomputing'96.  This paper describes the application that 
-motivated the development of SWIG. (See why SWIG was originally developed). <br> 
 
 </ul>
 
