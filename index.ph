@@ -31,7 +31,7 @@ SWIG is free software and the code that SWIG generates is compatible with both c
 
 <h3>
 Recent News
-<a href="http://sourceforge.net/export/rss2_projnews.php?group_id=1645&rss_limit=50&rss_fulltext=1"><img border="0" src="images/rss16px.png" alt="SWIG RSS Feed"></a>
+<a href="http://sourceforge.net/p/swig/news/feed"><img border="0" src="images/rss16px.png" alt="SWIG RSS Feed"></a>
 </h3>
 
 

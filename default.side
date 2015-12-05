@@ -22,31 +22,31 @@
 <tr><td align=center><a href="http://sfconservancy.org"><img src="images/conservancy-black.png" width="170" alt="Software Freedom Conservancy logo"/></a></td></tr>
 
 <tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Our Generous Host</b></font></td></tr>
-<tr><td align=center><a href="http://sourceforge.net/projects/swig"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=1645&type=15" width="170" border="0" alt="Get SWIG at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></td></tr>
+<tr><td align=center><a href="http://sourceforge.net/projects/swig/"><img src="http://sourceforge.net/sflogo.php?group_id=1645&type=15" width="170" border="0" alt="Get SWIG at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></td></tr>
 
 <tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Exits</b></font></td></tr>
-<tr><td><a href="http://www.franz.com/products/allegrocl">AllegroCL</a></td></tr>
+<tr><td><a href="http://franz.com/products/allegrocl/">AllegroCL</a></td></tr>
 <tr><td><a href="http://www.mono-project.com/">C# - Mono</a></td></tr>
 <tr><td><a href="http://msdn.microsoft.com/netframework">C# - MS .NET</a></td></tr>
 <tr><td><a href="http://common-lisp.net/project/cffi">CFFI</a></td></tr>
 <tr><td><a href="http://www.call-with-current-continuation.org/chicken.html">CHICKEN</a></td></tr>
-<tr><td><a href="http://clisp.cons.org">CLISP</a></td></tr>
+<tr><td><a href="http://clisp.org">CLISP</a></td></tr>
 <tr><td><a href="http://www.digitalmars.com/d/">D</a></td></tr>
 <tr><td><a href="http://golang.org">Go language</a></td></tr>
 <tr><td><a href="http://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
 <tr><td><a href="http://java.sun.com">Java</a></td></tr>
-<tr><td><a href="http://nodejs.org/">Javascript - Node.js</a></td></tr>
+<tr><td><a href="https://nodejs.org/en">Javascript - Node.js</a></td></tr>
 <tr><td><a href="https://developers.google.com/v8/">Javascript - V8</a></td></tr>
-<tr><td><a href="http://www.webkit.org/">Javascript - WebKit</a></td></tr>
+<tr><td><a href="https://webkit.org/">Javascript - WebKit</a></td></tr>
 <tr><td><a href="http://www.lua.org">Lua</a></td></tr>
 <tr><td><a href="http://racket-lang.org/">MzScheme/Racket</a></td></tr>
-<tr><td><a href="http://www.ocaml.org/">Ocaml</a></td></tr>
+<tr><td><a href="http://ocaml.org/">Ocaml</a></td></tr>
 <tr><td><a href="http://www.octave.org/">Octave</a></td></tr>
-<tr><td><a href="http://www.perl.org">Perl</a></td></tr>
+<tr><td><a href="https://www.perl.org">Perl</a></td></tr>
 <tr><td><a href="http://www.php.net">PHP</a></td></tr>
-<tr><td><a href="http://www.python.org">Python</a></td></tr>
+<tr><td><a href="https://www.python.org">Python</a></td></tr>
 <tr><td><a href="http://www.r-project.org">R</a></td></tr>
-<tr><td><a href="http://www.ruby-lang.org">Ruby</a></td></tr>
+<tr><td><a href="https://www.ruby-lang.org">Ruby</a></td></tr>
 <tr><td><a href="http://www.scilab.org/">Scilab</a></td></tr>
 <tr><td><a href="http://www.tcl.tk">Tcl/Tk</a></td></tr>
 

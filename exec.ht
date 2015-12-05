@@ -14,7 +14,7 @@ process to suit your application.
 
 <p>
 John Ousterhout (creator of Tcl) has written a
-<a href="http://home.pacbell.net/ouster/scripting.html">paper</a>
+<a href="https://www.tcl.tk/doc/scripting.html">paper</a>
 that describes the
 benefits of scripting languages.   SWIG makes it fairly easy to connect scripting
 languages with C/C++ code.

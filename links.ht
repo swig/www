@@ -22,7 +22,7 @@ The <a href ="http://www.python.org"> Python </a> homepage. <br>
 <a href="http://wiki.tcl.tk"> Tcl Wiki </a> Tcl Developer Xchange <br>
 <a href="http://www.tclscripting.com"> Tcl Scripting </a> background articles <br>
 <a href="http://www.gnu.org/software/guile/guile.html">Guile</a> homepage. <br>
-<a href="http://www.cs.rice.edu/CS/PLT/packages/mzscheme/">MzScheme</a> homepage. <br>
+<a href="http://racket-lang.org">MzScheme/Racket</a> homepage. <br>
 <a href="http://www.ruby-lang.org/">Ruby</a> homepage. <br>
 <a href="http://java.sun.com/">Java</a> homepage at Sun. <br>
 <a href="http://www.php.net/">PHP</a> homepage. <br>
@@ -49,12 +49,8 @@ generator for matrix languages. <br>
 for integrating C++ libraries with Python. <br>
 <a href="http://cxx.sourceforge.net">CXX</a>. A C++ friendly extension API for Python.<br>
 <a href="http://pyfortran.sourceforge.net">pyfort</a>. A wrapper generator for interfacing Fortran with Python.<br>
-<a href="http://www.acl.lanl.gov/siloon">SILOON</a>. A wrapper generation tool 
-with some ambitious goals for C++.<br>
-<a href="http://www9.informatik.uni-erlangen.de/eng/research/rendering/vision/itcl/">Itcl++</a>. 
-A wrapper generator for interfacing C++ with [incr Tcl].<br>
 
-<a href="http://www.hlla.is.tsukuba.ac.jp/~chiba/openc++.html">OpenC++</a>.  A very cool compiler project that lets you crawl inside C++ parse trees and more. <br>
+<a href="http://www.csg.ci.i.u-tokyo.ac.jp/~chiba/openc++.html">OpenC++</a>.  A very cool compiler project that lets you crawl inside C++ parse trees and more. <br>
 <a href="http://www.stack.nl/~dimitri/doxygen">Doxygen</a>. Generate documentation and more for C/C++ programs.<br>
 <a href="http://www.cs.cmu.edu/~chrislee/Software/g-wrap/">G-Wrap</a>. A wrapper generator for interfacing C and Scheme (including Guile).<br>
 
@@ -66,7 +62,7 @@ C++ wrapper generation that uses template metaprogramming. <br>
 <a href="http://www.deaven.net/~deaven/Software/cxxwrap/">cxxwrap</a>. Java JNI wrapper code generator for C++.<br>
 <a href="http://www.excelsior-usa.com/xfunction.html">xFunction</a>. Java native code access library.<br>
 <a href="http://www.gnu.org/software/gcc/java/index.html">GCJ</a>. Gnu Compiler for Java - Part of GCC 3.0 and later. C++ and Java can be easily mixed together - Java objects are C++ objects and all Java classes are C++ classes using CNI, the alternative to JNI.<br>
-<a href="http://inline.perl.org">Inline</a>.  Perl programmers will definitely want to take a look at
+<a href="https://github.com/ingydotnet/inline-c-pm">Inline</a>.  Perl programmers will definitely want to take a look at
 this module--especially if you're making simple C/C++ extensions.<br>
 <a href="http://www.kd-dev.com/~eic/">EiC</a>. Embeddable, extensible and pointer-safe C interpreter with an interface to compiled C code.<br>
 <a href="http://root.cern.ch/root/Cint.html">CINT</a>. C/C++ interpreter with an interface to compiled C/C++ code.<br>
@@ -77,7 +73,7 @@ all C++ features.  There are plans to support more languages so be
 sure to check it out.
 <br>
 
-<a href="http://www.scipy.org/site_content/weave">Weave</a>. A tool for inlining C/C++ code into Python scripts.  Very cool.<br>
+<a href="http://docs.scipy.org/doc/scipy/reference/weave.html">Weave</a>. A tool for inlining C/C++ code into Python scripts.  Very cool.<br>
 
 <a href="http://www.tecgraf.puc-rio.br/~celes/tolua">Tolua</a>. Connect C/C++ programs to the Lua progamming language.<br>
 
@@ -96,7 +92,7 @@ It lets you generate code by parsing existing languages or by creating and parsi
 
 <a href="http://www.llnl.gov/casc/components/babel.html">Babel</a>. Language interoperability using Interface Definition Language (IDL) techniques.<br>
 
-<a href="http://pyinstant.sf.net">Instant</a>. Python module that allows for instant inlining of C and C++ code in Python. It is a small Python module built on top of SWIG.<br>
+<a href="https://sourceforge.net/projects/pyinstant/">Instant</a>. Python module that allows for instant inlining of C and C++ code in Python. It is a small Python module built on top of SWIG.<br>
 
 <a href="http://seal-reflex.web.cern.ch/seal-reflex/index.html">Reflex</a>. C++ library which provides reflection information about C++ types.<br>
 

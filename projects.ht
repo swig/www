@@ -16,23 +16,19 @@ These can be a useful reference for seeing how SWIG is used in real projects as 
 </li>
 
 <li>
-  <a href="http://www.ogre3d.org/wiki/index.php/PyOgre">PyOgre</a> 3D graphics engine.
+  <a href="http://www.ogre3d.org/tikiwiki/PyOgre">PyOgre</a> 3D graphics engine.
 </li>
 
 <li>
-  <a href="http://www.remotesensing.org/gdal/">GDAL</a> Geospatial Data Abstraction library.
+  <a href="http://www.gdal.org/">GDAL</a> Geospatial Data Abstraction library.
 </li>
 
 <li>
-  <a href="http://www.scipy.org/Weave/">Weave</a> Scientific tools library.
+  <a href="http://docs.scipy.org/doc/scipy/reference/weave.html">Weave</a> Scientific tools library.
 </li>
 
 <li>
   <a href="http://xapian.org/">Xapian</a> Search Engine library.
-</li>
-
-<li>
-  <a href="http://pyicu.osafoundation.org/">PyICU</a> Unicode support library.
 </li>
 
 <li>
@@ -102,11 +98,6 @@ Perl interface to the Widget Creation Library (Joe Buehler). </li>
 <li> <a href="http://xml.apache.org/xerces-p/">XML::Xerces</a>:
 XML::Xerces is the Perl API to the Apache project's Xerces XML parser.
 </li>
-
-<li> <a
-href="http://grass.gdf-hannover.de/wiki/GRASS_and_Python">GRASS-SWIG</a>: 
-GRASS GIS (Geographic Resources Analysis Support System)- SWIG interface.</li>
-
 
 <li> <a
 href="http://www.opensourcepartners.nl/~costar/gramofile/">Gramofile</a>:
