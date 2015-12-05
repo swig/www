@@ -35,7 +35,7 @@
 <tr><td><a href="http://golang.org">Go language</a></td></tr>
 <tr><td><a href="http://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
 <tr><td><a href="http://java.sun.com">Java</a></td></tr>
-<tr><td><a href="https://nodejs.org/en">Javascript - Node.js</a></td></tr>
+<tr><td><a href="https://nodejs.org/en/">Javascript - Node.js</a></td></tr>
 <tr><td><a href="https://developers.google.com/v8/">Javascript - V8</a></td></tr>
 <tr><td><a href="https://webkit.org/">Javascript - WebKit</a></td></tr>
 <tr><td><a href="http://www.lua.org">Lua</a></td></tr>

@@ -88,7 +88,7 @@ of the Dr Dobb's <a href="http://www.drdobbs.com/rapid-prototyping-with-swig/184
 <a href="http://www.tpj.com">The Perl Journal</a>. <br>
 
 
-<li><p> John Ousterhout's <a href="http://home.pacbell.net/ouster/scripting.html">
+<li><p> John Ousterhout's <a href="https://www.tcl.tk/doc/scripting.html">
 paper </a> on scripting languages provides a good  overview
 of the use of scripting languages and their relationship to
 systems programming languages.  SWIG was developed with many of these issues

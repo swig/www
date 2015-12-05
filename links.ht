@@ -42,10 +42,9 @@ The <a href ="http://www.python.org"> Python </a> homepage. <br>
 <blockquote>
 The <a href="ftp://ftp.parc.xerox.com/pub/ilu/ilu.html"> ILU </a> homepage (Xerox PARC) <br>
 <a href="http://www.fpx.de/fp/Software/tclobj"> TclObj </a> <br>
-<a href="http://www.amath.washington.edu/~lf/software/tcl++">Modular Tcl</a><br>
 <a href="http://lnc.usc.edu/~holt/matwrap/">Matwrap</a>. A wrapper
 generator for matrix languages. <br>
-<a href="http://www.riverbankcomputing.co.uk/sip">SIP</a>. A wrapper generator
+<a href="https://www.riverbankcomputing.com/software/sip/intro">SIP</a>. A wrapper generator
 for integrating C++ libraries with Python. <br>
 <a href="http://cxx.sourceforge.net">CXX</a>. A C++ friendly extension API for Python.<br>
 <a href="http://pyfortran.sourceforge.net">pyfort</a>. A wrapper generator for interfacing Fortran with Python.<br>
@@ -90,7 +89,7 @@ sure to check it out.
 <a href="http://codeworker.free.fr/">CodeWorker</a>. A universal parsing tool and source code generator.
 It lets you generate code by parsing existing languages or by creating and parsing your own language.<br>
 
-<a href="http://www.llnl.gov/casc/components/babel.html">Babel</a>. Language interoperability using Interface Definition Language (IDL) techniques.<br>
+<a href="https://computation.llnl.gov/casc/components/index.html">Babel</a>. Language interoperability using Interface Definition Language (IDL) techniques.<br>
 
 <a href="https://sourceforge.net/projects/pyinstant/">Instant</a>. Python module that allows for instant inlining of C and C++ code in Python. It is a small Python module built on top of SWIG.<br>
 
@@ -104,7 +103,7 @@ It lets you generate code by parsing existing languages or by creating and parsi
 
 <blockquote>
 
-John Ousterhout's <a href="http://home.pacbell.net/ouster/scripting.html"> paper </a> on scripting languages
+John Ousterhout's <a href="https://www.tcl.tk/doc/scripting.html"> paper </a> on scripting languages
 (appeared in IEEE Computer). <br>
 <A HREF="http://SAL.KachinaTech.COM/"> SAL - Scientific Applications on Linux</a>. <br>
 <a href="http://www.usenix.org">USENIX</a> <br>

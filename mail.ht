@@ -62,7 +62,7 @@ The list also contains historic Subversion commits.
 
 <h2><a name="top_bottom_posting">Top posting and bottom posting</h2>
 <p>
-Replies to emails can be either <a href="http://en.wikipedia.org/wiki/Top-posting#Bottom-posting">bottom or top posted</a>.
+Replies to emails can be either <a href="http://en.wikipedia.org/wiki/Top-posting/#Bottom-posting">bottom or top posted</a>.
 The SWIG community by and large uses bottom postings or inline replies.
 This doesn't mean top postings are ruled out, however, an email chain with both top and bottom postings is rather difficult to follow and should be avoided.
 Please don't mix top and bottom posts in one thread, stick with whichever approach the first reply used.
@@ -71,7 +71,7 @@ Please don't mix top and bottom posts in one thread, stick with whichever approa
 <p>
 For those who are new to mailing lists, there are many articles on the subject, for example,
 <a href="http://www.caliburn.nl/topposting.html">Bottom vs. top posting and quotation style on Usenet</a> and
-<a href="http://www.cs.tut.fi/~jkorpela/usenet/brox.html">Why is Bottom-posting better than Top-posting</a>.
+<a href="http://www.cs.tut.fi/~jkorpela/usenet/brox.html">Why is Bottom-posting better than Top-posting/</a>.
 
 </p>
 
@@ -82,16 +82,16 @@ The links below are shortcuts to the archives from where you can browse the arch
 </p>
 
 <p>
-<a href="http://sourceforge.net/mailarchive/forum.php?forum=swig-user">swig-user archives</a>
+<a href="https://sourceforge.net/p/swig/mailman/swig-user/">swig-user archives</a>
 <br>
-<a href="http://sourceforge.net/mailarchive/forum.php?forum=swig-devel">swig-devel archives</a>
+<a href="https://sourceforge.net/p/swig/mailman/swig-devel/">swig-devel archives</a>
 <br>
-<a href="http://sourceforge.net/mailarchive/forum.php?forum=swig-cvs">swig-cvs archives</a>
+<a href="https://sourceforge.net/p/swig/mailman/swig-cvs/">swig-cvs archives</a>
 </p>
 
 
 <p>
-The lists at Sourceforge can be searched directly using the <a href="https://sourceforge.net/search/?group_id=1645&type_of_search=mlists">Advanced search</a> facility, but the recommended way to search is detailed below.
+The lists at Sourceforge can be searched directly on the <a href="https://sourceforge.net/p/swig/mailman/">Sourceforge SWIG mailing lists page</a>, but the recommended way to search is detailed below.
 </p>
 
 <p>
