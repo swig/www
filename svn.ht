@@ -42,7 +42,6 @@ To compile SWIG from the raw source available from Git, you will need the follow
 <li> A working C and C++ compiler.
 <li> yacc or bison (to compile the SWIG parser).  
 <li> libpcre (regular expressions library dependency)
-<li> yodl2man and yodl2html (to generate some documentation for ccache-swig)
 </ul>
 
 <p>
