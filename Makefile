@@ -24,7 +24,7 @@ htmlfiles:
 	python makeweb.py
 
 rsync:
-	rsync $(DRY_RUN) --verbose -r --checksum --chmod=ug+w,ugo+r --delete-excluded --exclude .git --exclude .gitignore --exclude "*.sw?" --exclude "*.bak" --exclude "*.ht" --exclude "*.ph" --exclude "default.*" --exclude Makefile --exclude makeweb.py --rsh="ssh" . $(USERNAME),swig@web.sourceforge.net:/home/groups/s/sw/swig/swigweb
+	rsync $(DRY_RUN) --verbose -r --checksum --chmod=ug+w,ugo+r --delete-excluded --exclude .git --exclude .gitignore --exclude "*.sw?" --exclude "*.bak" --exclude "*.ht" --exclude "*.ph" --exclude "default.*" --exclude Makefile --exclude makeweb.py --exclude "*.book" --rsh="ssh" . $(USERNAME),swig@web.sourceforge.net:/home/groups/s/sw/swig/swigweb
 
 rsync-dry-run:
 	$(MAKE) rsync DRY_RUN=--dry-run 
