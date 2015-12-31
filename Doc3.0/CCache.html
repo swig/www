@@ -1,12 +1,13 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <title>ccache-swig(1) manpage</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 </head>
 
 <body bgcolor="#ffffff">
-<H1><a name="CCache"></a>17 Using SWIG with ccache - ccache-swig(1) manpage</H1>
+<H1><a name="CCache">17 Using SWIG with ccache - ccache-swig(1) manpage</a></H1>
 <!-- INDEX -->
 <div class="sectiontoc">
 <ul>
@@ -34,7 +35,7 @@
 
 
 <p>
-<H2><a name="CCache_nn2"></a>17.1 NAME</H2>
+<H2><a name="CCache_nn2">17.1 NAME</a></H2>
 
 
 <p>
@@ -42,7 +43,7 @@
 ccache-swig - a fast compiler cache
 
 <p>
-<H2><a name="CCache_nn3"></a>17.2 SYNOPSIS</H2>
+<H2><a name="CCache_nn3">17.2 SYNOPSIS</a></H2>
 
 
 <p>
@@ -52,16 +53,16 @@ ccache-swig &lt;compiler&gt; [COMPILER OPTIONS]
 <p>
 &lt;compiler&gt; [COMPILER OPTIONS]
 <p>
-<H2><a name="CCache_nn4"></a>17.3 DESCRIPTION</H2>
+<H2><a name="CCache_nn4">17.3 DESCRIPTION</a></H2>
 
 
 <p>
-ccache-swig is a compiler cache. It speeds up re-compilation of C/C++/SWIG code 
+ccache-swig is a compiler cache. It speeds up re-compilation of C/C++/SWIG code
 by caching previous compiles and detecting when the same compile is
 being done again. ccache-swig is ccache plus support for SWIG. ccache
 and ccache-swig are used interchangeably in this document.
 <p>
-<H2><a name="CCache_nn5"></a>17.4 OPTIONS SUMMARY</H2>
+<H2><a name="CCache_nn5">17.4 OPTIONS SUMMARY</a></H2>
 
 
 <p>
@@ -81,7 +82,7 @@ Here is a summary of the options to ccache-swig.
 </pre>
 
 <p>
-<H2><a name="CCache_nn6"></a>17.5 OPTIONS</H2>
+<H2><a name="CCache_nn6">17.5 OPTIONS</a></H2>
 
 
 <p>
@@ -98,7 +99,7 @@ statistics are stored spread across the subdirectories of the
 cache. Using "ccache-swig -s" adds up the statistics across all
 subdirectories and prints the totals.
 <p>
-<p><dt><strong><strong>-z</strong></strong><dd> Zero the cache statistics. 
+<p><dt><strong><strong>-z</strong></strong><dd> Zero the cache statistics.
 <p>
 <p><dt><strong><strong>-V</strong></strong><dd> Print the ccache version number
 <p>
@@ -123,7 +124,7 @@ rounded down to the nearest multiple of 16 kilobytes.
 <p>
 </dl>
 <p>
-<H2><a name="CCache_nn7"></a>17.6 INSTALLATION</H2>
+<H2><a name="CCache_nn7">17.6 INSTALLATION</a></H2>
 
 
 <p>
@@ -135,7 +136,7 @@ some specific projects. The second method is most useful for when you
 wish to use ccache for all your compiles.
 <p>
 To install for usage by the first method just copy ccache-swig to somewhere
-in your path. 
+in your path.
 <p>
 To install for the second method do something like this:
 <pre>
@@ -155,7 +156,7 @@ This will work as long as /usr/local/bin comes before the path to gcc
 Note! Do not use a hard link, use a symbolic link. A hardlink will
 cause "interesting" problems.
 <p>
-<H2><a name="CCache_nn8"></a>17.7 EXTRA OPTIONS</H2>
+<H2><a name="CCache_nn8">17.7 EXTRA OPTIONS</a></H2>
 
 
 <p>
@@ -163,7 +164,7 @@ When run as a compiler front end ccache usually just takes the same
 command line options as the compiler you are using. The only exception
 to this is the option '--ccache-skip'. That option can be used to tell
 ccache that the next option is definitely not a input filename, and
-should be passed along to the compiler as-is. 
+should be passed along to the compiler as-is.
 <p>
 The reason this can be important is that ccache does need to parse the
 command line and determine what is an input filename and what is a
@@ -175,7 +176,7 @@ file). By using --ccache-skip you can force an option to not be
 treated as an input file name and instead be passed along to the
 compiler as a command line option.
 <p>
-<H2><a name="CCache_nn9"></a>17.8 ENVIRONMENT VARIABLES</H2>
+<H2><a name="CCache_nn9">17.8 ENVIRONMENT VARIABLES</a></H2>
 
 
 <p>
@@ -247,7 +248,7 @@ each compile.
 <p>
 <p><dt><strong><strong>CCACHE_NLEVELS</strong></strong><dd> The environment variable CCACHE_NLEVELS allows
 you to choose the number of levels of hash in the cache directory. The
-default is 2. The minimum is 1 and the maximum is 8. 
+default is 2. The minimum is 1 and the maximum is 8.
 <p>
 <p><dt><strong><strong>CCACHE_HARDLINK</strong></strong><dd> If you set the environment variable
 CCACHE_HARDLINK then ccache will attempt to use hard links from the
@@ -296,7 +297,7 @@ systems like this you can use the CCACHE_EXTENSION option to override
 the default. On HP-UX set this environment variable to "i" if you use
 the aCC compiler.
 <p>
-<p><dt><strong><strong>CCACHE_STRIPC</strong></strong><dd> If you set the environment variable 
+<p><dt><strong><strong>CCACHE_STRIPC</strong></strong><dd> If you set the environment variable
 CCACHE_STRIPC then ccache will strip the -c option when invoking
 the preprocessor. This option is primarily for the Sun Workshop
 C++ compiler as without this option an unwarranted warning is displayed:
@@ -304,8 +305,8 @@ CC: Warning: "-E" redefines product from "object" to "source (stdout)"
 when -E and -c is used together.
 <p>
 <p><dt><strong><strong>CCACHE_SWIG</strong></strong><dd> When using SWIG as the compiler and it does not
-have 'swig' in the executable name, then the CCACHE_SWIG environment 
-variable needs to be set in order for ccache to work correctly with 
+have 'swig' in the executable name, then the CCACHE_SWIG environment
+variable needs to be set in order for ccache to work correctly with
 SWIG. The use of CCACHE_CPP2 is also recommended for SWIG due to some
 preprocessor quirks, however, use of CCACHE_CPP2 can often be skipped
 -- check your generated code with and without this option set. Known
@@ -314,7 +315,7 @@ the use of '#pragma SWIG'.
 <p>
 </dl>
 <p>
-<H2><a name="CCache_nn10"></a>17.9 CACHE SIZE MANAGEMENT</H2>
+<H2><a name="CCache_nn10">17.9 CACHE SIZE MANAGEMENT</a></H2>
 
 
 <p>
@@ -327,18 +328,18 @@ When these limits are reached ccache will reduce the cache to 20%
 below the numbers you specified in order to avoid doing the cache
 clean operation too often.
 <p>
-<H2><a name="CCache_nn11"></a>17.10 CACHE COMPRESSION</H2>
+<H2><a name="CCache_nn11">17.10 CACHE COMPRESSION</a></H2>
 
 
 <p>
-By default on most platforms ccache will compress all files it puts 
+By default on most platforms ccache will compress all files it puts
 into the cache
 using the zlib compression. While this involves a negligible
 performance slowdown, it significantly increases the number of files
 that fit in the cache. You can turn off compression setting the
 CCACHE_NOCOMPRESS environment variable.
 <p>
-<H2><a name="CCache_nn12"></a>17.11 HOW IT WORKS</H2>
+<H2><a name="CCache_nn12">17.11 HOW IT WORKS</a></H2>
 
 
 <p>
@@ -363,7 +364,7 @@ compiler output that you would get without the cache. If you ever
 discover a case where ccache changes the output of your compiler then
 please let me know.
 <p>
-<H2><a name="CCache_nn13"></a>17.12 USING CCACHE WITH DISTCC</H2>
+<H2><a name="CCache_nn13">17.12 USING CCACHE WITH DISTCC</a></H2>
 
 
 <p>
@@ -375,9 +376,9 @@ ccache avoids the compile completely where possible.
 To use distcc with ccache I recommend using the CCACHE_PREFIX
 option. You just need to set the environment variable CCACHE_PREFIX to
 'distcc' and ccache will prefix the command line used with the
-compiler with the command 'distcc'. 
+compiler with the command 'distcc'.
 <p>
-<H2><a name="CCache_nn14"></a>17.13 SHARING A CACHE</H2>
+<H2><a name="CCache_nn14">17.13 SHARING A CACHE</a></H2>
 
 
 <p>
@@ -397,7 +398,7 @@ following conditions need to be met:
   to 002, this ensures that cached files are accessible to everyone in
   the group.
   <li> Make sure that all users have write permission in the entire
-  cache directory (and that you trust all users of the shared cache). 
+  cache directory (and that you trust all users of the shared cache).
   <li> Make sure that the setgid bit is set on all directories in the
   cache. This tells the filesystem to inherit group ownership for new
   directories. The command "chmod g+s `find $CCACHE_DIR -type d`" might
@@ -406,13 +407,13 @@ following conditions need to be met:
   versions of ccache that do not support compression.
 </ul>
 <p>
-<H2><a name="CCache_nn15"></a>17.14 HISTORY</H2>
+<H2><a name="CCache_nn15">17.14 HISTORY</a></H2>
 
 
 <p>
 ccache was inspired by the compilercache shell script script written
 by Erik Thiele and I would like to thank him for an excellent piece of
-work. See 
+work. See
 <a href="http://www.erikyyy.de/compilercache/">http://www.erikyyy.de/compilercache/</a>
 for the Erik's scripts.
 ccache-swig is a port of the original ccache with support added for use
@@ -422,7 +423,7 @@ I wrote ccache because I wanted to get a bit more speed out of a
 compiler cache and I wanted to remove some of the limitations of the
 shell-script version.
 <p>
-<H2><a name="CCache_nn16"></a>17.15 DIFFERENCES FROM COMPILERCACHE</H2>
+<H2><a name="CCache_nn16">17.15 DIFFERENCES FROM COMPILERCACHE</a></H2>
 
 
 <p>
@@ -440,7 +441,7 @@ are:
 <li> ccache avoids a double call to cpp on a cache miss
 </ul>
 <p>
-<H2><a name="CCache_nn17"></a>17.16 CREDITS</H2>
+<H2><a name="CCache_nn17">17.16 CREDITS</a></H2>
 
 
 <p>
@@ -452,7 +453,7 @@ Thanks to the following people for their contributions to ccache
  <li> Paul Russell for many suggestions and the debian packaging
 </ul>
 <p>
-<H2><a name="CCache_nn18"></a>17.17 AUTHOR</H2>
+<H2><a name="CCache_nn18">17.17 AUTHOR</a></H2>
 
 
 <p>
@@ -471,5 +472,3 @@ later. Please see the file COPYING for license details.
 
 </body>
 </html>
-
-
