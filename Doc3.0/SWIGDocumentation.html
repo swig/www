@@ -1221,6 +1221,7 @@ body { font-family: serif; }
  classes</A></LI>
 </UL>
 </LI>
+<LI><A HREF="#Java_interfaces">25.4.6 Interfaces</A></LI>
 </UL>
 </LI>
 <LI><A HREF="#Java_directors">25.5 Cross language polymorphism using
@@ -1885,6 +1886,8 @@ body { font-family: serif; }
  semantics</A></LI>
 <LI><A HREF="#Python_importfrominit">36.11.4 Importing from __init__.py</A>
 </LI>
+<LI><A HREF="#Python_implicit_namespace_packages">36.11.5 Implicit
+ Namespace Packages</A></LI>
 </UL>
 </LI>
 <LI><A HREF="#Python_python3support">36.12 Python 3 Support</A>
@@ -2104,33 +2107,33 @@ body { font-family: serif; }
 <LI><A HREF="#Scilab_wrapping_pointers_pointer_adresses">39.3.6.1
  Utility functions</A></LI>
 <LI><A HREF="#Scilab_wrapping_pointers_null_pointers">39.3.6.2 Null
- pointers</A></LI>
+ pointers:</A></LI>
 </UL>
 </LI>
 <LI><A HREF="#Scilab_wrapping_structs">39.3.7 Structures</A></LI>
 <LI><A HREF="#Scilab_wrapping_cpp_classes">39.3.8 C++ classes</A></LI>
 <LI><A HREF="#Scilab_wrapping_cpp_inheritance">39.3.9 C++ inheritance</A>
 </LI>
-<LI><A HREF="#Scilab_wrapping_pointers_references_values_arrays">39.3.10
+<LI><A HREF="#Scilab_wrapping_cpp_overloading">39.3.10 C++ overloading</A>
+</LI>
+<LI><A HREF="#Scilab_wrapping_pointers_references_values_arrays">39.3.11
  Pointers, references, values, and arrays</A></LI>
-<LI><A HREF="#Scilab_wrapping_cpp_templates">39.3.11 C++ templates</A></LI>
-<LI><A HREF="#Scilab_wrapping_cpp_operators">39.3.12 C++ operators</A></LI>
-<LI><A HREF="#Scilab_wrapping_cpp_namespaces">39.3.13 C++ namespaces</A></LI>
-<LI><A HREF="#Scilab_wrapping_cpp_exceptions">39.3.14 C++ exceptions</A></LI>
-<LI><A HREF="#Scilab_wrapping_cpp_stl">39.3.15 C++ STL</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_templates">39.3.12 C++ templates</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_operators">39.3.13 C++ operators</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_namespaces">39.3.14 C++ namespaces</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_exceptions">39.3.15 C++ exceptions</A></LI>
+<LI><A HREF="#Scilab_wrapping_cpp_stl">39.3.16 C++ STL</A></LI>
 </UL>
 </LI>
 <LI><A HREF="#Scilab_typemaps">39.4 Type mappings and libraries</A>
 <UL>
 <LI><A HREF="#Scilab_typemaps_primitive_types">39.4.1 Default primitive
  type mappings</A></LI>
-<LI><A HREF="#Scilab_typemaps_non-primitive_types">39.4.2 Default type
- mappings for non-primitive types</A></LI>
-<LI><A HREF="#Scilab_typemaps_arrays">39.4.3 Arrays</A></LI>
-<LI><A HREF="#Scilab_typemaps_pointer-to-pointers">39.4.4
+<LI><A HREF="#Scilab_typemaps_arrays">39.4.2 Arrays</A></LI>
+<LI><A HREF="#Scilab_typemaps_pointer-to-pointers">39.4.3
  Pointer-to-pointers</A></LI>
-<LI><A HREF="#Scilab_typemaps_matrices">39.4.5 Matrices</A></LI>
-<LI><A HREF="#Scilab_typemaps_stl">39.4.6 STL</A></LI>
+<LI><A HREF="#Scilab_typemaps_matrices">39.4.4 Matrices</A></LI>
+<LI><A HREF="#Scilab_typemaps_stl">39.4.5 STL</A></LI>
 </UL>
 </LI>
 <LI><A HREF="#Scilab_module_initialization">39.5 Module initialization</A>
@@ -2301,7 +2304,7 @@ body { font-family: serif; }
 </UL>
 <HR NOSHADE>
 <H1><A name="Sections">SWIG-3.0 Documentation</A></H1>
-<P> Last update : SWIG-3.0.8 (31 Dec 2015)</P>
+<P> Last update : SWIG-3.0.9 (29 May 2016)</P>
 <H2><A name="Sections_Sections">Sections</A></H2>
 <H3><A name="Sections_core_docs">SWIG Core Documentation</A></H3>
 <UL>
@@ -2533,6 +2536,11 @@ SWIG bug tracker</A>. In your report, be as specific as possible,
  is exactly the same as the main SWIG distribution. There is no need to
  download anything else.</P>
 <H3><A name="Preface_unix_installation">1.12.2 Unix installation</A></H3>
+<P> These installation instructions are for using the distributed
+ tarball, for example, <TT>swig-3.0.8.tar.gz</TT>. If you wish to build
+ and install from source on Github, extra steps are required. Please see
+ the <A href="http://swig.org/svn.html">Bleeding Edge</A> page on the
+ SWIG website.</P>
 <P> You must use <A href="http://www.gnu.org/software/make/">GNU make</A>
  to build and install SWIG.</P>
 <P> <A href="http://www.pcre.org/">PCRE</A> needs to be installed on
@@ -5202,6 +5210,11 @@ print_it</TT></TD><TD><TT>print-it</TT></TD></TR>
  or the original string if it doesn't start with this prefix. Note that
  square brackets should be used literally, e.g. <TT>
 %rename(&quot;strip:[wx]&quot;)</TT></TD><TD><TT>wxPrint</TT></TD><TD><TT>Print</TT>
+</TD></TR>
+<TR><TD><TT>rstrip:[suffix]</TT></TD><TD>String without the given suffix
+ or the original string if it doesn't end with this suffix. Note that
+ square brackets should be used literally, e.g. <TT>
+%rename(&quot;rstrip:[Cls]&quot;)</TT></TD><TD><TT>PrintCls</TT></TD><TD><TT>Print</TT>
 </TD></TR>
 <TR><TD>
 <!--span style=&quot;white-space: nowrap;&quot;-->
@@ -14363,7 +14376,7 @@ code       : { ... }
 </PRE>
 </DIV>
 <P> Note that the preprocessor will expand code within the {}
- delimiters, but not in the last two styles of delimiters, see <A href="#Preprocessor_typemap_delimiters">
+ delimiters, but not in the last two styles of delimiters, see <A href="#Preprocessor_delimiters">
 Preprocessor and Typemaps</A>. Here are some examples of valid typemap
  specifications:</P>
 <DIV class="code">
@@ -16410,7 +16423,7 @@ int foo(int argc, char *argv[]);
  single list of strings like this:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; foo([&quot;ale&quot;,&quot;lager&quot;,&quot;stout&quot;])
+&gt;&gt;&gt; foo([&quot;ale&quot;, &quot;lager&quot;, &quot;stout&quot;])
 </PRE>
 </DIV>
 <P> To do this, you not only need to map a list of strings to <TT>char
@@ -16447,6 +16460,11 @@ int foo(int argc, char *argv[]);
 
 %typemap(freearg) (int argc, char *argv[]) {
    if ($2) free($2);
+}
+
+/* Required for C++ method overloading */
+%typecheck(SWIG_TYPECHECK_STRING_ARRAY) (int argc, char *argv[]) {
+  $1 = PyList_Check($input) ? 1 : 0;
 }
 </PRE>
 </DIV>
@@ -16499,6 +16517,10 @@ void search_words(int scount, char *swords[], int wcount, char *words[], int max
 ...
 </PRE>
 </DIV>
+<P> Don't forget to also provide a suitable <A href="#Typemaps_overloading">
+typemap for overloaded functions</A>, such as <TT>%typecheck</TT> shown
+ for foo above. This is only required if the function is overloaded in
+ C++.</P>
 <P> Although multi-argument typemaps may seem like an exotic, little
  used feature, there are several situations where they make sense.
  First, suppose you wanted to wrap functions similar to the low-level <TT>
@@ -19979,7 +20001,7 @@ classname2</EM>' is not similarly marked as a smart pointer.</LI>
 <LI>810. No jni typemap defined for<EM> type</EM> (Java).</LI>
 <LI>811. No jtype typemap defined for<EM> type</EM> (Java).</LI>
 <LI>812. No jstype typemap defined for<EM> type</EM> (Java).</LI>
-<LI>813. Warning for<EM> classname</EM>: Base<EM> baseclass</EM>
+<LI>813. Warning for<EM> classname</EM>, base<EM> baseclass</EM>
  ignored. Multiple inheritance is not supported in Java. (Java).</LI>
 <LI>814.</LI>
 <LI>815. No javafinalize typemap defined for<EM> type</EM> (Java).</LI>
@@ -20005,7 +20027,7 @@ classname2</EM>' is not similarly marked as a smart pointer.</LI>
 <LI>830. No ctype typemap defined for<EM> type</EM> (C#).</LI>
 <LI>831. No cstype typemap defined for<EM> type</EM> (C#).</LI>
 <LI>832. No cswtype typemap defined for<EM> type</EM> (C#).</LI>
-<LI>833. Warning for<EM> classname</EM>: Base<EM> baseclass</EM>
+<LI>833. Warning for<EM> classname</EM>, base<EM> baseclass</EM>
  ignored. Multiple inheritance is not supported in C#. (C#).</LI>
 <LI>834.</LI>
 <LI>835. No csfinalize typemap defined for<EM> type</EM> (C#).</LI>
@@ -20026,7 +20048,7 @@ classname2</EM>' is not similarly marked as a smart pointer.</LI>
 </UL>
 <UL>
 <LI>870. Warning for<EM> classname</EM>: Base<EM> baseclass</EM>
- ignored. Multiple inheritance is not supported in PHP.</LI>
+ ignored. Multiple inheritance is not supported in PHP. (Php).</LI>
 <LI>871. Unrecognized pragma<EM> pragma</EM>. (Php).</LI>
 </UL>
 <H3><A name="Warnings_nn16">15.9.7 User defined (900-999)</A></H3>
@@ -23332,6 +23354,7 @@ javabody                    -&gt; csbody
 javafinalize                -&gt; csfinalize
 javadestruct                -&gt; csdestruct
 javadestruct_derived        -&gt; csdestruct_derived
+javainterfacecode           -&gt; csinterfacecode
 </PRE>
 </DIV></LI>
 <LI>
@@ -23394,6 +23417,9 @@ $*javaclassname             -&gt; $*csclassname
 $javaclazzname              -&gt; $csclazzname
 $javainput                  -&gt; $csinput
 $jnicall                    -&gt; $imcall
+$javainterfacename          -&gt; $csinterfacename
+$&amp;javainterfacename         -&gt; $&amp;csinterfacename
+$*javainterfacename         -&gt; $*csinterfacename
 </PRE>
 </DIV></LI>
 <LI>
@@ -26795,7 +26821,7 @@ type MyClass interface {
   MyMethod() int
 }
 
-MyClassMyFactoryFunction() MyClass {
+func MyClassMyFactoryFunction() MyClass {
   // swig magic here
 }
 </PRE>
@@ -28375,6 +28401,7 @@ mod2</CODE> uses symbols from <CODE>mod1</CODE>, the <CODE>mod2</CODE>
 </LI>
 </UL>
 </LI>
+<LI><A href="#Java_interfaces">Interfaces</A></LI>
 </UL>
 </LI>
 <LI><A href="#Java_directors">Cross language polymorphism using
@@ -30222,7 +30249,7 @@ modulenameModule</TT>.</P>
 %pragma(java) jniclasscode=%{
   static {
     try {
-        System.loadLibrary(&quot;example&quot;);
+      System.loadLibrary(&quot;example&quot;);
     } catch (UnsatisfiedLinkError e) {
       System.err.println(&quot;Native code library failed to load. \n&quot; + e);
       System.exit(1);
@@ -31151,6 +31178,188 @@ public final class Beverage {
 }
 </PRE>
 </DIV>
+<H3><A name="Java_interfaces">25.4.6 Interfaces</A></H3>
+<P> By default SWIG wraps all C++ classes as Java classes. As Java only
+ supports derivation from a single base class, SWIG has to ignore all
+ bases except the first when a C++ class inherits from more than one
+ base class. However, there is a family of SWIG macros that change the
+ default wrapping and allows a C++ class to be wrapped as a Java
+ interface instead of a Java class. These macros provide a way to
+ support some sort of multiple inheritance as there is no limit to the
+ number of interfaces that a Java class can inherit from.</P>
+<P> When a C++ class is wrapped as a Java interface, a Java proxy class
+ is still needed. The <TT>swiginterface.i</TT> library file provides
+ three macros for marking a C++ class to be wrapped as a Java interface.
+ There is more than one macro in order to provide a choice for choosing
+ the Java interface and Java proxy names.</P>
+<TABLE BORDER summary="Java interface macros">
+<TR VALIGN="TOP"><TD><B>Interface Macro Name</B></TD><TD><B>Description</B>
+</TD></TR>
+<TR><TD><TT>%interface(CTYPE)</TT></TD><TD>Proxy class name is
+ unchanged, interface name has <TT>SwigInterface</TT> added as a suffix
+ for C++ class <TT>CTYPE</TT>.</TD></TR>
+<TR><TD><TT>%interface_impl(CTYPE)</TT></TD><TD>Proxy class name has <TT>
+SwigImpl</TT> as a suffix, interface name has <TT>SwigInterface</TT>
+ added as a suffix for C++ class <TT>CTYPE</TT>.</TD></TR>
+<TR><TD><TT>%interface_custom(&quot;PROXY&quot;, &quot;INTERFACE&quot;, CTYPE)</TT></TD><TD>
+Proxy class name is given by the string <TT>PROXY</TT>, interface name
+ is given by the string <TT>INTERFACE</TT> for C++ class <TT>CTYPE</TT>.
+ The <TT>PROXY</TT> and <TT>INTERFACE</TT> names can use the <A href="#SWIG_advanced_renaming">
+string formatting functions</A> used in <TT>%rename</TT>.</TD></TR>
+</TABLE>
+<P> The table below has a few examples showing the resulting proxy and
+ interface names.</P>
+<TABLE BORDER summary="Java interface macro examples">
+<TR VALIGN="TOP"><TD><B>Example Usage</B></TD><TD><B>Proxy Class Name</B>
+</TD><TD><B>Interface Class Name</B></TD></TR>
+<TR><TD><TT>%interface(Base)</TT></TD><TD><TT>Base</TT></TD><TD><TT>
+BaseSwigInterface</TT></TD></TR>
+<TR><TD><TT>%interface_impl(Base)</TT></TD><TD><TT>BaseSwigImpl</TT></TD><TD>
+<TT>Base</TT></TD></TR>
+<TR><TD><TT>%interface_custom(&quot;BaseProxy&quot;, &quot;IBase&quot;, Base)</TT></TD><TD><TT>
+BaseProxy</TT></TD><TD><TT>IBase</TT></TD></TR>
+<TR><TD><TT>%interface_custom(&quot;%sProxy&quot;, &quot;IBase&quot;, Base)</TT></TD><TD><TT>
+BaseProxy</TT></TD><TD><TT>IBase</TT></TD></TR>
+<TR><TD><TT>%interface_custom(&quot;%sProxy&quot;, &quot;%sInterface&quot;, Base)</TT></TD><TD>
+<TT>BaseProxy</TT></TD><TD><TT>BaseProxyInterface</TT></TD></TR>
+<TR><TD><TT>%interface_custom(&quot;%sProxy&quot;, &quot;%(rstrip:[Proxy])sInterface&quot;,
+ Base)</TT></TD><TD><TT>BaseProxy</TT></TD><TD><TT>BaseInterface</TT></TD>
+</TR>
+</TABLE>
+<P> The 2nd last example shows the names used in the string formatting
+ functions. The input for <TT>PROXY</TT> that <TT>&quot;%s&quot;</TT> expands to
+ is the proxy name, that is, Base. The input for <TT>INTERFACE</TT> that
+ <TT>&quot;%s&quot;</TT> expands to is the proxy name, that is, <TT>BaseProxy</TT>
+.</P>
+<P> The last example shows <TT>rstrip</TT> and in this case strips the <TT>
+Proxy</TT> suffix and then adds on <TT>Interface</TT>.</P>
+<P> Consider the following C++ code:</P>
+<DIV class="code">
+<PRE>
+namespace Space {
+  struct Base1 {
+    virtual void Method1();
+  };
+  struct Base2 {
+    virtual void Method2();
+  };
+  struct Derived : Base1, Base2 {
+  };
+  void UseBases(const Base1 &amp;b1, const Base2 &amp;b2);
+}
+</PRE>
+</DIV>
+<P> By default all classes are wrapped and are available in Java, but, <TT>
+Derived</TT> has all bases ignored except the first. SWIG generates a
+ warning for the above code:</P>
+<DIV class="shell">
+<PRE>
+example.i:10: Warning 813: Warning for Derived, base Base2 ignored. 
+Multiple inheritance is not supported in Java.
+</PRE>
+</DIV>
+<P> If we decide to wrap the two base classes as interfaces and add the
+ following before SWIG parses the above example code:</P>
+<DIV class="code">
+<PRE>
+%include &lt;swiginterface.i&gt;
+%interface_impl(Space::Base1);
+%interface_impl(Space::Base2);
+</PRE>
+</DIV>
+<P> then two interface files are generated, Base1.java and Base2.java in
+ addition to proxy class files, Base1SwigImpl.java and
+ Base2SwigImpl.java. The contents of interface file Base1.java for <TT>
+Base1</TT> is shown below:</P>
+<DIV class="code">
+<PRE>
+public interface Base1 {
+  long Base1_GetInterfaceCPtr();
+  void Method1();
+}
+</PRE>
+</DIV>
+<P> The proxy class in Base1SwigImpl.java for Base1 is as it would have
+ been if <TT>%interface</TT> was not used, except the name has changed
+ to <TT>Base1SwigImpl</TT> and it implements the appropriate base:</P>
+<DIV class="code">
+<PRE>
+public class Base1SwigImpl implements Base1 {
+...
+  public long Base1_GetInterfaceCPtr() {
+    return exampleJNI.Base1SwigImpl_Base1_GetInterfaceCPtr(swigCPtr);
+  }
+
+  public void Method1() {
+    exampleJNI.Base1SwigImpl_Method1(swigCPtr, this);
+  }
+...
+}
+</PRE>
+</DIV>
+<P> In fact any class deriving from <TT>Base</TT> will now implement the
+ interface instead of deriving from it (or ignoring the base in the case
+ of multiple base classes). Hence the <TT>Derived</TT> proxy class will
+ now implement both bases:</P>
+<DIV class="code">
+<PRE>
+public class Derived implements Base1, Base2 {
+...
+  public long Base1_GetInterfaceCPtr() {
+    return exampleJNI.Derived_Base1_GetInterfaceCPtr(swigCPtr);
+  }
+
+  public long Base2_GetInterfaceCPtr() {
+    return exampleJNI.Derived_Base2_GetInterfaceCPtr(swigCPtr);
+  }
+
+  public void Method1() {
+    exampleJNI.Derived_Method1(swigCPtr, this);
+  }
+
+  public void Method2() {
+    exampleJNI.Derived_Method2(swigCPtr, this);
+  }
+...
+}
+</PRE>
+</DIV>
+<P> Wherever a class marked as an interface is used, such as the <TT>
+UseBases</TT> method in the example, the interface name is used as the
+ type in the Java layer:</P>
+<DIV class="code">
+<PRE>
+  public static void UseBases(Base1 b1, Base2 b2) {
+    exampleJNI.UseBases(b1.Base1_GetInterfaceCPtr(), b1, b2.Base2_GetInterfaceCPtr(), b2);
+  }
+</PRE>
+</DIV>
+<P> Note that each Java interface has a method added to obtain the
+ correct C++ pointer for passing to the native function - <TT>
+Base1_GetInterfaceCPtr</TT> for <TT>Base1</TT>. This method is similar
+ to the <TT>getCPtr</TT> method in the proxy classes. In fact, as shown
+ above in the <TT>Derived</TT> class, the proxy classes implement this
+ generated interface by calling a native method (<TT>
+Derived_Base1_GetInterfaceCPtr</TT>) which calls an appropriate C++ cast
+ of the pointer up the inheritance chain.</P>
+<P> The interface macros are implemented using the <TT>interface</TT>
+ feature and typemaps. For example:</P>
+<DIV class="code">
+<PRE>
+%define %interface(CTYPE...)
+%feature(&quot;interface&quot;, name=&quot;%sSwigInterface&quot;) CTYPE;
+INTERFACE_TYPEMAPS(CTYPE)
+%enddef
+</PRE>
+</DIV>
+<P> The feature accepts one attribute called <TT>name</TT>, which is the
+ name of the Java interface mentioned earlier. The <TT>
+INTERFACE_TYPEMAPS</TT> macro implements the typemaps and can be viewed
+ in the <TT>swiginterface.i</TT> file and contain the usual Java
+ typemaps for generating code plus the <TT>javainterfacecode</TT>
+ typemap which is only used when a class is marked with the <TT>
+interface</TT> feature. See <A href="#Java_code_typemaps">Java code
+ typemaps</A> for details.</P>
 <H2><A name="Java_directors">25.5 Cross language polymorphism using
  directors</A></H2>
 <P> Proxy classes provide a natural, object-oriented way to wrap C++
@@ -31526,7 +31735,7 @@ if (swigerror) {
  &quot;directorthrows&quot; typemaps. In this example, a generic &quot;directorthrows&quot;
  typemap is appropriate for all three exceptions - all take single
  string constructors. If the exceptions had different constructors, it
- would be neccessary to have separate typemaps for each exception type.
+ would be necessary to have separate typemaps for each exception type.
 <!-- All the DEFINE_ and DECLARE_EXCEPTIONS CAN BE OMITTED to make
   this more succinct.  They are included to make this a complete
   example interface that could be generated and built.  -->
@@ -32925,7 +33134,8 @@ $*javaclassname</TT> expands to the proxy classname when wrapping <TT>
 Foo *&amp;</TT>. If the type does not have an associated proxy class, it
  expands to the type wrapper class name, for example, <TT>
 SWIGTYPE_p_unsigned_short</TT> is generated when wrapping <TT>unsigned
- short *</TT>.</P>
+ short *</TT>. The class name is fully qualified with the package name
+ when using the <A href="#SWIGPlus_nspace">nspace feature</A>.</P>
 <P><B> <TT>$javaclazzname</TT></B>
 <BR> This special variable works like <TT>$javaclassname</TT>, but
  expands the fully qualified C++ class into the package name, if used by
@@ -33041,6 +33251,29 @@ Director specific typemaps</A> for details.</P>
  Usually this is the same as '$moduleJNI', unless the jniclassname
  attribute is specified in the <A href="#Java_module_directive">%module
  directive</A>.</P>
+<P><B> <TT>$javainterfacename</TT></B>
+<BR> This special variable is only expanded when the <TT>interface</TT>
+ feature is applied to a class. It works much like <TT>$javaclassname</TT>
+, but instead of expanding to the proxy classname, it expands to the
+ value in the <TT>name</TT> attribute in the <TT>interface</TT> feature.
+ For example:</P>
+<DIV class="code">
+<PRE>
+%feature(&quot;interface&quot;, name=&quot;MyInterface&quot;) MyClass;
+%typemap(jstype) MyClass  &quot;$&amp;javainterfacename&quot;
+%typemap(jstype) MyClass * &quot;$javainterfacename&quot;
+</PRE>
+</DIV>
+<P> will result in the <TT>jstype</TT> typemap expanding to <TT>
+MyInterface</TT> for both <TT>MyClass</TT> and <TT>MyClass *</TT>. The
+ interface name is fully qualified with the package name when using the <A
+href="#SWIGPlus_nspace">nspace feature</A>.</P>
+<P><B> <TT>$interfacename</TT></B>
+<BR> This special variable is only expanded when the <TT>interface</TT>
+ feature is applied to a class. It expands to just the interface name
+ and is thus different to <TT>$javainterfacename</TT> in that it is not
+ fully qualified with the package name when using the <A href="#SWIGPlus_nspace">
+nspace feature</A>.</P>
 <H3><A name="Java_typemaps_for_c_and_cpp">25.9.8 Typemaps for both C and
  C++ compilation</A></H3>
 <P> JNI calls must be written differently depending on whether the code
@@ -33152,10 +33385,36 @@ delete</TT> method has been renamed to <TT>swig_delete</TT>.</P>
 ]%
 </PRE>
 </DIV></DIV>
+<P><TT>%typemap(javainterfacecode, declaration=&quot;...&quot;, cptrmethod=&quot;...&quot;)</TT>
+</P>
+<DIV class="indent">
+<P> The code in this typemap is added to the body of a Java proxy class
+ but only when a class is marked with the <TT>interface</TT> feature.
+ The typemap is used in the proxy class marked with the interface
+ feature as well as all proxy classes derived from the marked C++ class,
+ as they are all generated as implementing the Java interface. The
+ default typemap used in the <TT>%interface</TT> family of macros
+ mentioned in the <A href="#Java_interfaces">Java interfaces</A>
+ section, where <TT>CTYPE</TT> is the C++ class macro argument, is as
+ follows:</P>
+<DIV class="code">
+<PRE>
+%typemap(javainterfacecode,
+         declaration=&quot;  long $interfacename_GetInterfaceCPtr();\n&quot;,
+         cptrmethod=&quot;$interfacename_GetInterfaceCPtr&quot;) CTYPE %{
+  public long $interfacename_GetInterfaceCPtr() {
+    return $imclassname.$javaclazzname$interfacename_GetInterfaceCPtr(swigCPtr);
+  }
+%}
+</PRE>
+</DIV></DIV>
+<P> The special variable <TT>$interfacename</TT> is expanded into the
+ name specified in the <TT>interface</TT> feature.</P>
 <P><B> Compatibility Note:</B> In SWIG-1.3.21 and earlier releases,
  typemaps called &quot;javagetcptr&quot; and &quot;javaptrconstructormodifiers&quot; were
  available. These are deprecated and the &quot;javabody&quot; typemap can be used
- instead.</P>
+ instead. The <TT>javainterfacecode</TT> typemap and interface feature
+ was introduced in SWIG-3.0.9.</P>
 <P> In summary the contents of the typemaps make up a proxy class like
  this:</P>
 <DIV class="code">
@@ -33167,6 +33426,7 @@ delete</TT> method has been renamed to <TT>swig_delete</TT>.</P>
 [ javafinalize typemap ]
 public synchronized void <I>delete</I>() [ javadestruct OR javadestruct_derived typemap ]
 [ javacode typemap ]
+[ javainterfacecode typemap]
 ... proxy functions ...
 }
 </PRE>
@@ -33174,6 +33434,9 @@ public synchronized void <I>delete</I>() [ javadestruct OR javadestruct_derived 
 <P> Note the <TT><I>delete</I>()</TT> methodname and method modifiers
  are configurable, see &quot;javadestruct&quot; and &quot;javadestruct_derived&quot;
  typemaps above.</P>
+<P> The <TT>javainterfacecode</TT> typemap is only used when bases are
+ marked by the <TT>interface</TT> feature and the <TT>implements</TT>
+ list will also then be expanded to include these Java interfaces.</P>
 <P> The type wrapper class is similar in construction:</P>
 <DIV class="code">
 <PRE>
@@ -33200,15 +33463,28 @@ public synchronized void <I>delete</I>() [ javadestruct OR javadestruct_derived 
 <P> The &quot;javaimports&quot; typemap is ignored if the enum class is wrapped by
  an inner Java class, that is when wrapping an enum declared within a
  C++ class.</P>
-<P> The defaults can be overridden to tailor these classes. Here is an
- example which will change the <TT>getCPtr</TT> method and constructor
- from the default public access to protected access. If the classes in
- one package are not using the classes in another package, then these
- methods need not be public and removing access to these low level
- implementation details, is a good thing. If you are invoking SWIG more
- than once and generating the wrapped classes into different packages in
- each invocation, then you cannot do this as you will then have
- different packages.</P>
+<P>The Java interface turned on by the <TT>interface</TT> feature is
+ fairly simple:</P>
+<DIV class="code">
+<PRE>
+[ javaimports typemap ]
+public interface [ javainterfacename ] {
+[ javainterfacecode:cptrmethod typemap attribute ]
+... interface declarations ...
+}
+</PRE>
+</DIV>
+<P> where <TT>javainterfacename</TT> is the <TT>name</TT> attribute in
+ the <A href="#Java_interfaces">interface feature</A>.</P>
+<P> The defaults can be overridden to tailor the generated classes. Here
+ is an example which will change the <TT>getCPtr</TT> method and
+ constructor from the default public access to protected access. If the
+ classes in one package are not using the classes in another package,
+ then these methods need not be public and removing access to these low
+ level implementation details, is a good thing. If you are invoking SWIG
+ more than once and generating the wrapped classes into different
+ packages in each invocation, then you cannot do this as you will then
+ have different packages.</P>
 <DIV class="code">
 <PRE>
 %typemap(javabody) SWIGTYPE %{
@@ -35383,10 +35659,21 @@ $ swig -c++ -javascript -jsc example.i</PRE>
 </DIV>
 <P>The V8 code that SWIG generates should work with most versions from
  3.11.10 up to 3.29.14 and later.</P>
-<P>Specify the V8 version when running SWIG (e.g. 3.25.30)</P>
+<P>The API headers for V8 &gt;= 4.3.0 define constants which SWIG can use
+ to determine the V8 version it is compiling for. For versions &lt; 4.3.0,
+ you need to specify the V8 version when running SWIG. This is specified
+ as a hex constant, but the constant is read as pairs of decimal digits,
+ so for V8 3.25.30 use constant 0x032530. This scheme can't represent
+ components &gt; 99, but this constant is only useful for V8 &lt; 4.3.0, and
+ no V8 versions from that era had a component &gt; 99. For example:</P>
 <DIV class="shell">
 <PRE>
 $ swig -c++ -javascript -v8 -DV8_VERSION=0x032530 example.i</PRE>
+</DIV>
+<P>If you're targetting V8 &gt;= 4.3.0, you would just run swig like so:</P>
+<DIV class="shell">
+<PRE>
+$ swig -c++ -javascript -v8 example.i</PRE>
 </DIV>
 <P>This creates a C/C++ source file <CODE>example_wrap.c</CODE> or <CODE>
 example_wrap.cxx</CODE>. The generated C source file contains the
@@ -40644,7 +40931,9 @@ let triangle =
 <H2><A name="Octave_nn2">32.1 Preliminaries</A></H2>
 <P> As of SWIG 3.0.7, the Octave module is regularly tested with Octave
  versions 3.2.4, 3.8.1, and 4.0.0. Use of older Octave versions is not
- recommended, as these versions are no longer tested with SWIG.</P>
+ recommended, as these versions are no longer tested with SWIG. The SWIG
+ runtime exports the function <TT>swig_octave_prereq()</TT> for checking
+ the version of Octave.</P>
 <H2><A name="Octave_nn3">32.2 Running SWIG</A></H2>
 <P> Let's start with a very simple SWIG interface file, example.i:</P>
 <DIV class="code">
@@ -41056,9 +41345,9 @@ swig_ref</TT> type carries type information along with any C++ object
  named is derived from the types of the operands (either both or just
  the lhs or rhs).</P>
 <P> For example, if <TT>a</TT> and <TT>b</TT> are SWIG variables in
- Octave, <TT>a+b</TT> becomes <TT>a.__add(b)</TT>. The wrapper is then
- free to implement __add to do whatever it wants. A wrapper may define
- the <TT>__add</TT> function manually, %rename some other function to
+ Octave, <TT>a+b</TT> becomes <TT>a.__add__(b)</TT>. The wrapper is then
+ free to implement __add__ to do whatever it wants. A wrapper may define
+ the <TT>__add__</TT> function manually, %rename some other function to
  it, or %rename a C++ operator to it.</P>
 <P> By default the C++ operators are renamed to their corresponding
  Octave operators. So without doing any work, the following interface</P>
@@ -41085,73 +41374,73 @@ assert(c.value==5);
 <P> Octave operators are mapped in the following way:</P>
 <DIV class="code">
 <PRE>
-__brace      a{args}
-__brace_asgn a{args} = rhs
-__paren      a(args)
-__paren_asgn a(args) = rhs
-__str        generates string rep
-__not        !a
-__uplus      +a
-__uminus     -a
-__transpose  a.'
-__hermitian  a'
-__incr       a++
-__decr       a--
-__add        a + b
-__sub        a - b
-__mul        a * b
-__div        a / b
-__pow        a ^ b
-__ldiv       a \ b
-__lshift     a &lt;&lt;b
-__rshift     a &gt;&gt; b
-__lt         a  &lt;b
-__le         a  &lt;= b
-__eq         a == b
-__ge         a &gt;= b
-__gt         a &gt; b
-__ne         a != b
-__el_mul     a .* b
-__el_div     a ./ b
-__el_pow     a .^ b
-__el_ldiv    a .\ b
-__el_and     a &amp; b
-__el_or      a | b
+__brace__      a{args}
+__brace_asgn__ a{args} = rhs
+__paren__      a(args)
+__paren_asgn__ a(args) = rhs
+__str__        generates string rep
+__not__        !a
+__uplus__      +a
+__uminus__     -a
+__transpose__  a.'
+__hermitian__  a'
+__incr__       a++
+__decr__       a--
+__add__        a + b
+__sub__        a - b
+__mul__        a * b
+__div__        a / b
+__pow__        a ^ b
+__ldiv__       a \ b
+__lshift__     a &lt;&lt;b
+__rshift__     a &gt;&gt; b
+__lt__         a  &lt;b
+__le__         a  &lt;= b
+__eq__         a == b
+__ge__         a &gt;= b
+__gt__         a &gt; b
+__ne__         a != b
+__el_mul__     a .* b
+__el_div__     a ./ b
+__el_pow__     a .^ b
+__el_ldiv__    a .\ b
+__el_and__     a &amp; b
+__el_or__      a | b
 </PRE>
 </DIV>
 <P> On the C++ side, the default mappings are as follows:</P>
 <DIV class="code">
 <PRE>
-%rename(__add)       *::operator+;
-%rename(__add)       *::operator+();
-%rename(__add)       *::operator+() const;
-%rename(__sub)       *::operator-;
-%rename(__uminus)    *::operator-();
-%rename(__uminus)    *::operator-() const;
-%rename(__mul)       *::operator*;
-%rename(__div)       *::operator/;
-%rename(__mod)       *::operator%;
-%rename(__lshift)    *::operator&lt;
+%rename(__add__)       *::operator+;
+%rename(__add__)       *::operator+();
+%rename(__add__)       *::operator+() const;
+%rename(__sub__)       *::operator-;
+%rename(__uminus__)    *::operator-();
+%rename(__uminus__)    *::operator-() const;
+%rename(__mul__)       *::operator*;
+%rename(__div__)       *::operator/;
+%rename(__mod__)       *::operator%;
+%rename(__lshift__)    *::operator&lt;
 <!--;
-%rename(__rshift)    *::operator-->
+%rename(__rshift__)    *::operator-->
 &gt;;
-%rename(__el_and)    *::operator&amp;&amp;;
-%rename(__el_or)     *::operator||;
-%rename(__xor)       *::operator^;
-%rename(__invert)    *::operator~;
-%rename(__lt)        *::operator
+%rename(__el_and__)    *::operator&amp;&amp;;
+%rename(__el_or__)     *::operator||;
+%rename(__xor__)       *::operator^;
+%rename(__invert__)    *::operator~;
+%rename(__lt__)        *::operator
 <!--;
-%rename(__le)        *::operator&lt;=;
-%rename(__gt)        *::operator-->
+%rename(__le__)        *::operator&lt;=;
+%rename(__gt__)        *::operator-->
 ;
-%rename(__ge)        *::operator&gt;=;
-%rename(__eq)        *::operator==;
-%rename(__ne)        *::operator!=;
-%rename(__not)       *::operator!;
-%rename(__incr)      *::operator++;
-%rename(__decr)      *::operator--;
-%rename(__paren)     *::operator();
-%rename(__brace)     *::operator[];
+%rename(__ge__)        *::operator&gt;=;
+%rename(__eq__)        *::operator==;
+%rename(__ne__)        *::operator!=;
+%rename(__not__)       *::operator!;
+%rename(__incr__)      *::operator++;
+%rename(__decr__)      *::operator--;
+%rename(__paren__)     *::operator();
+%rename(__brace__)     *::operator[];
 </PRE>
 </DIV>
 <P> Octave can also utilise friend (i.e. non-member) operators with a
@@ -41163,12 +41452,12 @@ __el_or      a | b
  Octave operators not mapped to C++ operators, or defining certain
  Octave mechanisms such as how an object prints. For example, the <TT>
 octave_value::{is_string,string_value,print}</TT> functions are routed
- to a special method <TT>__str</TT> that can be defined inside an
+ to a special method <TT>__str__</TT> that can be defined inside an
  %extend.</P>
 <DIV class="code">
 <PRE>
 %extend A {
-string __str() {
+string __str__() {
   stringstream sout;
   sout&lt;&lt;$self-&gt;value;
   return sout.str();
@@ -41184,10 +41473,22 @@ octave:2&gt; a
 a = 4
 octave:3&gt; printf(&quot;%s\n&quot;,a);
 4
-octave:4&gt; a.__str()
+octave:4&gt; a.__str__()
 4
 </PRE>
 </DIV>
+<P> Similarly, Octave can use the <TT>__float__</TT> method to convert
+ an object to a numeric value.</P>
+<P> Octave 3.8.0 and later versions will also map unary functions X() to
+ the corresponding <TT>__X__</TT> method, where X includes: abs(),
+ acos(), acosh(), angle(), arg(), asin(), asinh(), atan(), atanh(),
+ cbrt(), ceil(), conj(), cos(), cosh(), dawson(), erf(), erfc(),
+ erfcinv(), erfcx(), erfi(), erfinv(), exp(), expm1(), finite(), fix(),
+ floor(), gamma(), imag(), isalnum(), isalpha(), isascii(), iscntrl(),
+ isdigit(), isgraph(), isinf(), islower(), isna(), isnan(), isprint(),
+ ispunct(), isspace(), isupper(), isxdigit(), lgamma(), log(), log10(),
+ log1p(), log2(), real(), round(), roundb(), signbit(), signum(), sin(),
+ sinh(), sqrt(), tan(), tanh(), toascii(), tolower(), toupper()</P>
 <H3><A name="Octave_nn20">32.3.11 C++ templates</A></H3>
 <P> C++ class and function templates are fully supported as in other
  modules, in that the %template directive may used to create explicit
@@ -41233,7 +41534,7 @@ ans =  22 + 46i
       s+=_s;
       return *this;
     }
-    std::string __str() const {
+    std::string __str__() const {
       std::stringstream sout;
       sout&lt;&lt;s;
       return sout.str();
@@ -45192,6 +45493,8 @@ public:
 <LI><A href="#Python_absrelimports">Absolute and relative imports</A></LI>
 <LI><A href="#Python_absimport">Enforcing absolute import semantics</A></LI>
 <LI><A href="#Python_importfrominit">Importing from __init__.py</A></LI>
+<LI><A href="#Python_implicit_namespace_packages">Implicit Namespace
+ Packages</A></LI>
 </UL>
 </LI>
 <LI><A href="#Python_python3support">Python 3 Support</A>
@@ -45450,14 +45753,14 @@ extern double My_variable;
  interpreter, you simply do something like this:</P>
 <DIV class="shell">
 <PRE>
-$ swig -python example.i
+$ swig -python -lembed.i example.i
 $ gcc example.c example_wrap.c \
         -Xlinker -export-dynamic \
-        -DHAVE_CONFIG_H -I/usr/local/include/python2.1 \
-        -I/usr/local/lib/python2.1/config \
-        -L/usr/local/lib/python2.1/config -lpython2.1 -lm -ldl \
+        -DHAVE_CONFIG_H -I/usr/include/python2.7 \
+        -I/usr/lib/python2.7/config-x86_64-linux-gnu \
+        -I/usr/lib/python2.7/config \
+        -L/usr/lib/python2.7/config -lpython2.7 -lm -ldl \
         -o mypython
-
 </PRE>
 </DIV>
 <P> You will need to supply the same libraries that were used to build
@@ -45473,10 +45776,10 @@ $ gcc example.c example_wrap.c \
  situations (and quite frankly not worth the extra hassle in the opinion
  of this author).</P>
 <P><B> Compatibility note:</B> The <TT>embed.i</TT> library file is
- deprecated and has not been maintained for several years. Even though
- it appears to &quot;work&quot; with Python 2.1, no future support is guaranteed.
- If using static linking, you might want to rely on a different approach
- (perhaps using distutils).</P>
+ deprecated and has not been actively maintained for many years. Even
+ though it appears to &quot;work&quot; with Python 2.7, no future support is
+ guaranteed. If using static linking, you might want to rely on a
+ different approach (perhaps using distutils).</P>
 <H3><A name="Python_nn9">36.2.5 Using your module</A></H3>
 <P> To use your module, simply use the Python <TT>import</TT> statement.
  If all goes well, you will be able to this:</P>
@@ -45969,7 +46272,7 @@ int fclose(FILE *);
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; import example
-&gt;&gt;&gt; f = example.fopen(&quot;junk&quot;,&quot;w&quot;)
+&gt;&gt;&gt; f = example.fopen(&quot;junk&quot;, &quot;w&quot;)
 &gt;&gt;&gt; example.fputs(&quot;Hello World\n&quot;, f)
 &gt;&gt;&gt; example.fclose(f)
 </PRE>
@@ -47193,7 +47496,7 @@ www.python.org</A> and is not repeated here.</P>
  old-style classes are used instead.</P>
 <P> This dual-nature of the wrapper code means that you can create
  extension modules with SWIG and those modules will work with all
- versions of Python ranging from Python-1.4 to the very latest release.
+ versions of Python ranging from Python-2.0 to the very latest release.
  Moreover, the wrappers take advantage of Python-2.2 features when
  available.</P>
 <P> For the most part, the interface presented to users is the same
@@ -48647,7 +48950,7 @@ int print_args(char **argv) {
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; from argv import *
-&gt;&gt;&gt; print_args([&quot;Dave&quot;,&quot;Mike&quot;,&quot;Mary&quot;,&quot;Jane&quot;,&quot;John&quot;])
+&gt;&gt;&gt; print_args([&quot;Dave&quot;, &quot;Mike&quot;, &quot;Mary&quot;, &quot;Jane&quot;, &quot;John&quot;])
 argv[0] = Dave
 argv[1] = Mike
 argv[2] = Mary
@@ -48675,7 +48978,7 @@ int foo(int argc, char **argv);
  Python as follows:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; foo(4, [&quot;foo&quot;,&quot;bar&quot;,&quot;spam&quot;,&quot;1&quot;])
+&gt;&gt;&gt; foo(4, [&quot;foo&quot;, &quot;bar&quot;, &quot;spam&quot;, &quot;1&quot;])
 </PRE>
 </DIV>
 <P> Although this works, it's a little awkward to specify the argument
@@ -48721,7 +49024,35 @@ int foo(int argc, char **argv);
  the typemap code. For example:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; foo([&quot;foo&quot;,&quot;bar&quot;,&quot;spam&quot;,&quot;1&quot;])
+&gt;&gt;&gt; foo([&quot;foo&quot;, &quot;bar&quot;, &quot;spam&quot;, &quot;1&quot;])
+</PRE>
+</DIV>
+<P> If your function is overloaded in C++, for example:</P>
+<DIV class="code">
+<PRE>
+int foo(int argc, char **argv);
+int foo();
+</PRE>
+</DIV>
+<P> don't forget to also provide a suitable <A href="#Typemaps_overloading">
+typecheck typemap for overloading</A> such as:</P>
+<DIV class="code">
+<PRE>
+%typecheck(SWIG_TYPECHECK_STRING_ARRAY) (int argc, char **argv) {
+  $1 = PyList_Check($input) ? 1 : 0;
+}
+</PRE>
+</DIV>
+<P> If you don't you'll get an error message along the lines of:</P>
+<DIV class="shell">
+<PRE>
+Traceback (most recent call last):
+  File &quot;runme.py&quot;, line 3, in &gt;module&lt;
+    example.foo([&quot;foo&quot;, &quot;bar&quot;, &quot;spam&quot;, &quot;1&quot;])
+NotImplementedError: Wrong number or type of arguments for overloaded function 'foo'.
+  Possible C/C++ prototypes are:
+    foo(int,char **)
+    foo()
 </PRE>
 </DIV>
 <H3><A name="Python_nn61">36.9.3 Using typemaps to return arguments</A></H3>
@@ -48749,23 +49080,23 @@ int spam(double a, double b, double *out1, double *out2) {
 // is guaranteed to be a List object by SWIG.
 
 %typemap(argout) double *OutValue {
-    PyObject *o, *o2, *o3;
-    o = PyFloat_FromDouble(*$1);
-    if ((!$result) || ($result == Py_None)) {
-        $result = o;
-    } else {
-        if (!PyTuple_Check($result)) {
-            PyObject *o2 = $result;
-            $result = PyTuple_New(1);
-            PyTuple_SetItem(target,0,o2);
-        }
-        o3 = PyTuple_New(1);
-        PyTuple_SetItem(o3,0,o);
-        o2 = $result;
-        $result = PySequence_Concat(o2,o3);
-        Py_DECREF(o2);
-        Py_DECREF(o3);
+  PyObject *o, *o2, *o3;
+  o = PyFloat_FromDouble(*$1);
+  if ((!$result) || ($result == Py_None)) {
+    $result = o;
+  } else {
+    if (!PyTuple_Check($result)) {
+      PyObject *o2 = $result;
+      $result = PyTuple_New(1);
+      PyTuple_SetItem($result,0,o2);
     }
+    o3 = PyTuple_New(1);
+    PyTuple_SetItem(o3,0,o);
+    o2 = $result;
+    $result = PySequence_Concat(o2,o3);
+    Py_DECREF(o2);
+    Py_DECREF(o3);
+  }
 }
 
 int spam(double a, double b, double *OutValue, double *OutValue);
@@ -49520,6 +49851,66 @@ class Bar(pkg3.foo.Foo): pass
 -relativeimport</TT> option in order to have the above workaround in
  effect (note, that the Python 2 case also needs the <TT>-relativeimport</TT>
  workaround).</P>
+<H3><A name="Python_implicit_namespace_packages">36.11.5 Implicit
+ Namespace Packages</A></H3>
+<P> Python 3.3 introduced <A href="https://www.python.org/dev/peps/pep-0420/">
+PEP 0420</A> which implements implicit namespace packages. In a
+ nutshell, implicit namespace packages remove the requirement of an
+ __init__.py file and allow packages to be split across multiple PATH
+ elements. For example:</P>
+<DIV class="diagram">
+<PRE>
+/fragment1/pkg1/mod1.py
+/fragment2/pkg1/mod2.py
+/fragment3/pkg1/mod3.py
+</PRE>
+</DIV>
+<P>If PYTHONPATH is set to &quot;/fragment1:/fragment2:/fragment3&quot;, then
+ mod1, mod2 and mod3 will be part of pkg1. This allows for splitting of
+ packages into separate pieces. This can be useful for SWIG generated
+ wrappers in the following way.</P>
+<P> Suppose you create a SWIG wrapper for a module called robin. The
+ SWIG generated code consists of two files robin.py and _robin.so. You
+ wish to make these modules part of a subpackage (brave.sir). With
+ implicit namespace packages you can place these files in the following
+ configurations:</P>
+<P>Using PYTHONPATH=&quot;/some/path&quot;</P>
+<DIV class="diagram">
+<PRE>
+/some/path/brave/sir/robin.py
+/some/path/brave/sir/_robin.so
+</PRE>
+</DIV>
+<P>Using PYTHONPATH=&quot;/some/path:/some/other/path&quot;<DIV class="diagram">
+<PRE>
+/some/path/brave/sir/robin.py
+/some/other/path/brave/sir/_robin.so
+</PRE>
+</DIV></P>
+<P> Finally suppose that your pure python code is stored in a .zip file
+ or some other way (database, web service connection, etc). Python can
+ load the robin.py module using a custom importer. But the _robin.so
+ module will need to be located on a file system. Implicit namespace
+ packages make this possible. For example, using
+ PYTHONPATH=&quot;/some/path/foo.zip:/some/other/path&quot;</P>
+<P> Contents of foo.zip</P>
+<DIV class="diagram">
+<PRE>
+brave/
+brave/sir/
+brave/sir/robin.py
+</PRE>
+</DIV>
+<P> File system contents</P>
+<DIV class="diagram">
+<PRE>
+/some/other/path/brave/sir/_robin.so
+</PRE>
+</DIV>
+<P>Support for implicit namespace packages was added to python-3.3. The
+ zipimporter requires python-3.5.1 or newer to work with subpackages.</P>
+<P><B> Compatibility Note:</B> Support for implicit namespace packages
+ was added in SWIG-3.0.9.</P>
 <H2><A name="Python_python3support">36.12 Python 3 Support</A></H2>
 <P> SWIG is able to support Python 3.0. The wrapper code generated by
  SWIG can be compiled with both Python 2.x or 3.0. Further more, by
@@ -49757,6 +50148,73 @@ UnicodeEncodeError: 'utf-8' codec can't encode character '\udce9' in position 1:
 <P> For more details about the <TT>surrogateescape</TT> error handler,
  please see <A href="https://www.python.org/dev/peps/pep-0383/">PEP 383</A>
 .</P>
+<P> In some cases, users may wish to instead handle all byte strings as
+ bytes objects in Python 3. This can be accomplished by adding <TT>
+SWIG_PYTHON_STRICT_BYTE_CHAR</TT> to the generated code:</P>
+<DIV class="code">
+<PRE>
+%module char_to_bytes
+%begin %{
+#define SWIG_PYTHON_STRICT_BYTE_CHAR
+%}
+
+char *charstring(char *s) {
+  return s;
+}
+</PRE>
+</DIV>
+<P> This will modify the behavior so that only Python 3 bytes objects
+ will be accepted and converted to a C/C++ string, and any string
+ returned from C/C++ will be converted to a bytes object in Python 3:</P>
+<DIV class="targetlang">
+<PRE>
+&gt;&gt;&gt; from char_to_bytes import *
+&gt;&gt;&gt; charstring(b&quot;hi&quot;) # Byte string
+b'hi'
+&gt;&gt;&gt; charstring(&quot;hi&quot;)  # Unicode string
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in ?
+TypeError: in method 'charstring', argument 1 of type 'char *'
+</PRE>
+</DIV>
+<P> Note that in Python 2, defining <TT>SWIG_PYTHON_STRICT_BYTE_CHAR</TT>
+ has no effect, since strings in Python 2 are equivalent to Python 3
+ bytes objects. However, there is a similar capability to force
+ unicode-only handling for wide characters C/C++ strings (<TT>wchar_t *</TT>
+ or <TT>std::wstring</TT> types) in Python 2. By default, in Python 2
+ both strings and unicode strings are converted to C/C++ wide strings,
+ and returned wide strings are converted to a Python unicode string. To
+ instead only convert unicode strings to wide strings, users can add <TT>
+SWIG_PYTHON_STRICT_UNICODE_WCHAR</TT> to the generated code:</P>
+<DIV class="code">
+<PRE>
+%module wchar_to_unicode
+%begin %{
+#define SWIG_PYTHON_STRICT_UNICODE_WCHAR
+%}
+
+wchar_t *wcharstring(wchar_t *s) {
+  return s;
+}
+</PRE>
+</DIV>
+<P> This ensures that only unicode strings are accepted by wcharstring
+ in both Python 2 and Python 3:</P>
+<DIV class="targetlang">
+<PRE>
+&gt;&gt;&gt; from wchar_to_unicode import *
+&gt;&gt;&gt; wcharstring(u&quot;hi&quot;) # Unicode string
+u'hi'
+&gt;&gt;&gt; wcharstring(b&quot;hi&quot;) # Byte string
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in ?
+TypeError: in method 'charstring', argument 1 of type 'wchar_t *'
+</PRE>
+</DIV>
+<P> By defining both <TT>SWIG_PYTHON_STRICT_BYTE_CHAR</TT> and <TT>
+SWIG_PYTHON_STRICT_UNICODE_WCHAR</TT>, Python wrapper code can support
+ overloads taking both std::string (as Python bytes) and std::wstring
+ (as Python unicode).</P>
 <H3><A name="Python_2_unicode">36.12.5 Python 2 Unicode</A></H3>
 <P> A Python 3 string is a Unicode string so by default a Python 3
  string that contains Unicode characters passed to C/C++ will be
@@ -49813,6 +50271,11 @@ char *charstring(char *s) {
 &gt;&gt;&gt;
 </PRE>
 </DIV>
+<P> Note that defining both <TT>SWIG_PYTHON_2_UNICODE</TT> and <TT>
+SWIG_PYTHON_STRICT_BYTE_CHAR</TT> at the same time is not allowed, since
+ the first is allowing unicode conversion and the second is explicitly
+ prohibiting it.</P>
+
 <!--  LocalWords:  polymorphism Typemaps STL typemap typemaps Docstring autodoc
  -->
 
@@ -51047,7 +51510,7 @@ swig::BinaryPredicate</TT> are provided.</P>
 
 %include &lt;std_set.i&gt;
 
-%typemap(IntSet) std::set&lt; int, swig::BinaryPredicate &gt;;
+%template(IntSet) std::set&lt; int, swig::BinaryPredicate &gt;;
 </PRE>
 </DIV>
 <P>You can then use the set from Ruby with or without a proc object as a
@@ -53963,12 +54426,13 @@ irb(main):011:0&gt;</PRE>
 <UL>
 <LI><A href="#Scilab_wrapping_pointers_pointer_adresses">Utility
  functions</A></LI>
-<LI><A href="#Scilab_wrapping_pointers_null_pointers">Null pointers</A></LI>
+<LI><A href="#Scilab_wrapping_pointers_null_pointers">Null pointers:</A></LI>
 </UL>
 </LI>
 <LI><A href="#Scilab_wrapping_structs">Structures</A></LI>
 <LI><A href="#Scilab_wrapping_cpp_classes">C++ classes</A></LI>
 <LI><A href="#Scilab_wrapping_cpp_inheritance">C++ inheritance</A></LI>
+<LI><A href="#Scilab_wrapping_cpp_overloading">C++ overloading</A></LI>
 <LI><A href="#Scilab_wrapping_pointers_references_values_arrays">
 Pointers, references, values, and arrays</A></LI>
 <LI><A href="#Scilab_wrapping_cpp_templates">C++ templates</A></LI>
@@ -53982,8 +54446,6 @@ Pointers, references, values, and arrays</A></LI>
 <UL>
 <LI><A href="#Scilab_typemaps_primitive_types">Default primitive type
  mappings</A></LI>
-<LI><A href="#Scilab_typemaps_non-primitive_types">Default type mappings
- for non-primitive types</A></LI>
 <LI><A href="#Scilab_typemaps_arrays">Arrays</A></LI>
 <LI><A href="#Scilab_typemaps_pointer-to-pointers">Pointer-to-pointers</A>
 </LI>
@@ -54564,9 +55026,34 @@ typedef enum { RED, BLUE, GREEN } color;
 </PRE>
 </DIV>
 <H3><A name="Scilab_wrapping_pointers">39.3.6 Pointers</A></H3>
-<P> C/C++ pointers are fully supported by SWIG. They are mapped to the
- Scilab pointer type (&quot;pointer&quot;, type ID: 128).</P>
-<P> Given a wrapping of some of the C file functions:</P>
+<P> Pointers are supported by SWIG. A pointer can be returned from a
+ wrapped C/C++ function, stored in a Scilab variable, and used in input
+ argument of another C/C++ function.</P>
+<P> Also, thanks to the SWIG runtime which stores informations about
+ types, pointer types are tracked between exchanges Scilab and the
+ native code. Indeed pointer types are stored alongside the pointer
+ adress. A pointer is mapped to a Scilab structure (<A href="https://help.scilab.org/docs/5.5.2/en_US/tlist.html">
+tlist</A>), which contains as fields the pointer address and the pointer
+ type (in fact a pointer to the type information structure in the SWIG
+ runtime).
+<BR> Why a native pointer is not mapped to a Scilab pointer (type name:
+ &quot;pointer&quot;, type ID: 128) ? The big advantage of mapping to a <TT>tlist</TT>
+ is that it exposes a new type for the pointer in Scilab, type which can
+ be acessed in Scilab with the <A href="https://help.scilab.org/docs/5.5.2/en_US/typeof.html">
+typeof</A> function, and manipulated using the <A href="https://help.scilab.org/docs/5.5.2/en_US/overloading.html">
+overloading</A> mechanism.</P>
+<P> Notes:</P>
+<UL>
+<LI>type tracking needs the SWIG runtime to be first initialized with
+ the appropriate function (see the <A href="#Scilab_module_initialization">
+Module initialization</A> section).</LI>
+<LI>for any reason, if a wrapped pointer type is unknown (or if the SWIG
+ runtime is not initialized), SWIG maps it to a Scilab pointer. Also, a
+ Scilab pointer is always accepted as a pointer argument of a wrapped
+ function. The drawaback is that pointer type is lost.</LI>
+</UL>
+<P> Following is an example of the wrapping of the C <TT>FILE*</TT>
+ pointer:</P>
 <DIV class="code">
 <PRE>
 %module example
@@ -54580,33 +55067,38 @@ int fputs(const char *, FILE *);
 int fclose(FILE *);
 </PRE>
 </DIV>
-<P> These functions can be used in a natural way from Scilab:</P>
+<P> These functions can be used the same way as in C from Scilab:</P>
 <DIV class="targetlang">
 <PRE>
+--&gt; example_Init();
+
 --&gt; f = fopen(&quot;junk&quot;, &quot;w&quot;);
 --&gt; typeof(f)
  ans  =
 
-  pointer
+  _p_FILE
 
 --&gt; fputs(&quot;Hello World&quot;, f);
 --&gt; fclose(f);
 </PRE>
 </DIV>
+<P> Note: the type name <TT>_p_FILE</TT> which means &quot;pointer to FILE&quot;.</P>
 <P> The user of a pointer is responsible for freeing it or, like in the
  example, closing any resources associated with it (just as is required
  in a C program).</P>
 <H4><A name="Scilab_wrapping_pointers_pointer_adresses">39.3.6.1 Utility
  functions</A></H4>
-<P> Most of time pointer manipulation is not needed in a scripting
- language such as Scilab. However, in some cases it can be useful, such
- as for testing or debugging.</P>
+<P> As a scripting language, Scilab does not provide functions to
+ manipulate pointers. However, in some cases it can be useful, such as
+ for testing or debugging.</P>
 <P> SWIG comes with two pointer utility functions:</P>
 <UL>
 <LI><TT>SWIG_this()</TT>: returns the address value of a pointer</LI>
 <LI><TT>SWIG_ptr()</TT>: creates a pointer from an address value</LI>
 </UL>
-<P>Following illustrates their use on the last example:</P>
+<P> Note: a pointer created by <TT>SWIG_ptr()</TT> does not have any
+ type and is mapped as a Scilab pointer.</P>
+<P>Following we use the utility functions on the previous example:</P>
 <DIV class="targetlang">
 <PRE>
 --&gt; f = fopen(&quot;junk&quot;, &quot;w&quot;);
@@ -54617,16 +55109,19 @@ int fclose(FILE *);
     8219088.
 
 --&gt; p = SWIG_ptr(addr);
+--&gt; typeof(p)
+ans  =
+
+  pointer
+
 --&gt; fputs(&quot; World&quot;, p);
 --&gt; fclose(f);
 </PRE>
 </DIV>
 <H4><A name="Scilab_wrapping_pointers_null_pointers">39.3.6.2 Null
- pointers</A></H4>
-<P>By default, Scilab does not provide a way to test or create null
- pointers. But it is possible to have a null pointer by using the
- previous functions <TT>SWIG_this()</TT> and <TT>SWIG_ptr()</TT>, like
- this:</P>
+ pointers:</A></H4>
+<P> Using the previous <TT>SWIG_this()</TT> and <TT>SWIG_ptr()</TT>, it
+ is possible to create and check null pointers:</P>
 <DIV class="targetlang">
 <PRE>
 --&gt; p = SWIG_ptr(0);
@@ -54724,6 +55219,20 @@ ans  =
     20.
 </PRE>
 </DIV>
+<P> Note: the pointer to the struct works as described in <A href="Scilab_wrapping_pointers">
+Pointers</A>. For example, the type of the struct pointer can be get
+ with <TT>typeof</TT>, as following:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; example_Init();
+--&gt; b = new_Bar();
+--&gt; typeof(b)
+ ans  =
+
+    _p_Bar
+--&gt; delete_Bar(b);
+</PRE>
+</DIV>
 <H3><A name="Scilab_wrapping_cpp_classes">39.3.8 C++ classes</A></H3>
 <P> Classes do not exist in Scilab. The classes are wrapped the same way
  as structs. Low-level accessor functions are generated for class
@@ -54764,6 +55273,26 @@ ans  =
 
 --&gt; delete_Point(p1);
 --&gt; delete_Point(p2);
+</PRE>
+</DIV>
+<P> Note: like structs, class pointers are mapped as described in <A href="Scilab_wrapping_pointers">
+Pointers</A>. Let's give an example which shows that each class pointer
+ type is a new type in Scilab that can be used for example (through <A href="https://help.scilab.org/docs/5.5.2/en_US/overloading.html">
+overloading</A>) to implement a custom print for the <TT>Point</TT>
+ class:</P>
+<DIV class="targetlang">
+<PRE>
+--&gt; function %_p_Point_p(p)
+--&gt;     mprintf('[%d, %d]\n', Point_x_get(p), Point_y_get(p));
+--&gt; endfunction
+
+--&gt; example_Init();
+--&gt; p = new_Point(1, 2)
+ p  =
+
+[1, 2]
+
+--&gt; delete_Point(p);
 </PRE>
 </DIV>
 <H3><A name="Scilab_wrapping_cpp_inheritance">39.3.9 C++ inheritance</A></H3>
@@ -54833,7 +55362,45 @@ public:
     18.84
 </PRE>
 </DIV>
-<H3><A name="Scilab_wrapping_pointers_references_values_arrays">39.3.10
+<H3><A name="Scilab_wrapping_cpp_overloading">39.3.10 C++ overloading</A>
+</H3>
+<P> As explained in <A href="http://www.swig.org/Doc3.0/SWIGPlus.html#SWIGPlus_overloaded_methods">
+6.15</A> SWIG provides support for overloaded functions and
+ constructors.</P>
+<P>As SWIG knows pointer types, the overloading works also with pointer
+ types, here is is an example with a function <TT>magnify</TT>
+ overloaded for the previous classes <TT>Shape</TT> and <TT>Circle</TT>:</P>
+<DIV class="code">
+<PRE>
+%module example
+
+void magnify(Square *square, double factor) {
+    square-&gt;size *= factor;
+};
+
+void magnify(Circle *circle, double factor) {
+    square-&gt;radius *= factor;
+};
+</PRE>
+</DIV><DIV class="targetlang">
+<PRE>
+--&gt; example_Init();
+--&gt; c = new_Circle(3);
+--&gt; s = new_Square(2);
+
+--&gt; magnify(c, 10);
+--&gt; Circle_get_radius(c)
+ ans  =
+
+   30;
+--&gt; magnify(s, 10);
+--&gt; Square_get_size(s)
+ ans  =
+
+   20;
+</PRE>
+</DIV>
+<H3><A name="Scilab_wrapping_pointers_references_values_arrays">39.3.11
  Pointers, references, values, and arrays</A></H3>
 <P> In C++ objects can be passed by value, pointer, reference, or by an
  array:</P>
@@ -54889,7 +55456,7 @@ Foo  spam7();
 . As the function <TT>spam7</TT> returns a value, new instance of <TT>
 Foo</TT> has to be allocated, and a pointer on this instance is
  returned.</P>
-<H3><A name="Scilab_wrapping_cpp_templates">39.3.11 C++ templates</A></H3>
+<H3><A name="Scilab_wrapping_cpp_templates">39.3.12 C++ templates</A></H3>
 <P> As in other languages, function and class templates are supported in
  SWIG Scilab.</P>
 <P> You have to tell SWIG to create wrappers for a particular template
@@ -54937,7 +55504,7 @@ struct triplet {
 </DIV>
 <P> More details on template support can be found in the <A href="#SWIGPlus_nn30">
 templates</A> documentation.</P>
-<H3><A name="Scilab_wrapping_cpp_operators">39.3.12 C++ operators</A></H3>
+<H3><A name="Scilab_wrapping_cpp_operators">39.3.13 C++ operators</A></H3>
 <P> C++ operators are partially supported. Operator overloading exists
  in Scilab, but a C++ operator is not (in this version) wrapped by SWIG
  as a Scilab operator, but as a function. It is not automatic, you have
@@ -54984,7 +55551,7 @@ private:
     4.
 </PRE>
 </DIV>
-<H3><A name="Scilab_wrapping_cpp_namespaces">39.3.13 C++ namespaces</A></H3>
+<H3><A name="Scilab_wrapping_cpp_namespaces">39.3.14 C++ namespaces</A></H3>
 <P> SWIG is aware of C++ namespaces, but does not use it for wrappers.
  The module is not broken into submodules, nor do namespace appear in
  functions names. All the namespaces are all flattened in the module.
@@ -55046,7 +55613,7 @@ namespace Bar {
 </DIV>
 <P> Note: the <A href="#SWIGPlus_nspace">nspace</A> feature is not
  supported.</P>
-<H3><A name="Scilab_wrapping_cpp_exceptions">39.3.14 C++ exceptions</A></H3>
+<H3><A name="Scilab_wrapping_cpp_exceptions">39.3.15 C++ exceptions</A></H3>
 <P> Scilab does not natively support exceptions, but has errors. When an
  exception is thrown, SWIG catches it, and sets a Scilab error. An error
  message is displayed in Scilab. For example:</P>
@@ -55122,7 +55689,7 @@ SWIG/Scilab: ValueError: argument is negative.
  typemaps to be implemented in order to specifically handle a thrown
  type. See the <A href="#SWIGPlus">SWIG C++ documentation</A> for more
  details.</P>
-<H3><A name="Scilab_wrapping_cpp_stl">39.3.15 C++ STL</A></H3>
+<H3><A name="Scilab_wrapping_cpp_stl">39.3.16 C++ STL</A></H3>
 <P> The Standard Template Library (STL) is partially supported. See <A href="#Scilab_typemaps_stl">
 STL</A> for more details.</P>
 <H2><A name="Scilab_typemaps">39.4 Type mappings and libraries</A></H2>
@@ -55166,11 +55733,7 @@ STL</A> for more details.</P>
  default behaviour is for SWIG to generate code that will give a runtime
  error if <TT>long long</TT> type arguments are used from Scilab.</LI>
 </UL>
-<H3><A name="Scilab_typemaps_non-primitive_types">39.4.2 Default type
- mappings for non-primitive types</A></H3>
-<P> The default mapped type for C/C++ non-primitive types is the Scilab
- pointer, for example for C structs, C++ classes, etc...</P>
-<H3><A name="Scilab_typemaps_arrays">39.4.3 Arrays</A></H3>
+<H3><A name="Scilab_typemaps_arrays">39.4.2 Arrays</A></H3>
 <P> Typemaps are available by default for arrays. Primitive type arrays
  are automatically converted to/from Scilab matrices. Typemaps are also
  provided to handle members of a struct or class that are arrays.</P>
@@ -55218,7 +55781,7 @@ void printArray(int values[], int len) {
 [ 0  1  2  3 ]
 </PRE>
 </DIV>
-<H3><A name="Scilab_typemaps_pointer-to-pointers">39.4.4
+<H3><A name="Scilab_typemaps_pointer-to-pointers">39.4.3
  Pointer-to-pointers</A></H3>
 <P> There are no specific typemaps for pointer-to-pointers, they are are
  mapped as pointers in Scilab.</P>
@@ -55283,7 +55846,7 @@ void print_matrix(double **M, int nbRows, int nbCols) {
     5.
 </PRE>
 </DIV>
-<H3><A name="Scilab_typemaps_matrices">39.4.5 Matrices</A></H3>
+<H3><A name="Scilab_typemaps_matrices">39.4.4 Matrices</A></H3>
 <P> The <TT>matrix.i</TT> library provides a set of typemaps which can
  be useful when working with one-dimensional and two-dimensional
  matrices.</P>
@@ -55359,7 +55922,7 @@ void absolute(int *matrix, int matrixNbRow, int matrixNbCol,
  integers, <TT>double</TT> values are truncated without any checking or
  warning.</LI>
 </UL>
-<H3><A name="Scilab_typemaps_stl">39.4.6 STL</A></H3>
+<H3><A name="Scilab_typemaps_stl">39.4.5 STL</A></H3>
 <P> The STL library wraps some containers defined in the STL (Standard
  Template Library), so that they can be manipulated in Scilab. This
  library also provides the appropriate typemaps to use the containers in
@@ -55540,10 +56103,10 @@ ans  =
 </H2>
 <P> The wrapped module contains an initialization function to:</P>
 <UL>
-<LI>initialize the SWIG runtime, which is necessary when working with
- the STL</LI>
-<LI>initialize in Scilab the module constants and enumerations declared
- with <TT>%scilabconst()</TT></LI>
+<LI>initialize the SWIG runtime, needed for pointer type tracking or
+ when working with the STL</LI>
+<LI>initialize the module constants and enumerations declared with <TT>
+%scilabconst()</TT></LI>
 </UL>
 <P> This initialization function should be executed at the start of a
  script, before the wrapped library has to be used.</P>

@@ -116,6 +116,7 @@
 <li><a href="#Python_absrelimports">Absolute and relative imports</a>
 <li><a href="#Python_absimport">Enforcing absolute import semantics</a>
 <li><a href="#Python_importfrominit">Importing from __init__.py</a>
+<li><a href="#Python_implicit_namespace_packages">Implicit Namespace Packages</a>
 </ul>
 <li><a href="#Python_python3support">Python 3 Support</a>
 <ul>
@@ -462,14 +463,14 @@ you simply do something like this:
 </p>
 
 <div class="shell"><pre>
-$ swig -python example.i
+$ swig -python -lembed.i example.i
 $ gcc example.c example_wrap.c \
         -Xlinker -export-dynamic \
-        -DHAVE_CONFIG_H -I/usr/local/include/python2.1 \
-        -I/usr/local/lib/python2.1/config \
-        -L/usr/local/lib/python2.1/config -lpython2.1 -lm -ldl \
+        -DHAVE_CONFIG_H -I/usr/include/python2.7 \
+        -I/usr/lib/python2.7/config-x86_64-linux-gnu \
+        -I/usr/lib/python2.7/config \
+        -L/usr/lib/python2.7/config -lpython2.7 -lm -ldl \
         -o mypython
-
 </pre></div>
 <p>
 You will need to supply the same libraries that were used to build Python the first
@@ -490,8 +491,8 @@ hassle in the opinion of this author).
 
 <p>
 <b>Compatibility note:</b> The <tt>embed.i</tt> library file is
-deprecated and has not been maintained for several years.  Even though it
-appears to "work" with Python 2.1, no future support is guaranteed.
+deprecated and has not been actively maintained for many years.  Even though it
+appears to "work" with Python 2.7, no future support is guaranteed.
 If using static linking, you might want to rely on a different approach
 (perhaps using distutils).
 </p>
@@ -1161,7 +1162,7 @@ When wrapped, you will be able to use the functions in a natural way from Python
 <div class="targetlang">
 <pre>
 &gt;&gt;&gt; import example
-&gt;&gt;&gt; f = example.fopen("junk","w")
+&gt;&gt;&gt; f = example.fopen("junk", "w")
 &gt;&gt;&gt; example.fputs("Hello World\n", f)
 &gt;&gt;&gt; example.fclose(f)
 </pre>
@@ -2755,7 +2756,7 @@ old-style classes are used instead.
 <p>
 This dual-nature of the wrapper code means that you can create extension
 modules with SWIG and those modules will work with all versions of Python
-ranging from Python-1.4 to the very latest release.  Moreover, the wrappers take
+ranging from Python-2.0 to the very latest release.  Moreover, the wrappers take
 advantage of Python-2.2 features when available.
 </p>
 
@@ -4186,7 +4187,7 @@ also be used to extra binary data from arbitrary pointers.
 
 <p>
 C++ default argument code generation is documented in the main
-<a href="SWIG.html#SWIGPlus_default_args">Default arguments</a> section.
+<a href="SWIGPlus.html#SWIGPlus_default_args">Default arguments</a> section.
 There is also an optional Python specific feature that can be used called the <tt>python:cdefaultargs</tt> 
 <a href="Customization.html#Customization_feature_flags">feature flag</a>.
 By default, SWIG attempts to convert C++ default argument values
@@ -4725,7 +4726,7 @@ follows :
 
 <div class="targetlang"><pre>
 &gt;&gt;&gt; from argv import *
-&gt;&gt;&gt; print_args(["Dave","Mike","Mary","Jane","John"])
+&gt;&gt;&gt; print_args(["Dave", "Mike", "Mary", "Jane", "John"])
 argv[0] = Dave
 argv[1] = Mike
 argv[2] = Mary
@@ -4763,7 +4764,7 @@ allows the function to be used from Python as follows:
 
 <div class="targetlang">
 <pre>
-&gt;&gt;&gt; foo(4, ["foo","bar","spam","1"])
+&gt;&gt;&gt; foo(4, ["foo", "bar", "spam", "1"])
 </pre>
 </div>
 
@@ -4817,7 +4818,47 @@ to supply the argument count.  This is automatically set by the typemap code.  F
 
 <div class="targetlang">
 <pre>
-&gt;&gt;&gt; foo(["foo","bar","spam","1"])
+&gt;&gt;&gt; foo(["foo", "bar", "spam", "1"])
+</pre>
+</div>
+
+<p>
+If your function is overloaded in C++, for example:
+</p>
+
+<div class="code">
+<pre>
+int foo(int argc, char **argv);
+int foo();
+</pre>
+</div>
+
+<p>
+don't forget to also provide a suitable <a href="Typemaps.html#Typemaps_overloading">typecheck typemap for overloading</a>
+such as:
+</p>
+
+<div class="code">
+<pre>
+%typecheck(SWIG_TYPECHECK_STRING_ARRAY) (int argc, char **argv) {
+  $1 = PyList_Check($input) ? 1 : 0;
+}
+</pre>
+</div>
+
+<p>
+If you don't you'll get an error message along the lines of:
+</p>
+
+<div class="shell">
+<pre>
+Traceback (most recent call last):
+  File "runme.py", line 3, in &gt;module&lt;
+    example.foo(["foo", "bar", "spam", "1"])
+NotImplementedError: Wrong number or type of arguments for overloaded function 'foo'.
+  Possible C/C++ prototypes are:
+    foo(int,char **)
+    foo()
 </pre>
 </div>
 
@@ -4851,23 +4892,23 @@ A typemap can be used to handle this case as follows :
 // is guaranteed to be a List object by SWIG.
 
 %typemap(argout) double *OutValue {
-    PyObject *o, *o2, *o3;
-    o = PyFloat_FromDouble(*$1);
-    if ((!$result) || ($result == Py_None)) {
-        $result = o;
-    } else {
-        if (!PyTuple_Check($result)) {
-            PyObject *o2 = $result;
-            $result = PyTuple_New(1);
-            PyTuple_SetItem(target,0,o2);
-        }
-        o3 = PyTuple_New(1);
-        PyTuple_SetItem(o3,0,o);
-        o2 = $result;
-        $result = PySequence_Concat(o2,o3);
-        Py_DECREF(o2);
-        Py_DECREF(o3);
+  PyObject *o, *o2, *o3;
+  o = PyFloat_FromDouble(*$1);
+  if ((!$result) || ($result == Py_None)) {
+    $result = o;
+  } else {
+    if (!PyTuple_Check($result)) {
+      PyObject *o2 = $result;
+      $result = PyTuple_New(1);
+      PyTuple_SetItem($result,0,o2);
     }
+    o3 = PyTuple_New(1);
+    PyTuple_SetItem(o3,0,o);
+    o2 = $result;
+    $result = PySequence_Concat(o2,o3);
+    Py_DECREF(o2);
+    Py_DECREF(o3);
+  }
 }
 
 int spam(double a, double b, double *OutValue, double *OutValue);
@@ -5825,6 +5866,82 @@ class Bar(pkg3.foo.Foo): pass
 effect (note, that the Python 2 case also needs the <tt>-relativeimport</tt>
 workaround).</p>
 
+<H3><a name="Python_implicit_namespace_packages">36.11.5 Implicit Namespace Packages</a></H3>
+
+
+<p> Python 3.3 introduced
+<a href="https://www.python.org/dev/peps/pep-0420/">PEP 0420</a> which
+implements implicit namespace packages.  In a nutshell, implicit namespace
+packages remove the requirement of an __init__.py file and allow packages
+to be split across multiple PATH elements.  For example:
+</p>
+
+<div class="diagram">
+<pre>
+/fragment1/pkg1/mod1.py
+/fragment2/pkg1/mod2.py
+/fragment3/pkg1/mod3.py
+</pre>
+</div>
+
+<p>If PYTHONPATH is set to "/fragment1:/fragment2:/fragment3", then mod1, mod2
+and mod3 will be part of pkg1.  This allows for splitting of packages into
+separate pieces.  This can be useful for SWIG generated wrappers in the
+following way.
+</p>
+
+<p> Suppose you create a SWIG wrapper for a module called robin.  The SWIG
+generated code consists of two files robin.py and _robin.so.  You wish to
+make these modules part of a subpackage (brave.sir).  With implicit namespace
+packages you can place these files in the following configurations:
+</p>
+
+<p>Using PYTHONPATH="/some/path"</p>
+<div class="diagram">
+<pre>
+/some/path/brave/sir/robin.py
+/some/path/brave/sir/_robin.so
+</pre>
+</div>
+
+<p>Using PYTHONPATH="/some/path:/some/other/path"
+
+<div class="diagram">
+<pre>
+/some/path/brave/sir/robin.py
+/some/other/path/brave/sir/_robin.so
+</pre>
+</div>
+
+<p> Finally suppose that your pure python code is stored in a .zip file or
+some other way (database, web service connection, etc).  Python can load the
+robin.py module using a custom importer.  But the _robin.so module will need
+to be located on a file system.  Implicit namespace packages make this
+possible.  For example, using PYTHONPATH="/some/path/foo.zip:/some/other/path"
+
+<p> Contents of foo.zip</p>
+<div class="diagram">
+<pre>
+brave/
+brave/sir/
+brave/sir/robin.py
+</pre>
+</div>
+
+<p> File system contents</p>
+<div class="diagram">
+<pre>
+/some/other/path/brave/sir/_robin.so
+</pre>
+</div>
+
+<p>Support for implicit namespace packages was added to python-3.3.  The
+zipimporter requires python-3.5.1 or newer to work with subpackages.
+</p>
+
+<p>
+<b>Compatibility Note:</b> Support for implicit namespace packages was added in SWIG-3.0.9.
+</p>
 
 <H2><a name="Python_python3support">36.12 Python 3 Support</a></H2>
 
@@ -6165,6 +6282,84 @@ For more details about the <tt>surrogateescape</tt> error handler, please see
 <a href="https://www.python.org/dev/peps/pep-0383/">PEP 383</a>.
 </p>
 
+<p>
+In some cases, users may wish to instead handle all byte strings as bytes
+objects in Python 3. This can be accomplished by adding
+<tt>SWIG_PYTHON_STRICT_BYTE_CHAR</tt> to the generated code:
+</p>
+
+<div class="code"><pre>
+%module char_to_bytes
+%begin %{
+#define SWIG_PYTHON_STRICT_BYTE_CHAR
+%}
+
+char *charstring(char *s) {
+  return s;
+}
+</pre></div>
+
+<p>
+This will modify the behavior so that only Python 3 bytes objects will be
+accepted and converted to a C/C++ string, and any string returned from C/C++
+will be converted to a bytes object in Python 3:
+</p>
+
+<div class="targetlang"><pre>
+&gt;&gt;&gt; from char_to_bytes import *
+&gt;&gt;&gt; charstring(b"hi") # Byte string
+b'hi'
+&gt;&gt;&gt; charstring("hi")  # Unicode string
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+TypeError: in method 'charstring', argument 1 of type 'char *'
+</pre></div>
+
+<p>
+Note that in Python 2, defining <tt>SWIG_PYTHON_STRICT_BYTE_CHAR</tt> has no
+effect, since strings in Python 2 are equivalent to Python 3 bytes objects.
+However, there is a similar capability to force unicode-only handling for
+wide characters C/C++ strings (<tt>wchar_t *</tt> or <tt>std::wstring</tt>
+types) in Python 2. By default, in Python 2 both strings and unicode strings
+are converted to C/C++ wide strings, and returned wide strings are converted
+to a Python unicode string. To instead only convert unicode strings to wide
+strings, users can add <tt>SWIG_PYTHON_STRICT_UNICODE_WCHAR</tt> to the
+generated code:
+</p>
+
+<div class="code"><pre>
+%module wchar_to_unicode
+%begin %{
+#define SWIG_PYTHON_STRICT_UNICODE_WCHAR
+%}
+
+wchar_t *wcharstring(wchar_t *s) {
+  return s;
+}
+</pre></div>
+
+<p>
+This ensures that only unicode strings are accepted by wcharstring in both
+Python 2 and Python 3:
+</p>
+
+<div class="targetlang"><pre>
+&gt;&gt;&gt; from wchar_to_unicode import *
+&gt;&gt;&gt; wcharstring(u"hi") # Unicode string
+u'hi'
+&gt;&gt;&gt; wcharstring(b"hi") # Byte string
+Traceback (most recent call last):
+  File "&lt;stdin&gt;", line 1, in ?
+TypeError: in method 'charstring', argument 1 of type 'wchar_t *'
+</pre></div>
+
+<p>
+By defining both <tt>SWIG_PYTHON_STRICT_BYTE_CHAR</tt> and
+<tt>SWIG_PYTHON_STRICT_UNICODE_WCHAR</tt>, Python wrapper code can support
+overloads taking both std::string (as Python bytes) and std::wstring
+(as Python unicode).
+</p>
+
 <H3><a name="Python_2_unicode">36.12.5 Python 2 Unicode</a></H3>
 
 
@@ -6229,6 +6424,13 @@ but note that they are returned as a normal Python 2 string:
 'hi'
 &gt;&gt;&gt;
 </pre></div>
+
+<p>
+Note that defining both <tt>SWIG_PYTHON_2_UNICODE</tt> and
+<tt>SWIG_PYTHON_STRICT_BYTE_CHAR</tt> at the same time is not allowed, since
+the first is allowing unicode conversion and the second is explicitly
+prohibiting it.
+</p>
 
 </body>
 </html>
