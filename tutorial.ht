@@ -155,13 +155,13 @@ $
 </pre></blockquote>
 
 <h3> Building a C# module </h3>
-SWIG will also generate code for accessing C/C++ code from C# using PInvoke. Here is an example building a C# module (shown for Linux, see the <a href="http://www.dabeaz.com/cgi-bin/wiki.pl?SwigFaq/SharedLibraries">SWIG Wiki Shared Libraries</a> page for help with other operating systems). It uses the open source <a href="http://www.southern-storm.com.au/portable_net.html">DotGNU Portable.NET</a> C# compiler which runs on most Unix systems, but works equally well using other C# compilers:
+SWIG will also generate code for accessing C/C++ code from C# using PInvoke. Here is an example building a C# module (shown for Linux, see the <a href="http://www.dabeaz.com/cgi-bin/wiki.pl?SwigFaq/SharedLibraries">SWIG Wiki Shared Libraries</a> page for help with other operating systems). It uses the open source <a href="http://www.mono-project.com/">Mono</a> C# compiler which runs on Windows and most Unix systems, but the Microsoft C# compiler (csc.exe) works equally well on Windows:
 
 <blockquote><pre>
-$ swig -csharp  example.i
-$ gcc -c -fpic  example.c example_wrap.c
+$ swig -csharp example.i
+$ gcc -c -fpic example.c example_wrap.c
 $ gcc -shared example.o  example_wrap.o   -o libexample.so
-$ cscc -o runme *.cs
+$ mono-csc -out:runme.exe *.cs
 $ cat runme.cs
 using System;
 public class runme {
@@ -171,10 +171,10 @@ public class runme {
         Console.WriteLine(example.get_time());
     }
 }
-$ ilrun runme
+$ ./runme.exe
 3
 120
-Tue May 13 10:45:45 2003
+Thu Nov 17 21:24:13 2016
 
 $
 </pre></blockquote>
