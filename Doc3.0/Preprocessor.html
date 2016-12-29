@@ -125,7 +125,9 @@ SWIGMZSCHEME                    Defined when using Mzscheme
 SWIGOCAML                       Defined when using Ocaml
 SWIGOCTAVE                      Defined when using Octave
 SWIGPERL                        Defined when using Perl
-SWIGPHP                         Defined when using PHP
+SWIGPHP                         Defined when using PHP5 or PHP7
+SWIGPHP5                        Defined when using PHP5
+SWIGPHP7                        Defined when using PHP7
 SWIGPIKE                        Defined when using Pike
 SWIGPYTHON                      Defined when using Python
 SWIGR                           Defined when using R
@@ -225,16 +227,16 @@ For example:
 %define ARRAYHELPER(type,name)
 %inline %{
 type *new_ ## name (int nitems) {
-   return (type *) malloc(sizeof(type)*nitems);
+  return (type *) malloc(sizeof(type)*nitems);
 }
 void delete_ ## name(type *t) {
-   free(t);
+  free(t);
 }
 type name ## _get(type *t, int index) {
-   return t[index];
+  return t[index];
 }
 void name ## _set(type *t, int index, type val) {
-   t[index] = val;
+  t[index] = val;
 }
 %}
 %enddef
@@ -334,7 +336,7 @@ if you write code like this,
 %{
 #ifdef NEED_BLAH
 int blah() {
-   ...
+  ...
 }
 #endif
 %}
@@ -358,11 +360,11 @@ file.  For example:
 <div class="code">
 <pre>
 %extend Foo {
-   void bar() {
-      #ifdef DEBUG
-       printf("I'm in bar\n");
-      #endif
-   }
+  void bar() {
+    #ifdef DEBUG
+      printf("I'm in bar\n");
+    #endif
+  }
 }
 </pre>
 </div>
@@ -375,11 +377,11 @@ to actually go into the wrapper file, prefix the preprocessor directives with <t
 <div class="code">
 <pre>
 %extend Foo {
-   void bar() {
-      %#ifdef DEBUG
-       printf("I'm in bar\n");
-      %#endif
-   }
+  void bar() {
+    %#ifdef DEBUG
+      printf("I'm in bar\n");
+    %#endif
+  }
 }
 </pre>
 </div>
