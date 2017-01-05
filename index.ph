@@ -26,7 +26,7 @@ SWIG is free software and the code that SWIG generates is compatible with both c
 <li> <a href="compare.html">Features</a>.
 <li> <a href="mail.html">Mailing Lists</a>
 <li> <a href="bugs.html">Bug tracking</a>
-<li> <a href="http://www.dabeaz.com/cgi-bin/wiki.pl">SwigWiki!</a>
+<li> <a href="https://github.com/swig/swig/wiki">SwigWiki!</a>
 </ul>
 
 <h3>
