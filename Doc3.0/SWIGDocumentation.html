@@ -1251,9 +1251,10 @@ body { font-family: serif; }
 <LI><A HREF="#Java_helper_functions">25.7.1 C/C++ helper functions</A></LI>
 <LI><A HREF="#Java_class_extension">25.7.2 Class extension with %extend</A>
 </LI>
-<LI><A HREF="#Java_exception_handling">25.7.3 Exception handling with
+<LI><A HREF="#Java_proxycode">25.7.3 Class extension with %proxycode</A></LI>
+<LI><A HREF="#Java_exception_handling">25.7.4 Exception handling with
  %exception and %javaexception</A></LI>
-<LI><A HREF="#Java_method_access">25.7.4 Method access with
+<LI><A HREF="#Java_method_access">25.7.5 Method access with
  %javamethodmodifiers</A></LI>
 </UL>
 </LI>
@@ -2320,7 +2321,7 @@ body { font-family: serif; }
 </UL>
 <HR NOSHADE>
 <H1><A name="Sections">SWIG-3.0 Documentation</A></H1>
-<P> Last update : SWIG-3.0.11 (29 Dec 2016)</P>
+<P> Last update : SWIG-3.0.12 (27 Jan 2017)</P>
 <H2><A name="Sections_Sections">Sections</A></H2>
 <H3><A name="Sections_core_docs">SWIG Core Documentation</A></H3>
 <UL>
@@ -2889,7 +2890,7 @@ unix &gt; <B>ld -G example.o example_wrap.o -o example.so</B> # This is for Sola
 unix &gt; <B>perl5.003
 use example;
 print example::fact(4), &quot;\n&quot;;
-print example::my_mod(23,7), &quot;\n&quot;;
+print example::my_mod(23, 7), &quot;\n&quot;;
 print $example::My_variable + 4.5, &quot;\n&quot;;
 &lt;ctrl-d&gt;</B>
 24
@@ -2912,7 +2913,7 @@ Type &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more 
 &gt;&gt;&gt; <B>import example</B>
 &gt;&gt;&gt; <B>example.fact(4)</B>
 24
-&gt;&gt;&gt; <B>example.my_mod(23,7)</B>
+&gt;&gt;&gt; <B>example.my_mod(23, 7)</B>
 2
 &gt;&gt;&gt; <B>example.cvar.My_variable + 4.5</B>
 7.5
@@ -2932,7 +2933,7 @@ unix &gt; <B>ld -G example.o example_wrap.o -o example.so</B>
 unix &gt; <B>perl5.003
 use example;
 print example::fact(4), &quot;\n&quot;;
-print example::my_mod(23,7), &quot;\n&quot;;
+print example::my_mod(23, 7), &quot;\n&quot;;
 print $example::My_variable + 4.5, &quot;\n&quot;;
 &lt;ctrl-d&gt;</B>
 24
@@ -3522,7 +3523,7 @@ int wrap_fact(ClientData clientData, Tcl_Interp *interp, int argc, char *argv[])
   }
   arg0 = atoi(argv[1]);
   result = fact(arg0);
-  sprintf(interp-&gt;result,&quot;%d&quot;, result);
+  sprintf(interp-&gt;result, &quot;%d&quot;, result);
   return TCL_OK;
 }
 
@@ -3605,7 +3606,7 @@ $GREEN</TT>. Virtually all scripting languages provide C functions for
 struct Vector {
   Vector();
   ~Vector();
-  double x,y,z;
+  double x, y, z;
 };
 
 </PRE>
@@ -3650,7 +3651,7 @@ class Vector {
 public:
   Vector();
   ~Vector();
-  double x,y,z;
+  double x, y, z;
 };
 </PRE>
 </DIV>
@@ -4179,7 +4180,7 @@ STATUS</TT> and <TT>VERSION</TT>. When SWIG creates an extension module,
 <PRE>
 &gt;&gt;&gt; example.sin(3)
 5.2335956
-&gt;&gt;&gt; example.strcmp('Dave','Mike')
+&gt;&gt;&gt; example.strcmp('Dave', 'Mike')
 -1
 &gt;&gt;&gt; print example.cvar.Foo
 42
@@ -4314,7 +4315,7 @@ print cvar.foo                  # Print value of foo
 
 # Perl
 $foo = 3.5;                     # Set foo to 3.5
-print $foo,&quot;\n&quot;;                # Print value of foo
+print $foo, &quot;\n&quot;;               # Print value of foo
 
 # Ruby
 Module.foo = 3.5               # Set foo to 3.5
@@ -4392,7 +4393,7 @@ EXTERN</TT> (what would the value be?). In general, SWIG will not create
  limited form of type-checking however).</P>
 <P> For enumerations, it is critical that the original enum definition
  be included somewhere in the interface file (either in a header file or
- in the <TT>%{,%}</TT> block). SWIG only translates the enumeration into
+ in the <TT>%{ %}</TT> block). SWIG only translates the enumeration into
  code needed to add the constants to a scripting language. It needs the
  original enumeration declaration in order to get the correct enum
  values as assigned by the C compiler.</P>
@@ -4596,14 +4597,14 @@ void free(void *);
 <DIV class="targetlang">
 <PRE>
 # Copy a file 
-def filecopy(source,target):
-  f1 = fopen(source,&quot;r&quot;)
-  f2 = fopen(target,&quot;w&quot;)
+def filecopy(source, target):
+  f1 = fopen(source, &quot;r&quot;)
+  f2 = fopen(target, &quot;w&quot;)
   buffer = malloc(8192)
-  nbytes = fread(buffer,8192,1,f1)
+  nbytes = fread(buffer, 8192, 1, f1)
   while (nbytes &gt; 0):
-    fwrite(buffer,8192,1,f2)
-          nbytes = fread(buffer,8192,1,f1)
+    fwrite(buffer, 8192, 1, f2)
+          nbytes = fread(buffer, 8192, 1, f1)
   free(buffer)
 </PRE>
 </DIV>
@@ -4732,7 +4733,7 @@ double dot_product(Vector a, Vector b);
 double wrap_dot_product(Vector *a, Vector *b) {
     Vector x = *a;
     Vector y = *b;
-    return dot_product(x,y);
+    return dot_product(x, y);
 }
 </PRE>
 </DIV>
@@ -4756,7 +4757,7 @@ Vector *wrap_cross_product(Vector *v1, Vector *v2) {
         Vector y = *v2;
         Vector *result;
         result = (Vector *) malloc(sizeof(Vector));
-        *(result) = cross(x,y);
+        *(result) = cross(x, y);
         return result;
 }
 </PRE>
@@ -4767,7 +4768,7 @@ Vector *wrap_cross_product(Vector *v1, Vector *v2) {
 Vector *wrap_cross(Vector *v1, Vector *v2) {
         Vector x = *v1;
         Vector y = *v2;
-        Vector *result = new Vector(cross(x,y)); // Uses default copy constructor
+        Vector *result = new Vector(cross(x, y)); // Uses default copy constructor
         return result;
 }
 </PRE>
@@ -4824,14 +4825,14 @@ char *foo;
 void foo_set(char *value) {
   if (foo) free(foo);
   foo = (char *) malloc(strlen(value)+1);
-  strcpy(foo,value);
+  strcpy(foo, value);
 }
 
 /* C++ mode.  When -c++ option is used */
 void foo_set(char *value) {
   if (foo) delete [] foo;
   foo = new char[strlen(value)+1];
-  strcpy(foo,value);
+  strcpy(foo, value);
 }
 </PRE>
 </DIV>
@@ -4843,7 +4844,7 @@ void foo_set(char *value) {
 <PRE>
 %inline %{
   void set_foo(char *value) {
-    strncpy(foo,value, 50);
+    strncpy(foo, value, 50);
   }
 %}
 </PRE>
@@ -4997,7 +4998,7 @@ char *pathname_get() {
   return pathname;
 }
 void pathname_set(char *value) {
-  strncpy(pathname,value,256);
+  strncpy(pathname, value, 256);
 }
 </PRE>
 </DIV>
@@ -5012,9 +5013,9 @@ void pathname_set(char *value) {
 
 int a;       // Can read/write
 %immutable;
-int b,c,d;   // Read only variables
+int b, c, d;   // Read only variables
 %mutable;
-double x,y;  // read/write
+double x, y;  // read/write
 </PRE>
 </DIV>
 <P> The <TT>%immutable</TT> directive enables read-only mode until it is
@@ -5036,7 +5037,7 @@ double y;                       // Read-write
 <DIV class="code">
 <PRE>
 #define %immutable   %feature(&quot;immutable&quot;)
-#define %mutable     %feature(&quot;immutable&quot;,&quot;&quot;)
+#define %mutable     %feature(&quot;immutable&quot;, &quot;&quot;)
 </PRE>
 </DIV>
 <P> If you wanted to make all wrapped variables read-only, barring one
@@ -5044,7 +5045,7 @@ double y;                       // Read-write
 <DIV class="code">
 <PRE>
 %immutable;                     // Make all variables read-only
-%feature(&quot;immutable&quot;,&quot;0&quot;) x;    // except, make x read/write
+%feature(&quot;immutable&quot;, &quot;0&quot;) x;   // except, make x read/write
 ...
 double x;
 double y;
@@ -5451,7 +5452,7 @@ href="#SWIGPlus_default_args">default arguments</A> in the C++ chapter
  consider a function like this:</P>
 <DIV class="code">
 <PRE>
-int binary_op(int a, int b, int (*op)(int,int));
+int binary_op(int a, int b, int (*op)(int, int));
 </PRE>
 </DIV>
 <P> When you first wrap something like this into an extension module,
@@ -5459,10 +5460,10 @@ int binary_op(int a, int b, int (*op)(int,int));
  Python:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; def add(x,y):
+&gt;&gt;&gt; def add(x, y):
 ...     return x+y
 ...
-&gt;&gt;&gt; binary_op(3,4,add)
+&gt;&gt;&gt; binary_op(3, 4, add)
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in ?
 TypeError: Type error. Expected _p_f_int_int__int
@@ -5477,12 +5478,12 @@ TypeError: Type error. Expected _p_f_int_int__int
 <DIV class="code">
 <PRE>
 /* Function with a callback */
-int binary_op(int a, int b, int (*op)(int,int));
+int binary_op(int a, int b, int (*op)(int, int));
 
 /* Some callback functions */
-%constant int add(int,int);
-%constant int sub(int,int);
-%constant int mul(int,int);
+%constant int add(int, int);
+%constant int sub(int, int);
+%constant int mul(int, int);
 </PRE>
 </DIV>
 <P> In this case, <TT>add</TT>, <TT>sub</TT>, and <TT>mul</TT> become
@@ -5490,9 +5491,9 @@ int binary_op(int a, int b, int (*op)(int,int));
  allows you to use them as follows:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; binary_op(3,4,add)
+&gt;&gt;&gt; binary_op(3, 4, add)
 7
-&gt;&gt;&gt; binary_op(3,4,mul)
+&gt;&gt;&gt; binary_op(3, 4, mul)
 12
 &gt;&gt;&gt;
 </PRE>
@@ -5501,7 +5502,7 @@ int binary_op(int a, int b, int (*op)(int,int));
  they are no longer accessible as functions. For example:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; add(3,4)
+&gt;&gt;&gt; add(3, 4)
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in ?
 TypeError: object is not callable: '_ff020efc_p_f_int_int__int'
@@ -5514,13 +5515,13 @@ TypeError: object is not callable: '_ff020efc_p_f_int_int__int'
 <DIV class="code">
 <PRE>
 /* Function with a callback */
-int binary_op(int a, int b, int (*op)(int,int));
+int binary_op(int a, int b, int (*op)(int, int));
 
 /* Some callback functions */
 %callback(&quot;%s_cb&quot;);
-int add(int,int);
-int sub(int,int);
-int mul(int,int);
+int add(int, int);
+int sub(int, int);
+int mul(int, int);
 %nocallback;
 </PRE>
 </DIV>
@@ -5531,13 +5532,13 @@ int mul(int,int);
  you do this, the interface now works as follows:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; binary_op(3,4,add_cb)
+&gt;&gt;&gt; binary_op(3, 4, add_cb)
 7
-&gt;&gt;&gt; binary_op(3,4,mul_cb)
+&gt;&gt;&gt; binary_op(3, 4, mul_cb)
 12
-&gt;&gt;&gt; add(3,4)
+&gt;&gt;&gt; add(3, 4)
 7
-&gt;&gt;&gt; mul(3,4)
+&gt;&gt;&gt; mul(3, 4)
 12
 </PRE>
 </DIV>
@@ -5552,9 +5553,9 @@ ADD</TT>, <TT>SUB</TT>, and <TT>MUL</TT>:</P>
 <PRE>
 /* Some callback functions */
 %callback(&quot;%(uppercase)s&quot;);
-int add(int,int);
-int sub(int,int);
-int mul(int,int);
+int add(int, int);
+int sub(int, int);
+int mul(int, int);
 %nocallback;
 </PRE>
 </DIV>
@@ -5580,7 +5581,7 @@ int mul(int,int);
 <DIV class="code">
 <PRE>
 struct Vector {
-  double x,y,z;
+  double x, y, z;
 }
 
 </PRE>
@@ -5613,7 +5614,7 @@ void Vector_z_set(struct Vector *obj, double value) {
 <DIV class="code">
 <PRE>
 struct Vector *new_Vector() {
-    return (Vector *) calloc(1,sizeof(struct Vector));
+    return (Vector *) calloc(1, sizeof(struct Vector));
 }
 void delete_Vector(struct Vector *obj) {
     free(obj);
@@ -5625,9 +5626,9 @@ void delete_Vector(struct Vector *obj) {
 <DIV class="code">
 <PRE>
 v = new_Vector()
-Vector_x_set(v,2)
-Vector_y_set(v,10)
-Vector_z_set(v,-5)
+Vector_x_set(v, 2)
+Vector_y_set(v, 10)
+Vector_z_set(v, -5)
 ...
 delete_Vector(v)
 </PRE>
@@ -5640,7 +5641,7 @@ delete_Vector(v)
 <DIV class="code">
 <PRE>
 typedef struct {
-  double x,y,z;
+  double x, y, z;
 } Vector;
 
 </PRE>
@@ -5660,7 +5661,7 @@ double Vector_x_get(Vector *obj) {
 <DIV class="code">
 <PRE>
 typedef struct vector_struct {
-  double x,y,z;
+  double x, y, z;
 } Vector;
 
 </PRE>
@@ -5698,7 +5699,7 @@ char *Foo_name_set(Foo *obj, char *c) {
   if (obj-&gt;name)
     free(obj-&gt;name);
   obj-&gt;name = (char *) malloc(strlen(c)+1);
-  strcpy(obj-&gt;name,c);
+  strcpy(obj-&gt;name, c);
   return obj-&gt;name;
 }
 </PRE>
@@ -5769,7 +5770,7 @@ b-&gt;f.x = 37;
 <DIV class="code">
 <PRE>
 Bar *b;
-Foo_x_set(Bar_f_get(b),37);
+Foo_x_set(Bar_f_get(b), 37);
 </PRE>
 </DIV>
 <P> In this code, if the <TT>Bar_f_get()</TT> function were to return a <TT>
@@ -5885,7 +5886,7 @@ struct Bar {              // Default destructor generated.
 /* file : vector.h */
 ...
 typedef struct Vector {
-  double x,y,z;
+  double x, y, z;
 } Vector;
 
 </PRE>
@@ -5917,7 +5918,7 @@ typedef struct Vector {
     return sqrt($self-&gt;x*$self-&gt;x+$self-&gt;y*$self-&gt;y+$self-&gt;z*$self-&gt;z);
   }
   void print() {
-    printf(&quot;Vector [%g, %g, %g]\n&quot;, $self-&gt;x,$self-&gt;y,$self-&gt;z);
+    printf(&quot;Vector [%g, %g, %g]\n&quot;, $self-&gt;x, $self-&gt;y, $self-&gt;z);
   }
 };
 
@@ -5936,7 +5937,7 @@ typedef struct Vector {
  this :</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; v = Vector(3,4,0)                 # Create a new vector
+&gt;&gt;&gt; v = Vector(3, 4, 0)                 # Create a new vector
 &gt;&gt;&gt; print v.magnitude()                # Print magnitude
 5.0
 &gt;&gt;&gt; v.print()                  # Print it out
@@ -5955,7 +5956,7 @@ typedef struct Vector {
 %}
 
 typedef struct Vector {
-  double x,y,z;
+  double x, y, z;
   %extend {
     Vector(double x, double y, double z) { ... }
     ~Vector() { ... }
@@ -5996,9 +5997,9 @@ double Vector_magnitude(Vector *v) {
 %}
 
 typedef struct Vector {
-  double x,y,z;
+  double x, y, z;
   %extend {
-    Vector(int,int,int); // This calls new_Vector()
+    Vector(int, int, int); // This calls new_Vector()
     ~Vector();           // This calls delete_Vector()
     double magnitude();  // This will call Vector_magnitude()
     ...
@@ -6096,7 +6097,7 @@ char *Person_name_get(Person *p) {
 }
 
 void Person_name_set(Person *p, char *val) {
-  strncpy(p-&gt;name,val,50);
+  strncpy(p-&gt;name, val, 50);
   make_upper(p-&gt;name);
 }
 %}
@@ -6213,11 +6214,11 @@ _wrap_Vector_x_get(ClientData clientData, Tcl_Interp *interp,
   struct Vector *arg1 ;
   double result ;
 
-  if (SWIG_GetArgs(interp, objc, objv,&quot;p:Vector_x_get self &quot;,&amp;arg0,
+  if (SWIG_GetArgs(interp, objc, objv, &quot;p:Vector_x_get self &quot;, &amp;arg0,
                    SWIGTYPE_p_Vector) == TCL_ERROR)
     return TCL_ERROR;
   result = (double ) (arg1-&gt;x);
-  Tcl_SetObjResult(interp,Tcl_NewDoubleObj((double) result));
+  Tcl_SetObjResult(interp, Tcl_NewDoubleObj((double) result));
   return TCL_OK;
 }
 </PRE>
@@ -6235,7 +6236,7 @@ _wrap_Vector_x_get(ClientData clientData, Tcl_Interp *interp,
  are four common ways to insert code, but it's useful to know how the
  output of SWIG is structured first.</P>
 <H3><A name="SWIG_nn41">5.6.1 The output of SWIG</A></H3>
-<P> When SWIG creates its output file, it is broken up into five
+<P> When SWIG creates its output C/C++ file, it is broken up into five
  sections corresponding to runtime code, headers, wrapper functions, and
  module initialization code (in that order).</P>
 <UL>
@@ -6257,9 +6258,35 @@ _wrap_Vector_x_get(ClientData clientData, Tcl_Interp *interp,
  loading.</LI>
 </UL>
 <H3><A name="SWIG_nn42">5.6.2 Code insertion blocks</A></H3>
-<P> Code is inserted into the appropriate code section by using one of
- the code insertion directives listed below. The order of the sections
- in the wrapper file is as shown:</P>
+<P> The <TT>%insert</TT> directive enables inserting blocks of code into
+ a given section of the generated code. It can be used in one of two
+ ways:</P>
+<DIV class="code">
+<PRE>
+%insert(&quot;section&quot;) &quot;filename&quot;
+%insert(&quot;section&quot;) %{ ... %}
+</PRE>
+</DIV>
+<P> The first will dump the contents of the file in the given <TT>
+filename</TT> into the named <TT>section</TT>. The second inserts the
+ code between the braces into the named <TT>section</TT>. For example,
+ the following adds code into the runtime section:</P>
+<DIV class="code">
+<PRE>
+%insert(&quot;runtime&quot;) %{
+  ... code in runtime section ...
+%}
+</PRE>
+</DIV>
+<P> There are the 5 sections, however, some target languages add in
+ additional sections and some of these result in code being generated
+ into a target language file instead of the C/C++ wrapper file. These
+ are documented when available in the target language chapters. Macros
+ named after the code sections are available as additional directives
+ and these macro directives are normally used instead of <TT>%insert</TT>
+. For example, <TT>%runtime</TT> is used instead of <TT>
+%insert(&quot;runtime&quot;)</TT>. The valid sections and order of the sections in
+ the generated C/C++ wrapper file is as shown:</P>
 <DIV class="code">
 <PRE>
 %begin %{
@@ -6470,7 +6497,7 @@ extern void dump(FILE *f);
 <H3><A name="SWIG_nn49">5.7.4 Getting the right header files</A></H3>
 <P> Sometimes, it is necessary to use certain header files in order for
  the code generated by SWIG to compile properly. Make sure you include
- certain header files by using a <TT>%{,%}</TT> block like this:</P>
+ certain header files by using a <TT>%{ %}</TT> block like this:</P>
 <DIV class="code">
 <PRE>
 %module graphics
@@ -6744,13 +6771,13 @@ class FooProxy {
       delete_Foo(self);
     }
     int bar(int x) {
-      return Foo_bar(self,x);
+      return Foo_bar(self, x);
     }
     int x_get() {
       return Foo_x_get(self);
     }
     void x_set(int x) {
-      Foo_x_set(self,x);
+      Foo_x_set(self, x);
     }
 };
 </PRE>
@@ -6765,15 +6792,15 @@ class Foo:
         self.this = new_Foo()
     def __del__(self):
         delete_Foo(self.this)
-    def bar(self,x):
-        return Foo_bar(self.this,x)
-    def __getattr__(self,name):
+    def bar(self, x):
+        return Foo_bar(self.this, x)
+    def __getattr__(self, name):
         if name == 'x':
             return Foo_x_get(self.this)
         ...
-    def __setattr__(self,name,value):
+    def __setattr__(self, name, value):
         if name == 'x':
-            Foo_x_set(self.this,value)
+            Foo_x_set(self.this, value)
         ...
 </PRE>
 </DIV>
@@ -6879,7 +6906,7 @@ class SpamProxy {
     return FooPtrProxy(Spam_value_get(self));
   }
   void value_set(FooProxy *v) {
-    Spam_value_set(self,v-&gt;self);
+    Spam_value_set(self, v-&gt;self);
     v-&gt;disown();
   }
   ...
@@ -7623,7 +7650,7 @@ Vector cross_product(Vector a, Vector b);
 Vector *wrap_cross_product(Vector *a, Vector *b) {
   Vector x = *a;
   Vector y = *b;
-  Vector r = cross_product(x,y);
+  Vector r = cross_product(x, y);
   return new Vector(r);
 }</PRE>
 </DIV>
@@ -7639,7 +7666,7 @@ Vector *wrap_cross_product(Vector *a, Vector *b) {
 Vector cross_product(Vector *a, Vector *b) {
   SwigValueWrapper&lt;Vector&gt; x = *a;
   SwigValueWrapper&lt;Vector&gt; y = *b;
-  SwigValueWrapper&lt;Vector&gt; r = cross_product(x,y);
+  SwigValueWrapper&lt;Vector&gt; r = cross_product(x, y);
   return new Vector(r);
 }
 </PRE>
@@ -7707,7 +7734,7 @@ struct B {
 
 class Shape {
 public:
-  double x,y;
+  double x, y;
   virtual double area() = 0;
   virtual double perimeter() = 0;
   void    set_location(double x, double y);
@@ -7742,7 +7769,7 @@ $ python
 153.93804004599999757
 &gt;&gt;&gt; print shapes.Shape_area(square)
 100.00000000000000000
-&gt;&gt;&gt; shapes.Shape_set_location(square,2,-3)
+&gt;&gt;&gt; shapes.Shape_set_location(square, 2, -3)
 &gt;&gt;&gt; print shapes.Shape_perimeter(square)
 40.00000000000000000
 &gt;&gt;&gt;
@@ -7974,7 +8001,7 @@ public:
 &gt;&gt;&gt; f = Foo()          # Create a Foo
 &gt;&gt;&gt; f.bar(3)
 &gt;&gt;&gt; g = Foo(f)         # Copy Foo
-&gt;&gt;&gt; f.bar(&quot;hello&quot;,2)
+&gt;&gt;&gt; f.bar(&quot;hello&quot;, 2)
 </PRE>
 </DIV>
 <H3><A name="SWIGPlus_nn24">6.15.1 Dispatch function generation</A></H3>
@@ -8147,7 +8174,7 @@ SWIG bug tracking database</A> if this is due to one of the typemaps
 <PRE>
 foo.i:6. Overloaded declaration ignored.  Spam::foo(double )
 foo.i:5. Previous declaration is Spam::foo(int )
-foo.i:7. Overloaded declaration ignored.  Spam::foo(Bar *,Spam *,int )
+foo.i:7. Overloaded declaration ignored.  Spam::foo(Bar *, Spam *, int )
 foo.i:5. Previous declaration is Spam::foo(int )
 </PRE>
 </DIV>
@@ -8573,8 +8600,8 @@ _wrap_Complex___add__(args) {
  overloaded operator normally. For example:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; a = Complex(3,4)
-&gt;&gt;&gt; b = Complex(5,2)
+&gt;&gt;&gt; a = Complex(3, 4)
+&gt;&gt;&gt; b = Complex(5, 2)
 &gt;&gt;&gt; c = a + b           # Invokes __add__ method
 </PRE>
 </DIV>
@@ -8589,8 +8616,8 @@ _wrap_Complex___add__(args) {
 <P> The resulting scripting interface might work like this:</P>
 <DIV class="targetlang">
 <PRE>
-a = Complex(3,4)
-b = Complex(5,2)
+a = Complex(3, 4)
+b = Complex(5, 2)
 c = a.add(b)      # Call a.operator+(b)
 </PRE>
 </DIV>
@@ -8674,14 +8701,14 @@ example.i:12: Warning 503: Can't wrap 'operator []' unless renamed to a valid id
 
 class Vector {
 public:
-  double x,y,z;
+  double x, y, z;
   Vector();
   ~Vector();
   ... bunch of C++ methods ...
   %extend {
     char *__str__() {
       static char temp[256];
-      sprintf(temp,&quot;[ %g, %g, %g ]&quot;, $self-&gt;x,$self-&gt;y,$self-&gt;z);
+      sprintf(temp, &quot;[ %g, %g, %g ]&quot;, $self-&gt;x, $self-&gt;y, $self-&gt;z);
       return &amp;temp[0];
     }
   }
@@ -8752,7 +8779,7 @@ Adding member functions to C structures</A> section for further details.</P>
 <DIV class="code">
 <PRE>
 void foo(vector&lt;int&gt; *a, int n);
-void bar(list&lt;int,100&gt; *x);
+void bar(list&lt;int, 100&gt; *x);
 </PRE>
 </DIV>
 <P> There are some restrictions on the use of non-type arguments. Simple
@@ -8761,9 +8788,9 @@ void bar(list&lt;int,100&gt; *x);
  supported by SWIG ('&lt;=' and '&gt;=' are though). For example:</P>
 <DIV class="code">
 <PRE>
-void bar(list&lt;int,100&gt; *x);                // OK
-void bar(list&lt;int,2*50&gt; *x);               // OK
-void bar(list&lt;int,(2&gt;1 ? 100 : 50)&gt; *x)    // Not supported
+void bar(list&lt;int, 100&gt; *x);                // OK
+void bar(list&lt;int, 2*50&gt; *x);               // OK
+void bar(list&lt;int, (2&gt;1 ? 100 : 50)&gt; *x)    // Not supported
 </PRE>
 </DIV>
 <P> The type system is smart enough to figure out clever games you might
@@ -8895,7 +8922,7 @@ template vector&lt;typename T, int max=100&gt; class vector {
 };
 
 %template(intvec) vector&lt;int&gt;;           // OK
-%template(vec1000) vector&lt;int,1000&gt;;     // OK
+%template(vec1000) vector&lt;int, 1000&gt;;     // OK
 </PRE>
 </DIV>
 <P> The <TT>%template</TT> directive should not be used to wrap the same
@@ -8986,8 +9013,8 @@ template&lt;class T&gt; class Bar : public Foo&lt;T&gt; {
  example:</P>
 <DIV class="code">
 <PRE>
-// Instantiate traits&lt;double,double&gt;, but don't wrap it.
-%template() traits&lt;double,double&gt;;
+// Instantiate traits&lt;double, double&gt;, but don't wrap it.
+%template() traits&lt;double, double&gt;;
 </PRE>
 </DIV>
 <P> If you have to instantiate a lot of different classes for many
@@ -9185,8 +9212,8 @@ template&lt;class T1, class T2&gt; struct pair {
   T2 second;
   pair() : first(T1()), second(T2()) { }
   pair(const T1 &amp;x, const T2 &amp;y) : first(x), second(y) { }
-  template&lt;class U1, class U2&gt; pair(const pair&lt;U1,U2&gt; &amp;x)
-                                       : first(x.first),second(x.second) { }
+  template&lt;class U1, class U2&gt; pair(const pair&lt;U1, U2&gt; &amp;x)
+                                       : first(x.first), second(x.second) { }
 };
 </PRE>
 </DIV>
@@ -9197,7 +9224,7 @@ template&lt;class T1, class T2&gt; struct pair {
 <DIV class="code">
 <PRE>
 %extend pair {
-  %template(pair) pair&lt;T1,T2&gt;;        // Generate default copy constructor
+  %template(pair) pair&lt;T1, T2&gt;;        // Generate default copy constructor
 };
 </PRE>
 </DIV>
@@ -9208,18 +9235,18 @@ template&lt;class T1, class T2&gt; struct pair {
 <DIV class="code">
 <PRE>
 // Instantiate a few versions
-%template(pairii) pair&lt;int,int&gt;;
-%template(pairdd) pair&lt;double,double&gt;;
+%template(pairii) pair&lt;int, int&gt;;
+%template(pairdd) pair&lt;double, double&gt;;
 
 // Create a default constructor only 
-%extend pair&lt;int,int&gt; {
-  %template(paird) pair&lt;int,int&gt;;         // Default constructor
+%extend pair&lt;int, int&gt; {
+  %template(paird) pair&lt;int, int&gt;;         // Default constructor
 };
 
 // Create default and conversion constructors 
-%extend pair&lt;double,double&gt; {
-  %template(paird) pair&lt;double,dobule&gt;;   // Default constructor
-  %template(pairc) pair&lt;int,int&gt;;         // Conversion constructor
+%extend pair&lt;double, double&gt; {
+  %template(paird) pair&lt;double, dobule&gt;;   // Default constructor
+  %template(pairc) pair&lt;int, int&gt;;         // Conversion constructor
 };
 </PRE>
 </DIV>
@@ -9228,9 +9255,9 @@ template&lt;class T1, class T2&gt; struct pair {
 <DIV class="code">
 <PRE>
 // Create default and conversion constructors 
-%extend pair&lt;double,double&gt; {
-  %template(pair) pair&lt;double,dobule&gt;;   // Default constructor
-  %template(pair) pair&lt;int,int&gt;;         // Conversion constructor
+%extend pair&lt;double, double&gt; {
+  %template(pair) pair&lt;double, dobule&gt;;   // Default constructor
+  %template(pair) pair&lt;int, int&gt;;         // Conversion constructor
 };
 </PRE>
 </DIV>
@@ -9320,6 +9347,36 @@ template&lt;class T&gt; void foo(T x, T y) { };
 <P> This will generate two overloaded wrapper methods, the first will
  take a single integer as an argument and the second will take two
  integer arguments.</P>
+<P> It is even possible to extend a class via <TT>%extend</TT> with
+ template methods, for example:</P>
+<DIV class="code">
+<PRE>
+%include &lt;std_string.i&gt;
+
+%inline %{
+class ExtendMe {
+public:
+  template &lt;typename T&gt;
+  T do_stuff_impl(int a, T b, double d) {
+    return b;
+  }
+};
+%}
+
+%extend ExtendMe {
+  template&lt;typename T&gt;
+  T do_overloaded_stuff(T b) {
+    return $self-&gt;do_stuff_impl(0, b, 4.0);
+  }
+}
+%template(do_overloaded_stuff) ExtendMe::do_overloaded_stuff&lt;std::string&gt;;
+%template(do_overloaded_stuff) ExtendMe::do_overloaded_stuff&lt;double&gt;;
+</PRE>
+</DIV>
+<P> The wrapped <TT>ExtendMe</TT> class will then have two (overloaded)
+ methods called <TT>do_overloaded_stuff</TT>.</P>
+<P><B> Compatibility Note</B>: Extending a class with template methods
+ was added in version 3.0.12</P>
 <P> Needless to say, SWIG's template support provides plenty of
  opportunities to break the universe. That said, an important final
  point is that<B> SWIG does not perform extensive error checking of
@@ -9408,7 +9465,7 @@ namespace math {
   double cos(double);
 
   class Complex {
-    double im,re;
+    double im, re;
   public:
     ...
   };
@@ -9916,7 +9973,7 @@ public:
 f = Foo()
 try:
     f.blah()
-except Error,e:
+except Error, e:
     # e is a wrapped instance of &quot;Error&quot;
 </PRE>
 </DIV>
@@ -9950,14 +10007,14 @@ struct Error2 : EBase { };
 struct Error3 : EBase { };
 struct Error4 : EBase { };
 
-%catches(Error1,Error2,...) Foo::bar();
+%catches(Error1, Error2, ...) Foo::bar();
 %catches(EBase) Foo::blah();
 
 class Foo {
 public:
     ...
     void bar();
-    void blah() throw(Error1,Error2,Error3,Error4);
+    void blah() throw(Error1, Error2, Error3, Error4);
     ...
 };
 </PRE>
@@ -9980,9 +10037,9 @@ Foo::blah()</TT>, SWIG will generate catch handlers for all of the types
  pointers to C++ class members. For example:</P>
 <DIV class="code">
 <PRE>
-double do_op(Object *o, double (Object::*callback)(double,double));
-extern double (Object::*fooptr)(double,double);
-%constant double (Object::*FOO)(double,double) = &amp;Object::foo;
+double do_op(Object *o, double (Object::*callback)(double, double));
+extern double (Object::*fooptr)(double, double);
+%constant double (Object::*FOO)(double, double) = &amp;Object::foo;
 </PRE>
 </DIV>
 <P> Although these kinds of pointers can be parsed and represented by
@@ -10757,7 +10814,7 @@ public:
 std::vector</TT>:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; c = Container( [1,2,3,4] )
+&gt;&gt;&gt; c = Container( [1, 2, 3, 4] )
 </PRE>
 </DIV>
 <P> If you are unable to modify the class being wrapped, consider
@@ -10938,7 +10995,7 @@ auto SomeStruct::FuncName(int x, int y) -&gt; int {
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; a = SomeStruct()
-&gt;&gt;&gt; a.FuncName(10,5)
+&gt;&gt;&gt; a.FuncName(10, 5)
 15
 </PRE>
 </DIV>
@@ -11520,7 +11577,7 @@ std::function&lt;void (int, int)&gt; pF = Test;   // function template wrapper
 <DIV class="targetlang">
 <PRE>
 t = Test()
-b = t(1,2) # invoke C++ function object
+b = t(1, 2) # invoke C++ function object
 </PRE>
 </DIV>
 <H3><A name="CPlusPlus11_type_traits_for_metaprogramming">7.3.9 Type
@@ -11810,7 +11867,7 @@ __cplusplus                     Defined when -c++ option used
  and <TT>%enddef</TT> directives. For example:</P>
 <DIV class="code">
 <PRE>
-%define ARRAYHELPER(type,name)
+%define ARRAYHELPER(type, name)
 %inline %{
 type *new_ ## name (int nitems) {
   return (type *) malloc(sizeof(type)*nitems);
@@ -11847,30 +11904,30 @@ ARRAYHELPER(double, DoubleArray)
  For example:</P>
 <DIV class="code">
 <PRE>
-#define DEBUGF(fmt,...)   fprintf(stderr,fmt,__VA_ARGS__)
+#define DEBUGF(fmt, ...)   fprintf(stderr, fmt, __VA_ARGS__)
 </PRE>
 </DIV>
 <P> When used, any extra arguments to <TT>...</TT> are placed into the
  special variable <TT>__VA_ARGS__</TT>. This also works with special
  SWIG macros defined using <TT>%define</TT>.</P>
 <P> SWIG allows a variable number of arguments to be empty. However,
- this often results in an extra comma (,) and syntax error in the
+ this often results in an extra comma (, ) and syntax error in the
  resulting expansion. For example:</P>
 <DIV class="code">
 <PRE>
-DEBUGF(&quot;hello&quot;);   --&gt; fprintf(stderr,&quot;hello&quot;,);
+DEBUGF(&quot;hello&quot;);   --&gt; fprintf(stderr, &quot;hello&quot;, );
 </PRE>
 </DIV>
 <P> To get rid of the extra comma, use <TT>##</TT> like this:</P>
 <DIV class="code">
 <PRE>
-#define DEBUGF(fmt,...)   fprintf(stderr,fmt, ##__VA_ARGS__)
+#define DEBUGF(fmt, ...)   fprintf(stderr, fmt, ##__VA_ARGS__)
 </PRE>
 </DIV>
 <P> SWIG also supports GNU-style variadic macros. For example:</P>
 <DIV class="code">
 <PRE>
-#define DEBUGF(fmt, args...)  fprintf(stdout,fmt,args)
+#define DEBUGF(fmt, args...)  fprintf(stdout, fmt, args)
 </PRE>
 </DIV>
 <P><B> Comment:</B> It's not entirely clear how variadic macros might be
@@ -11954,7 +12011,7 @@ noblock</TT> where the { ... } delimiters can be used, but the
 <DIV class="code">
 <PRE>
 #define SWIG_macro(CAST) (CAST)$input
-%typemap(in,noblock=1) Int {$1= SWIG_macro(int);}
+%typemap(in, noblock=1) Int {$1= SWIG_macro(int);}
 </PRE>
 </DIV>
 <P> might generate</P>
@@ -12097,7 +12154,7 @@ double *</TT>, or <TT>void *</TT>. The modules can be used to allocate
  used to generate wrappers around simple C pointers. The primary use of
  this module is in generating pointers to primitive datatypes such as <TT>
 int</TT> and <TT>double</TT>.</P>
-<P><B> <TT>%pointer_functions(type,name)</TT></B></P>
+<P><B> <TT>%pointer_functions(type, name)</TT></B></P>
 <DIV class="indent">
 <P>Generates a collection of four functions for manipulating a pointer <TT>
 type *</TT>:</P>
@@ -12147,13 +12204,13 @@ void add(int x, int y, int *result);
 <PRE>
 &gt;&gt;&gt; import example
 &gt;&gt;&gt; c = example.new_intp()     # Create an &quot;int&quot; for storing result
-&gt;&gt;&gt; example.add(3,4,c)         # Call function
+&gt;&gt;&gt; example.add(3, 4, c)       # Call function
 &gt;&gt;&gt; example.intp_value(c)      # Dereference
 7
 &gt;&gt;&gt; example.delete_intp(c)     # Delete
 </PRE>
 </DIV></DIV>
-<P><B> <TT>%pointer_class(type,name)</TT></B></P>
+<P><B> <TT>%pointer_class(type, name)</TT></B></P>
 <DIV class="indent">
 <P> Wraps a pointer of <TT>type *</TT> inside a class-based interface.
  This interface is as follows:</P>
@@ -12200,7 +12257,7 @@ void add(int x, int y, int *result);
 <PRE>
 &gt;&gt;&gt; import example
 &gt;&gt;&gt; c = example.intp()         # Create an &quot;int&quot; for storing result
-&gt;&gt;&gt; example.add(3,4,c)         # Call function
+&gt;&gt;&gt; example.add(3, 4, c)       # Call function
 &gt;&gt;&gt; c.value()                  # Dereference
 7
 </PRE>
@@ -12232,7 +12289,7 @@ void add(int x, int y, int *result);
  pointers as arrays. The module does not provide any safety or an extra
  layer of wrapping--it merely provides functionality for creating,
  destroying, and modifying the contents of raw C array data.</P>
-<P><B> <TT>%array_functions(type,name)</TT></B></P>
+<P><B> <TT>%array_functions(type, name)</TT></B></P>
 <DIV class="indent">
 <P>Creates four functions.</P>
 <P> <TT>type *new_name(int nelements)</TT></P>
@@ -12283,14 +12340,14 @@ void print_array(double x[10]);
 <P> Now, in a scripting language, you might write this:</P>
 <DIV class="code">
 <PRE>
-a = new_doubleArray(10)           # Create an array
-for i in range(0,10):
-    doubleArray_setitem(a,i,2*i)  # Set a value
-print_array(a)                    # Pass to C
-delete_doubleArray(a)             # Destroy array
+a = new_doubleArray(10)             # Create an array
+for i in range(0, 10):
+    doubleArray_setitem(a, i, 2*i)  # Set a value
+print_array(a)                      # Pass to C
+delete_doubleArray(a)               # Destroy array
 </PRE>
 </DIV></DIV>
-<P><B> <TT>%array_class(type,name)</TT></B></P>
+<P><B> <TT>%array_class(type, name)</TT></B></P>
 <DIV class="indent">
 <P> Wraps a pointer of <TT>type *</TT> inside a class-based interface.
  This interface is as follows:</P>
@@ -12328,7 +12385,7 @@ void print_array(double x[10]);
 <PRE>
 import example
 c = example.doubleArray(10)  # Create double[10]
-for i in range(0,10):
+for i in range(0, 10):
     c[i] = 2*i               # Assign values
 example.print_array(c)       # Pass to C
 </PRE>
@@ -12343,7 +12400,7 @@ example.print_array(c)       # Pass to C
 <P> This module defines macros for wrapping the low-level C memory
  allocation functions <TT>malloc()</TT>, <TT>calloc()</TT>, <TT>
 realloc()</TT>, and <TT>free()</TT>.</P>
-<P><B> <TT>%malloc(type [,name=type])</TT></B></P>
+<P><B> <TT>%malloc(type [, name=type])</TT></B></P>
 <DIV class="indent">
 <P> Creates a wrapper around <TT>malloc()</TT> with the following
  prototype:</P>
@@ -12357,7 +12414,7 @@ nbytes</TT> is required. The <TT>name</TT> parameter only needs to be
  specified when wrapping a type that is not a valid identifier (e.g., &quot;<TT>
 int *</TT>&quot;, &quot;<TT>double **</TT>&quot;, etc.).</P>
 </DIV>
-<P><B> <TT>%calloc(type [,name=type])</TT></B></P>
+<P><B> <TT>%calloc(type [, name=type])</TT></B></P>
 <DIV class="indent">
 <P> Creates a wrapper around <TT>calloc()</TT> with the following
  prototype:</P>
@@ -12369,7 +12426,7 @@ int *</TT>&quot;, &quot;<TT>double **</TT>&quot;, etc.).</P>
 <P> If <TT>type</TT> is <TT>void</TT>, then the size parameter <TT>sz</TT>
  is required.</P>
 </DIV>
-<P><B> <TT>%realloc(type [,name=type])</TT></B></P>
+<P><B> <TT>%realloc(type [, name=type])</TT></B></P>
 <DIV class="indent">
 <P> Creates a wrapper around <TT>realloc()</TT> with the following
  prototype:</P>
@@ -12383,7 +12440,7 @@ int *</TT>&quot;, &quot;<TT>double **</TT>&quot;, etc.).</P>
  example, <TT>realloc_int(p, 100)</TT> reallocates <TT>p</TT> so that it
  holds 100 integers.</P>
 </DIV>
-<P><B> <TT>%free(type [,name=type])</TT></B></P>
+<P><B> <TT>%free(type [, name=type])</TT></B></P>
 <DIV class="indent">
 <P> Creates a wrapper around <TT>free()</TT> with the following
  prototype:</P>
@@ -12392,7 +12449,7 @@ int *</TT>&quot;, &quot;<TT>double **</TT>&quot;, etc.).</P>
 void free_<EM>name</EM>(<EM>type</EM> *ptr);
 </PRE>
 </DIV></DIV>
-<P><B> <TT>%sizeof(type [,name=type])</TT></B></P>
+<P><B> <TT>%sizeof(type [, name=type])</TT></B></P>
 <DIV class="indent">
 <P> Creates the constant:</P>
 <DIV class="code">
@@ -12400,7 +12457,7 @@ void free_<EM>name</EM>(<EM>type</EM> *ptr);
 %constant int sizeof_<EM>name</EM> = sizeof(<EM>type</EM>);
 </PRE>
 </DIV></DIV>
-<P><B> <TT>%allocators(type [,name=type])</TT></B></P>
+<P><B> <TT>%allocators(type [, name=type])</TT></B></P>
 <DIV class="indent">
 <P> Generates wrappers for all five of the above operations.</P>
 </DIV>
@@ -12480,14 +12537,14 @@ ptr</TT> can be any pointer.</P>
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; a = intArray(10)
-&gt;&gt;&gt; for i in range(0,10):
+&gt;&gt;&gt; for i in range(0, 10):
 ...    a[i] = i
-&gt;&gt;&gt; b = cdata(a,40)
+&gt;&gt;&gt; b = cdata(a, 40)
 &gt;&gt;&gt; b
 '\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x02\x00\x00\x00\x03\x00\x00\x00\x04
 \x00\x00\x00\x05\x00\x00\x00\x06\x00\x00\x00\x07\x00\x00\x00\x08\x00\x00\x00\t'
 &gt;&gt;&gt; c = intArray(10)
-&gt;&gt;&gt; memmove(c,b)
+&gt;&gt;&gt; memmove(c, b)
 &gt;&gt;&gt; print c[4]
 4
 &gt;&gt;&gt;
@@ -12495,7 +12552,7 @@ ptr</TT> can be any pointer.</P>
 </DIV>
 <P> Since the size of data is not always known, the following macro is
  also defined:</P>
-<P><B> <TT>%cdata(type [,name=type])</TT></B></P>
+<P><B> <TT>%cdata(type [, name=type])</TT></B></P>
 <DIV class="indent">
 <P> Generates the following function for extracting C data for a given
  type.</P>
@@ -12567,7 +12624,7 @@ size_t parity(char *str, size_t len, size_t initial);
 <DIV class="code">
 <PRE>
 &gt;&gt;&gt; s = &quot;H\x00\x15eg\x09\x20&quot;
-&gt;&gt;&gt; parity(s,0)
+&gt;&gt;&gt; parity(s, 0)
 </PRE>
 </DIV>
 <P> In the wrapper function, the passed string will be expanded to a
@@ -12610,7 +12667,7 @@ Object ownership and %newobject</A> for more details.</P>
 <PRE>
 void get_path(char *s) {
   // Potential buffer overflow---uh, oh.
-  sprintf(s,&quot;%s/%s&quot;, base_directory, sub_directory);
+  sprintf(s, &quot;%s/%s&quot;, base_directory, sub_directory);
 }
 ...
 // Somewhere else in the C program
@@ -13040,7 +13097,7 @@ namespace std {
 #include &lt;numeric&gt;
 
 double average(std::vector&lt;int&gt; v) {
-  return std::accumulate(v.begin(),v.end(),0.0)/v.size();
+  return std::accumulate(v.begin(), v.end(), 0.0)/v.size();
 }
 
 std::vector&lt;double&gt; half(const std::vector&lt;double&gt;&amp; v) {
@@ -13051,8 +13108,8 @@ std::vector&lt;double&gt; half(const std::vector&lt;double&gt;&amp; v) {
 }
 
 void halve_in_place(std::vector&lt;double&gt;&amp; v) {
-  std::transform(v.begin(),v.end(),v.begin(),
-                 std::bind2nd(std::divides&lt;double&gt;(),2.0));
+  std::transform(v.begin(), v.end(), v.begin(),
+                 std::bind2nd(std::divides&lt;double&gt;(), 2.0));
 }
 </PRE>
 </DIV>
@@ -13081,20 +13138,20 @@ namespace std {
 <PRE>
 &gt;&gt;&gt; from example import *
 &gt;&gt;&gt; iv = IntVector(4)         # Create an vector&lt;int&gt;
-&gt;&gt;&gt; for i in range(0,4):
+&gt;&gt;&gt; for i in range(0, 4):
 ...      iv[i] = i
 &gt;&gt;&gt; average(iv)               # Call method
 1.5
-&gt;&gt;&gt; average([0,1,2,3])        # Call with list
+&gt;&gt;&gt; average([0, 1, 2, 3])        # Call with list
 1.5
-&gt;&gt;&gt; half([1,2,3])             # Half a list
-(0.5,1.0,1.5)
-&gt;&gt;&gt; halve_in_place([1,2,3])   # Oops
+&gt;&gt;&gt; half([1, 2, 3])             # Half a list
+(0.5, 1.0, 1.5)
+&gt;&gt;&gt; halve_in_place([1, 2, 3])   # Oops
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in ?
 TypeError: Type error. Expected _p_std__vectorTdouble_t
 &gt;&gt;&gt; dv = DoubleVector(4)
-&gt;&gt;&gt; for i in range(0,4):
+&gt;&gt;&gt; for i in range(0, 4):
 ...       dv[i] = i
 &gt;&gt;&gt; halve_in_place(dv)       # Ok
 &gt;&gt;&gt; for i in dv:
@@ -13108,7 +13165,7 @@ TypeError: Type error. Expected _p_std__vectorTdouble_t
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in ?
   File &quot;example.py&quot;, line 81, in __setitem__
-    def __setitem__(*args): return apply(examplec.DoubleVector___setitem__,args)
+    def __setitem__(*args): return apply(examplec.DoubleVector___setitem__, args)
 IndexError: vector index out of range
 &gt;&gt;&gt;
 </PRE>
@@ -13416,7 +13473,7 @@ SWIG_SystemError
   try {
     $action
   } catch (std::out_of_range&amp; e) {
-    SWIG_exception(SWIG_IndexError,const_cast&lt;char*&gt;(e.what()));
+    SWIG_exception(SWIG_IndexError, const_cast&lt;char*&gt;(e.what()));
   }
 }
 </PRE>
@@ -13495,7 +13552,7 @@ double *result</TT>&quot;.</P>
  like this (shown for Python):</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; a = add(3,4)
+&gt;&gt;&gt; a = add(3, 4)
 &gt;&gt;&gt; print a
 7
 &gt;&gt;&gt;
@@ -13534,7 +13591,7 @@ extern void div(double a, double b, double *result);
 %include &quot;typemaps.i&quot;
 %apply int *OUTPUT { int *width, int *height };
 
-// Returns a pair (width,height)
+// Returns a pair (width, height)
 void getwinsize(int winid, int *width, int *height);
 </PRE>
 </DIV>
@@ -13542,7 +13599,7 @@ void getwinsize(int winid, int *width, int *height);
  be used like this:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; w,h = genwinsize(wid)
+&gt;&gt;&gt; w, h = genwinsize(wid)
 &gt;&gt;&gt; print w
 400
 &gt;&gt;&gt; print h
@@ -13614,7 +13671,7 @@ extern double add(double *INPUT, double *INPUT);
  will work like this:</P>
 <DIV class="targetlang">
 <PRE>
-result = add(3,4)
+result = add(3, 4)
 </PRE>
 </DIV>
 <H3><A name="Arguments_nn5">10.1.3 Output parameters</A></H3>
@@ -14072,7 +14129,7 @@ PyObject *wrap_gcd(PyObject *self, PyObject *args) {
     arg2 = PyInt_AsLong(obj2);
   }
 </B>
-  result = gcd(arg1,arg2);
+  result = gcd(arg1, arg2);
 
   /* &quot;out&quot; typemap, return value */<B>
   {
@@ -14144,7 +14201,7 @@ int spam(<B>foo::Number</B> a, <B>foo::Number</B> b);
 %typemap(in) <B>double nonnegative</B> {
   $1 = PyFloat_AsDouble($input);
   if ($1 &lt; 0) {
-    PyErr_SetString(PyExc_ValueError,&quot;argument must be nonnegative.&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;argument must be nonnegative.&quot;);
     SWIG_fail;
   }
 }
@@ -14320,7 +14377,7 @@ void foo(int, char *);
  call the function like this:</P>
 <DIV class="targetlang">
 <PRE>
-foo(&quot;hello&quot;,3)          # Reversed arguments
+foo(&quot;hello&quot;, 3)          # Reversed arguments
 </PRE>
 </DIV>
 <P> If you want to change the calling conventions of a function, write a
@@ -14330,7 +14387,7 @@ foo(&quot;hello&quot;,3)          # Reversed arguments
 %rename(foo) wrap_foo;
 %inline %{
 void wrap_foo(char *s, int x) {
-  foo(x,s);
+  foo(x, s);
 }
 %}
 </PRE>
@@ -14444,7 +14501,7 @@ Preprocessor and Typemaps</A>. Here are some examples of valid typemap
 }
 
 /* Typemap with modifiers */
-%typemap(in,doc=&quot;integer&quot;) int &quot;$1 = scm_to_int($input);&quot;;
+%typemap(in, doc=&quot;integer&quot;) int &quot;$1 = scm_to_int($input);&quot;;
 
 /* Typemap applied to patterns of multiple arguments */
 %typemap(in) (char *str, int len),
@@ -14806,7 +14863,7 @@ int [ANY][ANY]
 <DIV class="code">
 <PRE>
 typedef int Integer;
-typedef foo&lt;Integer,Integer&gt; fooii;
+typedef foo&lt;Integer, Integer&gt; fooii;
 void blah(fooii *x);
 </PRE>
 </DIV>
@@ -14817,9 +14874,9 @@ void blah(fooii *x);
 fooii *x
 fooii *
 
-# Reduce fooii --&gt; foo&lt;Integer,Integer&gt;
-foo&lt;Integer,Integer&gt; *x
-foo&lt;Integer,Integer&gt; *
+# Reduce fooii --&gt; foo&lt;Integer, Integer&gt;
+foo&lt;Integer, Integer&gt; *x
+foo&lt;Integer, Integer&gt; *
 
 # Reduce Integer -&gt; int
 foo&lt;int, Integer&gt; *x
@@ -14833,11 +14890,11 @@ foo&lt;int, int&gt; *
 <P> Typemap reductions are always applied to the left-most type that
  appears. Only when no reductions can be made to the left-most type are
  reductions made to other parts of the type. This behavior means that
- you could define a typemap for <TT>foo&lt;int,Integer&gt;</TT>, but a typemap
- for <TT>foo&lt;Integer,int&gt;</TT> would never be matched. Admittedly, this
- is rather esoteric--there's little practical reason to write a typemap
- quite like that. Of course, you could rely on this to confuse your
- coworkers even more.</P>
+ you could define a typemap for <TT>foo&lt;int, Integer&gt;</TT>, but a
+ typemap for <TT>foo&lt;Integer, int&gt;</TT> would never be matched.
+ Admittedly, this is rather esoteric--there's little practical reason to
+ write a typemap quite like that. Of course, you could rely on this to
+ confuse your coworkers even more.</P>
 <P> As a point of clarification, it is worth emphasizing that typedef
  matching is a typedef<B> reduction</B> process only, that is, SWIG does
  not search for every single possible typedef. Given a type in a
@@ -15179,7 +15236,7 @@ SWIGTYPE []</TT> typemap. As the example shows, the successful match
 <DIV class="code">
 <PRE>
 %typemap(in, noblock=1) SWIGTYPE [] (void *argp = 0, int res = 0) {
-  res = SWIG_ConvertPtr($input, &amp;argp,$descriptor, $disown |  0 );
+  res = SWIG_ConvertPtr($input, &amp;argp, $descriptor, $disown |  0 );
   if (!SWIG_IsOK(res)) { 
     SWIG_exception_fail(SWIG_ArgError(res), &quot;in method '&quot; &quot;$symname&quot; &quot;', argument &quot;
                        &quot;$argnum&quot;&quot; of type '&quot; &quot;$type&quot;&quot;'&quot;); 
@@ -15200,7 +15257,7 @@ SWIGINTERN PyObject *_wrap_foo(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   void *argp1 = 0 ;
   int res1 = 0 ;
 ...
-  res1 = SWIG_ConvertPtr(obj0, &amp;argp1,SWIGTYPE_p_a_4__int, 0 |  0 );
+  res1 = SWIG_ConvertPtr(obj0, &amp;argp1, SWIGTYPE_p_a_4__int, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
     SWIG_exception_fail(SWIG_ArgError(res1), &quot;in method '&quot; &quot;foo&quot; &quot;', argument &quot;
                        &quot;1&quot;&quot; of type '&quot; &quot;int [10][4]&quot;&quot;'&quot;); 
@@ -15220,7 +15277,7 @@ earlier multi-arguments section</A> is as follows:</P>
 example.h:39: Searching for a suitable 'in' typemap for: char *buffer
   Looking for: char *buffer
   Multi-argument typemap found...
-  Using: %typemap(in) (char *buffer,int len)
+  Using: %typemap(in) (char *buffer, int len)
 ...
 </PRE>
 </DIV>
@@ -15385,8 +15442,8 @@ std::string</TT> object, copy the Perl string data into it, and then
 %typemap(in) std::string * <B>(std::string temp)</B> {
   unsigned int len;
   char        *s;
-  s = SvPV($input,len);         /* Extract string data */
-  temp.assign(s,len);           /* Assign to temp */
+  s = SvPV($input, len);         /* Extract string data */
+  temp.assign(s, len);           /* Assign to temp */
   $1 = &amp;temp;                   /* Set argument to point to temp */
 }
 </PRE>
@@ -15402,7 +15459,7 @@ wrap_foo() {
   /* Typemap code */
   {
     ...
-    temp.assign(s,len);
+    temp.assign(s, len);
     ...
   }
   ...
@@ -15436,21 +15493,21 @@ wrap_foo() {
     char *s;
     unsigned int len;
     ...
-    temp1.assign(s,len);
+    temp1.assign(s, len);
     arg1 = *temp1;
   }
   {
     char *s;
     unsigned int len;
     ...
-    temp2.assign(s,len);
+    temp2.assign(s, len);
     arg2 = &amp;temp2;
   }
   {
     char *s;
     unsigned int len;
     ...
-    temp3.assign(s,len);
+    temp3.assign(s, len);
     arg3 = &amp;temp3;
   }
   ...
@@ -15805,7 +15862,7 @@ temp</TT>. Usually <TT>numinputs</TT> is not specified, whereupon the
  a specific type. For example:</P>
 <DIV class="code">
 <PRE>
-%typemap(typecheck,precedence=SWIG_TYPECHECK_INTEGER) int {
+%typemap(typecheck, precedence=SWIG_TYPECHECK_INTEGER) int {
   $1 = PyInt_Check($input) ? 1 : 0;
 }
 </PRE>
@@ -15880,7 +15937,7 @@ Default/optional arguments</A> section for further information on
 <PRE>
 %typemap(check) int positive {
   if ($1 &lt;= 0) {
-    SWIG_exception(SWIG_ValueError,&quot;Expected positive value.&quot;);
+    SWIG_exception(SWIG_ValueError, &quot;Expected positive value.&quot;);
   }
 }
 </PRE>
@@ -16073,19 +16130,19 @@ void set_vector(int type, float value[4]);
 %typemap(in) float value[4] (float temp[4]) {
   int i;
   if (!PySequence_Check($input)) {
-    PyErr_SetString(PyExc_ValueError,&quot;Expected a sequence&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;Expected a sequence&quot;);
     SWIG_fail;
   }
   if (PySequence_Length($input) != 4) {
-    PyErr_SetString(PyExc_ValueError,&quot;Size mismatch. Expected 4 elements&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;Size mismatch. Expected 4 elements&quot;);
     SWIG_fail;
   }
   for (i = 0; i &lt; 4; i++) {
-    PyObject *o = PySequence_GetItem($input,i);
+    PyObject *o = PySequence_GetItem($input, i);
     if (PyNumber_Check(o)) {
       temp[i] = (float) PyFloat_AsDouble(o);
     } else {
-      PyErr_SetString(PyExc_ValueError,&quot;Sequence elements must be numbers&quot;);      
+      PyErr_SetString(PyExc_ValueError, &quot;Sequence elements must be numbers&quot;);      
       SWIG_fail;
     }
   }
@@ -16110,19 +16167,19 @@ void set_vector(int type, float value[4]);
 %typemap(in) float value[ANY] (float temp[$1_dim0]) {
   int i;
   if (!PySequence_Check($input)) {
-    PyErr_SetString(PyExc_ValueError,&quot;Expected a sequence&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;Expected a sequence&quot;);
     SWIG_fail;
   }
   if (PySequence_Length($input) != $1_dim0) {
-    PyErr_SetString(PyExc_ValueError,&quot;Size mismatch. Expected $1_dim0 elements&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;Size mismatch. Expected $1_dim0 elements&quot;);
     SWIG_fail;
   }
   for (i = 0; i &lt; $1_dim0; i++) {
-    PyObject *o = PySequence_GetItem($input,i);
+    PyObject *o = PySequence_GetItem($input, i);
     if (PyNumber_Check(o)) {
       temp[i] = (float) PyFloat_AsDouble(o);
     } else {
-      PyErr_SetString(PyExc_ValueError,&quot;Sequence elements must be numbers&quot;);      
+      PyErr_SetString(PyExc_ValueError, &quot;Sequence elements must be numbers&quot;);      
       SWIG_fail;
     }
   }
@@ -16148,21 +16205,21 @@ void set_vector(int type, float value[4]);
 %typemap(in) float value[ANY] {
   int i;
   if (!PySequence_Check($input)) {
-    PyErr_SetString(PyExc_ValueError,&quot;Expected a sequence&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;Expected a sequence&quot;);
     SWIG_fail;
   }
   if (PySequence_Length($input) != $1_dim0) {
-    PyErr_SetString(PyExc_ValueError,&quot;Size mismatch. Expected $1_dim0 elements&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;Size mismatch. Expected $1_dim0 elements&quot;);
     SWIG_fail;
   }
   $1 = (float *) malloc($1_dim0*sizeof(float));
   for (i = 0; i &lt; $1_dim0; i++) {
-    PyObject *o = PySequence_GetItem($input,i);
+    PyObject *o = PySequence_GetItem($input, i);
     if (PyNumber_Check(o)) {
       $1[i] = (float) PyFloat_AsDouble(o);
     } else {
       free($1);
-      PyErr_SetString(PyExc_ValueError,&quot;Sequence elements must be numbers&quot;);
+      PyErr_SetString(PyExc_ValueError, &quot;Sequence elements must be numbers&quot;);
       SWIG_fail;
     }
   }
@@ -16243,7 +16300,7 @@ _1008fea8_p_float
   $result = PyList_New($1_dim0);
   for (i = 0; i &lt; $1_dim0; i++) {
     PyObject *o = PyFloat_FromDouble((double) $1[i]);
-    PyList_SetItem($result,i,o);
+    PyList_SetItem($result, i, o);
   }
 }
 </PRE>
@@ -16290,7 +16347,7 @@ double sqrt(double posdouble);
 <PRE>
 %typemap(check) Vector * {
   if ($1 == 0) {
-    PyErr_SetString(PyExc_TypeError,&quot;NULL Pointer not allowed&quot;);
+    PyErr_SetString(PyExc_TypeError, &quot;NULL Pointer not allowed&quot;);
     SWIG_fail;
   }
 }
@@ -16327,7 +16384,7 @@ Conditional Compilation</A> section. The example above also shows a
 <P><B> Compatibility note:</B> In SWIG-1.1 different languages could be
  distinguished with the language name being put within the <TT>%typemap</TT>
  directive, for example,
-<BR> <TT>%typemap(ruby,in) int &quot;$1 = NUM2INT($input);&quot;</TT>.</P>
+<BR> <TT>%typemap(ruby, in) int &quot;$1 = NUM2INT($input);&quot;</TT>.</P>
 <H2><A name="Typemaps_optimal">11.8 Optimal code generation when
  returning by value</A></H2>
 <P> The &quot;out&quot; typemap is the main typemap for return types. This typemap
@@ -16522,7 +16579,7 @@ int foo(int argc, char *argv[]);
   $1 = PyList_Size($input);
   $2 = (char **) malloc(($1+1)*sizeof(char *));
   for (i = 0; i &lt; $1; i++) {
-    PyObject *s = PyList_GetItem($input,i);
+    PyObject *s = PyList_GetItem($input, i);
     if (!PyString_Check(s)) {
       free($2);
       PyErr_SetString(PyExc_ValueError, &quot;List items must be strings&quot;);
@@ -16647,7 +16704,7 @@ int write(int fd, void *wbuffer, size_t len);
     PyErr_SetFromErrno(PyExc_IOError);
     return NULL;
   }
-  $result = PyString_FromStringAndSize($1,result);
+  $result = PyString_FromStringAndSize($1, result);
   free($1);
 }
 </PRE>
@@ -16661,16 +16718,16 @@ int write(int fd, void *wbuffer, size_t len);
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; f = example.open(&quot;Makefile&quot;)
-&gt;&gt;&gt; example.read(f,40)
+&gt;&gt;&gt; example.read(f, 40)
 'TOP        = ../..\nSWIG       = $(TOP)/.'
-&gt;&gt;&gt; example.read(f,40)
+&gt;&gt;&gt; example.read(f, 40)
 './swig\nSRCS       = example.c\nTARGET    '
 &gt;&gt;&gt; example.close(f)
 0
 &gt;&gt;&gt; g = example.open(&quot;foo&quot;, example.O_WRONLY | example.O_CREAT, 0644)
-&gt;&gt;&gt; example.write(g,&quot;Hello world\n&quot;)
+&gt;&gt;&gt; example.write(g, &quot;Hello world\n&quot;)
 12
-&gt;&gt;&gt; example.write(g,&quot;This is a test\n&quot;)
+&gt;&gt;&gt; example.write(g, &quot;This is a test\n&quot;)
 15
 &gt;&gt;&gt; example.close(g)
 0
@@ -16877,7 +16934,7 @@ void _wrap_foo(...) {
  separated list. Consider:</P>
 <DIV class="code">
 <PRE>
-%typemap(in, fragment=&quot;frag1,frag2,frag3&quot;) {...}
+%typemap(in, fragment=&quot;frag1, frag2, frag3&quot;) {...}
 </PRE>
 </DIV>
 <P> which is equivalent to:</P>
@@ -17235,7 +17292,7 @@ int foo(char *s, int y);
 # Python
 foo(3)           # foo(int)
 foo(3.5)         # foo(double)
-foo(&quot;hello&quot;,5)   # foo(char *, int)
+foo(&quot;hello&quot;, 5)  # foo(char *, int)
 
 # Tcl
 foo 3            # foo(int)
@@ -17274,7 +17331,7 @@ _wrap_foo_2(argc, args[]) {       // foo(char *, int)
   ...
   arg1 = FromString(args[0]);
   arg2 = FromInteger(args[1]);
-  result = foo(arg1,arg2);
+  result = foo(arg1, arg2);
   return ToInteger(result);
 }
 
@@ -17286,15 +17343,15 @@ _wrap_foo_2(argc, args[]) {       // foo(char *, int)
 _wrap_foo(argc, args[]) {
   if (argc == 1) {
     if (IsInteger(args[0])) {
-      return _wrap_foo_0(argc,args);
+      return _wrap_foo_0(argc, args);
     }
     if (IsDouble(args[0])) {
-      return _wrap_foo_1(argc,args);
+      return _wrap_foo_1(argc, args);
     }
   }
   if (argc == 2) {
     if (IsString(args[0]) &amp;&amp; IsInteger(args[1])) {
-      return _wrap_foo_2(argc,args);
+      return _wrap_foo_2(argc, args);
     }
   }
   error(&quot;No matching function!\n&quot;);
@@ -17363,7 +17420,7 @@ SWIG_TYPECHECK_STRING_ARRAY      1140
 <DIV class="code">
 <PRE>
 /* Python type checking rules */
-/* Note:  %typecheck(X) is a macro for %typemap(typecheck,precedence=X) */
+/* Note:  %typecheck(X) is a macro for %typemap(typecheck, precedence=X) */
 
 %typecheck(SWIG_TYPECHECK_INTEGER)
   int, short, long,
@@ -17394,7 +17451,7 @@ SWIG_TYPECHECK_STRING_ARRAY      1140
   $1 = PyString_Check($input) ? 1 : 0;
 }
 
-%typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER,noblock=1) SWIGTYPE * {
+%typemap(typecheck, precedence=SWIG_TYPECHECK_POINTER, noblock=1) SWIGTYPE * {
   void *vptr = 0;
   int res = SWIG_ConvertPtr($input, &amp;vptr, $1_descriptor, 0);
   $1 = SWIG_IsOK(res) ? 1 : 0;
@@ -17444,7 +17501,7 @@ SWIG_TYPECHECK_STRING_ARRAY      1140
  example commenting it out as shown below:</P>
 <DIV class="code">
 <PRE>
-%typemap(typecheck /*,precedence=SWIG_TYPECHECK_INTEGER*/) int {
+%typemap(typecheck /*, precedence=SWIG_TYPECHECK_INTEGER*/) int {
   $1 = PyInt_Check($input) ? 1 : 0;
 }
 </PRE>
@@ -17479,7 +17536,7 @@ SWIG and C++</A>&quot; chapter.</LI>
  output arguments, one often writes a set of typemaps like this:</P>
 <DIV class="code">
 <PRE>
-%typemap(in,numinputs=0) int *OUTPUT (int temp) {
+%typemap(in, numinputs=0) int *OUTPUT (int temp) {
   $1 = &amp;temp;
 }
 %typemap(argout) int *OUTPUT {
@@ -17518,7 +17575,7 @@ SWIG and C++</A>&quot; chapter.</LI>
 
 %typemap(check) int *POSITIVE {
   if (*$1 &lt;= 0) {
-    SWIG_exception(SWIG_ValueError,&quot;Expected a positive number!\n&quot;);
+    SWIG_exception(SWIG_ValueError, &quot;Expected a positive number!\n&quot;);
     return NULL;
   }
 }
@@ -17687,7 +17744,7 @@ self</TT>.</P>
     $action
   }
   catch (RangeError) {
-    PyErr_SetString(PyExc_IndexError,&quot;index out-of-bounds&quot;);
+    PyErr_SetString(PyExc_IndexError, &quot;index out-of-bounds&quot;);
     SWIG_fail;
   }
 }
@@ -17722,7 +17779,7 @@ static char error_message[256];
 static int error_status = 0;
 
 void throw_exception(char *msg) {
-  strncpy(error_message,msg,256);
+  strncpy(error_message, msg, 256);
   error_status = 1;
 }
 
@@ -17791,7 +17848,7 @@ extern int exception_status;
 
 #define try if ((exception_status = setjmp(exception_buffer)) == 0)
 #define catch(val) else if (exception_status == val)
-#define throw(val) longjmp(exception_buffer,val)
+#define throw(val) longjmp(exception_buffer, val)
 #define finally else
 
 /* Exception codes */
@@ -18098,7 +18155,7 @@ something</TT> wrapper methods for Perl:</P>
   } catch(OutOfMemory) {
     SWIG_exception(SWIG_MemoryError, &quot;Out of memory&quot;);
   } catch(...) {
-    SWIG_exception(SWIG_RuntimeError,&quot;Unknown exception&quot;);
+    SWIG_exception(SWIG_RuntimeError, &quot;Unknown exception&quot;);
   }
 }
 
@@ -18156,7 +18213,7 @@ Foo *blah();
 <DIV class="code">
 <PRE>
 %newobject ::blah();                   // Only applies to global blah
-%newobject Object::blah(int,double);   // Only blah(int,double) in Object
+%newobject Object::blah(int, double);  // Only blah(int, double) in Object
 %newobject *::copy;                    // Copy method in all classes
 ...
 </PRE>
@@ -18255,7 +18312,7 @@ char *strdup(const char *s);
   }
 }
 
-%feature(&quot;new&quot;,&quot;1&quot;) *::copy;
+%feature(&quot;new&quot;, &quot;1&quot;) *::copy;
 </PRE>
 </DIV>
 <P> In fact, the <TT>%exception</TT> and <TT>%newobject</TT> directives
@@ -18263,7 +18320,7 @@ char *strdup(const char *s);
 <DIV class="code">
 <PRE>
 #define %exception %feature(&quot;except&quot;)
-#define %newobject %feature(&quot;new&quot;,&quot;1&quot;)
+#define %newobject %feature(&quot;new&quot;, &quot;1&quot;)
 </PRE>
 </DIV>
 <P> The name matching rules outlined in the <A href="#SWIGPlus_ambiguity_resolution_renaming">
@@ -18295,7 +18352,7 @@ Ambiguity resolution and renaming</A> section applies to all <TT>
 %feature(&quot;except&quot;) Object::method { $action };
 %feature(&quot;except&quot;) Object::method %{ $action %};
 %feature(&quot;except&quot;) Object::method &quot; $action &quot;;
-%feature(&quot;except&quot;,&quot;$action&quot;) Object::method;
+%feature(&quot;except&quot;, &quot;$action&quot;) Object::method;
 </PRE>
 </DIV>
 <P> The syntax in the first variation will generate the <TT>{ }</TT>
@@ -18307,7 +18364,7 @@ Ambiguity resolution and renaming</A> section applies to all <TT>
  specified. The following is the generic syntax for features:</P>
 <DIV class="code">
 <PRE>
-%feature(&quot;name&quot;,&quot;value&quot;, attribute1=&quot;AttributeValue1&quot;) symbol;
+%feature(&quot;name&quot;, &quot;value&quot;, attribute1=&quot;AttributeValue1&quot;) symbol;
 %feature(&quot;name&quot;, attribute1=&quot;AttributeValue1&quot;) symbol {value};
 %feature(&quot;name&quot;, attribute1=&quot;AttributeValue1&quot;) symbol %{value%};
 %feature(&quot;name&quot;, attribute1=&quot;AttributeValue1&quot;) symbol &quot;value&quot;;
@@ -18362,13 +18419,13 @@ int red;                        // mutable
 %feature(&quot;immutable&quot;);          // global enable
 int orange;                     // immutable
 
-%feature(&quot;immutable&quot;,&quot;0&quot;);      // global disable
+%feature(&quot;immutable&quot;, &quot;0&quot;);     // global disable
 int yellow;                     // mutable
 
-%feature(&quot;immutable&quot;,&quot;1&quot;);      // another form of global enable
+%feature(&quot;immutable&quot;, &quot;1&quot;);     // another form of global enable
 int green;                      // immutable
 
-%feature(&quot;immutable&quot;,&quot;&quot;);       // clears the global feature
+%feature(&quot;immutable&quot;, &quot;&quot;);      // clears the global feature
 int blue;                       // mutable
 </PRE>
 </DIV>
@@ -18378,8 +18435,8 @@ int blue;                       // mutable
  target features explicitly, so the above could also be rewritten as:</P>
 <DIV class="code">
 <PRE>
-%feature(&quot;immutable&quot;,&quot;1&quot;) orange;
-%feature(&quot;immutable&quot;,&quot;1&quot;) green;
+%feature(&quot;immutable&quot;, &quot;1&quot;) orange;
+%feature(&quot;immutable&quot;, &quot;1&quot;) green;
 int red;                        // mutable
 int orange;                     // immutable
 int yellow;                     // mutable
@@ -18393,10 +18450,10 @@ int blue;                       // mutable
  as:</P>
 <DIV class="code">
 <PRE>
-%feature(&quot;immutable&quot;,&quot;1&quot;);
-%feature(&quot;immutable&quot;,&quot;0&quot;) red;
-%feature(&quot;immutable&quot;,&quot;0&quot;) yellow;
-%feature(&quot;immutable&quot;,&quot;0&quot;) blue;
+%feature(&quot;immutable&quot;, &quot;1&quot;);
+%feature(&quot;immutable&quot;, &quot;0&quot;) red;
+%feature(&quot;immutable&quot;, &quot;0&quot;) yellow;
+%feature(&quot;immutable&quot;, &quot;0&quot;) blue;
 int red;                        // mutable
 int orange;                     // immutable
 int yellow;                     // mutable
@@ -18420,7 +18477,7 @@ int blue;                       // mutable
 </H3>
 <P> A feature stays in effect until it is explicitly cleared. A feature
  is cleared by supplying a <TT>%feature</TT> directive with no value.
- For example <TT>%feature(&quot;name&quot;,&quot;&quot;)</TT>. A cleared feature means that
+ For example <TT>%feature(&quot;name&quot;, &quot;&quot;)</TT>. A cleared feature means that
  any feature exactly matching any previously defined feature is no
  longer used in the name matching rules. So if a feature is cleared, it
  might mean that another name matching rule will apply. To clarify,
@@ -18449,7 +18506,7 @@ int blue;                       // mutable
 ... initial set of class declarations with clone methods ...
 
 // clear the previously defined feature
-%feature(&quot;except&quot;,&quot;&quot;) *::clone();
+%feature(&quot;except&quot;, &quot;&quot;) *::clone();
 
 ... final set of class declarations with clone methods ...
 </PRE>
@@ -18460,8 +18517,8 @@ int blue;                       // mutable
  methods will still have an exception handler (without logging) as the
  next best feature match for them is the global exception handler.</P>
 <P> Note that clearing a feature is not always the same as disabling it.
- Clearing the feature above with <TT>%feature(&quot;except&quot;,&quot;&quot;) *::clone()</TT>
- is not the same as specifying <TT>%feature(&quot;except&quot;,&quot;0&quot;) *::clone()</TT>
+ Clearing the feature above with <TT>%feature(&quot;except&quot;, &quot;&quot;) *::clone()</TT>
+ is not the same as specifying <TT>%feature(&quot;except&quot;, &quot;0&quot;) *::clone()</TT>
 . The former will disable the feature for clone methods - the feature is
  still a better match than the global feature. If on the other hand, no
  global exception handler had been defined at all, then clearing the
@@ -18473,14 +18530,14 @@ int blue;                       // mutable
 <DIV class="code">
 <PRE>
 %feature(&quot;except&quot;) clone() { logger.info(&quot;$action&quot;); $action }
-%feature(&quot;except&quot;,&quot;&quot;) *::clone();
+%feature(&quot;except&quot;, &quot;&quot;) *::clone();
 </PRE>
 </DIV>
 <P> but this will:</P>
 <DIV class="code">
 <PRE>
 %feature(&quot;except&quot;) clone() { logger.info(&quot;$action&quot;); $action }
-%feature(&quot;except&quot;,&quot;&quot;) clone();
+%feature(&quot;except&quot;, &quot;&quot;) clone();
 </PRE>
 </DIV>
 <P> SWIG provides macros for disabling and clearing features. Many of
@@ -18491,8 +18548,8 @@ int blue;                       // mutable
 <DIV class="code">
 <PRE>
 #define %exception      %feature(&quot;except&quot;)
-#define %noexception    %feature(&quot;except&quot;,&quot;0&quot;)
-#define %clearexception %feature(&quot;except&quot;,&quot;&quot;)
+#define %noexception    %feature(&quot;except&quot;, &quot;0&quot;)
+#define %clearexception %feature(&quot;except&quot;, &quot;&quot;)
 </PRE>
 </DIV>
 <H3><A name="Customization_features_default_args">12.3.4 Features and
@@ -18557,15 +18614,15 @@ void hello();
 <DIV class="code">
 <PRE>
 %module example
-%rename(bar_id) bar(int,double);
+%rename(bar_id) bar(int, double);
 
 // Rewrite bar() to allow some nice overloading
 
 %feature(&quot;shadow&quot;) Foo::bar(int) %{
 def bar(*args):
     if len(args) == 3:
-        return apply(examplec.Foo_bar_id,args)
-    return apply(examplec.Foo_bar,args)
+        return apply(examplec.Foo_bar_id, args)
+    return apply(examplec.Foo_bar, args)
 %}
     
 class Foo {
@@ -18678,7 +18735,7 @@ public:
 <PRE>
 class Spam : public Foo {
 public:
-  int bar(int,int);    // Gets contract defined for Foo::bar(int,int)
+  int bar(int, int);    // Gets contract defined for Foo::bar(int, int)
 };
 </PRE>
 </DIV>
@@ -18698,12 +18755,12 @@ require:
 
 class Foo {
 public:
-  int bar(int,int);   // Gets Foo::bar contract.
+  int bar(int, int);   // Gets Foo::bar contract.
 };
 
 class Spam : public Foo {
 public:
-  int bar(int,int);   // Gets Foo::bar and Spam::bar contract
+  int bar(int, int);   // Gets Foo::bar and Spam::bar contract
 };
 </PRE>
 </DIV>
@@ -18846,7 +18903,7 @@ int execlp(const char *path, const char *arg1, ...);
 ...
 
 /* Example */
-execlp(&quot;ls&quot;,&quot;ls&quot;,&quot;-l&quot;,NULL);
+execlp(&quot;ls&quot;, &quot;ls&quot;, &quot;-l&quot;, NULL);
 </PRE>
 </DIV>
 <P> In addition, varargs is sometimes used to fake default arguments in
@@ -18913,9 +18970,9 @@ printf()</TT> with exactly three arguments. Furthermore, it knows that
 <PRE>
 int wrap_printf(const char *fmt, ...) {
   va_list ap;
-  va_start(ap,fmt);
+  va_start(ap, fmt);
   ...
-  printf(fmt,ap);
+  printf(fmt, ap);
   ...
   va_end(ap);
 };
@@ -19128,7 +19185,7 @@ wrap_printf() {
   arg1 = &quot;%s&quot;;
   arg2 = (void *) PyString_AsString(arg2obj);
   ...
-  result = printf(arg1,arg2);
+  result = printf(arg1, arg2);
   ...
 }
 </PRE>
@@ -19252,10 +19309,10 @@ http://www.sourceware.org/libffi/</A>). libffi is a library that allows
   argc = PyTuple_Size(varargs);
   argv = (char **) malloc(sizeof(char *)*(argc+1));
   for (i = 0; i &lt; argc; i++) {
-    PyObject *o = PyTuple_GetItem(varargs,i);
+    PyObject *o = PyTuple_GetItem(varargs, i);
     if (!PyString_Check(o)) {
       free(argv);
-      PyErr_SetString(PyExc_ValueError,&quot;Expected a string&quot;);
+      PyErr_SetString(PyExc_ValueError, &quot;Expected a string&quot;);
       SWIG_fail;
     }
     argv[i] = PyString_AsString(o);
@@ -19347,7 +19404,7 @@ int execlp(const char *path, const char *arg1, ...);
   argc = PyTuple_Size(varargs);
   argv = (vtype *) malloc(argc*sizeof(vtype));
   for (i = 0; i &lt; argc; i++) {
-    PyObject *o = PyTuple_GetItem(varargs,i);
+    PyObject *o = PyTuple_GetItem(varargs, i);
     if (PyInt_Check(o)) {
       argv[i].type = VT_INT;
       argv[i].val.ivalue = PyInt_AsLong(o);
@@ -19359,7 +19416,7 @@ int execlp(const char *path, const char *arg1, ...);
       argv[i].val.pvalue = (void *) PyString_AsString(o);
     } else {
       free(argv);
-      PyErr_SetString(PyExc_ValueError,&quot;Unsupported argument type&quot;);
+      PyErr_SetString(PyExc_ValueError, &quot;Unsupported argument type&quot;);
       return NULL;
     }
   }
@@ -20147,7 +20204,7 @@ classname2</EM>' is not similarly marked as a smart pointer.</LI>
  this directive is:</P>
 <DIV class="code">
 <PRE>
-<TT>%module(option1=&quot;value1&quot;,option2=&quot;value2&quot;,...) modulename</TT>
+<TT>%module(option1=&quot;value1&quot;, option2=&quot;value2&quot;, ...) modulename</TT>
 </PRE>
 </DIV>
 <P> where the modulename is mandatory and the options add one or more
@@ -21299,8 +21356,8 @@ int fact(int n);
 <PRE>
 %module ffargs
 
-%ffargs(strings_convert=&quot;nil&quot;,call_direct=&quot;t&quot;) foo;
-%ffargs(strings_convert=&quot;nil&quot;,release_heap=&quot;:never&quot;,optimize_for_space=&quot;t&quot;) bar;
+%ffargs(strings_convert=&quot;nil&quot;, call_direct=&quot;t&quot;) foo;
+%ffargs(strings_convert=&quot;nil&quot;, release_heap=&quot;:never&quot;, optimize_for_space=&quot;t&quot;) bar;
 
 int foo(float f1, float f2);
 int foo(float f1, char c2);
@@ -21943,7 +22000,7 @@ EXPORT float ACL___xxx__SWIG_0 (int larg1, int larg2) {
   arg1 = larg1;
   arg2 = larg2;
   try {
-    result = (float)xxx(arg1,arg2);
+    result = (float)xxx(arg1, arg2);
 
     lresult = result;
     return lresult;
@@ -21979,7 +22036,7 @@ EXPORT float ACL___xxx__SWIG_2 (A *larg1, int larg2) {
   arg1 = larg1;
   arg2 = larg2;
   try {
-    result = (float)xxx(arg1,arg2);
+    result = (float)xxx(arg1, arg2);
 
     lresult = result;
     return lresult;
@@ -22838,7 +22895,7 @@ src/org/swig/simple/SwigSimple.java</TT> to call the JNI code as follows
       
       int x = 42;
       int y = 105;
-      int g = example.gcd(x,y);
+      int g = example.gcd(x, y);
       outputText.append(&quot;The greatest common divisor of &quot; + x + &quot; and &quot; + y + &quot; is &quot; + g + &quot;\n&quot;);
 
       // Manipulate the Foo global variable
@@ -23107,7 +23164,7 @@ public class SwigClass extends Activity
       // ----- Call some methods -----
 
       outputText.append( &quot;\nHere are some properties of the shapes:\n&quot; );
-      Shape[] shapes = {c,s};
+      Shape[] shapes = {c, s};
       for (int i=0; i&lt;shapes.length; i++)
       {
         outputText.append( &quot;   &quot; + shapes[i].toString() + &quot;\n&quot; );
@@ -23734,7 +23791,7 @@ void * f(void *v);
 <PRE>
 SWIGTYPE_p_double a = example.new_doubleArray(10);  // Create an array
 for (int i=0; i&lt;10; i++)
-  example.doubleArray_setitem(a,i,2*i);             // Set a value
+  example.doubleArray_setitem(a, i, 2*i);           // Set a value
 example.print_array(a);                             // Pass to C
 example.delete_doubleArray(a);                      // Destroy array
 </PRE>
@@ -24655,7 +24712,7 @@ void SwigDirector_Base::BaseBoolMethod(Base const &amp;b, bool flag) {
   unsigned int jflag  ;
   
   if (!swig_callbackBaseBoolMethod) {
-    Base::BaseBoolMethod(b,flag);
+    Base::BaseBoolMethod(b, flag);
     return;
   } else {
     jb = (Base *) &amp;b; 
@@ -25058,7 +25115,7 @@ dateIn = new System.DateTime(2012, 7, 14);
 %typemap(csin, 
          pre=&quot;    CDate temp$csinput = new CDate();&quot;, 
          post=&quot;      $csinput = new System.DateTime(temp$csinput.getYear(),&quot;
-              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;, 
+              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;,
          cshin=&quot;out $csinput&quot;
         ) CDate &amp;
          &quot;$csclassname.getCPtr(temp$csinput)&quot;
@@ -25165,7 +25222,7 @@ example.addYears(ref christmasEve, 10); // christmasEve now contains 2010-12-24
 %typemap(csin,
          pre=&quot;    CDate temp$csinput = new CDate($csinput.Year, $csinput.Month, $csinput.Day);&quot;,
          post=&quot;      $csinput = new System.DateTime(temp$csinput.getYear(),&quot;
-              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;, 
+              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;,
          cshin=&quot;ref $csinput&quot;
         ) CDate *
          &quot;$csclassname.getCPtr(temp$csinput)&quot;
@@ -25199,7 +25256,7 @@ public class example {
 %typemap(csin,
   pre=&quot;    using (CDate temp$csinput = new CDate($csinput.Year, $csinput.Month, $csinput.Day)) {&quot;,
   post=&quot;      $csinput = new System.DateTime(temp$csinput.getYear(),&quot;
-       &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;, 
+       &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;,
   terminator=&quot;    } // terminate temp$csinput using block&quot;,
   cshin=&quot;ref $csinput&quot;
  ) CDate *
@@ -25263,7 +25320,7 @@ Structure data members</A>. The typemap type required is thus <TT>CDate
 %typemap(csin,
          pre=&quot;    CDate temp$csinput = new CDate($csinput.Year, $csinput.Month, $csinput.Day);&quot;,
          post=&quot;      $csinput = new System.DateTime(temp$csinput.getYear(),&quot;
-              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;, 
+              &quot; temp$csinput.getMonth(), temp$csinput.getDay(), 0, 0, 0);&quot;,
          cshin=&quot;ref $csinput&quot;
         ) CDate *
          &quot;$csclassname.getCPtr(temp$csinput)&quot;
@@ -25721,9 +25778,9 @@ SFRI-12</A>. Since the exception values are thrown directly, if <CODE>
 </DIV>
 <H2><A name="Chicken_nn11">21.3 TinyCLOS</A></H2>
 <P> The author of TinyCLOS, Gregor Kiczales, describes TinyCLOS as:
- &quot;Tiny CLOS is a Scheme implementation of a `kernelized' CLOS, with a
+ &quot;Tiny CLOS is a Scheme implementation of a 'kernelized' CLOS, with a
  metaobject protocol. The implementation is even simpler than the simple
- CLOS found in `The Art of the Metaobject Protocol,' weighing in at
+ CLOS found in 'The Art of the Metaobject Protocol', weighing in at
  around 850 lines of code, including (some) comments and documentation.&quot;</P>
 <P> Almost all good Scheme books describe how to use metaobjects and
  generic procedures to implement an object-oriented Scheme system.
@@ -26198,6 +26255,8 @@ ddestructor</TT>, <TT>ddispose</TT> and <TT>ddispose_derived</TT> are
  method, respectively. The auxiliary code for handling the pointer to
  the C++ object is stored in <TT>dbody</TT> and <TT>dbody_derived</TT>.
  You can override them for specific types.</P>
+<P> Code can also be injected into the D proxy class using <TT>
+%proxycode</TT>.</P>
 <H3><A name="D_special_variables">22.3.7 Special variable macros</A></H3>
 <P>The standard SWIG special variables are available for use within
  typemaps as described in the <A href="#Typemaps">Typemaps documentation</A>
@@ -26566,7 +26625,7 @@ D_VERSION</TT> variable, e.g. <TT>make check-d-test-suite D_VERSION=2</TT>
  requires you to link <TT>libdl</TT> for dynamically loading the shared
  library, you might have to add <TT>-ldl</TT> manually to the <TT>
 d_compile</TT> target in <TT>Examples/Makefile</TT>, because GDC does
- not currently honor the <TT>pragma(lib,...)</TT> statement.</P>
+ not currently honor the <TT>pragma(lib, ...)</TT> statement.</P>
 <H2><A name="D_typemap_examples">22.9 D Typemap examples</A></H2>
 <P>There are no D-specific typemap examples yet. However, with the above
  <A href="#D_typemap_name_comparison">name comparison table</A>, you
@@ -28509,6 +28568,7 @@ mod2</CODE> uses symbols from <CODE>mod1</CODE>, the <CODE>mod2</CODE>
 <UL>
 <LI><A href="#Java_helper_functions">C/C++ helper functions</A></LI>
 <LI><A href="#Java_class_extension">Class extension with %extend</A></LI>
+<LI><A href="#Java_proxycode">Class extension with %proxycode</A></LI>
 <LI><A href="#Java_exception_handling">Exception handling with
  %exception and %javaexception</A></LI>
 <LI><A href="#Java_method_access">Method access with
@@ -28947,9 +29007,9 @@ $
 <LI>Enter &quot;<TT>$(ProjDir)\$(InputName)_wrap.c</TT>&quot; in the &quot;Output
  files(s) field&quot;.</LI>
 <LI>Next, select the settings for the entire project and go to C/C++ tab
- and select the Preprocessor category . Add the include directories to
+ and select the Preprocessor category. Add the include directories to
  the JNI header files under &quot;Additional include directories&quot;, eg
- &quot;C:\jdk1.3\include,C:\jdk1.3\include\win32&quot;.</LI>
+ &quot;C:\jdk1.3\include, C:\jdk1.3\include\win32&quot;.</LI>
 <LI>Next, select the settings for the entire project and go to Link tab
  and select the General category. Set the name of the output file to
  match the name of your Java module (ie. example.dll).</LI>
@@ -29558,7 +29618,7 @@ int fclose(FILE *);
  from Java. For example:</P>
 <DIV class="code">
 <PRE>
-SWIGTYPE_p_FILE f = example.fopen(&quot;junk&quot;,&quot;w&quot;);
+SWIGTYPE_p_FILE f = example.fopen(&quot;junk&quot;, &quot;w&quot;);
 example.fputs(&quot;Hello World\n&quot;, f);
 example.fclose(f);
 </PRE>
@@ -29617,7 +29677,7 @@ Foo *IncrFoo(Foo *f, int i) {
 <DIV class="code">
 <PRE>
 struct Vector {
-  double x,y,z;
+  double x, y, z;
 };
 
 </PRE>
@@ -30010,7 +30070,7 @@ public class example {
 namespace foo {
   int fact(int n);
   struct Vector {
-    double x,y,z;
+    double x, y, z;
   };
 };
 </PRE>
@@ -30097,13 +30157,13 @@ struct pair {
   ~pair();
 };
 
-%template(pairii) pair&lt;int,int&gt;;
+%template(pairii) pair&lt;int, int&gt;;
 </PRE>
 </DIV>
 <P> In Java:</P>
 <DIV class="code">
 <PRE>
-pairii p = new pairii(3,4);
+pairii p = new pairii(3, 4);
 int first = p.getFirst();
 int second = p.getSecond();
 </PRE>
@@ -32048,11 +32108,11 @@ double mat44_get(double x[4][4], int i, int j) {
 <PRE>
 Image im = new Image();
 SWIGTYPE_p_a_4__double a = example.new_mat44();
-example.mat44_set(a,0,0,1.0);
-example.mat44_set(a,1,1,1.0);
-example.mat44_set(a,2,2,1.0);
+example.mat44_set(a, 0, 0, 1.0);
+example.mat44_set(a, 1, 1, 1.0);
+example.mat44_set(a, 2, 2, 1.0);
 ...
-example.set_transform(im,a);
+example.set_transform(im, a);
 example.free_mat44(a);
 </PRE>
 </DIV>
@@ -32074,13 +32134,13 @@ example.free_mat44(a);
 %}
 
 struct Vector {
-  double x,y,z;
+  double x, y, z;
 };
 
 %extend Vector {
   char *toString() {
       static char tmp[1024];
-      sprintf(tmp,&quot;Vector(%g,%g,%g)&quot;, $self-&gt;x,$self-&gt;y,$self-&gt;z);
+      sprintf(tmp, &quot;Vector(%g, %g, %g)&quot;, $self-&gt;x, $self-&gt;y, $self-&gt;z);
       return tmp;
   }
   Vector(double x, double y, double z) {
@@ -32096,20 +32156,137 @@ struct Vector {
 <P> Now, in Java</P>
 <DIV class="code">
 <PRE>
-Vector v = new Vector(2,3,4);
+Vector v = new Vector(2, 3, 4);
 System.out.println(v);
 </PRE>
 </DIV>
 <P> will display</P>
 <DIV class="code">
 <PRE>
-Vector(2,3,4)
+Vector(2, 3, 4)
 </PRE>
 </DIV>
 <P> <TT>%extend</TT> works with both C and C++ code. It does not modify
  the underlying object in any way---the extensions only show up in the
  Java interface.</P>
-<H3><A name="Java_exception_handling">25.7.3 Exception handling with
+<H3><A name="Java_proxycode">25.7.3 Class extension with %proxycode</A></H3>
+<P> The previous section described how to extend a wrapped class with C
+ or C++ code. This section describes how to extend a wrapped class with
+ Java code instead of C/C++ code. The <TT>%proxycode</TT> directive is
+ used and is just a macro for <TT>%insert(&quot;proxycode&quot;)</TT>. The <A href="#SWIG_nn42">
+Code insertion block</A> section describes the <TT>%insert</TT>
+ directive. The section of code for insertion is &quot;proxycode&quot;, that is,
+ the Java proxy class. This directive must hence only be used within the
+ scope of a class, otherwise it is silently ignored. There are two
+ common ways to get the scope correct.</P>
+<P> The first is to use <TT>%proxycode</TT> inside a class that SWIG
+ parses, for example a <TT>toString()</TT> method can be added to a C++
+ class using pure Java code. A C++ header file can mix C++ and Java code
+ inside the C++ class as follows:</P>
+<DIV class="code">
+<PRE>
+// flag.h header file
+class Flag {
+  bool flag;
+public:
+  Flag(bool flag) : flag(flag) {}
+  bool FetchFlag() { return flag; }
+#if defined(SWIG)
+%proxycode %{
+  public String toString() {
+    boolean flag = FetchFlag();
+    return Boolean.toString(flag);
+  }
+%}
+#endif
+};
+</PRE>
+</DIV>
+<P> and wrapped using:</P>
+<DIV class="code">
+<PRE>
+%{
+#include &quot;flag.h&quot;
+%}
+%include &quot;flag.h&quot;
+</PRE>
+</DIV>
+<P> The second is to use <TT>%proxycode</TT> within <TT>%extend</TT> as
+ everything within a <TT>%extend</TT> block is effectively within the
+ scope of the class, for example:</P>
+<DIV class="code">
+<PRE>
+// flag.h header file
+class Flag {
+  bool flag;
+public:
+  Flag(bool flag) : flag(flag) {}
+  bool FetchFlag() { return flag; }
+};
+</PRE>
+</DIV>
+<P> and wrapped using:</P>
+<DIV class="code">
+<PRE>
+%{
+#include &quot;flag.h&quot;
+%}
+%include &quot;flag.h&quot;
+
+%extend Flag {
+#if defined(SWIG)
+%proxycode %{
+  public String toString() {
+    boolean flag = FetchFlag();
+    return Boolean.toString(flag);
+  }
+%}
+#endif
+}
+</PRE>
+</DIV>
+<P> There is some very limited support of typemaps within a <TT>
+%proxycode</TT> block. A useful trick is to obtain the Java type for a
+ given C/C++ type using the <A href="#Typemaps_special_macro_typemap">
+$typemap</A> special macro. The following C++ template demonstrates
+ this:</P>
+<DIV class="code">
+<PRE>
+%inline %{
+template&lt;typename T&gt; struct Value {
+  T value;
+  Value(const T&amp; val) : value(val) {}
+};
+%}
+
+%extend Value {
+%proxycode %{
+  public String toString() {
+    // Note template type expansion is supported, so T is expanded to 'unsigned int' in this example
+    // and $typemap(jstype, unsigned int) in turn is expanded to 'long'
+    $typemap(jstype, T) val = getValue();
+    return &quot;$javaclassname value: &quot; + val + &quot; Java type: $typemap(jstype, T) JNI type: $typemap(jni, T)&quot;;
+  }
+%}
+}
+%template(ValueUnsignedInt) Value&lt;unsigned int&gt;;
+</PRE>
+</DIV>
+<P> The generated Java contains the expanded special variable and macro
+ resulting in Java proxy code:</P>
+<DIV class="code">
+<PRE>
+public class ValueUnsignedInt {
+  ...
+  public String toString() {
+    long val = getValue();
+    return &quot;ValueUnsignedInt value: &quot; + val + &quot; Java type: long JNI type: jlong&quot;;
+  }
+
+}
+</PRE>
+</DIV>
+<H3><A name="Java_exception_handling">25.7.4 Exception handling with
  %exception and %javaexception</A></H3>
 <P> If a C or C++ function throws an error, you may want to convert that
  error into a Java exception. To do this, you can use the <TT>%exception</TT>
@@ -32243,7 +32420,7 @@ Typemaps for both C and C++ compilation</A> section.</P>
  chapter. The typemap example <A href="#Java_exception_typemap">Handling
  C++ exception specifications as Java exceptions</A> provides further
  exception handling capabilities.</P>
-<H3><A name="Java_method_access">25.7.4 Method access with
+<H3><A name="Java_method_access">25.7.5 Method access with
  %javamethodmodifiers</A></H3>
 <P> A Java feature called <TT>%javamethodmodifiers</TT> can be used to
  change the method modifiers from the default <TT>public</TT>. It
@@ -32301,10 +32478,10 @@ int  sub(int *INPUT, int *INPUT);
 <P> In Java, this allows you to pass simple values. For example:</P>
 <DIV class="code">
 <PRE>
-int result = example.sub(7,4);
+int result = example.sub(7, 4);
 System.out.println(&quot;7 - 4 = &quot; + result);
 int[] sum = {0};
-example.add(3,4,sum);
+example.add(3, 4, sum);
 System.out.println(&quot;3 + 4 = &quot; + sum[0]);
 </PRE>
 </DIV>
@@ -32406,7 +32583,7 @@ extern void add(int x, int y, int *result);
 %pointer_functions(int, intp);
 </PRE>
 </DIV>
-<P> The <TT>%pointer_functions(type,name)</TT> macro generates five
+<P> The <TT>%pointer_functions(type, name)</TT> macro generates five
  helper functions that can be used to create, destroy, copy, assign, and
  dereference a pointer. In this case, the functions are as follows:</P>
 <DIV class="code">
@@ -32422,17 +32599,17 @@ int   intp_value(int *x);
 <DIV class="code">
 <PRE>
 SWIGTYPE_p_int intPtr = example.new_intp();
-example.add(3,4,intPtr);
+example.add(3, 4, intPtr);
 int result = example.intp_value(intPtr);
 System.out.println(&quot;3 + 4 = &quot; + result);
 </PRE>
 </DIV>
-<P> If you replace <TT>%pointer_functions(int,intp)</TT> by <TT>
-%pointer_class(int,intp)</TT>, the interface is more class-like.</P>
+<P> If you replace <TT>%pointer_functions(int, intp)</TT> by <TT>
+%pointer_class(int, intp)</TT>, the interface is more class-like.</P>
 <DIV class="code">
 <PRE>
 intp intPtr = new intp();
-example.add(3,4,intPtr.cast());
+example.add(3, 4, intPtr.cast());
 int result = intPtr.value();
 System.out.println(&quot;3 + 4 = &quot; + result);
 </PRE>
@@ -32529,7 +32706,7 @@ int[] array = new int[10000000];          // Array of 10-million integers
 for (int i=0; i&lt;array.length; i++) {      // Set some values
   array[i] = i;
 }
-int sum = example.sumitems(array,10000);
+int sum = example.sumitems(array, 10000);
 System.out.println(&quot;Sum = &quot; + sum);
 </PRE>
 </DIV>
@@ -32552,9 +32729,9 @@ carrays.i</TT>. This approach can be more efficient for large arrays as
 %array_functions(int, intArray);
 </PRE>
 </DIV>
-<P> The <TT>%array_functions(type,name)</TT> macro generates four helper
- functions that can be used to create and destroy arrays and operate on
- elements. In this case, the functions are as follows:</P>
+<P> The <TT>%array_functions(type, name)</TT> macro generates four
+ helper functions that can be used to create and destroy arrays and
+ operate on elements. In this case, the functions are as follows:</P>
 <DIV class="code">
 <PRE>
 int *new_intArray(int nelements);
@@ -32568,14 +32745,14 @@ void intArray_setitem(int *x, int index, int value);
 <PRE>
 SWIGTYPE_p_int array = example.new_intArray(10000000);  // Array of 10-million integers
 for (int i=0; i&lt;10000; i++) {                           // Set some values
-  example.intArray_setitem(array,i,i);
+  example.intArray_setitem(array, i, i);
 }
-int sum = example.sumitems(array,10000);
+int sum = example.sumitems(array, 10000);
 System.out.println(&quot;Sum = &quot; + sum);
 </PRE>
 </DIV>
-<P> If you replace <TT>%array_functions(int,intp)</TT> by <TT>
-%array_class(int,intp)</TT>, the interface is more class-like and a
+<P> If you replace <TT>%array_functions(int, intp)</TT> by <TT>
+%array_class(int, intp)</TT>, the interface is more class-like and a
  couple more helper functions are available for casting between the
  array and the type wrapper class.</P>
 <DIV class="code">
@@ -32592,9 +32769,9 @@ System.out.println(&quot;Sum = &quot; + sum);
 <PRE>
 intArray array = new intArray(10000000);  // Array of 10-million integers
 for (int i=0; i&lt;10000; i++) {             // Set some values
-  array.setitem(i,i);
+  array.setitem(i, i);
 }
-int sum = example.sumitems(array.cast(),10000);
+int sum = example.sumitems(array.cast(), 10000);
 System.out.println(&quot;Sum = &quot; + sum);
 </PRE>
 </DIV>
@@ -32963,7 +33140,7 @@ int count(char c, char *str, int len);
  like this (notice how the length parameter is omitted):</P>
 <DIV class="code">
 <PRE>
-int c = example.count('e',&quot;Hello World&quot;);
+int c = example.count('e', &quot;Hello World&quot;);
 </PRE>
 </DIV>
 <H3><A name="Java_typemaps_c_to_java_types">25.9.5 Typemaps for mapping
@@ -33205,7 +33382,7 @@ premature garbage collection prevention parameter</A>.</P>
 <H3><A name="Java_special_variables">25.9.7 Java special variables</A></H3>
 <P> The standard SWIG special variables are available for use within
  typemaps as described in the <A href="#Typemaps">Typemaps documentation</A>
-, for example <TT>$1</TT>, <TT>$input</TT>,<TT>$result</TT> etc.</P>
+, for example <TT>$1</TT>, <TT>$input</TT>, <TT>$result</TT> etc.</P>
 <P> The Java module uses a few additional special variables:</P>
 <P><B> <TT>$javaclassname</TT></B>
 <BR> This special variable works like the other <A href="#Typemaps_special_variables">
@@ -33425,7 +33602,10 @@ const jclass clazz = JCALL1(FindClass, jenv, &quot;java/lang/String&quot;);
  &quot;public class&quot;</DIV>
 <P><TT>%typemap(javacode)</TT></P>
 <DIV class="indent"> Java code is copied verbatim to the Java class:
- empty default</DIV>
+ empty default As there can only be one &quot;javacode&quot; typemap per class,
+ also consider using the <A href="#Java_proxycode">%proxycode</A>
+ directive which can be used multiple times per class and offers nearly
+ identical functionality.</DIV>
 <P><TT>%typemap(javadestruct, methodname=&quot;delete&quot;,
  methodmodifiers=&quot;public synchronized&quot;)</TT>
 <BR></P>
@@ -33655,7 +33835,7 @@ javabody</TT> typemap in future versions of SWIG. The macros are for the
  follows:</P>
 <DIV class="code">
 <PRE>
-%typemap(directorin,descriptor=&quot;I&quot;) int &quot;$input = (jint) $1;&quot;
+%typemap(directorin, descriptor=&quot;I&quot;) int &quot;$input = (jint) $1;&quot;
 </PRE>
 </DIV>
 <P> <CODE>$input</CODE> is the SWIG name of the JNI temporary variable
@@ -33667,14 +33847,14 @@ JNI documentation mentioned earlier</A>. A typemap for C character
  strings is:</P>
 <DIV class="code">
 <PRE>
-%typemap(directorin, descriptor=&quot;Ljava/lang/String;&quot;, noblock=1) char * %{
+%typemap(directorin, descriptor=&quot;Ljava/lang/String;&quot;, noblock=1) char * {
   $input = 0;
   if ($1) {
     $input = JCALL1(NewStringUTF, jenv, (const char *)$1);
     if (!$input) return $null;
   }
   Swig::LocalRefGuard $1_refguard(jenv, $input);
-%}
+}
 </PRE>
 </DIV>
 <P> The <TT>Swig::LocalRefGuard</TT> class should be used in directorin
@@ -34283,7 +34463,7 @@ public class runme {
   }
 
   public static void main(String argv[]) {
-    String animals[] = {&quot;Cat&quot;,&quot;Dog&quot;,&quot;Cow&quot;,&quot;Goat&quot;};
+    String animals[] = {&quot;Cat&quot;, &quot;Dog&quot;, &quot;Cow&quot;, &quot;Goat&quot;};
     example.print_args(animals);
     String args[] = example.get_args();
     for (int i=0; i&lt;args.length; i++)
@@ -36094,7 +36274,7 @@ Manifest</A> specification for more details.</P>
   var example = require(&quot;example&quot;);
   var x = 18;
   var y = 24;
-  var z = example.gcd(x,y);
+  var z = example.gcd(x, y);
   document.querySelector('#x').innerHTML = x;
   document.querySelector('#y').innerHTML = y;
   document.querySelector('#z').innerHTML = z;
@@ -36141,7 +36321,7 @@ var example = require(&quot;./build/Release/example&quot;);
 // calling the global method
 var x = 42;
 var y = 105;
-var g = example.gcd(x,y);
+var g = example.gcd(x, y);
 
 // Accessing the global variable
 var f = example.Foo;
@@ -36623,7 +36803,7 @@ state.clazz(NAME, Getattr(n, &quot;sym:name&quot;));</PRE>
  on how these exception details can be extracted.</P>
 <DIV class="code">
 <PRE>
-void script_exception_to_string(JSContextRef js_context,JSValueRef exception_value_ref,char* return_error_string, int return_error_string_max_length)
+void script_exception_to_string(JSContextRef js_context, JSValueRef exception_value_ref, char* return_error_string, int return_error_string_max_length)
 {
   JSObjectRef exception_object;
   JSValueRef value_ref;
@@ -36635,7 +36815,7 @@ void script_exception_to_string(JSContextRef js_context,JSValueRef exception_val
   exception_object = JSValueToObject(js_context, exception_value_ref, NULL);
 
   /* source url */
-  strcpy(return_error_string,&quot;[&quot;);
+  strcpy(return_error_string, &quot;[&quot;);
   jsstring_property_name = JSStringCreateWithUTF8CString(&quot;sourceURL&quot;);
   value_ref = JSObjectGetProperty(js_context, exception_object, jsstring_property_name, &amp;temporary_exception);
   JSStringRelease(jsstring_property_name);
@@ -36798,7 +36978,7 @@ struct foo {
 
 int pointer_func(void (*ClosureFun)( void* _fun, void* _data, void* _evt ), int p);
 
-int func123(div_t * p,int **q[100],int r[][1000][10]);
+int func123(div_t * p, int **q[100], int r[][1000][10]);
 
 void lispsort_double (int n, double * array);
 
@@ -36817,11 +36997,11 @@ enum color { RED, BLUE, GREEN};
 
 (cl:defmacro defanonenum (&amp;body enums)
    &quot;Converts anonymous enums to defconstants.&quot;
-  `(cl:progn ,@(cl:loop for value in enums
+  `(cl:progn , @(cl:loop for value in enums
                         for index = 0 then (cl:1+ index)
                         when (cl:listp value) do (cl:setf index (cl:second value)
                                                           value (cl:first value))
-                        collect `(cl:defconstant ,value ,index))))
+                        collect `(cl:defconstant , value , index))))
 
 (cl:eval-when (:compile-toplevel :load-toplevel)
   (cl:unless (cl:fboundp 'swig-lispify)
@@ -36920,7 +37100,7 @@ feature directive</A>. Let's edit the interface file such that the C
 
 %typemap(cin) div_t* &quot;:my-pointer&quot;;
 
-%feature(&quot;intern_function&quot;,&quot;1&quot;);
+%feature(&quot;intern_function&quot;, &quot;1&quot;);
 %feature(&quot;export&quot;);
 
 %feature(&quot;inline&quot;) lispsort_double;
@@ -36942,7 +37122,7 @@ feature directive</A>. Let's edit the interface file such that the C
 <P> The feature<I> intern_function</I> ensures that all C names are
  interned using the<B> swig-lispify</B> function. The &quot;1&quot; given to the
  feature is optional. The use of feature like<I>
- %feature(&quot;intern_function&quot;,&quot;1&quot;);</I> globally enables interning for
+ %feature(&quot;intern_function&quot;, &quot;1&quot;);</I> globally enables interning for
  everything. If you want to target a single function, or declaration
  then use the targeted version of feature,<I>
  %feature(&quot;intern_function&quot;, &quot;my-lispify&quot;) lispsort_double;</I>, here we
@@ -37309,7 +37489,7 @@ swig -clisp -help
 extern &quot;C&quot; {
 int pointer_func(void (*ClosureFun)( void* _fun, void* _data, void* _evt ), int y);
 
-int func123(div_t * x,int **z[100],int y[][1000][10]);
+int func123(div_t * x, int **z[100], int y[][1000][10]);
 
 void lispsort_double (int n, double * array);
 
@@ -37583,21 +37763,21 @@ swig -lua -help
 
 extern int luaopen_example(lua_State* L); // declare the wrapped module
 
-int main(int argc,char* argv[])
+int main(int argc, char* argv[])
 {
  lua_State *L;
  if (argc&lt;2)
  {
-  printf(&quot;%s: &lt;filename.lua&gt;\n&quot;,argv[0]);
+  printf(&quot;%s: &lt;filename.lua&gt;\n&quot;, argv[0]);
   return 0;
  }
  L=lua_open();
  luaopen_base(L);       // load basic libs (eg. print)
  luaopen_example(L);    // load the wrapped module
- if (luaL_loadfile(L,argv[1])==0) // load and run the file
-  lua_pcall(L,0,0,0);
+ if (luaL_loadfile(L, argv[1])==0) // load and run the file
+  lua_pcall(L, 0, 0, 0);
  else
-  printf(&quot;unable to load %s\n&quot;,argv[1]);
+  printf(&quot;unable to load %s\n&quot;, argv[1]);
  lua_close(L);
  return 0;
 }
@@ -37605,8 +37785,8 @@ int main(int argc,char* argv[])
 </DIV>
 <P> A much improved set of code can be found in the Lua distribution <TT>
 src/lua/lua.c</TT>. Include your module, just add the external
- declaration &amp; add a <TT>#define LUA_EXTRALIBS
- {&quot;example&quot;,luaopen_example}</TT>, at the relevant place.</P>
+ declaration &amp; add a <TT>#define LUA_EXTRALIBS {&quot;example&quot;,
+ luaopen_example}</TT>, at the relevant place.</P>
 <P> The exact commands for compiling and linking vary from platform to
  platform. Here is a possible set of commands of doing this:</P>
 <DIV class="shell">
@@ -37675,8 +37855,8 @@ require(&quot;example&quot;)
  function, which you then call to initialise the module</P>
 <DIV class="targetlang">
 <PRE>
-my_init=loadlib(&quot;example.so&quot;,&quot;luaopen_example&quot;) -- for Unix/Linux
---my_init=loadlib(&quot;example.dll&quot;,&quot;luaopen_example&quot;) -- for Windows
+my_init=loadlib(&quot;example.so&quot;, &quot;luaopen_example&quot;) -- for Unix/Linux
+--my_init=loadlib(&quot;example.dll&quot;, &quot;luaopen_example&quot;) -- for Windows
 assert(my_init) -- make sure it's not nil
 my_init()       -- call the init fn of the lib
 </PRE>
@@ -37684,7 +37864,7 @@ my_init()       -- call the init fn of the lib
 <P> Or can be done in a single line of Lua code</P>
 <DIV class="targetlang">
 <PRE>
-assert(loadlib(&quot;example.so&quot;,&quot;luaopen_example&quot;))()
+assert(loadlib(&quot;example.so&quot;, &quot;luaopen_example&quot;))()
 </PRE>
 </DIV>
 <P> If the code didn't work, don't panic. The best thing to do is to
@@ -37693,9 +37873,9 @@ assert(loadlib(&quot;example.so&quot;,&quot;luaopen_example&quot;))()
  all this code is case sensitive).</P>
 <DIV class="targetlang">
 <PRE>
-a,b,c=package.loadlib(&quot;example.so&quot;,&quot;luaopen_example&quot;) -- for Unix/Linux
---a,b,c=package.loadlib(&quot;example.dll&quot;,&quot;luaopen_example&quot;) -- for Windows
-print(a,b,c)
+a, b, c=package.loadlib(&quot;example.so&quot;, &quot;luaopen_example&quot;) -- for Unix/Linux
+--a, b, c=package.loadlib(&quot;example.dll&quot;, &quot;luaopen_example&quot;) -- for Windows
+print(a, b, c)
 </PRE>
 </DIV>
 <P> Note: for Lua 5.0:
@@ -37727,7 +37907,7 @@ print(a,b,c)
 <DIV class="targetlang">
 <PRE>
 $ ./my_lua
-&gt; print(example.gcd(4,6))
+&gt; print(example.gcd(4, 6))
 2
 &gt; print(example.Foo)
 3
@@ -37773,7 +37953,7 @@ int fact(int n);</PRE>
  be removed in the near future.</P>
 <DIV class="targetlang">
 <PRE>
-&gt; for k,v in pairs(example) do _G[k]=v end
+&gt; for k, v in pairs(example) do _G[k]=v end
 &gt; print(fact(4))
 24
 &gt;
@@ -37813,7 +37993,7 @@ extern double Foo;
 &gt; print(c)
 3
 &gt; c=5 -- this will not effect the original example.Foo
-&gt; print(example.Foo,c)
+&gt; print(example.Foo, c)
 4    5
 </PRE>
 </DIV>
@@ -37900,7 +38080,7 @@ nil
 <PRE>%module example
 %constant int ICONST=42;
 #define    SCONST      &quot;Hello World&quot;
-enum Days{SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY};
+enum Days{SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY};
 </PRE>
 </DIV>
 <P> This is 'effectively' converted into the following Lua code:</P>
@@ -38008,8 +38188,8 @@ int fclose(FILE *);
  from Lua. For example:</P>
 <DIV class="targetlang">
 <PRE>
-&gt; f=example.fopen(&quot;junk&quot;,&quot;w&quot;)
-&gt; example.fputs(&quot;Hello World&quot;,f)
+&gt; f=example.fopen(&quot;junk&quot;, &quot;w&quot;)
+&gt; example.fputs(&quot;Hello World&quot;, f)
 &gt; example.fclose(f)
 </PRE>
 </DIV>
@@ -38036,7 +38216,7 @@ FILE * -- it's a FILE*
  NULL pointer, this is not encoded as a userdata, but as a Lua nil.</P>
 <DIV class="targetlang">
 <PRE>
-&gt; f=example.fopen(&quot;not there&quot;,&quot;r&quot;) -- this will return a NULL in C
+&gt; f=example.fopen(&quot;not there&quot;, &quot;r&quot;) -- this will return a NULL in C
 &gt; print(f)
 nil
 </PRE>
@@ -38047,7 +38227,7 @@ nil
  interface. For example,</P>
 <DIV class="code">
 <PRE>struct Point{
-  int x,y;
+  int x, y;
 };
 </PRE>
 </DIV>
@@ -38057,7 +38237,7 @@ nil
 &gt; p=example.new_Point()
 &gt; p.x=3
 &gt; p.y=5
-&gt; print(p.x,p.y)
+&gt; print(p.x, p.y)
 3       5
 &gt;
 </PRE>
@@ -38409,8 +38589,8 @@ public:
 <P> When wrapped, it works like you expect:</P>
 <DIV class="targetlang">
 <PRE>
-&gt; c = Complex(3,4)
-&gt; d = Complex(7,8)
+&gt; c = Complex(3, 4)
+&gt; d = Complex(7, 8)
 &gt; e = c + d
 &gt; e:re()
 10.0
@@ -38468,13 +38648,13 @@ Complex operator+(double, const Complex &amp;c);
 <LI><TT>__le__</TT> operator<TT>&lt;=</TT></LI>
 </UL>
 <P> Note: in Lua, only the equals, less than, and less than equals
- operators are defined. The other operators (!=,&gt;,&gt;=) are achieved by
+ operators are defined. The other operators (!=, &gt;, &gt;=) are achieved by
  using a logical not applied to the results of other operators.</P>
 <P> The following operators cannot be overloaded (mainly because they
  are not supported in Lua)</P>
 <UL>
 <LI>++ and --</LI>
-<LI>+=,-=,*= etc</LI>
+<LI>+=, -=, *= etc</LI>
 <LI>% operator (you have to use math.mod)</LI>
 <LI>assignment operator</LI>
 <LI>all bitwise/logical operations</LI>
@@ -38488,7 +38668,7 @@ print()</TT> and <TT>tostring()</TT> functions in Lua. Assuming the
 <PRE>const char* __str__()
 {
         static char buffer[255];
-        sprintf(buffer,&quot;Complex(%g,%g)&quot;,this-&gt;re(),this-&gt;im());
+        sprintf(buffer, &quot;Complex(%g, %g)&quot;, this-&gt;re(), this-&gt;im());
         return buffer;
 }
 </PRE>
@@ -38496,14 +38676,14 @@ print()</TT> and <TT>tostring()</TT> functions in Lua. Assuming the
 <P> Then this will support the following code in Lua</P>
 <DIV class="targetlang">
 <PRE>
-&gt; c = Complex(3,4)
-&gt; d = Complex(7,8)
+&gt; c = Complex(3, 4)
+&gt; d = Complex(7, 8)
 &gt; e = c + d
 &gt; print(e)
-Complex(10,12)
+Complex(10, 12)
 &gt; s=tostring(e) -- s is the number in string form
 &gt; print(s)
-Complex(10,12)
+Complex(10, 12)
 </PRE>
 </DIV>
 <P> It is also possible to overload the operator<TT>[]</TT>, but
@@ -38515,7 +38695,7 @@ __getitem__()</TT> and <TT>__setitem__()</TT></P>
 {
         //....
         double __getitem__(int i)const; // i is the index, returns the data
-        void __setitem__(int i,double d); // i is the index, d is the data
+        void __setitem__(int i, double d); // i is the index, d is the data
 };
 </PRE>
 </DIV>
@@ -38575,7 +38755,7 @@ public:
 <PRE>%extend Complex {
   const char *__str__() {
     static char tmp[1024];
-    sprintf(tmp,&quot;Complex(%g,%g)&quot;, $self-&gt;re(),$self-&gt;im());
+    sprintf(tmp, &quot;Complex(%g, %g)&quot;, $self-&gt;re(), $self-&gt;im());
     return tmp;
   }
   bool operator==(const Complex&amp; c) {
@@ -38587,14 +38767,14 @@ public:
 <P> Now, in Lua</P>
 <DIV class="targetlang">
 <PRE>
-&gt; c = Complex(3,4)
-&gt; d = Complex(7,8)
+&gt; c = Complex(3, 4)
+&gt; d = Complex(7, 8)
 &gt; e = c + d
 &gt; print(e)      -- print uses __str__ to get the string form to print
-Complex(10,12)
-&gt; print(e==Complex(10,12))      -- testing the == operator
+Complex(10, 12)
+&gt; print(e==Complex(10, 12))  -- testing the == operator
 true
-&gt; print(e!=Complex(12,12))  -- the != uses the == operator
+&gt; print(e!=Complex(12, 12))  -- the != uses the == operator
 true
 </PRE>
 </DIV>
@@ -38648,14 +38828,14 @@ struct pair {
   ~pair();
 };
 
-%template(pairii) pair&lt;int,int&gt;;
+%template(pairii) pair&lt;int, int&gt;;
 </PRE>
 </DIV>
 <P> In Lua:</P>
 <DIV class="targetlang">
 <PRE>
-&gt; p = example.pairii(3,4)
-&gt; print(p.first,p.second)
+&gt; p = example.pairii(3, 4)
+&gt; print(p.first, p.second)
 3    4
 </PRE>
 </DIV>
@@ -38750,11 +38930,11 @@ stack traceback:
 <PRE>
 &gt; function a() b() end -- function a() calls function b()
 &gt; function b() message() end -- function b() calls C++ function message(), which throws 
-&gt; ok,res=pcall(a)  -- call the function
-&gt; print(ok,res)
+&gt; ok, res=pcall(a)  -- call the function
+&gt; print(ok, res)
 false   I died.
-&gt; ok,res=xpcall(a,debug.traceback)  -- call the function
-&gt; print(ok,res)
+&gt; ok, res=xpcall(a, debug.traceback)  -- call the function
+&gt; print(ok, res)
 false   I died.
 stack traceback:
         [C]: in function 'message'
@@ -38807,7 +38987,7 @@ stack traceback:
 <PRE>
 %typemap(throws) my_except
 %{ 
-  lua_pushstring(L,$1.what()); // assuming my_except::what() returns a const char* message
+  lua_pushstring(L, $1.what()); // assuming my_except::what() returns a const char* message
   SWIG_fail; // trigger the error handler
 %}
 </PRE>
@@ -38824,14 +39004,14 @@ class Exc {
 public:
   Exc(int c, const char *m) {
     code = c;
-    strncpy(msg,m,256);
+    strncpy(msg, m, 256);
   }
   int code;
   char msg[256];
 };
 
 void throw_exc() throw(Exc) {
-  throw(Exc(42,&quot;Hosed&quot;));
+  throw(Exc(42, &quot;Hosed&quot;));
 } 
 </PRE>
 </DIV>
@@ -38839,12 +39019,12 @@ void throw_exc() throw(Exc) {
  error so we can process the exception).</P>
 <DIV class="targetlang">
 <PRE>
-&gt; ok,res=pcall(throw_exc)
+&gt; ok, res=pcall(throw_exc)
 &gt; print(ok)
 false
 &gt; print(res)
 userdata: 0003D880
-&gt; print(res.code,res.msg)
+&gt; print(res.code, res.msg)
 42      Hosed
 &gt;
 </PRE>
@@ -39038,8 +39218,8 @@ function
 <PRE>%module example
 
 %typemap(in) int {
-  $1 = (int) lua_tonumber(L,$input);
-  printf(&quot;Received an integer : %d\n&quot;,$1);
+  $1 = (int) lua_tonumber(L, $input);
+  printf(&quot;Received an integer : %d\n&quot;, $1);
 }
 %inline %{
 extern int fact(int n);
@@ -39108,13 +39288,13 @@ void swap(int *sx, int *sy);
 <P>When wrapped, it gives the following results:</P>
 <DIV class="targetlang">
 <PRE>&gt; require &quot;example&quot;
-&gt; print(example.add(1,2))
+&gt; print(example.add(1, 2))
 3
-&gt; print(demo.sub(1,2))
+&gt; print(demo.sub(1, 2))
 -1
-&gt; a,b=1,2
-&gt; c,d=demo.swap(a,b)
-&gt; print(a,b,c,d)
+&gt; a, b=1, 2
+&gt; c, d=demo.swap(a, b)
+&gt; print(a, b, c, d)
 1       2       2       1
 </PRE>
 </DIV>
@@ -39154,13 +39334,13 @@ carrays.i</A> documentation.</P>
 <PRE>// using the C-array
 %include &lt;carrays.i&gt;
 // this declares a batch of function for manipulating C integer arrays
-%array_functions(int,int)
+%array_functions(int, int)
 
 extern void sort_int(int* arr, int len); // the function to wrap
 
 // using typemaps
 %include &lt;typemaps.i&gt;
-%apply (double *INOUT,int) {(double* arr,int len)};
+%apply (double *INOUT, int) {(double* arr, int len)};
 
 extern void sort_double(double* arr, int len); // the function to wrap
 </PRE>
@@ -39173,16 +39353,16 @@ ARRAY_SIZE=10
 
 -- passing a C array to the sort_int()
 arr=example.new_int(ARRAY_SIZE) -- create the array
-for i=0,ARRAY_SIZE-1 do -- index 0..9 (just like C)
-    example.int_setitem(arr,i,math.random(1000))
+for i=0, ARRAY_SIZE-1 do -- index 0..9 (just like C)
+    example.int_setitem(arr, i, math.random(1000))
 end
-example.sort_int(arr,ARRAY_SIZE)  -- call the function
+example.sort_int(arr, ARRAY_SIZE)  -- call the function
 example.delete_int(arr) -- must delete the allocated memory
 
 -- use a typemap to call with a Lua-table
 -- one item of note: the typemap creates a copy, rather than edit-in-place
 t={} -- a Lua table
-for i=1,ARRAY_SIZE do -- index 1..10 (Lua style)
+for i=1, ARRAY_SIZE do -- index 1..10 (Lua style)
     t[i]=math.random(1000)/10
 end
 t=example.sort_double(t) -- replace t with the result
@@ -39235,7 +39415,7 @@ int Create_Math(iMath** pptr); // its creator (assume it mallocs)
 </DIV>
 <P>The usage is as follows:</P>
 <DIV class="targetlang">
-<PRE>ok,ptr=Create_Math() -- ptr is an iMath* which is returned with the int (ok)
+<PRE>ok, ptr=Create_Math() -- ptr is an iMath* which is returned with the int (ok)
 ptr=nil -- the iMath* will be GC'ed as normal
 </PRE>
 </DIV>
@@ -39270,8 +39450,8 @@ ptr=nil -- the iMath* will be GC'ed as normal
 <H3><A name="Lua_nn31">28.5.2 SWIG's Lua-C API</A></H3>
 <P>This section explains the SWIG specific Lua-C API. It does not cover
  the main Lua-C api, as this is well documented and not worth covering.</P>
-<P><TT>int SWIG_ConvertPtr(lua_State* L,int index,void**
- ptr,swig_type_info *type,int flags);</TT></P>
+<P><TT>int SWIG_ConvertPtr(lua_State* L, int index, void** ptr,
+ swig_type_info *type, int flags);</TT></P>
 <DIV class="indent"> This is the standard function used for converting a
  Lua userdata to a void*. It takes the value at the given index in the
  Lua state and converts it to a userdata. It will then provide the
@@ -39281,14 +39461,14 @@ ptr=nil -- the iMath* will be GC'ed as normal
  ownership flag set on the object.
 <BR> This returns a value which can be checked with the macro
  SWIG_IsOK()</DIV>
-<P><TT>void SWIG_NewPointerObj(lua_State* L,void* ptr,swig_type_info
- *type,int own);</TT></P>
+<P><TT>void SWIG_NewPointerObj(lua_State* L, void* ptr, swig_type_info
+ *type, int own);</TT></P>
 <DIV class="indent"> This is the opposite of SWIG_ConvertPtr, as it
  pushes a new userdata which wrappers the pointer 'ptr' of type 'type'.
  The parameter 'own' specifies if the object is owned be Lua and if it
  is 1 then Lua will GC the object when the userdata is disposed of.</DIV>
-<P><TT>void* SWIG_MustGetPtr(lua_State* L,int index,swig_type_info
- *type,int flags,int argnum,const char* func_name);</TT></P>
+<P><TT>void* SWIG_MustGetPtr(lua_State* L, int index, swig_type_info
+ *type, int flags, int argnum, const char* func_name);</TT></P>
 <DIV class="indent"> This function is a version of SWIG_ConvertPtr(),
  except that it will either work, or it will trigger a lua_error() with
  a text error message. This function is rarely used, and may be
@@ -39302,11 +39482,11 @@ ptr=nil -- the iMath* will be GC'ed as normal
 <BR>
 <PRE>
 if (!SWIG_IsOK(SWIG_ConvertPtr( .....)){
- lua_pushstring(L,&quot;something bad happened&quot;);
+ lua_pushstring(L, &quot;something bad happened&quot;);
  SWIG_fail;
 }</PRE>
 </DIV>
-<P><TT>SWIG_fail_arg(char* func_name,int argnum,char* type)</TT></P>
+<P><TT>SWIG_fail_arg(char* func_name, int argnum, char* type)</TT></P>
 <DIV class="indent"> This macro, when called within the context of a
  SWIG wrapped function, will display the error message and jump to the
  error handler code. The error message is of the form
@@ -39314,7 +39494,7 @@ if (!SWIG_IsOK(SWIG_ConvertPtr( .....)){
 &quot;Error in <I>func_name</I> (arg <I>argnum</I>), expected '<I>type</I>' got '<I>whatever the type was</I>'&quot;
 </PRE>
 </DIV>
-<P><TT>SWIG_fail_ptr(const char* fn_name,int argnum,swig_type_info*
+<P><TT>SWIG_fail_ptr(const char* fn_name, int argnum, swig_type_info*
  type);</TT></P>
 <DIV class="indent"> Similar to SWIG_fail_arg, except that it will
  display the swig_type_info information instead.</DIV>
@@ -39410,24 +39590,24 @@ double Foo_get();
 &gt; print(example)
 table: 003F8F90
 &gt; m=getmetatable(example)
-&gt; table.foreach(m,print)
+&gt; table.foreach(m, print)
 .set    table: 003F9088
 .get    table: 003F9038
 __index function: 003F8FE0
 __newindex      function: 003F8FF8
 &gt; g=m['.get']
-&gt; table.foreach(g,print)
+&gt; table.foreach(g, print)
 Foo     function: 003FAFD8
 &gt;
 </PRE>
 </DIV>
 <P> The .get and .set tables are lookups connecting the variable name
- 'Foo' to the accessor/mutator functions (Foo_set,Foo_get)</P>
+ 'Foo' to the accessor/mutator functions (Foo_set, Foo_get)</P>
 <P> The Lua equivalent of the code for the <TT>__index</TT> and <TT>
 __newindex</TT> looks a bit like this</P>
 <DIV class="targetlang">
 <PRE>
-function __index(mod,name)
+function __index(mod, name)
         local g=getmetatable(mod)['.get'] -- gets the table
         if not g then return nil end
         local f=g[name] -- looks for the function
@@ -39436,13 +39616,13 @@ function __index(mod,name)
         return nil
 end
 
-function __newindex(mod,name,value)
+function __newindex(mod, name, value)
         local s=getmetatable(mod)['.set'] -- gets the table
         if not s then return end
         local f=s[name] -- looks for the function
         -- calls it to set the value
         if type(f)==&quot;function&quot; then f(value)
-        else rawset(mod,name,value) end
+        else rawset(mod, name, value) end
 end
 </PRE>
 </DIV>
@@ -39472,10 +39652,10 @@ end
 class Point
 {
 public:
- int x,y;
+ int x, y;
  Point(){x=y=0;}
  ~Point(){}
- virtual void Print(){printf(&quot;Point @%p (%d,%d)\n&quot;,this,x,y);}
+ virtual void Print(){printf(&quot;Point @%p (%d, %d)\n&quot;, this, x, y);}
 };
 </PRE>
 </DIV>
@@ -39497,7 +39677,7 @@ public:
 &gt; print(p)
 userdata: 003FDB28
 &gt; m=getmetatable(p)
-&gt; table.foreach(m,print)
+&gt; table.foreach(m, print)
 .type   Point
 __gc    function: 003FB6C8
 __newindex      function: 003FB6B0
@@ -39515,7 +39695,7 @@ __index function: 003FB698
  like this</P>
 <DIV class="targetlang">
 <PRE>
-function __index(obj,name)
+function __index(obj, name)
         local m=getmetatable(obj) -- gets the metatable
         if not m then return nil end
         local g=m['.get'] -- gets the attribute table
@@ -39903,7 +40083,7 @@ C++ library</TD></TR>
 <TR><TD>m3wrapretvar</TD><TD></TD><TD></TD></TR>
 <TR><TD>m3wrapretconv</TD><TD></TD><TD></TD></TR>
 <TR><TD>m3wrapretcheck</TD><TD></TD><TD></TD></TR>
-<TR><TD>m3wrapfreearg</TD><TD><TT>M3toC.FreeSharedS(str,arg1);</TT></TD><TD>
+<TR><TD>m3wrapfreearg</TD><TD><TT>M3toC.FreeSharedS(str, arg1);</TT></TD><TD>
  Free resources that were temporarily used in the wrapper. Since this
  step should never be skipped, SWIG will put it in the <TT>FINALLY</TT>
  branch of a <TT>TRY .. FINALLY</TT> structure.</TD></TR>
@@ -40005,7 +40185,7 @@ throws</TT> extension. If the typemap <TT>m3wrapinconv</TT> for <TT>blah
           RAISE E(&quot;invalid checksum&quot;);
         END;
       FINALLY
-        M3toC.FreeSharedS(str,arg1);     <I>(* m3wrapfreearg *)</I>
+        M3toC.FreeSharedS(str, arg1);     <I>(* m3wrapfreearg *)</I>
       END;
     END Name;
 </PRE>
@@ -40023,7 +40203,7 @@ RECORD</TT> contains all arguments with &quot;out&quot; direction including the
 multiretval</TT> feature activated, but it is explicitly requested from
  the user to prevent mistakes.</TD></TR>
 <TR><TD>constnumeric</TD><TD><TT>%constnumeric(12) twelve;</TT> or <TT>
-%feature(&quot;constnumeric&quot;,&quot;12&quot;) twelve;</TT></TD><TD>This feature can be
+%feature(&quot;constnumeric&quot;, &quot;12&quot;) twelve;</TT></TD><TD>This feature can be
  used to tell Modula-3's back-end of SWIG the value of an identifier.
  This is necessary in the cases where it was defined by a non-trivial C
  expression. This feature is used by the <TT>-generateconst</TT> <A href="#Modula3_commandline">
@@ -40065,13 +40245,13 @@ Specifies the library name for the wrapper library to be created. It
 <DIV class="code">
 <PRE>
 /* define a macro for the struct creation */
-%define handle_ptr(TYPE,NAME)
+%define handle_ptr(TYPE, NAME)
 %typemap(argout) TYPE *NAME{
   Scheme_Object *o = SWIG_NewStructFromPtr($1, $*1_mangle);
   SWIG_APPEND_VALUE(o);
 }
 
-%typemap(in,numinputs=0) TYPE *NAME (TYPE temp) {
+%typemap(in, numinputs=0) TYPE *NAME (TYPE temp) {
   $1 = &amp;temp;
 }
 %enddef
@@ -40267,10 +40447,10 @@ here</A>.</P>
 <H2><A name="Ocaml_nn2">31.1 Preliminaries</A></H2>
 <P> SWIG 3.0 works with Ocaml 3.08.3 and above. Given the choice, you
  should use the latest stable release. The SWIG Ocaml module has been
- tested on Linux (x86,PPC,Sparc) and Cygwin on Windows. The best way to
- determine whether your system will work is to compile the examples and
- test-suite which come with SWIG. You can do this by running <TT>make
- check</TT> from the SWIG root directory after installing SWIG. The
+ tested on Linux (x86, PPC, Sparc) and Cygwin on Windows. The best way
+ to determine whether your system will work is to compile the examples
+ and test-suite which come with SWIG. You can do this by running <TT>
+make check</TT> from the SWIG root directory after installing SWIG. The
  Ocaml module has been tested using the system's dynamic linking (the
  usual -lxxx against libxxx.so, as well as with Gerd Stolpmann's <A href="http://download.camlcity.org/download/">
 Dl package</A>. The ocaml_dynamic and ocaml_dynamic_cpp targets in the
@@ -40434,7 +40614,7 @@ type c_obj =
  wants from a function. This enables out typemaps and inout typemaps to
  work well. The one thing to remember about outputting values is that
  you must append them to the return list with swig_result =
- caml_list_append(swig_result,v).</P>
+ caml_list_append(swig_result, v).</P>
 <P> This function will return a new list that has your element appended.
  Upon return to caml space, the fnhelper function beautifies the result.
  A list containing a single item degrades to only that item (i.e. [
@@ -40561,7 +40741,7 @@ val x : Enum_test.c_obj = C_enum `a
  completely general way by SWIG, because the end-condition of such an
  array can't be predicted. In some cases, it will be by consent (e.g. an
  array of four or more chars), sometimes by explicit length (char
- *buffer, int len), and sometimes by sentinel value (0,-1,etc.). SWIG
+ *buffer, int len), and sometimes by sentinel value (0, -1, etc.). SWIG
  can't predict which of these methods will be used in the array, so you
  have to specify it for yourself in the form of a typemap.</P>
 <H4><A name="Ocaml_nn15">31.2.3.3 Using an object</A></H4>
@@ -40607,7 +40787,7 @@ void printfloats( float *tab, int len ) {
   $2 = caml_array_len($input);
   $1 = ($*1_type *)malloc( $2 * sizeof( float ) );
   for( i = 0; i &lt; $2; i++ ) {
-    $1[i] = caml_double_val(caml_array_nth($input,i));
+    $1[i] = caml_double_val(caml_array_nth($input, i));
   }
 }
 
@@ -40718,7 +40898,7 @@ C_list
 - : Example.c_obj = C_void
 # x '[1] ;;
 - : Example.c_obj = C_string &quot;bar&quot;
-# x -&gt; set (1,&quot;spam&quot;) ;;
+# x -&gt; set (1, &quot;spam&quot;) ;;
 - : Example.c_obj = C_void
 # x '[1] ;;
 - : Example.c_obj = C_string &quot;spam&quot;
@@ -40788,11 +40968,11 @@ bash-2.05a$ ./qt_top
 
 # open Swig ;;
 # open Qt ;;
-# let a = new_QApplication '(0,0) ;;
+# let a = new_QApplication '(0, 0) ;;
 val a : Qt.c_obj = C_obj &lt;fun&gt;
-# let hello = new_QPushButton '(&quot;hi&quot;,0) ;;
+# let hello = new_QPushButton '(&quot;hi&quot;, 0) ;;
 val hello : Qt.c_obj = C_obj &lt;fun&gt;
-# hello -&gt; resize (100,30) ;;
+# hello -&gt; resize (100, 30) ;;
 - : Qt.c_obj = C_void
 # hello -&gt; show () ;;
 - : Qt.c_obj = C_void
@@ -40869,7 +41049,7 @@ let triangle_class pts ob meth args =
 let triangle =
   new_derived_object
     new_shape
-    (triangle_class ((0.0,0.0),(0.5,1.0),(1.0,0.0)))
+    (triangle_class ((0.0, 0.0), (0.5, 1.0), (1.0, 0.0)))
     '() ;;
 
 let _ = _draw_shape_coverage '(triangle, C_int 60, C_int 20) ;;
@@ -40905,7 +41085,7 @@ let _ = _draw_shape_coverage '(triangle, C_int 60, C_int 20) ;;
 let triangle =
   new_derived_object
     new_shape
-    (triangle_class ((0.0,0.0),(0.5,1.0),(1.0,0.0)))
+    (triangle_class ((0.0, 0.0), (0.5, 1.0), (1.0, 0.0)))
     '()
 </PRE>
 </DIV>
@@ -41023,11 +41203,15 @@ let triangle =
  Examples/octave directory, and hundreds in the test suite
  (Examples/test-suite and Examples/test-suite/octave).</P>
 <H2><A name="Octave_nn2">32.1 Preliminaries</A></H2>
-<P> As of SWIG 3.0.7, the Octave module is regularly tested with Octave
- versions 3.2.4, 3.8.1, and 4.0.0. Use of older Octave versions is not
- recommended, as these versions are no longer tested with SWIG. The SWIG
- runtime exports the function <TT>swig_octave_prereq()</TT> for checking
- the version of Octave.</P>
+<P> SWIG is regularly tested against the following versions of Octave:
+ 3.8, 4.0, 4.2.</P>
+<P> Every effort is made to maintain backward compatibility with older
+ versions of Octave. This cannot be guaranteed however, as in recent
+ times new Octave releases have required nontrivial updates to SWIG,
+ which may break backward compatibility for older Octave versions
+ against which SWIG is not regularly tested.</P>
+<P> The SWIG runtime exports the function <TT>swig_octave_prereq()</TT>
+ for checking the version of Octave.</P>
 <H2><A name="Octave_nn3">32.2 Running SWIG</A></H2>
 <P> Let's start with a very simple SWIG interface file, example.i:</P>
 <DIV class="code">
@@ -41099,7 +41283,7 @@ $ mkoctfile example_wrap.cpp example.c
 <DIV class="targetlang">
 <PRE>$ octave -q
 octave:1&gt; swigexample
-octave:2&gt; swigexample.gcd(4,6)
+octave:2&gt; swigexample.gcd(4, 6)
 ans =  2
 octave:3&gt; swigexample.cvar.Foo
 ans =  3
@@ -41123,7 +41307,7 @@ ans =  4 </PRE>
 <DIV class="targetlang">
 <PRE>
 octave:1&gt; swigexample;
-octave:2&gt; gcd(4,6)
+octave:2&gt; gcd(4, 6)
 ans =  2
 octave:3&gt; cvar.Foo
 ans =  3
@@ -41137,16 +41321,16 @@ ans =  4
  context, however, it must first be loaded again:</P>
 <DIV class="targetlang">
 <PRE>
-octave:1&gt; function l = my_lcm(a,b)
+octave:1&gt; function l = my_lcm(a, b)
 &gt; swigexample
-&gt; l = abs(a*b)/swigexample.gcd(a,b);
+&gt; l = abs(a*b)/swigexample.gcd(a, b);
 &gt; endfunction
-octave:2&gt; my_lcm(4,6)
+octave:2&gt; my_lcm(4, 6)
 ans =  12
-octave:3&gt; swigexample.gcd(4,6)
+octave:3&gt; swigexample.gcd(4, 6)
 error: can't perform indexing operations for &lt;unknown type&gt; type
 octave:3&gt; swigexample;
-octave:4&gt; swigexample.gcd(4,6)
+octave:4&gt; swigexample.gcd(4, 6)
 ans =  2
 </PRE>
 </DIV>
@@ -41225,7 +41409,7 @@ ans =  3.1420 </PRE>
 <PRE>%module swigexample
 %constant int ICONST=42;
 #define    SCONST      &quot;Hello World&quot;
-enum Days{SUNDAY,MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY};
+enum Days{SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY};
 </PRE>
 </DIV>
 <P> This is 'effectively' converted into the following Octave code:</P>
@@ -41253,8 +41437,8 @@ int fclose(FILE *);
 <DIV class="targetlang">
 <PRE>
 octave:1&gt; swigexample;
-octave:2&gt; f=swigexample.fopen(&quot;w&quot;,&quot;junk&quot;);
-octave:3&gt; swigexample.fputs(&quot;Hello world&quot;,f);
+octave:2&gt; f=swigexample.fopen(&quot;w&quot;, &quot;junk&quot;);
+octave:3&gt; swigexample.fputs(&quot;Hello world&quot;, f);
 octave:4&gt; swigexample.fclose(f);
 </PRE>
 </DIV>
@@ -41262,7 +41446,7 @@ octave:4&gt; swigexample.fclose(f);
  typename. E.g.,</P>
 <DIV class="targetlang">
 <PRE>octave:1&gt; swigexample;
-octave:2&gt; f=swigexample.fopen(&quot;junk&quot;,&quot;w&quot;);
+octave:2&gt; f=swigexample.fopen(&quot;junk&quot;, &quot;w&quot;);
 octave:3&gt; f
 f =
 
@@ -41276,7 +41460,7 @@ f =
  below).</P>
 <DIV class="targetlang">
 <PRE>octave:1&gt; swigexample;
-octave:2&gt; f=swigexample.fopen(&quot;not there&quot;,&quot;r&quot;);
+octave:2&gt; f=swigexample.fopen(&quot;not there&quot;, &quot;r&quot;);
 error: value on right hand side of assignment is undefined
 error: evaluating assignment expression near line 2, column 2 </PRE>
 </DIV>
@@ -41291,7 +41475,7 @@ swig_ref</TT> will be exposed that has the name of the type. When
  natural interface. For example,</P>
 <DIV class="code">
 <PRE>struct Point{
-  int x,y;
+  int x, y;
 };
 </PRE>
 </DIV>
@@ -41318,12 +41502,12 @@ ans =  5
 <DIV class="code">
 <PRE>class Point{
 public:
-  int x,y;
-  Point(int _x,int _y) : x(_x),y(_y) {}
+  int x, y;
+  Point(int _x, int _y) : x(_x), y(_y) {}
   double distance(const Point&amp; rhs) {
-    return sqrt(pow(x-rhs.x,2)+pow(y-rhs.y,2));
+    return sqrt(pow(x-rhs.x, 2)+pow(y-rhs.y, 2));
   }
-  void set(int _x,int _y) {
+  void set(int _x, int _y) {
     x=_x; y=_y;
   }
 };
@@ -41332,8 +41516,8 @@ public:
 <P> can be used from Octave like this</P>
 <DIV class="targetlang">
 <PRE>octave:1&gt; swigexample;
-octave:2&gt; p1=swigexample.Point(3,5);
-octave:3&gt; p2=swigexample.Point(1,2);
+octave:2&gt; p1=swigexample.Point(3, 5);
+octave:3&gt; p2=swigexample.Point(1, 2);
 octave:4&gt; p1.distance(p2)
 ans =  3.6056
 </PRE>
@@ -41359,7 +41543,7 @@ ans = Point
  does not modify <TT>a</TT>,</P>
 <DIV class="targetlang">
 <PRE>
-octave:7&gt; a=struct('x',4)
+octave:7&gt; a=struct('x', 4)
 a =
 {
   x =  4
@@ -41388,7 +41572,7 @@ a =
 <P> However, when dealing with wrapped objects, one gets the behavior</P>
 <DIV class="targetlang">
 <PRE>
-octave:2&gt; a=Point(3,5)
+octave:2&gt; a=Point(3, 5)
 a =
 
 {
@@ -41402,7 +41586,7 @@ b =
   Point, ptr = 0x9afbbb0
 }
 
-octave:4&gt; b.set(2,1);
+octave:4&gt; b.set(2, 1);
 octave:5&gt; b.x, b.y
 ans =  2
 ans =  1
@@ -41545,7 +41729,7 @@ __el_or__      a | b
 <P> You can use it to define special behavior, like for example defining
  Octave operators not mapped to C++ operators, or defining certain
  Octave mechanisms such as how an object prints. For example, the <TT>
-octave_value::{is_string,string_value,print}</TT> functions are routed
+octave_value::{is_string, string_value, print}</TT> functions are routed
  to a special method <TT>__str__</TT> that can be defined inside an
  %extend.</P>
 <DIV class="code">
@@ -41565,7 +41749,7 @@ string __str__() {
 octave:1&gt; a=A(4);
 octave:2&gt; a
 a = 4
-octave:3&gt; printf(&quot;%s\n&quot;,a);
+octave:3&gt; printf(&quot;%s\n&quot;, a);
 4
 octave:4&gt; a.__str__()
 4
@@ -41592,7 +41776,7 @@ octave:4&gt; a.__str__()
 <PRE>%module swigexample
 %inline {
   template&lt;class __scalar&gt;
-    __scalar mul(__scalar a,__scalar b) {
+    __scalar mul(__scalar a, __scalar b) {
     return a*b;
   }
 }
@@ -41604,11 +41788,11 @@ octave:4&gt; a.__str__()
 <P> and then used from Octave</P>
 <DIV class="targetlang">
 <PRE>
-octave:1&gt; mul(4,3)
+octave:1&gt; mul(4, 3)
 ans =  12
-octave:2&gt; mul(4.2,3.6)
+octave:2&gt; mul(4.2, 3.6)
 ans =  15.120
-octave:3&gt; mul(3+4i,10+2i)
+octave:3&gt; mul(3+4i, 10+2i)
 ans =  22 + 46i
 </PRE>
 </DIV>
@@ -41646,11 +41830,11 @@ octave:2&gt; a=sum_complex(2+3i);
 octave:3&gt; a.add(2)
 ans =
 
-(4,3)
+(4, 3)
 octave:4&gt; a.add(3+i)
 ans =
 
-(7,4)
+(7, 4)
 </PRE>
 </DIV>
 <H3><A name="Octave_nn21">32.3.12 C++ Smart Pointers</A></H3>
@@ -41677,7 +41861,7 @@ ans =
 <PRE>
 octave:1&gt; a=subclass();
 octave:2&gt; a.my_var = 4;
-octave:3&gt; a.my_method = @(self) printf(&quot;my_var = &quot;,self.my_var);
+octave:3&gt; a.my_method = @(self) printf(&quot;my_var = &quot;, self.my_var);
 octave:4&gt; a.my_method();
 my_var = 4
 </PRE>
@@ -41702,7 +41886,7 @@ void call_your_method(A&amp; a) {
 <P> Then from Octave you can say:</P>
 <DIV class="targetlang">
 <PRE>
-octave:1&gt; B=@() subclass(A(),@my_method);
+octave:1&gt; B=@() subclass(A(), @my_method);
 octave:2&gt; function my_method(self)
 octave:3&gt;   printf(&quot;octave-side routine called\n&quot;);
 octave:4&gt; end
@@ -41713,7 +41897,7 @@ octave-side routine called
 <P> or more concisely,</P>
 <DIV class="targetlang">
 <PRE>
-octave:1&gt; B=@() subclass(A(),'my_method',@(self) printf(&quot;octave-side routine called\n&quot;));
+octave:1&gt; B=@() subclass(A(), 'my_method', @(self) printf(&quot;octave-side routine called\n&quot;));
 octave:2&gt; call_your_method(B());
 octave-side routine called
 </PRE>
@@ -41721,7 +41905,7 @@ octave-side routine called
 <P> Note that you have to enable directors via the %feature directive
  (see other modules for this).</P>
 <P> <TT>subclass()</TT> will accept any number of C++ bases or other <TT>
-subclass()</TT>'ed objects, <TT>(string,octave_value)</TT> pairs, and <TT>
+subclass()</TT>'ed objects, <TT>(string, octave_value)</TT> pairs, and <TT>
 function_handles</TT>. In the first case, these are taken as base
  classes; in the second case, as named members (either variables or
  functions, depending on whether the given value is a function handle);
@@ -41729,7 +41913,7 @@ function_handles</TT>. In the first case, these are taken as base
  given function handle. E.g.,</P>
 <DIV class="targetlang">
 <PRE>
-octave:1&gt; B=@(some_var=2) subclass(A(),'some_var',some_var,@some_func,'another_func',
+octave:1&gt; B=@(some_var=2) subclass(A(), 'some_var', some_var, @some_func, 'another_func',
 @(self) do_stuff())
 </PRE>
 </DIV>
@@ -41739,7 +41923,7 @@ octave:1&gt; B=@(some_var=2) subclass(A(),'some_var',some_var,@some_func,'anothe
  in the example above, we could have</P>
 <DIV class="targetlang">
 <PRE>
-octave:1&gt; B=@() subclass(A(),@my_method);
+octave:1&gt; B=@() subclass(A(), @my_method);
 octave:2&gt; function my_method(self)
 octave:3&gt;   self.A.my_method();
 octave:4&gt;   printf(&quot;octave-side routine called\n&quot;);
@@ -41806,7 +41990,7 @@ A destructing
  function</P>
 <DIV class="code">
 <PRE>
-double my_det(const double* mat,int m,int n);
+double my_det(const double* mat, int m, int n);
 </PRE>
 </DIV>
 <P> that is accessed from Octave as,</P>
@@ -42077,7 +42261,7 @@ $ gcc example.o example_wrap.o -L/usr/lib/perl/5.14/CORE \
 <PRE>
 $ perl
 use example;
-print example::fact(4),&quot;\n&quot;;
+print example::fact(4), &quot;\n&quot;;
 24
 </PRE>
 </DIV>
@@ -42411,7 +42595,7 @@ double Spam;
 <DIV class="targetlang">
 <PRE>
 use example;
-print $example::Spam,&quot;\n&quot;;
+print $example::Spam, &quot;\n&quot;;
 $example::Spam = $example::Spam + 4
 # ... etc ...
 
@@ -42462,7 +42646,7 @@ extern char *path;       // Declared later in the input
 <DIV class="targetlang">
 <PRE>
 use example;
-print $example::FOO,&quot;\n&quot;;    # OK
+print $example::FOO, &quot;\n&quot;;   # OK
 $example::FOO = 2;           # Error
 </PRE>
 </DIV>
@@ -42473,7 +42657,7 @@ $example::FOO = 2;           # Error
 <DIV class="targetlang">
 <PRE>
 use example;
-print example::FOO,&quot;\n&quot;;
+print example::FOO, &quot;\n&quot;;
 </PRE>
 </DIV>
 <H3><A name="Perl5_nn18">33.4.4 Pointers</A></H3>
@@ -42568,7 +42752,7 @@ NULL</TT> if the conversion can't be performed.</P>
 <DIV class="code">
 <PRE>
 struct Vector {
-  double x,y,z;
+  double x, y, z;
 };
 </PRE>
 </DIV>
@@ -42591,8 +42775,8 @@ void           Vector_z_set(Vector *obj, double z)
 <DIV class="targetlang">
 <PRE>
 $v = example::new_Vector();
-print example::Vector_x_get($v),&quot;\n&quot;;    # Get x component
-example::Vector_x_set($v,7.8);          # Change x component
+print example::Vector_x_get($v), &quot;\n&quot;;   # Get x component
+example::Vector_x_set($v, 7.8);          # Change x component
 </PRE>
 </DIV>
 <P> Similar access is provided for unions and the data members of C++
@@ -42701,14 +42885,14 @@ void     List_print(List *l);
 <PRE>
 use example;
 $l = example::new_List();
-example::List_insert($l,&quot;Ale&quot;);
-example::List_insert($l,&quot;Stout&quot;);
-example::List_insert($l,&quot;Lager&quot;)
+example::List_insert($l, &quot;Ale&quot;);
+example::List_insert($l, &quot;Stout&quot;);
+example::List_insert($l, &quot;Lager&quot;)
 example::List_print($l)
 Lager
 Stout
 Ale
-print example::List_length_get($l),&quot;\n&quot;;
+print example::List_length_get($l), &quot;\n&quot;;
 3
 </PRE>
 </DIV>
@@ -42769,8 +42953,8 @@ public:
 use example;
 example::foo_i(3);
 $s = example::new_Spam();
-example::Spam_foo_i($s,3);
-example::Spam_foo_d($s,3.14);
+example::Spam_foo_i($s, 3);
+example::Spam_foo_d($s, 3.14);
 </PRE>
 </DIV>
 <P> Please refer to the &quot;SWIG Basics&quot; chapter for more information.</P>
@@ -42803,7 +42987,7 @@ example::Spam_foo_d($s,3.14);
 <PRE>
 $ perl5
 use example;                      # load the example module
-print example::fact(4),&quot;\n&quot;       # Call a function in it
+print example::fact(4), &quot;\n&quot;      # Call a function in it
 24
 </PRE>
 </DIV>
@@ -42866,7 +43050,7 @@ all of the functions in that module will be installed into the package
 
 &lt;div class=&quot;targetlang&quot;&gt;&lt;pre&gt;
 use example;   # Load the module like before
-print Foo::fact(4),&quot;\n&quot;;        # Call a function in package FooBar
+print Foo::fact(4), &quot;\n&quot;;        # Call a function in package FooBar
 &lt;/pre&gt;&lt;/div&gt;
 -->
 <H2><A name="Perl5_nn25">33.5 Input and output parameters</A></H2>
@@ -42901,10 +43085,10 @@ int  sub(int *INPUT, int *INPUT);
 <P> In Perl, this allows you to pass simple values. For example:</P>
 <DIV class="targetlang">
 <PRE>
-$a = example::add(3,4);
+$a = example::add(3, 4);
 print &quot;$a\n&quot;;
 7
-$b = example::sub(7,4);
+$b = example::sub(7, 4);
 print &quot;$b\n&quot;;
 3
 </PRE>
@@ -42997,7 +43181,7 @@ void get_dimensions(Matrix *m, int *rows, *columns);
 <P> Now, in Perl:</P>
 <DIV class="targetlang">
 <PRE>
-($r,$c) = example::get_dimensions($m);
+($r, $c) = example::get_dimensions($m);
 </PRE>
 </DIV>
 <P> In certain cases, it is possible to treat Perl references as C
@@ -43015,7 +43199,7 @@ void add(int x, int y, int *REFERENCE);
 <PRE>
 use example;
 $c = 0.0;
-example::add(3,4,\$c);
+example::add(3, 4, \$c);
 print &quot;$c\n&quot;;
 7
 </PRE>
@@ -43221,7 +43405,7 @@ typedef</TT> declarations. For example:</P>
 <PRE>
 %typemap(in) int n {
   $1 = (int) SvIV($input);
-  printf(&quot;n = %d\n&quot;,$1);
+  printf(&quot;n = %d\n&quot;, $1);
 }
 %inline %{
 typedef int Integer;
@@ -43237,7 +43421,7 @@ extern int fact(Integer n);    // Above typemap is applied
 <DIV class="targetlang">
 <PRE>
 %typemap(in) (char *str, unsigned len) {
-    $1 = SvPV($input,$2);
+    $1 = SvPV($input, $2);
 };
 
 int count(char c, char *str, unsigned len);
@@ -43248,7 +43432,7 @@ int count(char c, char *str, unsigned len);
  like this (notice how the length parameter is omitted):</P>
 <DIV class="targetlang">
 <PRE>
-example::count(&quot;e&quot;,&quot;Hello World&quot;);
+example::count(&quot;e&quot;, &quot;Hello World&quot;);
 1
 &gt;&gt;&gt;
 </PRE>
@@ -43394,7 +43578,7 @@ int       sv_isa(SV *, char *0;
   $1 = (char **) malloc((len+2)*sizeof(char *));
   for (i = 0; i &lt;= len; i++) {
     tv = av_fetch(tempav, i, 0);
-    $1[i] = (char *) SvPV(*tv,PL_na);
+    $1[i] = (char *) SvPV(*tv, PL_na);
   }
   $1[i] = NULL;
 };
@@ -43408,16 +43592,16 @@ int       sv_isa(SV *, char *0;
 %typemap(out) char ** {
   AV *myav;
   SV **svs;
-  int i = 0,len = 0;
+  int i = 0, len = 0;
   /* Figure out how many elements we have */
   while ($1[len])
     len++;
   svs = (SV **) malloc(len*sizeof(SV *));
   for (i = 0; i &lt; len ; i++) {
     svs[i] = sv_newmortal();
-    sv_setpv((SV*)svs[i],$1[i]);
+    sv_setpv((SV*)svs[i], $1[i]);
   };
-  myav = av_make(len,svs);
+  myav = av_make(len, svs);
   free(svs);
   $result = newRV_noinc((SV*)myav);
   sv_2mortal($result);
@@ -43429,7 +43613,7 @@ int       sv_isa(SV *, char *0;
   int print_args(char **argv) {
     int i = 0;
     while (argv[i]) {
-      printf(&quot;argv[%d] = %s\n&quot;, i,argv[i]);
+      printf(&quot;argv[%d] = %s\n&quot;, i, argv[i]);
       i++;
     }
     return i;
@@ -43452,7 +43636,7 @@ use argv;
 @a = (&quot;Dave&quot;, &quot;Mike&quot;, &quot;John&quot;, &quot;Mary&quot;);           # Create an array of strings
 argv::print_args(\@a);                           # Pass it to our C function
 $b = argv::get_args();                           # Get array of strings from C
-print @$b,&quot;\n&quot;;                                  # Print it out
+print @$b, &quot;\n&quot;;                                 # Print it out
 </PRE>
 </DIV>
 <H3><A name="Perl5_nn34">33.8.2 Return values</A></H3>
@@ -43469,10 +43653,10 @@ print @$b,&quot;\n&quot;;                                  # Print it out
 <PRE>
 %typemap(argout) int *OUTPUT {
   if (argvi &gt;= items) {
-    EXTEND(sp,1);              /* Extend the stack by 1 object */
+    EXTEND(sp, 1);              /* Extend the stack by 1 object */
   }
   $result = sv_newmortal();
-  sv_setiv($target,(IV) *($1));
+  sv_setiv($target, (IV) *($1));
   argvi++;
 }
 </PRE>
@@ -43496,7 +43680,7 @@ OUTPUT</TT> typemap.</P>
 
 // We don't care what the input value is. Ignore, but set to a temporary variable
 
-%typemap(in,numinputs=0) double *OUTPUT(double junk) {
+%typemap(in, numinputs=0) double *OUTPUT(double junk) {
   $1 = &amp;junk;
 }
 
@@ -43521,9 +43705,9 @@ int multout(double a, double b, double *OUTPUT, double *OUTPUT);
  example:</P>
 <DIV class="targetlang">
 <PRE>
-@r = multout(7,13);
-print &quot;multout(7,13) = @r\n&quot;;
-($x,$y) = multout(7,13);
+@r = multout(7, 13);
+print &quot;multout(7, 13) = @r\n&quot;;
+($x, $y) = multout(7, 13);
 </PRE>
 </DIV>
 <H3><A name="Perl5_nn36">33.8.4 Accessing array structure members</A></H3>
@@ -43595,7 +43779,7 @@ void add(double a, double b, double *c) {
 $a = 3.5;
 $b = 7.5;
 $c = 0.0;          # Output value
-add($a,$b,\$c);    # Place result in c (Except that it doesn't work)
+add($a, $b, \$c);    # Place result in c (Except that it doesn't work)
 </PRE>
 </DIV>
 <P> To make this work with a reference, you can use a typemap such as
@@ -43628,7 +43812,7 @@ add($a,$b,\$c);    # Place result in c (Except that it doesn't work)
 $a = 3.5;
 $b = 7.5;
 $c = 0.0;
-add($a,$b,\$c);            # Now it works!
+add($a, $b, \$c);            # Now it works!
 print &quot;$c\n&quot;;
 
 </PRE>
@@ -43722,7 +43906,7 @@ $ swig -c++ -perl -noproxy example.i
 struct Vector {
   Vector(double x, double y, double z);
   ~Vector();
-  double x,y,z;
+  double x, y, z;
 };
 
 </PRE>
@@ -43760,7 +43944,7 @@ sub new () {
     $OWNER{$self} = 1;
     my %retval;
     tie %retval, &quot;example::Vector&quot;, $self;
-    return bless \%retval,&quot;Vector&quot;;
+    return bless \%retval, &quot;Vector&quot;;
 }
 
 sub DESTROY {
@@ -43774,25 +43958,25 @@ sub DESTROY {
 }
 
 sub FETCH {
-    my ($self,$field) = @_;
+    my ($self, $field) = @_;
     my $member_func = &quot;vectorc::Vector_${field}_get&quot;;
     my $val = &amp;$member_func($self);
     if (exists $BLESSEDMEMBERS{$field}) {
         return undef if (!defined($val));
         my %retval;
-        tie %retval,$BLESSEDMEMBERS{$field},$val;
+        tie %retval, $BLESSEDMEMBERS{$field}, $val;
         return bless \%retval, $BLESSEDMEMBERS{$field};
     }
     return $val;
 }
 
 sub STORE {
-    my ($self,$field,$newval) = @_;
+    my ($self, $field, $newval) = @_;
     my $member_func = &quot;vectorc::Vector_${field}_set&quot;;
     if (exists $BLESSEDMEMBERS{$field}) {
-        &amp;$member_func($self,tied(%{$newval}));
+        &amp;$member_func($self, tied(%{$newval}));
     } else {
-        &amp;$member_func($self,$newval);
+        &amp;$member_func($self, $newval);
     }
 }
 </PRE>
@@ -43809,8 +43993,8 @@ sub STORE {
 <DIV class="targetlang">
 <PRE>
 # Perl code using Vector class
-$v = new Vector(2,3,4);
-$w = Vector-&gt;new(-1,-2,-3);
+$v = new Vector(2, 3, 4);
+$w = Vector-&gt;new(-1, -2, -3);
 
 # Assignment of a single member
 $v-&gt;{x} = 7.5;
@@ -43847,7 +44031,7 @@ Vector *Vector_get(Vector *v, int index) {
 <PRE>
 Vector *new_Vector(double x, double y, double z) {
   Vector *v;
-  v = new Vector(x,y,z);        // Call C++ constructor
+  v = new Vector(x, y, z);        // Call C++ constructor
   return v;
 }
 </PRE>
@@ -43880,7 +44064,7 @@ Vector *new_Vector(double x, double y, double z) {
 <DIV class="targetlang">
 <PRE>
 # Perl code to change ownership of an object
-$v = new Vector(x,y,z);
+$v = new Vector(x, y, z);
 $v-&gt;DISOWN();     
 </PRE>
 </DIV>
@@ -44088,10 +44272,10 @@ sub set_transform
 <DIV class="targetlang">
 <PRE>
 my $a =
-  [[1,0,0,0],
-  [0,1,0,0],
-  [0,0,1,0],
-  [0,0,0,1]];
+  [[1, 0, 0, 0],
+  [0, 1, 0, 0],
+  [0, 0, 1, 0],
+  [0, 0, 0, 1]];
 set_transform($im, $a);
 </PRE>
 </DIV>
@@ -44564,7 +44748,7 @@ if(EASY_TO_MISPEL) {
 %inline %{
   double seki = 2;
   void print_seki() {
-    zend_printf(&quot;seki is now %f\n&quot;,seki);
+    zend_printf(&quot;seki is now %f\n&quot;, seki);
   }
 %}
 </PRE>
@@ -44698,7 +44882,7 @@ int *</TT>.</P>
 <PRE>
 %module example
 %include &quot;cpointer.i&quot;
-%pointer_functions(int,intp)
+%pointer_functions(int, intp)
 
 void add( int *in1, int *in2, int *result);
 </PRE>
@@ -44742,7 +44926,7 @@ include(&quot;example.php&quot;);
 
 $in1 = 3;
 $in2 = 5;
-$result= add($in1,$in2);  # Note using variables for the input is unnecessary.
+$result= add($in1, $in2);  # Note using variables for the input is unnecessary.
 
 echo &quot;The sum $in1 + $in2 = $result\n&quot;;
 ?&gt;
@@ -44779,7 +44963,7 @@ include(&quot;example.php&quot;);
 $in1 = 3;
 $in2 = 5;
 $result = 0;
-add($in1,$in2,$result);
+add($in1, $in2, $result);
 
 echo &quot;The sum $in1 + $in2 = $result\n&quot;;
 ?&gt;
@@ -44809,7 +44993,7 @@ echo &quot;The sum $in1 + $in2 = $result\n&quot;;
 
 class Vector {
 public:
-  double x,y,z;
+  double x, y, z;
   Vector();
   ~Vector();
   double magnitude();
@@ -44831,7 +45015,7 @@ struct Complex {
   $v-&gt;y = 4;
   $v-&gt;z = 5;
 
-  echo &quot;Magnitude of ($v-&gt;x,$v-&gt;y,$v-&gt;z) = &quot; . $v-&gt;magnitude() . &quot;\n&quot;;
+  echo &quot;Magnitude of ($v-&gt;x, $v-&gt;y, $v-&gt;z) = &quot; . $v-&gt;magnitude() . &quot;\n&quot;;
 
   $v = NULL;   # destructor called.
 
@@ -44854,17 +45038,17 @@ struct Complex {
 <DIV class="code">
 <PRE>
 new_Vector();
-Vector_x_set($obj,$d);
+Vector_x_set($obj, $d);
 Vector_x_get($obj);
-Vector_y_set($obj,$d);
+Vector_y_set($obj, $d);
 Vector_y_get($obj);
-Vector_z_set($obj,$d);
+Vector_z_set($obj, $d);
 Vector_z_get($obj);
 Vector_magnitude($obj);
 new_Complex();
-Complex_re_set($obj,$d);
+Complex_re_set($obj, $d);
 Complex_re_get($obj);
-Complex_im_set($obj,$d);
+Complex_im_set($obj, $d);
 Complex_im_get($obj);
 </PRE>
 </DIV>
@@ -46486,7 +46670,7 @@ None</TT> if the conversion can't be performed.</P>
 <DIV class="code">
 <PRE>
 struct Vector {
-  double x,y,z;
+  double x, y, z;
 };
 
 </PRE>
@@ -46705,11 +46889,11 @@ class Bar : public Foo {
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; b = Bar()
-&gt;&gt;&gt; instance(b,Foo)
+&gt;&gt;&gt; instance(b, Foo)
 1
-&gt;&gt;&gt; issubclass(Bar,Foo)
+&gt;&gt;&gt; issubclass(Bar, Foo)
 1
-&gt;&gt;&gt; issubclass(Foo,Bar)
+&gt;&gt;&gt; issubclass(Foo, Bar)
 0
 </PRE>
 </DIV>
@@ -46877,8 +47061,8 @@ public:
 <P> When wrapped, it works like you expect:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; c = Complex(3,4)
-&gt;&gt;&gt; d = Complex(7,8)
+&gt;&gt;&gt; c = Complex(3, 4)
+&gt;&gt;&gt; d = Complex(7, 8)
 &gt;&gt;&gt; e = c + d
 &gt;&gt;&gt; e.re()
 10.0
@@ -46928,7 +47112,7 @@ friend Complex operator+(double, const Complex &amp;c);
 namespace foo {
   int fact(int n);
   struct Vector {
-    double x,y,z;
+    double x, y, z;
   };
 };
 </PRE>
@@ -46990,14 +47174,14 @@ struct pair {
  ~pair();
 };
 
-%template(pairii) pair&lt;int,int&gt;;
+%template(pairii) pair&lt;int, int&gt;;
 </PRE>
 </DIV>
 <P> In Python:</P>
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; import example
-&gt;&gt;&gt; p = example.pairii(3,4)
+&gt;&gt;&gt; p = example.pairii(3, 4)
 &gt;&gt;&gt; p.first
 3
 &gt;&gt;&gt; p.second
@@ -47146,8 +47330,8 @@ class Foo(object):
     def __del__(self):
         if self.thisown:
             _example.delete_Foo(self.this)
-    def spam(self,arg1):
-        return _example.Foo_spam(self.this,arg1)
+    def spam(self, arg1):
+        return _example.Foo_spam(self.this, arg1)
     x = property(_example.Foo_x_get, _example.Foo_x_set)
 </PRE>
 </DIV>
@@ -47989,11 +48173,11 @@ void set_transform(Image *im, double m[4][4]);
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; a = [
-...   [1,0,0,0],
-...   [0,1,0,0],
-...   [0,0,1,0],
-...   [0,0,0,1]]
-&gt;&gt;&gt; set_transform(im,a)
+...   [1, 0, 0, 0],
+...   [0, 1, 0, 0],
+...   [0, 0, 1, 0],
+...   [0, 0, 0, 1]]
+&gt;&gt;&gt; set_transform(im, a)
 Traceback (most recent call last):
   File &quot;&lt;stdin&gt;&quot;, line 1, in ?
 TypeError: Type error. Expected _p_a_4__double
@@ -48026,11 +48210,11 @@ double mat44_get(double x[4][4], int i, int j) {
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; a = new_mat44()
-&gt;&gt;&gt; mat44_set(a,0,0,1.0)
-&gt;&gt;&gt; mat44_set(a,1,1,1.0)
-&gt;&gt;&gt; mat44_set(a,2,2,1.0)
+&gt;&gt;&gt; mat44_set(a, 0, 0, 1.0)
+&gt;&gt;&gt; mat44_set(a, 1, 1, 1.0)
+&gt;&gt;&gt; mat44_set(a, 2, 2, 1.0)
 ...
-&gt;&gt;&gt; set_transform(im,a)
+&gt;&gt;&gt; set_transform(im, a)
 &gt;&gt;&gt;
 </PRE>
 </DIV>
@@ -48050,12 +48234,12 @@ void set_transform(Image *im, double x[4][4]);
 ...
 /* Rewrite the high level interface to set_transform */
 %pythoncode %{
-def set_transform(im,x):
+def set_transform(im, x):
     a = new_mat44()
     for i in range(4):
         for j in range(4):
-            mat44_set(a,i,j,x[i][j])
-    _example.set_transform(im,a)
+            mat44_set(a, i, j, x[i][j])
+    _example.set_transform(im, a)
     free_mat44(a)
 %}
 </PRE>
@@ -48066,11 +48250,11 @@ def set_transform(im,x):
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; a = [
-...   [1,0,0,0],
-...   [0,1,0,0],
-...   [0,0,1,0],
-...   [0,0,0,1]]
-&gt;&gt;&gt; set_transform(im,a)
+...   [1, 0, 0, 0],
+...   [0, 1, 0, 0],
+...   [0, 0, 1, 0],
+...   [0, 0, 0, 1]]
+&gt;&gt;&gt; set_transform(im, a)
 &gt;&gt;&gt;
 </PRE>
 </DIV>
@@ -48263,13 +48447,13 @@ public:
 %}
 
 struct Vector {
-  double x,y,z;
+  double x, y, z;
 };
 
 %extend Vector {
   char *__str__() {
     static char tmp[1024];
-    sprintf(tmp,&quot;Vector(%g,%g,%g)&quot;, $self-&gt;x,$self-&gt;y,$self-&gt;z);
+    sprintf(tmp, &quot;Vector(%g, %g, %g)&quot;, $self-&gt;x, $self-&gt;y, $self-&gt;z);
     return tmp;
   }
   Vector(double x, double y, double z) {
@@ -48285,9 +48469,9 @@ struct Vector {
 <P> Now, in Python</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; v = example.Vector(2,3,4)
+&gt;&gt;&gt; v = example.Vector(2, 3, 4)
 &gt;&gt;&gt; print v
-Vector(2,3,4)
+Vector(2, 3, 4)
 &gt;&gt;&gt;
 </PRE>
 </DIV>
@@ -48311,10 +48495,10 @@ Vector(2,3,4)
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; import example
-&gt;&gt;&gt; v = example.Vector(2,3,4)
-&gt;&gt;&gt; w = example.Vector(10,11,12)
+&gt;&gt;&gt; v = example.Vector(2, 3, 4)
+&gt;&gt;&gt; w = example.Vector(10, 11, 12)
 &gt;&gt;&gt; print v+w
-Vector(12,14,16)
+Vector(12, 14, 16)
 &gt;&gt;&gt; 
 </PRE>
 </DIV>
@@ -48334,7 +48518,7 @@ Vector(12,14,16)
 %exception malloc {
   $action
   if (!result) {
-    PyErr_SetString(PyExc_MemoryError,&quot;Not enough memory&quot;);
+    PyErr_SetString(PyExc_MemoryError, &quot;Not enough memory&quot;);
     SWIG_fail;
   }
 }
@@ -48466,10 +48650,10 @@ int  sub(int *INPUT, int *INPUT);
 <P> In Python, this allows you to pass simple values. For example:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; a = add(3,4)
+&gt;&gt;&gt; a = add(3, 4)
 &gt;&gt;&gt; print a
 7
-&gt;&gt;&gt; b = sub(7,4)
+&gt;&gt;&gt; b = sub(7, 4)
 &gt;&gt;&gt; print b
 3
 &gt;&gt;&gt;
@@ -48571,7 +48755,7 @@ void get_dimensions(Matrix *m, int *rows, *columns);
 <P> Now, in Python:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; r,c = get_dimensions(m)
+&gt;&gt;&gt; r, c = get_dimensions(m)
 </PRE>
 </DIV>
 <P> Be aware that the primary purpose of the <TT>typemaps.i</TT> file is
@@ -48599,7 +48783,7 @@ extern void add(int x, int y, int *result);
 %pointer_functions(int, intp);
 </PRE>
 </DIV>
-<P> The <TT>%pointer_functions(type,name)</TT> macro generates five
+<P> The <TT>%pointer_functions(type, name)</TT> macro generates five
  helper functions that can be used to create, destroy, copy, assign, and
  dereference a pointer. In this case, the functions are as follows:</P>
 <DIV class="code">
@@ -48617,18 +48801,18 @@ int   intp_value(int *x);
 &gt;&gt;&gt; result = new_intp()
 &gt;&gt;&gt; print result
 _108fea8_p_int
-&gt;&gt;&gt; add(3,4,result)
+&gt;&gt;&gt; add(3, 4, result)
 &gt;&gt;&gt; print intp_value(result)
 7
 &gt;&gt;&gt;
 </PRE>
 </DIV>
 <P> If you replace <TT>%pointer_functions()</TT> by <TT>
-%pointer_class(type,name)</TT>, the interface is more class-like.</P>
+%pointer_class(type, name)</TT>, the interface is more class-like.</P>
 <DIV class="targetlang">
 <PRE>
 &gt;&gt;&gt; result = intp()
-&gt;&gt;&gt; add(3,4,result)
+&gt;&gt;&gt; add(3, 4, result)
 &gt;&gt;&gt; print result.value()
 7
 </PRE>
@@ -48667,7 +48851,7 @@ int sumitems(int *first, int nitems) {
 &gt;&gt;&gt; a = intArray(10000000)         # Array of 10-million integers
 &gt;&gt;&gt; for i in xrange(10000):        # Set some values
 ...     a[i] = i
-&gt;&gt;&gt; sumitems(a,10000)
+&gt;&gt;&gt; sumitems(a, 10000)
 49995000
 &gt;&gt;&gt;
 </PRE>
@@ -48820,7 +49004,7 @@ Typemaps</A>&quot; chapter.</P>
 
 %typemap(in) int {
   $1 = (int) PyLong_AsLong($input);
-  printf(&quot;Received an integer : %d\n&quot;,$1);
+  printf(&quot;Received an integer : %d\n&quot;, $1);
 }
 %inline %{
 extern int fact(int n);
@@ -48855,7 +49039,7 @@ int</TT> datatype. You can refine this by supplying an optional
 %typemap(in) int nonnegative {
   $1 = (int) PyLong_AsLong($input);
   if ($1 &lt; 0) {
-    PyErr_SetString(PyExc_ValueError,&quot;Expected a nonnegative value.&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;Expected a nonnegative value.&quot;);
     SWIG_fail;
   }
 }
@@ -48876,7 +49060,7 @@ extern int fact(int nonnegative);
 <PRE>
 %typemap(in) int n {
   $1 = (int) PyLong_AsLong($input);
-  printf(&quot;n = %d\n&quot;,$1);
+  printf(&quot;n = %d\n&quot;, $1);
 }
 %inline %{
 typedef int Integer;
@@ -48901,7 +49085,7 @@ int count(char c, char *str, int len);
  like this (notice how the length parameter is omitted):</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; example.count('e','Hello World')
+&gt;&gt;&gt; example.count('e', 'Hello World')
 1
 &gt;&gt;&gt;
 </PRE>
@@ -49073,18 +49257,18 @@ write me
     int i = 0;
     $1 = (char **) malloc((size+1)*sizeof(char *));
     for (i = 0; i &lt; size; i++) {
-      PyObject *o = PyList_GetItem($input,i);
+      PyObject *o = PyList_GetItem($input, i);
       if (PyString_Check(o)) {
-        $1[i] = PyString_AsString(PyList_GetItem($input,i));
+        $1[i] = PyString_AsString(PyList_GetItem($input, i));
       } else {
         free($1);
-        PyErr_SetString(PyExc_TypeError,&quot;list must contain strings&quot;);
+        PyErr_SetString(PyExc_TypeError, &quot;list must contain strings&quot;);
         SWIG_fail;
       }
     }
     $1[i] = 0;
   } else {
-    PyErr_SetString(PyExc_TypeError,&quot;not a list&quot;);
+    PyErr_SetString(PyExc_TypeError, &quot;not a list&quot;);
     SWIG_fail;
   }
 }
@@ -49099,7 +49283,7 @@ write me
 int print_args(char **argv) {
   int i = 0;
   while (argv[i]) {
-    printf(&quot;argv[%d] = %s\n&quot;, i,argv[i]);
+    printf(&quot;argv[%d] = %s\n&quot;, i, argv[i]);
     i++;
   }
   return i;
@@ -49157,18 +49341,18 @@ int foo(int argc, char **argv);
     $1 = PyList_Size($input);
     $2 = (char **) malloc(($1+1)*sizeof(char *));
     for (i = 0; i &lt; $1; i++) {
-      PyObject *o = PyList_GetItem($input,i);
+      PyObject *o = PyList_GetItem($input, i);
       if (PyString_Check(o)) {
-        $2[i] = PyString_AsString(PyList_GetItem($input,i));
+        $2[i] = PyString_AsString(PyList_GetItem($input, i));
       } else {
         free($2);
-        PyErr_SetString(PyExc_TypeError,&quot;list must contain strings&quot;);
+        PyErr_SetString(PyExc_TypeError, &quot;list must contain strings&quot;);
         SWIG_fail;
       }
     }
     $2[i] = 0;
   } else {
-    PyErr_SetString(PyExc_TypeError,&quot;not a list&quot;);
+    PyErr_SetString(PyExc_TypeError, &quot;not a list&quot;);
     SWIG_fail;
   }
 }
@@ -49214,7 +49398,7 @@ Traceback (most recent call last):
     example.foo([&quot;foo&quot;, &quot;bar&quot;, &quot;spam&quot;, &quot;1&quot;])
 NotImplementedError: Wrong number or type of arguments for overloaded function 'foo'.
   Possible C/C++ prototypes are:
-    foo(int,char **)
+    foo(int, char **)
     foo()
 </PRE>
 </DIV>
@@ -49251,12 +49435,12 @@ int spam(double a, double b, double *out1, double *out2) {
     if (!PyTuple_Check($result)) {
       PyObject *o2 = $result;
       $result = PyTuple_New(1);
-      PyTuple_SetItem($result,0,o2);
+      PyTuple_SetItem($result, 0, o2);
     }
     o3 = PyTuple_New(1);
-    PyTuple_SetItem(o3,0,o);
+    PyTuple_SetItem(o3, 0, o);
     o2 = $result;
-    $result = PySequence_Concat(o2,o3);
+    $result = PySequence_Concat(o2, o3);
     Py_DECREF(o2);
     Py_DECREF(o3);
   }
@@ -49278,7 +49462,7 @@ int spam(double a, double b, double *OutValue, double *OutValue);
  typemap can be written. For example:</P>
 <DIV class="code">
 <PRE>
-%typemap(in,numinputs=0) double *OutValue(double temp) {
+%typemap(in, numinputs=0) double *OutValue(double temp) {
   $1 = &amp;temp;
 }
 
@@ -49291,10 +49475,10 @@ int spam(double a, double b, double *OutValue, double *OutValue);
  local variable. As a result, the function can now be used as follows:</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; a = spam(4,5)
+&gt;&gt;&gt; a = spam(4, 5)
 &gt;&gt;&gt; print a
 (0, 2.45, 5.0)
-&gt;&gt;&gt; x,y,z = spam(4,5)
+&gt;&gt;&gt; x, y, z = spam(4, 5)
 &gt;&gt;&gt;
 </PRE>
 </DIV>
@@ -49314,13 +49498,13 @@ extern void set_direction(double a[4]);       // Set direction vector
 %typemap(in) double[4](double temp[4]) {   // temp[4] becomes a local variable
   int i;
   if (PyTuple_Check($input)) {
-    if (!PyArg_ParseTuple($input,&quot;dddd&quot;,temp,temp+1,temp+2,temp+3)) {
-      PyErr_SetString(PyExc_TypeError,&quot;tuple must have 4 elements&quot;);
+    if (!PyArg_ParseTuple($input, &quot;dddd&quot;, temp, temp+1, temp+2, temp+3)) {
+      PyErr_SetString(PyExc_TypeError, &quot;tuple must have 4 elements&quot;);
       SWIG_fail;
     }
     $1 = &amp;temp[0];
   } else {
-    PyErr_SetString(PyExc_TypeError,&quot;expected a tuple.&quot;);
+    PyErr_SetString(PyExc_TypeError, &quot;expected a tuple.&quot;);
     SWIG_fail;
   }
 }
@@ -49331,7 +49515,7 @@ extern void set_direction(double a[4]);       // Set direction vector
  Python as follows :</P>
 <DIV class="targetlang">
 <PRE>
-&gt;&gt;&gt; set_direction((0.5,0.0,1.0,-0.25))
+&gt;&gt;&gt; set_direction((0.5, 0.0, 1.0, -0.25))
 </PRE>
 </DIV>
 <P> Since our mapping copies the contents of a Python tuple into a C
@@ -49347,18 +49531,18 @@ extern void set_direction(double a[4]);       // Set direction vector
 %typemap(in) double[ANY](double temp[$1_dim0]) {
   int i;
   if (!PySequence_Check($input)) {
-    PyErr_SetString(PyExc_TypeError,&quot;Expecting a sequence&quot;);
+    PyErr_SetString(PyExc_TypeError, &quot;Expecting a sequence&quot;);
     SWIG_fail;
   }
   if (PyObject_Length($input) != $1_dim0) {
-    PyErr_SetString(PyExc_ValueError,&quot;Expecting a sequence with $1_dim0 elements&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;Expecting a sequence with $1_dim0 elements&quot;);
     SWIG_fail;
   }
   for (i =0; i &lt; $1_dim0; i++) {
-    PyObject *o = PySequence_GetItem($input,i);
+    PyObject *o = PySequence_GetItem($input, i);
     if (!PyFloat_Check(o)) {
       Py_XDECREF(o);
-      PyErr_SetString(PyExc_ValueError,&quot;Expecting a sequence of floats&quot;);
+      PyErr_SetString(PyExc_ValueError, &quot;Expecting a sequence of floats&quot;);
       SWIG_fail;
     }
     temp[i] = PyFloat_AsDouble(o);
@@ -49387,18 +49571,18 @@ void bar(double a[4], double b[8]);
 static int convert_darray(PyObject *input, double *ptr, int size) {
   int i;
   if (!PySequence_Check(input)) {
-    PyErr_SetString(PyExc_TypeError,&quot;Expecting a sequence&quot;);
+    PyErr_SetString(PyExc_TypeError, &quot;Expecting a sequence&quot;);
     return 0;
   }
   if (PyObject_Length(input) != size) {
-    PyErr_SetString(PyExc_ValueError,&quot;Sequence size mismatch&quot;);
+    PyErr_SetString(PyExc_ValueError, &quot;Sequence size mismatch&quot;);
     return 0;
   }
   for (i =0; i &lt; size; i++) {
-    PyObject *o = PySequence_GetItem(input,i);
+    PyObject *o = PySequence_GetItem(input, i);
     if (!PyFloat_Check(o)) {
       Py_XDECREF(o);
-      PyErr_SetString(PyExc_ValueError,&quot;Expecting a sequence of floats&quot;);
+      PyErr_SetString(PyExc_ValueError, &quot;Expecting a sequence of floats&quot;);
       return 0;
     }
     ptr[i] = PyFloat_AsDouble(o);
@@ -49409,7 +49593,7 @@ static int convert_darray(PyObject *input, double *ptr, int size) {
 %}
 
 %typemap(in) double [ANY](double temp[$1_dim0]) {
-  if (!convert_darray($input,temp,$1_dim0)) {
+  if (!convert_darray($input, temp, $1_dim0)) {
     SWIG_fail;
   }
   $1 = &amp;temp[0];
@@ -50732,7 +50916,7 @@ Error in .Call(&quot;R_swig_fact&quot;, s_arg1, as.logical(.copy), PACKAGE = &qu
  makeRData.R which contains the following
 <PRE>
 source('BigFile.R')
-save(list=ls(all=TRUE),file=&quot;BigFile.RData&quot;, compress=TRUE)
+save(list=ls(all=TRUE), file=&quot;BigFile.RData&quot;, compress=TRUE)
 q(save=&quot;no&quot;)
 </PRE>
  This will generate a compiled R file called BigFile.RData that will
@@ -50941,26 +51125,13 @@ slices)
  to compile this file and link it with the rest of your program.</P>
 <H3><A name="Ruby_nn4">38.1.2 Getting the right header files</A></H3>
 <P> In order to compile the wrapper code, the compiler needs the <TT>
-ruby.h</TT> header file. This file is usually contained in a directory
- such as</P>
-<DIV class="code shell diagram">
-<PRE>/usr/lib/ruby/1.8/x86_64-linux-gnu/ruby.h
-/usr/include/ruby-2.1.0/ruby.h
-</PRE>
-</DIV>
-<P> The exact location may vary on your machine, but the above location
- is typical. If you are not entirely sure where Ruby is installed, you
- can run Ruby to find out. For example:</P>
+ruby.h</TT> header file and its dependencies, notably <TT>ruby/config.h</TT>
+ which is found in a different, architecture-dependent, directory. The
+ best way to find the compiler options needed to compile the code is to
+ ask Ruby itself:</P>
 <DIV class="code shell">
-<PRE>$ ruby -e 'puts $:.join(&quot;\n&quot;)'
-/usr/local/lib/site_ruby/2.1.0
-/usr/local/lib/x86_64-linux-gnu/site_ruby
-/usr/local/lib/site_ruby
-/usr/lib/ruby/vendor_ruby/2.1.0
-/usr/lib/x86_64-linux-gnu/ruby/vendor_ruby/2.1.0
-/usr/lib/ruby/vendor_ruby
-/usr/lib/ruby/2.1.0
-/usr/lib/x86_64-linux-gnu/ruby/2.1.0
+<PRE>$ ruby -rrbconfig -e 'puts &quot;-I#{RbConfig::CONFIG[%q{rubyhdrdir}]} -I#{RbConfig::CONFIG[%q{rubyarchhdrdir}]}&quot;'
+-I/usr/include/ruby-2.1.0 -I/usr/include/x86_64-linux-gnu/ruby-2.1.0
 </PRE>
 </DIV>
 <H3><A name="Ruby_nn5">38.1.3 Compiling a dynamic module</A></H3>
@@ -51682,7 +51853,7 @@ c = Example.add_complex(a, b)</PRE>
 namespace foo {
   int fact(int n);
   struct Vector {
-    double x,y,z;
+    double x, y, z;
   };
 };</PRE>
 </DIV>
@@ -51741,7 +51912,7 @@ struct pair {
   ~pair();
 };
 
-%template(Pairii) pair&lt;int,int&gt;;</PRE>
+%template(Pairii) pair&lt;int, int&gt;;</PRE>
 </DIV>
 <P>In Ruby:</P>
 <DIV class="code targetlang">
@@ -51794,7 +51965,7 @@ v.each { |x| puts x }
 3
 4
 v.delete_if { |x| x == 3 }
-=&gt; [2,4]</PRE>
+=&gt; [2, 4]</PRE>
 </DIV>
 <P>The SWIG Ruby module provides also the ability for all the STL
  containers to carry around Ruby native objects (Fixnum, Classes, etc)
@@ -51819,7 +51990,7 @@ include NativeVector
 
 v = NativeVector.new
 v &lt;&lt; 1
-v &lt;&lt; [1,2]
+v &lt;&lt; [1, 2]
 v &lt;&lt; 'hello'
 
 class A; end
@@ -51827,7 +51998,7 @@ class A; end
 v &lt;&lt; A.new
 
 puts v
-=&gt; [1, [1,2], 'hello', #&lt;A:0x245325&gt;]
+=&gt; [1, [1, 2], 'hello', #&lt;A:0x245325&gt;]
 </PRE>
 </DIV>
 <P>Obviously, there is a lot more to template wrapping than shown in
@@ -51870,15 +52041,15 @@ a &lt;&lt; 1
 a &lt;&lt; 2
 a &lt;&lt; 3
 a
-<B>=&gt; [1,2,3]</B>
+<B>=&gt; [1, 2, 3]</B>
 
 # Custom sorting behavior defined by a Ruby proc
-b = IntSet.new( proc { |a,b| a &gt; b } )
+b = IntSet.new( proc { |a, b| a &gt; b } )
 b &lt;&lt; 1
 b &lt;&lt; 2
 b &lt;&lt; 3
 b
-<B>=&gt;  [3,2,1]</B>
+<B>=&gt;  [3, 2, 1]</B>
 </PRE>
 </DIV>
 <H3><A name="Ruby_C_Iterators">38.3.15 C++ STL Iterators</A></H3>
@@ -52106,7 +52277,7 @@ public:
 <P> Multiple aliases can be associated with a method by providing a
  comma-separated list of aliases to the <TT>%alias</TT> directive, e.g.</P>
 <DIV class="code">
-<PRE>%alias MyArray::length &quot;amount,quantity,size&quot;;</PRE>
+<PRE>%alias MyArray::length &quot;amount, quantity, size&quot;;</PRE>
 </DIV>
 <P> From an end-user's standpoint, there's no functional difference
  between these two approaches; i.e. they should get the same result from
@@ -52232,10 +52403,10 @@ int sub(int *INPUT, int *INPUT);</PRE>
 </DIV>
 <P>In Ruby, this allows you to pass simple values. For example:</P>
 <DIV class="code targetlang">
-<PRE>a = Example.add(3,4)
+<PRE>a = Example.add(3, 4)
 puts a
 7
-b = Example.sub(7,4)
+b = Example.sub(7, 4)
 puts b
 3</PRE>
 </DIV>
@@ -52437,7 +52608,7 @@ public:
 <P> Then, in ruby, it can be used like:</P>
 <DIV class="targetlang">
 <PRE>
-Window.new(0,0,360,480) { |w|
+Window.new(0, 0, 360, 480) { |w|
   w.color = Fltk::RED
   w.border = false
 }
@@ -52452,7 +52623,7 @@ Window.new(0,0,360,480) { |w|
 //
 // void func(int x);
 
-%typemap(in,numinputs=0) int RUBY_YIELD_SELF {
+%typemap(in, numinputs=0) int RUBY_YIELD_SELF {
   if ( !rb_block_given_p() )
     rb_raise(&quot;No block given&quot;);
   return rb_yield(self);
@@ -52607,7 +52778,7 @@ typepattern : type [ (parms) ]
 
 %typemap(in) int {
   $1 = (int) NUM2INT($input);
-  printf(&quot;Received an integer : %d\n&quot;,$1);
+  printf(&quot;Received an integer : %d\n&quot;, $1);
 }
 
 %inline %{
@@ -52644,7 +52815,7 @@ int</TT> datatype. You can refine this by supplying an optional
 
 %typemap(in) int n {
   $1 = (int) NUM2INT($input);
-  printf(&quot;n = %d\n&quot;,$1);
+  printf(&quot;n = %d\n&quot;, $1);
 }
 
 %inline %{
@@ -52662,7 +52833,7 @@ const int</TT>. In addition, the typemap system follows <TT>typedef</TT>
 <DIV class="code">
 <PRE>%typemap(in) int n {
   $1 = (int) NUM2INT($input);
-  printf(&quot;n = %d\n&quot;,$1);
+  printf(&quot;n = %d\n&quot;, $1);
 }
 
 typedef int Integer;
@@ -52685,7 +52856,7 @@ int count(char c, char *str, int len);</PRE>
  handled as a single Ruby object. This allows the function <TT>count</TT>
  to be used as follows (notice how the length parameter is omitted):</P>
 <DIV class="code targetlang">
-<PRE>puts Example.count('o','Hello World')
+<PRE>puts Example.count('o', 'Hello World')
 2</PRE>
 </DIV>
 <H3><A name="Ruby_Typemap_scope">38.7.2 Typemap scope</A></H3>
@@ -52873,7 +53044,7 @@ width="100%"><TBODY></TBODY>
  methods. It merely checks an argument to see whether or not it matches
  a specific type. For example:</P>
 <DIV class="code">
-<PRE>%typemap(typecheck,precedence=SWIG_TYPECHECK_INTEGER) int {
+<PRE>%typemap(typecheck, precedence=SWIG_TYPECHECK_INTEGER) int {
   $1 = FIXNUM_P($input) ? 1 : 0;
 }</PRE>
 </DIV>
@@ -52943,7 +53114,7 @@ int foo(int x, int y, int flags);</PRE>
 <DIV class="code">
 <PRE>%typemap(check) int positive {
   if ($1 &lt;= 0) {
-    SWIG_exception(SWIG_ValueError,&quot;Expected positive value.&quot;);
+    SWIG_exception(SWIG_ValueError, &quot;Expected positive value.&quot;);
   }
 }</PRE>
 </DIV>
@@ -53132,7 +53303,7 @@ numoutputs</TT>, but the Ruby module provides that functionality through
  if you do:</P>
 <DIV class="code">
 <PRE>
-%feature(&quot;numoutputs&quot;,&quot;0&quot;) MyClass::function;
+%feature(&quot;numoutputs&quot;, &quot;0&quot;) MyClass::function;
 </PRE>
 </DIV>
 <P>This feature can be useful if a function returns a status code, which
@@ -53237,7 +53408,7 @@ SWIG_OK</TT>). While more akward to use, this allows you to write
 %typemap(in) size_t (int ok)
   ok = SWIG_AsVal_size_t($input, &amp;$1);
   if (!SWIG_IsOK(ok)) {
-    SWIG_exception_fail(SWIG_ArgError(ok), Ruby_Format_TypeError( &quot;$1_name&quot;, &quot;$1_type&quot;,&quot;$symname&quot;, $argnum, $input));
+    SWIG_exception_fail(SWIG_ArgError(ok), Ruby_Format_TypeError( &quot;$1_name&quot;, &quot;$1_type&quot;, &quot;$symname&quot;, $argnum, $input));
   }
 }
 </PRE>
@@ -53387,7 +53558,7 @@ printf()</TT>.</DIV>
 int print_args(char **argv) {
   int i = 0;
   while (argv[i]) {
-    printf(&quot;argv[%d] = %s\n&quot;, i,argv[i]);
+    printf(&quot;argv[%d] = %s\n&quot;, i, argv[i]);
     i++;
   }
   return i;
@@ -53398,7 +53569,7 @@ int print_args(char **argv) {
  follows :</P>
 <DIV class="code targetlang">
 <PRE>require 'Argv'
-Argv.print_args([&quot;Dave&quot;,&quot;Mike&quot;,&quot;Mary&quot;,&quot;Jane&quot;,&quot;John&quot;])
+Argv.print_args([&quot;Dave&quot;, &quot;Mike&quot;, &quot;Mary&quot;, &quot;Jane&quot;, &quot;John&quot;])
 argv[0] = Dave
 argv[1] = Mike
 argv[2] = Mary
@@ -54059,7 +54230,7 @@ public:
  comma-separated list of module names to the <TT>%mixin</TT> directive,
  e.g.</P>
 <DIV class="code">
-<PRE>%mixin Set &quot;Fee,Fi,Fo,Fum&quot;;</PRE>
+<PRE>%mixin Set &quot;Fee, Fi, Fo, Fum&quot;;</PRE>
 </DIV>
 <P> Note that the <TT>%mixin</TT> directive is implemented using SWIG's
  &quot;features&quot; mechanism and so the same name matching rules used for other
@@ -55820,7 +55991,7 @@ struct triplet {
   }
 };
 
-%template(IntTriplet) triplet&lt;int,int,int&gt;;
+%template(IntTriplet) triplet&lt;int, int, int&gt;;
 </PRE>
 </DIV>
 <P> Then in Scilab:</P>
@@ -55887,7 +56058,7 @@ private:
 <PRE>
 --&gt; c1 = new_Complex(3, 7);
 
---&gt; c2 = Complex_plus(c, new_Complex(1,1));
+--&gt; c2 = Complex_plus(c, new_Complex(1, 1));
 
 --&gt; Complex_toDouble(c2)
  ans  =
@@ -55915,7 +56086,7 @@ namespace foo {
   }
 
   struct Vector {
-    double x,y,z;
+    double x, y, z;
   };
 };
 
@@ -56149,17 +56320,17 @@ double **create_matrix() {
   return M;
 }
 
-// Gets the item M(i,j) value
+// Gets the item M(i, j) value
 double get_matrix(double **M, int i, int j) {
   return M[i][j];
 }
 
-// Sets the item M(i,j) value to be val
+// Sets the item M(i, j) value to be val
 void set_matrix(double **M, int i, int j, double val) {
   M[i][j] = val;
 }
 
-// Prints a matrix (2,2) to console
+// Prints a matrix (2, 2) to console
 void print_matrix(double **M, int nbRows, int nbCols) {
   int i, j;
   for (i = 0; i &lt; 2; i++) {
@@ -56515,7 +56686,7 @@ loader.sce</TT> is also produced, this one is executed further in Scilab
 <P> The command is:</P>
 <DIV class="shell">
 <PRE>
-$ swig -scilab -builder -buildercflags -I/opt/foo/include -builderldflags &quot;-L/opt/foo/lib -lfoo&quot; -buildersources baa1.cxx,baa2.cxx example.i
+$ swig -scilab -builder -buildercflags -I/opt/foo/include -builderldflags &quot;-L/opt/foo/lib -lfoo&quot; -buildersources baa1.cxx, baa2.cxx example.i
 </PRE>
 </DIV>
 <H2><A name="Scilab_generated_scripts">39.7 Generated scripts</A></H2>
@@ -56530,11 +56701,11 @@ $ swig -scilab -builder -buildercflags -I/opt/foo/include -builderldflags &quot;
 ilib_name = &quot;examplelib&quot;;
 files = [&quot;example_wrap.c&quot;];
 libs = [];
-table = [&quot;fact&quot;,&quot;_wrap_fact&quot;;&quot;Foo_set&quot;,&quot;_wrap_Foo_set&quot;;&quot;Foo_get&quot;,&quot;_wrap_Foo_get&quot;;];
-ilib_build(ilib_name,table,files,libs);
+table = [&quot;fact&quot;, &quot;_wrap_fact&quot;;&quot;Foo_set&quot;, &quot;_wrap_Foo_set&quot;;&quot;Foo_get&quot;, &quot;_wrap_Foo_get&quot;;];
+ilib_build(ilib_name, table, files, libs);
 </PRE>
 </DIV>
-<P> <TT>ilib_build(lib_name,table,files,libs)</TT> is used to create
+<P> <TT>ilib_build(lib_name, table, files, libs)</TT> is used to create
  shared libraries, and to generate a loader file used to dynamically
  load the shared library into Scilab.</P>
 <UL>
@@ -56564,7 +56735,7 @@ list_functions = [             'fact';
             'Foo_set';
             'Foo_get';
 ];
-addinter(libexamplelib_path+'/libexamplelib.so','libexamplelib',list_functions);
+addinter(libexamplelib_path+'/libexamplelib.so', 'libexamplelib', list_functions);
 // remove temp. variables on stack
 clear libexamplelib_path;
 clear list_functions;
@@ -56572,7 +56743,7 @@ clear get_file_path;
 // ------------------------------------------------------
 </PRE>
 </DIV>
-<P> <TT>addinter(files,spname,fcts)</TT> performs dynamic linking of a
+<P> <TT>addinter(files, spname, fcts)</TT> performs dynamic linking of a
  compiled C interface function.</P>
 <UL>
 <LI><TT><B>files</B></TT>: a character string or a vector of character
@@ -57328,7 +57499,7 @@ None</TT> if the conversion can't be performed.</P>
 <DIV class="code">
 <PRE>
 struct Vector {
-  double x,y,z;
+  double x, y, z;
 };
 
 </PRE>
@@ -57821,7 +57992,7 @@ Complex operator+(double, const Complex &amp;c);
 namespace foo {
   int fact(int n);
   struct Vector {
-    double x,y,z;
+    double x, y, z;
   };
 };
 </PRE>
@@ -57880,7 +58051,7 @@ struct pair {
   ~pair();
 };
 
-%template(pairii) pair&lt;int,int&gt;;
+%template(pairii) pair&lt;int, int&gt;;
 </PRE>
 </DIV>
 <P> In Tcl:</P>
@@ -58424,9 +58595,9 @@ Customization Features</A>&quot; for more examples.</P>
 %module example
 
 %typemap(in) int {
-    if (Tcl_GetIntFromObj(interp,$input,&amp;$1) == TCL_ERROR)
+    if (Tcl_GetIntFromObj(interp, $input, &amp;$1) == TCL_ERROR)
       return TCL_ERROR;
-    printf(&quot;Received an integer : %d\n&quot;,$1);
+    printf(&quot;Received an integer : %d\n&quot;, $1);
 }
 %inline %{
 extern int fact(int n);
@@ -58459,9 +58630,9 @@ int</TT> datatype. You can refine this by supplying an optional
 %module example
 
 %typemap(in) int n {
-  if (Tcl_GetIntFromObj(interp,$input,&amp;$1) == TCL_ERROR)
+  if (Tcl_GetIntFromObj(interp, $input, &amp;$1) == TCL_ERROR)
     return TCL_ERROR;
-  printf(&quot;n = %d\n&quot;,$1);
+  printf(&quot;n = %d\n&quot;, $1);
 }
 %inline %{
 extern int fact(int n);
@@ -58479,9 +58650,9 @@ typedef</TT> declarations. For example:</P>
 <DIV class="code">
 <PRE>
 %typemap(in) int n {
-  if (Tcl_GetIntFromObj(interp,$input,&amp;$1) == TCL_ERROR)
+  if (Tcl_GetIntFromObj(interp, $input, &amp;$1) == TCL_ERROR)
     return TCL_ERROR;
-  printf(&quot;n = %d\n&quot;,$1);
+  printf(&quot;n = %d\n&quot;, $1);
 }
 %inline %{
 typedef int Integer;
@@ -58497,7 +58668,7 @@ extern int fact(Integer n);    // Above typemap is applied
 <DIV class="code">
 <PRE>
 %typemap(in) (char *str, int len) {
-    $1 = Tcl_GetStringFromObj($input,&amp;$2);
+    $1 = Tcl_GetStringFromObj($input, &amp;$2);
 };
 
 int count(char c, char *str, int len);
@@ -58520,7 +58691,7 @@ int count(char c, char *str, int len);
 <DIV class="code">
 <PRE>
 %typemap(out) int {
-    Tcl_SetObjResult(interp,Tcl_NewIntObj($1));
+    Tcl_SetObjResult(interp, Tcl_NewIntObj($1));
 }
 </PRE>
 </DIV>
@@ -58606,7 +58777,7 @@ Typemaps</A>&quot; chapter. This is a list of the most common variables:</P>
   }
   $1 = (char **) malloc((nitems+1)*sizeof(char *));
   for (i = 0; i &lt; nitems; i++) {
-    $1[i] = Tcl_GetStringFromObj(listobjv[i],0);
+    $1[i] = Tcl_GetStringFromObj(listobjv[i], 0);
   }
   $1[i] = 0;
 }
@@ -58623,7 +58794,7 @@ Typemaps</A>&quot; chapter. This is a list of the most common variables:</P>
   int print_args(char **argv) {
     int i = 0;
     while (argv[i]) {
-      printf(&quot;argv[%d] = %s\n&quot;, i,argv[i]);
+      printf(&quot;argv[%d] = %s\n&quot;, i, argv[i]);
       i++;
     }
     return i;
@@ -58651,19 +58822,19 @@ argv[2] = Larry
 // A typemap defining how to return an argument by appending it to the result
 %typemap(argout) double *outvalue {
   Tcl_Obj *o = Tcl_NewDoubleObj($1);
-  Tcl_ListObjAppendElement(interp,$result,o);
+  Tcl_ListObjAppendElement(interp, $result, o);
 }
 
 // A typemap telling SWIG to ignore an argument for input
 // However, we still need to pass a pointer to the C function
-%typemap(in,numinputs=0) double *outvalue (double temp) {
+%typemap(in, numinputs=0) double *outvalue (double temp) {
   $1 = &amp;temp;
 }
 
 // Now a function returning two values
 int mypow(double a, double b, double *outvalue) {
   if ((a &lt; 0) || (b &lt; 0)) return -1;
-  *outvalue = pow(a,b);
+  *outvalue = pow(a, b);
   return 0;
 };
 </PRE>
@@ -58748,7 +58919,7 @@ int      Tcl_IsShared(Tcl_Obj *obj);
 <BR><DIV class="code">
 <PRE>
 %typemap(out) int, short, long {
-  Tcl_SetIntObj($result,(int) $1);
+  Tcl_SetIntObj($result, (int) $1);
 }
 </PRE>
 </DIV>
@@ -58781,8 +58952,8 @@ int      Tcl_IsShared(Tcl_Obj *obj);
 </DIV>
 <BR><DIV class="code">
 <PRE>
-%typemap(out,noblock=1,fragment=&quot;SWIG_FromCharPtr&quot;) char *, const char * {
-  Tcl_SetObjResult(interp,SWIG_FromCharPtr((const char *)$1));
+%typemap(out, noblock=1, fragment=&quot;SWIG_FromCharPtr&quot;) char *, const char * {
+  Tcl_SetObjResult(interp, SWIG_FromCharPtr((const char *)$1));
 }
 
 </PRE>
@@ -59307,7 +59478,7 @@ Tcl_InitStubs()</TT> and <TT>Tk_InitStubs()</TT> with <TT>
 
 /* Access control directives */
 
-#define %immutable   %feature(&quot;immutable&quot;,&quot;1&quot;)
+#define %immutable   %feature(&quot;immutable&quot;, &quot;1&quot;)
 #define %mutable     %feature(&quot;immutable&quot;)
 
 /* Directives for callback functions */
@@ -59356,7 +59527,7 @@ type</EM></TT> may be optionally qualified with a qualifier such as <TT>
 const</TT> or <TT>volatile</TT>. <TT><EM>declarator</EM></TT> is a name
  with additional type-construction modifiers attached to it (pointers,
  arrays, references, functions, etc.). Examples of declarators include <TT>
-*x</TT>, <TT>**x</TT>, <TT>x[20]</TT>, and <TT>(*x)(int,double)</TT>.
+*x</TT>, <TT>**x</TT>, <TT>x[20]</TT>, and <TT>(*x)(int, double)</TT>.
  The <TT><EM>initializer</EM></TT> may be a value assigned using <TT>=</TT>
  or body of code enclosed in braces <TT>{ ... }</TT>.</P>
 <P> This declaration format covers most common C++ declarations.
@@ -59401,7 +59572,7 @@ int (y)(int);    /* A function y */
  things like this:</P>
 <DIV class="code">
 <PRE>
-foo(a,b) {
+foo(a, b) {
 ...
 }
 </PRE>
@@ -59533,8 +59704,8 @@ $ swig -c++ -python -debug-module 4 example.i
                         +++ cdecl ----------------------------------------
                         | sym:name     - &quot;move&quot;
                         | name         - &quot;move&quot;
-                        | decl         - &quot;f(double,double).&quot;
-                        | parms        - double ,double
+                        | decl         - &quot;f(double, double).&quot;
+                        | parms        - double, double
                         | type         - &quot;void&quot;
                         | sym:symtab   - 0x40194140
                         |
@@ -60083,14 +60254,14 @@ List *l = (some list);
 Iterator i;
 
 for (i = First(l); i.item; i = Next(i)) {
-  Printf(stdout,&quot;%s\n&quot;, i.item);
+  Printf(stdout, &quot;%s\n&quot;, i.item);
 }
 
 Hash *h = (some hash);
 Iterator j;
 
 for (j = First(j); j.item; j= Next(j)) {
-  Printf(stdout,&quot;%s : %s\n&quot;, j.key, j.item);
+  Printf(stdout, &quot;%s : %s\n&quot;, j.key, j.item);
 }
 </PRE>
 </DIV></DIV>
@@ -60103,8 +60274,8 @@ for (j = First(j); j.item; j= Next(j)) {
  function except that output can also be directed to a string object.
  Note: the <TT>%s</TT> format specifier works with both strings and <TT>
 char *</TT>. All other format operators have the same meaning.</DIV>
-<P><B> <TT>int Printv(String_or_FILE *f, String_or_char *arg1,..., NULL)</TT>
-</B></P>
+<P><B> <TT>int Printv(String_or_FILE *f, String_or_char *arg1, ...,
+ NULL)</TT></B></P>
 <DIV class="indent"> Prints a variable number of strings arguments to
  the output. The last argument to this function must be NULL. The other
  arguments can either be <TT>char *</TT> or string objects.</DIV>
@@ -60120,7 +60291,7 @@ char *</TT>. All other format operators have the same meaning.</DIV>
 <DIV class="indent"> Same as the C <TT>ungetc()</TT> function.</DIV>
 <P><B> <TT>int Seek(String_or_FILE *f, int offset, int whence)</TT></B></P>
 <DIV class="indent"> Same as the C <TT>seek()</TT> function. <TT>offset</TT>
- is the number of bytes. <TT>whence</TT> is one of <TT>SEEK_SET</TT>,<TT>
+ is the number of bytes. <TT>whence</TT> is one of <TT>SEEK_SET</TT>, <TT>
 SEEK_CUR</TT>, or <TT>SEEK_END</TT>..</DIV>
 <P><B> <TT>long Tell(String_or_FILE *f)</TT></B></P>
 <DIV class="indent"> Same as the C <TT>tell()</TT> function.</DIV>
@@ -60144,9 +60315,9 @@ Delete(f)</TT> - this decreases the reference count, and the file will
 <PRE>
 /* Print into a string */
 String *s = NewString(&quot;&quot;);
-Printf(s,&quot;Hello\n&quot;);
+Printf(s, &quot;Hello\n&quot;);
 for (i = 0; i &lt; 10; i++) {
-  Printf(s,&quot;%d\n&quot;, i);
+  Printf(s, &quot;%d\n&quot;, i);
 }
 ...
 /* Print string into a file */
@@ -60211,9 +60382,9 @@ Printf(f, &quot;%s\n&quot;, s);
 <DIV class="code">
 <PRE>
 int functionHandler(Node *n) {
-  String *name    = Getattr(n,&quot;name&quot;);
-  String *symname = Getattr(n,&quot;sym:name&quot;);
-  SwigType *type  = Getattr(n,&quot;type&quot;);
+  String *name    = Getattr(n, &quot;name&quot;);
+  String *symname = Getattr(n, &quot;sym:name&quot;);
+  SwigType *type  = Getattr(n, &quot;type&quot;);
   ...
 }
 </PRE>
@@ -60224,7 +60395,7 @@ int functionHandler(Node *n) {
 <DIV class="code">
 <PRE>
 ...
-Setattr(n,&quot;python:docstring&quot;, doc);     /* Store docstring */
+Setattr(n, &quot;python:docstring&quot;, doc);     /* Store docstring */
 ...
 </PRE>
 </DIV>
@@ -60232,7 +60403,7 @@ Setattr(n,&quot;python:docstring&quot;, doc);     /* Store docstring */
 checkAttribute()</TT> function like this:</P>
 <DIV class="code">
 <PRE>
-if (checkAttribute(n,&quot;storage&quot;,&quot;virtual&quot;)) {
+if (checkAttribute(n, &quot;storage&quot;, &quot;virtual&quot;)) {
   /* n is virtual */
   ...
 }
@@ -60248,11 +60419,11 @@ if (checkAttribute(n,&quot;storage&quot;,&quot;virtual&quot;)) {
 <DIV class="indent"> Saves a copy of attributes <TT>name1</TT>, <TT>
 name2</TT>, etc. from node <TT>n</TT>. Copies of the attributes are
  actually resaved in the node in a different namespace which is set by
- the <TT>ns</TT> argument. For example, if you call <TT>
-Swig_save(&quot;foo&quot;,n,&quot;type&quot;,NIL)</TT>, then the &quot;type&quot; attribute will be
- copied and saved as &quot;foo:type&quot;. The namespace name itself is stored in
- the &quot;view&quot; attribute of the node. If necessary, this can be examined to
- find out where previous values of attributes might have been saved.</DIV>
+ the <TT>ns</TT> argument. For example, if you call <TT>Swig_save(&quot;foo&quot;,
+ n, &quot;type&quot;, NIL)</TT>, then the &quot;type&quot; attribute will be copied and
+ saved as &quot;foo:type&quot;. The namespace name itself is stored in the &quot;view&quot;
+ attribute of the node. If necessary, this can be examined to find out
+ where previous values of attributes might have been saved.</DIV>
 <P><B> <TT>int Swig_restore(Node *n)</TT></B></P>
 <DIV class="indent">
 <P> Restores the attributes saved by the previous call to <TT>
@@ -60266,11 +60437,11 @@ Swig_save()</TT>. Those attributes that were supplied to <TT>Swig_save()</TT>
 <DIV class="code">
 <PRE>
 int variableHandler(Node *n) {
-  Swig_save(&quot;variableHandler&quot;,n,&quot;type&quot;,&quot;sym:name&quot;,NIL);
-  String *symname = Getattr(n,&quot;sym:name&quot;);
-  SwigType *type  = Getattr(n,&quot;type&quot;);
+  Swig_save(&quot;variableHandler&quot;, n, &quot;type&quot;, &quot;sym:name&quot;, NIL);
+  String *symname = Getattr(n, &quot;sym:name&quot;);
+  SwigType *type  = Getattr(n, &quot;type&quot;);
   ...
-  Append(symname,&quot;_global&quot;);         // Change symbol name
+  Append(symname, &quot;_global&quot;);        // Change symbol name
   SwigType_add_pointer(type);        // Add pointer
   ...
   generate wrappers
@@ -60308,16 +60479,16 @@ C datatype                     SWIG encoding (strings)
 int                            &quot;int&quot;
 int *                          &quot;p.int&quot;
 const int *                    &quot;p.q(const).int&quot;
-int (*x)(int,double)           &quot;p.f(int,double).int&quot;
+int (*x)(int, double)          &quot;p.f(int, double).int&quot;
 int [20][30]                   &quot;a(20).a(30).int&quot;
 int (F::*)(int)                &quot;m(F).f(int).int&quot;
 vector&lt;int&gt; *                  &quot;p.vector&lt;(int)&gt;&quot;
 </PRE>
 </DIV>
 <P> Reading the SWIG encoding is often easier than figuring out the C
- code---just read it from left to right. For a type of
- &quot;p.f(int,double).int&quot; is a &quot;pointer to a function(int,double) that
- returns int&quot;.</P>
+ code---just read it from left to right. For a type of &quot;p.f(int,
+ double).int&quot; is a &quot;pointer to a function(int, double) that returns
+ int&quot;.</P>
 <P> The following operator encodings are used in type strings:</P>
 <DIV class="diagram">
 <PRE>
@@ -60340,13 +60511,13 @@ v(...)</TT>.</P>
  type is expected. For instance, here is an extremely perverted example:</P>
 <DIV class="diagram">
 <PRE>
-`p.a(10).p.f(int,p.f(int).int)` foo(int, int (*x)(int));
+`p.a(10).p.f(int, p.f(int).int)` foo(int, int (*x)(int));
 </PRE>
 </DIV>
 <P> This corresponds to the immediately obvious C declaration:</P>
 <DIV class="diagram">
 <PRE>
-(*(*foo(int,int (*)(int)))[10])(int,int (*)(int));
+(*(*foo(int, int (*)(int)))[10])(int, int (*)(int));
 </PRE>
 </DIV>
 <P> Aside from the potential use of this declaration on a C programming
@@ -60381,7 +60552,7 @@ int</TT>&quot; and the declarator of type &quot;<TT>a(30).p.</TT>&quot;. To make
 <DIV class="indent"> Removes a single array dimension from <TT>ty</TT>.</DIV>
 <P><B> <TT>int SwigType_array_ndim(SwigType *ty)</TT></B></P>
 <DIV class="indent"> Returns number of array dimensions of <TT>ty</TT>.</DIV>
-<P><B> <TT>String* SwigType_array_getdim(SwigType *ty,int n)</TT></B></P>
+<P><B> <TT>String* SwigType_array_getdim(SwigType *ty, int n)</TT></B></P>
 <DIV class="indent"> Returns <TT>n</TT>th array dimension of <TT>ty</TT>
 .</DIV>
 <P><B> <TT>void SwigType_array_setdim(SwigType *ty, int n, const
@@ -60597,9 +60768,9 @@ q(const).p.char</TT>&quot; and <TT>id</TT> is &quot;<TT>foo</TT>&quot;, this fun
 Parm *parms;
 Parm *p;
 for (p = parms; p; p = nextSibling(p)) {
-  SwigType *type  = Getattr(p,&quot;type&quot;);
-  String   *name  = Getattr(p,&quot;name&quot;);
-  String   *value = Getattr(p,&quot;value&quot;);
+  SwigType *type  = Getattr(p, &quot;type&quot;);
+  String   *name  = Getattr(p, &quot;name&quot;);
+  String   *value = Getattr(p, &quot;value&quot;);
   ...
 }
 </PRE>
@@ -60695,10 +60866,10 @@ swig_python(void) {
 python.cxx</TT>&quot; and place this file in the <TT>Source/Modules</TT>
  directory of the SWIG distribution. To ensure that your module is
  compiled into SWIG along with the other language modules, modify the
- file <TT>Source/Modules/Makefile.am</TT> to include the additional
- source files. In addition, modify the file <TT>
-Source/Modules/swigmain.cxx</TT> with an additional command line option
- that activates the module. Read the source---it's straightforward.</P>
+ file <TT>Source/Makefile.am</TT> to include the additional source
+ files. In addition, modify the file <TT>Source/Modules/swigmain.cxx</TT>
+ with an additional command line option that activates the module. Read
+ the source---it's straightforward.</P>
 <P> Next, at the top level of the SWIG distribution, re-run the <TT>
 autogen.sh</TT> script to regenerate the various build files:</P>
 <DIV class="shell">
@@ -60731,7 +60902,7 @@ $ <B>make</B>
 void Language::main(int argc, char *argv[]) {
   for (int i = 1; i &lt; argc; i++) {
       if (argv[i]) {
-          if(strcmp(argv[i],&quot;-interface&quot;) == 0) {
+          if (strcmp(argv[i], &quot;-interface&quot;) == 0) {
             if (argv[i+1]) {
               interface = NewString(argv[i+1]);
               Swig_mark_arg(i);
@@ -60740,7 +60911,7 @@ void Language::main(int argc, char *argv[]) {
             } else {
               Swig_arg_error();
             }
-          } else if (strcmp(argv[i],&quot;-globals&quot;) == 0) {
+          } else if (strcmp(argv[i], &quot;-globals&quot;) == 0) {
             if (argv[i+1]) {
               global_name = NewString(argv[i+1]);
               Swig_mark_arg(i);
@@ -60749,14 +60920,14 @@ void Language::main(int argc, char *argv[]) {
             } else {
               Swig_arg_error();
             }
-          } else if ( (strcmp(argv[i],&quot;-proxy&quot;) == 0)) {
+          } else if ((strcmp(argv[i], &quot;-proxy&quot;) == 0)) {
             proxy_flag = 1;
             Swig_mark_arg(i);
-          } else if (strcmp(argv[i],&quot;-keyword&quot;) == 0) {
+          } else if (strcmp(argv[i], &quot;-keyword&quot;) == 0) {
             use_kw = 1;
             Swig_mark_arg(i);
-          } else if (strcmp(argv[i],&quot;-help&quot;) == 0) {
-            fputs(usage,stderr);
+          } else if (strcmp(argv[i], &quot;-help&quot;) == 0) {
+            fputs(usage, stderr);
           }
           ...
       }
@@ -60829,10 +61000,10 @@ void main(int argc, char *argv[]) {
 int Python::top(Node *n) {
 
   /* Get the module name */
-  String *module = Getattr(n,&quot;name&quot;);
+  String *module = Getattr(n, &quot;name&quot;);
 
   /* Get the output file name */
-  String *outfile = Getattr(n,&quot;outfile&quot;);
+  String *outfile = Getattr(n, &quot;outfile&quot;);
 
   /* Initialize I/O (see next section) */
   ...
@@ -60949,15 +61120,15 @@ functionWrapper()</TT> as this is the most commonly used function. In
 <PRE>
 int Python::functionWrapper(Node *n) {
   /* Get some useful attributes of this function */
-  String   *name   = Getattr(n,&quot;sym:name&quot;);
-  SwigType *type   = Getattr(n,&quot;type&quot;);
-  ParmList *parms  = Getattr(n,&quot;parms&quot;);
+  String   *name   = Getattr(n, &quot;sym:name&quot;);
+  SwigType *type   = Getattr(n, &quot;type&quot;);
+  ParmList *parms  = Getattr(n, &quot;parms&quot;);
   String   *parmstr= ParmList_str_defaultargs(parms); // to string
   String   *func   = SwigType_str(type, NewStringf(&quot;%s(%s)&quot;, name, parmstr));
-  String   *action = Getattr(n,&quot;wrap:action&quot;);
+  String   *action = Getattr(n, &quot;wrap:action&quot;);
 
-  Printf(f_wrappers,&quot;functionWrapper   : %s\n&quot;, func);
-  Printf(f_wrappers,&quot;           action : %s\n&quot;, action);
+  Printf(f_wrappers, &quot;functionWrapper   : %s\n&quot;, func);
+  Printf(f_wrappers, &quot;           action : %s\n&quot;, action);
   return SWIG_OK;
 }
 </PRE>
@@ -60969,13 +61140,13 @@ int Python::functionWrapper(Node *n) {
 functionWrapper   : void delete_Shape(Shape *self)
            action : delete arg1;
 
-functionWrapper   : void Shape_x_set(Shape *self,double x)
+functionWrapper   : void Shape_x_set(Shape *self, double x)
            action : if (arg1) (arg1)-&gt;x = arg2;
 
 functionWrapper   : double Shape_x_get(Shape *self)
            action : result = (double) ((arg1)-&gt;x);
 
-functionWrapper   : void Shape_y_set(Shape *self,double y)
+functionWrapper   : void Shape_y_set(Shape *self, double y)
            action : if (arg1) (arg1)-&gt;y = arg2;
 ...
 </PRE>
@@ -60997,7 +61168,7 @@ functionWrapper   : void Shape_y_set(Shape *self,double y)
 <P> In general most language wrappers look a little like this:</P>
 <DIV class="code">
 <PRE>
-/* wrapper for TYPE3 some_function(TYPE1,TYPE2); */
+/* wrapper for TYPE3 some_function(TYPE1, TYPE2); */
 RETURN_TYPE _wrap_some_function(ARGS){
   TYPE1 arg1;
   TYPE2 arg2;
@@ -61008,7 +61179,7 @@ RETURN_TYPE _wrap_some_function(ARGS){
   if(ARG2 is not of TYPE2) goto fail;
   arg2=(convert ARG2);
 
-  result=some_function(arg1,arg2);
+  result=some_function(arg1, arg2);
 
   convert 'result' to whatever the language wants;
 
@@ -61046,9 +61217,9 @@ RETURN_TYPE _wrap_some_function(ARGS){
 <PRE>
 virtual int functionWrapper(Node *n) {
   /* get useful attributes */
-  String   *name   = Getattr(n,&quot;sym:name&quot;);
-  SwigType *type   = Getattr(n,&quot;type&quot;);
-  ParmList *parms  = Getattr(n,&quot;parms&quot;);
+  String   *name   = Getattr(n, &quot;sym:name&quot;);
+  SwigType *type   = Getattr(n, &quot;type&quot;);
+  ParmList *parms  = Getattr(n, &quot;parms&quot;);
   ...
 
   /* create the wrapper object */
@@ -61061,7 +61232,7 @@ virtual int functionWrapper(Node *n) {
   ....
 
   /* write the wrapper function definition */
-  Printv(wrapper-&gt;def,&quot;RETURN_TYPE &quot;, wname, &quot;(ARGS) {&quot;,NIL);
+  Printv(wrapper-&gt;def, &quot;RETURN_TYPE &quot;, wname, &quot;(ARGS) {&quot;, NIL);
 
   /* if any additional local variable needed, add them now */
   ...
@@ -61079,7 +61250,7 @@ virtual int functionWrapper(Node *n) {
   ....
 
   /* Emit the function call */
-  emit_action(n,wrapper);
+  emit_action(n, wrapper);
 
   /* return value if necessary  */
   ....
@@ -61103,7 +61274,7 @@ virtual int functionWrapper(Node *n) {
   ...
 
   /* Dump the function out */
-  Wrapper_print(wrapper,f_wrappers);
+  Wrapper_print(wrapper, f_wrappers);
 
   /* tidy up */
   Delete(wname);
