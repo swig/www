@@ -1,0 +1,38 @@
+Survey Results
+
+<table summary="Survey Results"> <tr>
+<td bgcolor="#000000" align=center><font color="#ffffff"><b>Survey Results</b></font></td>
+</tr> </table>
+ 
+<p>
+This page provides a short summary of the survey results obtained from users who opted to fill in the SWIG Survey when downloading the distribution.
+While these are not necessarily accurate usage figures, they give a reasonably good indication of the most popular languages that SWIG users are interested in.
+
+<p>
+SWIG is a tool to help wrap code from the input C or C++ header files and make the code available in many different target languages.
+The first graph below shows the top 10 most popular target languages for SWIG users.
+
+<img src="survey/SWIGSurveyTargetLanguagesTopPercent.png" alt="SWIG Survey Target Languages Top 10 Percentages">
+
+<p>
+Python has clearly been the most popular over the years with Java and C# vying for second place.
+The bottom 7 in the top 10 are PHP, Perl, Ruby, XML, Tcl, Go and Chicken and range in popularity by 4% down to 1%.
+These usage patterns are broadly in line with popular programming usage, for example, as reported in the <a href="https://www.tiobe.com/tiobe-index/">TIOBE index</a>.
+SWIG's input languages are C and C++ and these along with the top three SWIG target languages (Python, Java, C#) comprise the top five TIOBE languages in 2016.
+Other trends such as Go rising in popularity and Perl falling in popularity over the years are reflected in SWIG usage patterns.
+
+<p>
+The following graph shows the next 10 most popular SWIG target languages.
+Interest in these has varied slightly over the years, but most hover around the 0.5% to 1.5% popularity mark.
+
+<img src="survey/SWIGSurveyTargetLanguagesNextPercent.png" alt="SWIG Survey Target Languages Top 10-20 Percentages">
+
+<p>
+The final graph below gives an indication of the operating systems that are being used for SWIG.
+Windows, Linux and OSX are clearly the favourite operating systems followed by a variety of other Unix variants.
+There is a notable decline for Solaris and an increase in Mac OSX popularity over the years.
+
+<img src="survey/SWIGSurveyOperatingSystemsPercent.png" alt="SWIG Survey Operating Systems Percentage">
+
+<p>
+These graphs were last updated with data to August 2016.
