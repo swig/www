@@ -28,7 +28,7 @@
 <tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Exits</b></font></td></tr>
 <tr><td><a href="http://franz.com/products/allegrocl/">AllegroCL</a></td></tr>
 <tr><td><a href="http://www.mono-project.com/">C# - Mono</a></td></tr>
-<tr><td><a href="http://msdn.microsoft.com/netframework">C# - MS .NET</a></td></tr>
+<tr><td><a href="https://docs.microsoft.com/en-us/dotnet/articles/csharp/">C# - MS .NET</a></td></tr>
 <tr><td><a href="http://common-lisp.net/project/cffi">CFFI</a></td></tr>
 <tr><td><a href="http://www.call-with-current-continuation.org/chicken.html">CHICKEN</a></td></tr>
 <tr><td><a href="http://clisp.org">CLISP</a></td></tr>
