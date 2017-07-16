@@ -194,6 +194,10 @@ a suite of libraries for gravitational-wave data analysis, used by the <a href="
 Communications library to to interact with LORD Microstrain's wireless and wired sensors.
 </li>
 
+<li> <a href="http://agrum.gitlab.io/">aGrUM/pyAgrum</a>:
+A Graphical Universal Modeler library designed for easily building applications using graphical models such as Bayesian networks, influence diagrams, decision trees, GAI networks or Markov decision processes.
+</li>
+
 </ul>
 
 <h1>Other projects using SWIG</h1>
