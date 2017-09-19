@@ -198,6 +198,18 @@ Communications library to to interact with LORD Microstrain's wireless and wired
 A Graphical Universal Modeler library designed for easily building applications using graphical models such as Bayesian networks, influence diagrams, decision trees, GAI networks or Markov decision processes.
 </li>
 
+<li> <a href="https://github.com/SLikeSoft/SLikeNet">SLikeNet</a>:
+Cross-platform network engine written in C++ and specifially designed for games.
+</li>
+
+<li> <a href="http://www.hamlib.org">Hamlib</a>:
+Ham Radio Control Libraries to control radio transceivers and receivers.
+</li>
+
+<li> <a href="https://bitbucket.org/camp0/aiengine">AIEngine</a>:
+Artificial Intelligent Engine - network intrusion detection system.
+</li>
+
 </ul>
 
 <h1>Other projects using SWIG</h1>
