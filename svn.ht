@@ -72,7 +72,7 @@ $ svn checkout https://github.com/swig/swig/trunk swig
 </pre>
 
 
-<li><p>To build the system, follow these steps
+<li><p>To build SWIG, follow the steps below and replace <tt>/some/directory</tt> with a directory that you have permission to write to:
 
 <pre>
 $ cd swig
