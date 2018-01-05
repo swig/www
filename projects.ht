@@ -85,12 +85,6 @@ Ruby-VTK is an one-to-one wrapper of The Visualization ToolKit (VTK) for Ruby.
   <a href="http://www.gnucash.org">GNUCash</a>: Personal and small-business financial-accounting software.
 </li>
 
-<!-- link dead 2008-04-01 ; still dead 2009-03-29
-<li> <a href="http://www.mic.atr.co.jp/~gulliver/WTK/www/">PyWTK</a>: A Python
-interface to the WorldToolKit (a virtual reality modeling
-toolkit). (Roberto Lopez Gulliver) </li>
--->
-
 <li> <a
 href="http://search.cpan.org/~jhpb/X11-Wcl-0.3/Wcl.pm">X11::Wcl</a>: A
 Perl interface to the Widget Creation Library (Joe Buehler). </li>
@@ -208,6 +202,10 @@ Ham Radio Control Libraries to control radio transceivers and receivers.
 
 <li> <a href="https://bitbucket.org/camp0/aiengine">AIEngine</a>:
 Artificial Intelligent Engine - network intrusion detection system.
+</li>
+
+<li> <a href="http://swift-lang.org/Swift-T/">Swift/T</a>:
+Swift/T is a parallel programming language that is typically used to call external code via Tcl or Python bindings generated with SWIG.  SWIG is also used to build Swift/T, which enables Swift/T programs to manipulate C or Fortran formatted data.
 </li>
 
 </ul>
