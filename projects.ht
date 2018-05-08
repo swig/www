@@ -208,6 +208,11 @@ Artificial Intelligent Engine - network intrusion detection system.
 Swift/T is a parallel programming language that is typically used to call external code via Tcl or Python bindings generated with SWIG.  SWIG is also used to build Swift/T, which enables Swift/T programs to manipulate C or Fortran formatted data.
 </li>
 
+<li> <a href="https://www.abisource.com/projects/link-grammar/">Link Grammar Parser</a>:
+The CMU Link Grammar natural language parser.
+The Link Grammar Parser is a syntactic parser of English, Russian, Arabic and Persian (and other languages as well), based on Link Grammar, an original theory of syntax and morphology.
+</li>
+
 </ul>
 
 <h1>Other projects using SWIG</h1>
