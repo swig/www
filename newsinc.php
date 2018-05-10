@@ -12,8 +12,9 @@
 //    error_reporting(E_ALL);
 
     // Fetch RSS feed 
-//    $rss = fetch_rss('http://sourceforge.net/export/rss2_projnews.php?group_id=1645'); // Project news releases
-    $rss = fetch_rss('http://sourceforge.net/export/rss2_projnews.php?group_id=1645&rss_limit=' . $rss_limit . '&rss_fulltext=1'); // Project news releases (including full text of news items)
+//    $rss = fetch_rss('https://sourceforge.net/export/rss2_projnews.php?group_id=1645'); // Project news releases
+//    $rss = fetch_rss('https://sourceforge.net/export/rss2_projnews.php?group_id=1645&rss_limit=' . $rss_limit . '&rss_fulltext=1'); // Project news releases (including full text of news items)
+    $rss = fetch_rss('https://sourceforge.net/p/swig/news/feed?limit=' . $rss_limit); // Project news releases (including full text of news items)
 //    echo '<pre>';
 //    print_r($rss);
 //    echo '</pre>';
