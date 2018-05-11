@@ -4,7 +4,8 @@
     require_once('magpierss-0.72/rss_fetch.inc');
     ini_set("include_path", ".:./magpierss-0.72");
 
-    define('MAGPIE_CACHE_DIR', '/tmp/persistent/swig/magpie_cache');
+//    define('MAGPIE_CACHE_DIR', '/tmp/persistent/swig/magpie_cache');
+    define('MAGPIE_CACHE_DIR', '/home/project-web/swig/magpie_cache');
     error_reporting(E_ERROR);
 
     // for debugging:
