@@ -16,6 +16,10 @@ These can be a useful reference for seeing how SWIG is used in real projects as 
 </li>
 
 <li>
+  <a href="https://lldb.llvm.org/python-reference.html">LLDB</a> LLVM debugger.
+</li>
+
+<li>
   <a href="http://www.ogre3d.org/tikiwiki/PyOgre">PyOgre</a> 3D graphics engine.
 </li>
 
