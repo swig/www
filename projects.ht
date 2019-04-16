@@ -217,6 +217,10 @@ The CMU Link Grammar natural language parser.
 The Link Grammar Parser is a syntactic parser of English, Russian, Arabic and Persian (and other languages as well), based on Link Grammar, an original theory of syntax and morphology.
 </li>
 
+<li> <a href="http://www.gnucap.org">Gnucap</a>:
+GNU Circuit Analysis Package - an analog and mixed signal circuit simulator.
+</li>
+
 </ul>
 
 <h1>Other projects using SWIG</h1>
