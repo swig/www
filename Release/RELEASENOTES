@@ -12,7 +12,7 @@ SWIG-4.0.0 summary:
   converted into JavaDoc or PyDoc comments.
 - STL wrappers improved for C#, Java and Ruby.
 - C++11 STL containers added for Java, Python and Ruby.
-- Improved support for parsing C++11 and C++14 code.
+- Improved support for parsing C++11, C++14 and C++17 code.
 - Various fixes for shared_ptr.
 - Various C preprocessor corner case fixes.
 - Corner case fixes for member function pointers.

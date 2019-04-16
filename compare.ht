@@ -3,27 +3,22 @@ SWIG Features
 <h2>SWIG Features</h2>
 
 <p>
-This information is based on the SWIG-3.0.1 release.
+This information is based on the SWIG-4.0.0 release.
 
 <h3>Code Generation</h3>
 
-SWIG currently generates wrapper code for twenty three different target languages:
+SWIG currently generates wrapper code for the following different target languages:
 
 <ul>
-<li>Allegro CL
 <li>C#
-<li>CFFI
-<li>CLISP
-<li>Chicken
 <li>D
 <li>Go
 <li>Guile
 <li>Java
 <li>Javascript
 <li>Lua
-<li>Modula-3
-<li>Mzscheme
-<li>OCAML
+<li>MzScheme/Racket
+<li>OCaml
 <li>Octave
 <li>Perl
 <li>PHP
@@ -32,11 +27,9 @@ SWIG currently generates wrapper code for twenty three different target language
 <li>Ruby
 <li>Scilab
 <li>Tcl
-<li>UFFI
 </ul>
 
-In addition to this, the parse tree can be exported as XML and Lisp s-expressions.
-Experimental work is also available for a Pike module.
+In addition to this, the parse tree can be exported as XML.
 
 <h3>ISO C</h3>
 
@@ -51,12 +44,13 @@ SWIG is capable of wrapping all of ISO C99.   Features include:
 <li>Pointers to functions.
 <li>Variable length arguments.
 <li>Typedef.
+<li>Callbacks.
 <li>Enums.
 </ul>
 
 <h3>ISO C++</h3>
 
-SWIG provides wrapping support for ISO C++11.
+SWIG provides wrapping support for ISO C++98 to C++17.
 
 <ul>
 <Li>All C++ datatypes.
@@ -74,7 +68,7 @@ SWIG provides wrapping support for ISO C++11.
 <li>Template specialization and partial specialization.
 <li>Smart pointers
 <li>C++ library support for strings and the STL.
-<li>The majority of the new C++11 standard features.
+<li>The majority of the newer C++11 to C++17 standard features.
 </ul>
 
 <p>
@@ -86,6 +80,7 @@ template classes, your mileage might vary.
 
 <h3>Preprocessing</h3>
 
+<p>
 SWIG provides a full C preprocessor with the following features:
 
 <ul>
@@ -94,6 +89,12 @@ SWIG provides a full C preprocessor with the following features:
 <li>Support for C99 (variadic macro expansion).
 
 </ul>
+
+<h3>Doxygen documentation</h3>
+
+<p>
+Doxygen documentation comments in C++ comments are parsed and converted into equivalent
+Java and Python documentation comments.
 
 <h3>Customization features</h3>
 
