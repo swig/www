@@ -34,7 +34,7 @@ newer SWIG releases.
 
 <li>February 11, 2000. SWIG1.3 alpha released.   This is the first in
 a series of releases that slowly migrate most of SWIG's implementation
-back to ANSI C.
+back to ISO C.
 
 <li>March 1, 2000. SWIG1.3a2 released.
 <li>June 18, 2000. SWIG1.3a3 released.

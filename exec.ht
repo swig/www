@@ -59,7 +59,7 @@ to your application.  If anything, it's much more of a rapid
 application development and prototyping tool.  Specifically:
 
 <ul>
-<li><p><b>ANSI C/C++ syntax</b>.  SWIG parses ANSI C++ that has been
+<li><p><b>ISO C/C++ syntax</b>.  SWIG parses ISO C++ that has been
 extended with a number of special directives.  As a result, interfaces
 are usually built by grabbing a header file and tweaking it a little
 bit.  This particular approach is especially useful when the
