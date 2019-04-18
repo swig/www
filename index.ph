@@ -2,8 +2,6 @@ Simplified Wrapper and Interface Generator
 
 <h2>Welcome to SWIG</h2>
 
-[ <a href="translations/chinese/index.html">Chinese</a> ]
-
 <p>
 SWIG is a software development tool that connects programs written in
 C and C++ with a variety of high-level programming
