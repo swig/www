@@ -5,15 +5,13 @@ Download SWIG
 <h3>The Latest Release</h3>
 
 <p>
-The latest release is <a href="http://prdownloads.sourceforge.net/swig/swig-3.0.12.tar.gz">swig-3.0.12</a>.
-Please try our beta release <a href="http://prdownloads.sourceforge.net/swig/swig-4.0.0-beta1.tar.gz">swig-4.0.0-beta1</a> and report any upgrade problems to the mailing lists or raise a Github issue.
+The latest release is <a href="http://prdownloads.sourceforge.net/swig/swig-4.0.0.tar.gz">swig-4.0.0</a>.
 View the <a href="release.html">release notes</a>.
 
 <p>
 Windows users should download
-<a href="http://prdownloads.sourceforge.net/swig/swigwin-3.0.12.zip">swigwin-3.0.12</a>
+<a href="http://prdownloads.sourceforge.net/swig/swigwin-4.0.0.zip">swigwin-4.0.0</a>
 which includes a prebuilt executable. 
-The 4.0.0 beta release is available at <a href="http://prdownloads.sourceforge.net/swig/swigwin-4.0.0-beta1.zip">swigwin-4.0.0-beta1</a>.
 
 <p>
 Many Unix-like operating systems also include packages of SWIG (e.g.
