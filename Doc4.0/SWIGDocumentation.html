@@ -844,16 +844,22 @@ body { font-family: serif; }
 <li><a HREF="#Doxygen_python_further_details">17.4.4 Further details</a></li>
 </ul>
 </li>
-<li><a HREF="#Doxygen_developer_details">17.5 Developer information</a>
+<li><a HREF="#Doxygen_troubleshooting">17.5 Troubleshooting</a>
 <ul>
-<li><a HREF="#Doxygen_translator_design">17.5.1 Doxygen translator
- design</a></li>
-<li><a HREF="#Doxygen_debugging_commands">17.5.2 Debugging the Doxygen
- parser and translator</a></li>
-<li><a HREF="#Doxygen_tests">17.5.3 Tests</a></li>
+<li><a HREF="#troubleshooting_ifndef">17.5.1 Problem with conditional
+ compilation</a></li>
 </ul>
 </li>
-<li><a HREF="#Doxygen_language_extension">17.6 Extending to other
+<li><a HREF="#Doxygen_developer_details">17.6 Developer information</a>
+<ul>
+<li><a HREF="#Doxygen_translator_design">17.6.1 Doxygen translator
+ design</a></li>
+<li><a HREF="#Doxygen_debugging_commands">17.6.2 Debugging the Doxygen
+ parser and translator</a></li>
+<li><a HREF="#Doxygen_tests">17.6.3 Tests</a></li>
+</ul>
+</li>
+<li><a HREF="#Doxygen_language_extension">17.7 Extending to other
  languages</a></li>
 </ul>
 <b><a HREF="#Warnings">18 Warning Messages</a></b>
@@ -2273,7 +2279,7 @@ body { font-family: serif; }
 </ul>
 <HR NOSHADE>
 <h1><a name="Sections">SWIG-4.0 Documentation</a></h1>
-<p> Last update : SWIG-4.0.0 (in progress)</p>
+<p> Last update : SWIG-4.0.0 (27 Apr 2019)</p>
 <h2><a name="Sections_Sections">Sections</a></h2>
 <h3><a name="Sections_core_docs">SWIG Core Documentation</a></h3>
 <ul>
@@ -2778,10 +2784,10 @@ Understanding Two-Level Namespaces</a>.</p>
  to many different target languages is one of SWIG's core strengths and
  features.</p>
 <p> SWIG is very broadly composed of two components. A core component
- creates a parse tree from the input C/C++ and SWIG directives
- (extensions to C/C++). The parse tree is then passed to a second
- component, one of the target language modules for generating code
- specific to a higher level language. SWIG supports many different
+ creates a parse tree from the input ISO C/C++ and SWIG directives
+ (extensions to the C/C++ standards). The parse tree is then passed to a
+ second component, one of the target language modules for generating
+ code specific to a higher level language. SWIG supports many different
  target languages. These target languages are given a status of either
  Supported or Experimental. This status is provided to indicate the
  level of maturity to expect when using a particular target language as
@@ -2867,7 +2873,7 @@ extern int    fact(int);
 extern int    my_mod(int n, int m);
 </pre>
 </div>
-<p> The interface file contains ANSI C function prototypes and variable
+<p> The interface file contains ISO C function prototypes and variable
  declarations. The <tt>%module</tt> directive defines the name of the
  module that will be created by SWIG. The <tt>%{ %}</tt> block provides
  a location for inserting additional code, such as C header files or
@@ -2970,7 +2976,7 @@ print $example::My_variable + 4.5, &quot;\n&quot;;
  features include:</p>
 <ul>
 <li>Full C99 preprocessing.</li>
-<li>All ANSI C and C++ datatypes.</li>
+<li>All ISO C and C++ datatypes.</li>
 <li>Functions, variables, and constants.</li>
 <li>Classes.</li>
 <li>Single and multiple inheritance.</li>
@@ -3077,7 +3083,7 @@ SWIG_LINK_LIBRARIES(example ${PYTHON_LIBRARIES})
 <p> Ironically, the freedom that SWIG provides is countered by an
  extremely conservative approach to code generation. At its core, SWIG
  tries to distill even the most advanced C++ code down to a small
- well-defined set of interface building techniques based on ANSI C
+ well-defined set of interface building techniques based on ISO C
  programming. Because of this, you will find that SWIG interfaces can be
  easily compiled by virtually every C/C++ compiler and that they can be
  used on any platform. Again, this is an important part of staying out
@@ -3259,7 +3265,7 @@ examples using Cygwin</a>.</p>
 <h2><a name="Windows_cygwin_mingw">3.3 SWIG on Cygwin and MinGW</a></h2>
 <p> SWIG can also be compiled and run using <a href="http://www.cygwin.com">
 Cygwin</a> or <a href="http://www.mingw.org">MinGW</a> which provides a
- Unix like front end to Windows and comes free with gcc, an ANSI C/C++
+ Unix like front end to Windows and comes free with gcc, an ISO C/C++
  compiler. However, this is not a recommended approach as the prebuilt
  executable is supplied.</p>
 <h3><a name="Windows_swig_exe">3.3.1 Building swig.exe on Windows</a></h3>
@@ -3896,7 +3902,7 @@ lib/libgraph.so:/lib/cmplrs/cc/libgraph.so:/usr/lib/cmplrs/cc/libgraph.so:
 </div>
 <!-- INDEX -->
 <p> This chapter describes the basic operation of SWIG, the structure of
- its input files, and how it handles standard ANSI C declarations. C++
+ its input files, and how it handles standard ISO C declarations. C++
  support is described in the next chapter. However, C++ programmers
  should still read this chapter to understand the basics. Specific
  details about each target language are described in later chapters.</p>
@@ -4040,7 +4046,7 @@ swig @<em>file</em>
  with a backslash. The file may itself contain additional <tt>@file</tt>
  options; any such options will be processed recursively.</p>
 <h3><a name="SWIG_nn3">5.1.1 Input format</a></h3>
-<p> As input, SWIG expects a file containing ANSI C/C++ declarations and
+<p> As input, SWIG expects a file containing ISO C/C++ declarations and
  special SWIG directives. More often than not, this is a special SWIG
  interface file which is usually denoted with a special <tt>.i</tt> or <tt>
 .swg</tt> suffix. In certain cases, SWIG can be used directly on raw
@@ -4054,7 +4060,7 @@ swig @<em>file</em>
 %{
 #include &quot;myheader.h&quot;
 %}
-// Now list ANSI C/C++ declarations
+// Now list ISO C/C++ declarations
 int foo;
 int bar(int x);
 ...
@@ -5540,7 +5546,7 @@ int plot(double x, double y, int color=WHITE);
 
 </pre>
 </div>
-<p> Although the ANSI C standard does not allow default arguments,
+<p> Although the ISO C standard does not allow default arguments,
  default arguments specified in a SWIG interface work with both C and
  C++.</p>
 <p><b> Note:</b> There is a subtle semantic issue concerning the use of
@@ -5678,7 +5684,7 @@ int mul(int, int);
  from C/C++ into the target language, see <a href="#SWIGPlus_target_language_callbacks">
 Callbacks to the target language</a>.</p>
 <h2><a name="SWIG_nn31">5.5 Structures and unions</a></h2>
-<p> This section describes the behavior of SWIG when processing ANSI C
+<p> This section describes the behavior of SWIG when processing ISO C
  structures and union declarations. Extensions to handle C++ are
  described in the next section.</p>
 <p> If SWIG encounters the definition of a structure or union, it
@@ -6532,7 +6538,7 @@ Vector *new_Vector() {
 <li>Copy the appropriate declarations into the interface file or use
  SWIG's <tt>%include</tt> directive to process an entire C source/header
  file.</li>
-<li>Make sure everything in the interface file uses ANSI C/C++ syntax.</li>
+<li>Make sure everything in the interface file uses ISO C/C++ syntax.</li>
 <li>Make sure all necessary `<tt>typedef</tt>' declarations and
  type-information is available in the interface file. In particular,
  ensure that the type information is specified in the correct order as
@@ -6771,9 +6777,9 @@ extern void dump(FILE *f);
  additions to the original C++ standard, please read the <a href="#CPlusPlus11">
 SWIG and C++11</a>, <a href="#CPlusPlus14">SWIG and C++14</a> and <a href="#CPlusPlus17">
 SWIG and C++17</a> chapters. As a prerequisite, you should first read
- the chapter <a href="#SWIG">SWIG Basics</a> to see how SWIG wraps ANSI
- C. Support for C++ builds upon ANSI C wrapping and that material will
- be useful in understanding this chapter.</p>
+ the chapter <a href="#SWIG">SWIG Basics</a> to see how SWIG wraps ISO
+ C. Support for C++ builds upon ISO C wrapping and that material will be
+ useful in understanding this chapter.</p>
 <h2><a name="SWIGPlus_nn2">6.1 Comments on C++ Wrapping</a></h2>
 <p> Because of its complexity and the fact that C++ can be difficult to
  integrate with itself let alone other languages, SWIG only provides
@@ -6807,7 +6813,7 @@ SWIG and C++17</a> chapters. As a prerequisite, you should first read
  be careful.</p>
 <h2><a name="SWIGPlus_nn3">6.2 Approach</a></h2>
 <p> To wrap C++, SWIG uses a layered approach to code generation. At the
- lowest level, SWIG generates a collection of procedural ANSI-C style
+ lowest level, SWIG generates a collection of procedural ISO C style
  wrappers. These wrappers take care of basic type conversion, type
  checking, error handling, and other low-level details of the C++
  binding. These wrappers are also sufficient to bind C++ into any target
@@ -12450,7 +12456,7 @@ SWIGXML                         Defined when using XML
 <pre>
 __LINE__                        Current line number
 __FILE__                        Current file name
-__STDC__                        Defined to indicate ANSI C
+__STDC__                        Defined to indicate ISO C
 __cplusplus                     Defined when -c++ option used
 </pre>
 </div>
@@ -12479,9 +12485,9 @@ __cplusplus                     Defined when -c++ option used
 <pre>
 #define EXTERN extern
 #ifdef __STDC__
-#define _ANSI(args)   (args)
+#define ISOC_(args)   (args)
 #else
-#define _ANSI(args) ()
+#define ISOC_(args) ()
 #endif
 </pre>
 </div>
@@ -12671,7 +12677,7 @@ noblock</tt> where the { ... } delimiters can be used, but the
 <h2><a name="Preprocessor_nn10">10.9 Viewing preprocessor output</a></h2>
 <p> Like many compilers, SWIG supports a <tt>-E</tt> command line option
  to display the output from the preprocessor. When the <tt>-E</tt>
- switch is used, SWIG will not generate any wrappers. Instead the
+ option is used, SWIG will not generate any wrappers. Instead the
  results after the preprocessor has run are displayed. This might be
  useful as an aid to debugging and viewing the results of macro
  expansions.</p>
@@ -13602,7 +13608,7 @@ void my_get_data(char **result, int *len) {
  many ways to accomplish this in SWIG. This library provides support for
  a few common techniques.</li>
 <li>If used in C++, this library uses <tt>new</tt> and <tt>delete []</tt>
- for memory allocation. If using ANSI C, the library uses <tt>malloc()</tt>
+ for memory allocation. If using C, the library uses <tt>malloc()</tt>
  and <tt>free()</tt>.</li>
 <li>Rather than manipulating <tt>char *</tt> directly, you might
  consider using a special string structure or class instead.</li>
@@ -20630,6 +20636,12 @@ public:
 <li><a href="#Doxygen_python_further_details">Further details</a></li>
 </ul>
 </li>
+<li><a href="#Doxygen_troubleshooting">Troubleshooting</a>
+<ul>
+<li><a href="#troubleshooting_ifndef">Problem with conditional
+ compilation</a></li>
+</ul>
+</li>
 <li><a href="#Doxygen_developer_details">Developer information</a>
 <ul>
 <li><a href="#Doxygen_translator_design">Doxygen translator design</a></li>
@@ -20751,7 +20763,7 @@ enum E_NUMBERS
 <h3><a name="Doxygen_running_swig">17.2.1 Enabling Doxygen translation</a>
 </h3>
 <p> Doxygen comments translation is disabled by default and needs to be
- explicitly enabled using the command line <tt>-doxygen</tt> switch for
+ explicitly enabled using the command line <tt>-doxygen</tt> option for
  the languages that do support it (currently Java and Python).</p>
 <h3><a name="Doxygen_features">17.2.2 Doxygen-specific %feature
  directives</a></h3>
@@ -21463,10 +21475,56 @@ doxypy</a>) to do the work.</p>
 </div>
 <h3><a name="Doxygen_python_further_details">17.4.4 Further details</a></h3>
 <p> TO BE ADDED.</p>
-<h2><a name="Doxygen_developer_details">17.5 Developer information</a></h2>
+<h2><a name="Doxygen_troubleshooting">17.5 Troubleshooting</a></h2>
+<p> When running SWIG with command line option <tt>-doxygen</tt>, it may
+ happen that SWIG will fail to parse the code, which is valid C++ code
+ and is parsed without problems without the option. The problem is, that
+ Doxygen comments are not tokens (the C/C++ compiler actually never sees
+ them) and that they can appear anywhere in the code. That's why it is
+ practically impossible to handle all corner cases with the parser.
+ However, these problems can usually be avoided by minor changes in the
+ code or comment. Known problems and solutions are shown in this
+ section.</p>
+<p> Recommended approach is to first run SWIG without command line
+ option <tt>-doxygen</tt>. When it successfully processes the code,
+ include the option and fix problems with Doxygen comments.</p>
+<h3><a name="troubleshooting_ifndef">17.5.1 Problem with conditional
+ compilation</a></h3>
+<p> Inserting a conditional compilation preprocessor directive between a
+ Doxygen comment and a commented item may break parsing:</p>
+<div class="code">
+<pre>
+class A {
+  /**
+   * Some func.
+   */
+  <font color="#ff0000">#ifndef SWIG</font>
+  void myfunc()
+  {
+  }
+  #endif
+};
+</pre>
+</div>
+<p> The solution is to move the directive above the comment:</p>
+<div class="code">
+<pre>
+class A {
+  <font color="#00d000">#ifndef SWIG</font>
+  /**
+   * Some func.
+   */
+  void myfunc()
+  {
+  }
+  #endif
+};
+</pre>
+</div>
+<h2><a name="Doxygen_developer_details">17.6 Developer information</a></h2>
 <p> This section contains information for developers enhancing the
  Doxygen translator.</p>
-<h3><a name="Doxygen_translator_design">17.5.1 Doxygen translator design</a>
+<h3><a name="Doxygen_translator_design">17.6.1 Doxygen translator design</a>
 </h3>
 <p> If this functionality is turned on, SWIG places all comments found
  into the SWIG parse tree. Nodes contain an additional attribute called <tt>
@@ -21487,9 +21545,9 @@ doxygen</tt> when a comment is present. Individual nodes containing
  module builds its own private parse tree and hands it to a separate
  class for translation into the target documentation language. For
  example, <tt>JavaDocConverter</tt> is the Javadoc module class.</p>
-<h3><a name="Doxygen_debugging_commands">17.5.2 Debugging the Doxygen
+<h3><a name="Doxygen_debugging_commands">17.6.2 Debugging the Doxygen
  parser and translator</a></h3>
-<p> There are two handy command line switches, that enable lots of
+<p> There are two handy command line options, that enable lots of
  detailed debug information printing.</p>
 <div class="shell">
 <pre>
@@ -21497,7 +21555,7 @@ doxygen</tt> when a comment is present. Individual nodes containing
   -debug-doxygen-translator - Display Doxygen translator module debugging information
 </pre>
 </div>
-<h3><a name="Doxygen_tests">17.5.3 Tests</a></h3>
+<h3><a name="Doxygen_tests">17.6.3 Tests</a></h3>
 <p> Doxygen tests have been added to the regular SWIG test-suite. There
  are a number of tests beginning <tt>doxygen_</tt> in the
  Examples/test-suite sub-directory.</p>
@@ -21536,7 +21594,7 @@ make check-test-suite</tt> or <tt>make check-python-test-suite</tt>. To
  in form 'wantedComments.put(...)' with the output of the above command.</p>
 <p> Runtime tests in Python are just plain string comparisons of the
  __doc__ properties.</p>
-<h2><a name="Doxygen_language_extension">17.6 Extending to other
+<h2><a name="Doxygen_language_extension">17.7 Extending to other
  languages</a></h2>
 <p> In general, an extension to another language requires a fairly deep
  understanding of the target language module, such as Modules/python.cxx
@@ -25977,7 +26035,7 @@ C#</a> (and also on <a href="#Java">Java</a>, since the C# module was in
  turn forked from it).</p>
 <h2><a name="D_command_line_invocation">23.2 Command line invocation</a></h2>
 <p>To activate the D module, pass the <tt>-d</tt> option to SWIG at the
- command line. The same standard command line switches as with any other
+ command line. The same standard command line options as with any other
  language module are available, plus the following D specific ones:</p>
 <dl>
 <dt><tt>-d2</tt></dt>
@@ -25989,13 +26047,13 @@ C#</a> (and also on <a href="#Java">Java</a>, since the C# module was in
 <dd>
 <p>By default, SWIG generates two D modules: the<em> proxy</em> module,
  named like the source module (either specified via the <tt>%module</tt>
- directive or via the <tt>module</tt> command line switch), which
+ directive or via the <tt>module</tt> command line option), which
  contains all the proxy classes, functions, enums, etc., and the<em>
  intermediary</em> module (named like the proxy module, but suffixed
  with <tt>_im</tt>), which contains all the <tt>extern(C)</tt> function
  declarations and other private parts only used internally by the proxy
  module.</p>
-<p>If the split proxy mode is enabled by passing this switch at the
+<p>If the split proxy mode is enabled by passing this option at the
  command line, all proxy classes and enums are emitted to their own D
  module instead. The main proxy module only contains free functions and
  constants in this case.</p>
@@ -26010,7 +26068,7 @@ C#</a> (and also on <a href="#Java">Java</a>, since the C# module was in
 <dd>
 <p>The code SWIG generates to dynamically load the C/C++ wrapper layer
  looks for a library called <tt>$module_wrap</tt> by default. With this
- switch, you can override the name of the file the wrapper code loads at
+ option, you can override the name of the file the wrapper code loads at
  runtime (the <tt>lib</tt> prefix and the suffix for shared libraries
  are appended automatically, depending on the OS).</p>
 <p>This might especially be useful if you want to invoke SWIG several
@@ -26628,29 +26686,28 @@ go tool</a>. Since Go 1.1 the go tool has support for SWIG. To use it,
 -go</tt> option with SWIG. By default SWIG will generate code for the Go
  compiler of the Go distribution. To generate code for gccgo, you should
  also use the <tt>-gccgo</tt> option.</p>
-<p> When using the <tt>-cgo</tt> option, SWIG will generate files that
- can be used directly by <tt>go build</tt>. Starting with the Go 1.5
- distribution the <tt>-cgo</tt> option has to be given. Put your SWIG
- interface file in a directory under GOPATH/src, and give it a name that
- does<b> not</b> end in the .swig or .swigcxx extension. Typically the
- SWIG interface file extension is .i in this case.</p>
+<p> By default SWIG will generate files that can be used directly by <tt>
+go build</tt>. This requires Go 1.2 or later. Put your SWIG interface
+ file in a directory under GOPATH/src, and give it a name that does<b>
+ not</b> end in the .swig or .swigcxx extension. Typically the SWIG
+ interface file extension is .i in this case.</p>
 <div class="code">
 <pre>
-% swig -go -cgo example.i
+% swig -go example.i
 % go install
 </pre>
 </div>
 <p> You will now have a Go package that you can import from other Go
  packages as usual.</p>
-<p> To use SWIG without the <tt>-cgo</tt> option, more steps are
- required. Recall that this only works with Go versions before 1.5. When
- using Go version 1.2 or later, or when using gccgo, the code generated
- by SWIG can be linked directly into the Go program. A typical command
- sequence when using the Go compiler of the Go distribution would look
- like this:</p>
+<p> SWIG can be used without cgo, via the <tt>-no-cgo</tt> option, but
+ more steps are required. This only works with Go versions before 1.5.
+ When using Go version 1.2 or later, or when using gccgo, the code
+ generated by SWIG can be linked directly into the Go program. A typical
+ command sequence when using the Go compiler of the Go distribution
+ would look like this:</p>
 <div class="code">
 <pre>
-% swig -go example.i
+% swig -go -no-cgo example.i
 % gcc -c code.c    # The C library being wrapped.
 % gcc -c example_wrap.c
 % go tool 6g example.go
@@ -26665,7 +26722,7 @@ go tool</a>. Since Go 1.1 the go tool has support for SWIG. To use it,
  typical command sequence for this approach would look like this:</p>
 <div class="code">
 <pre>
-% swig -go -use-shlib example.i
+% swig -go -no-cgo -use-shlib example.i
 % gcc -c -fpic example.c
 % gcc -c -fpic example_wrap.c
 % gcc -shared example.o example_wrap.o -o example.so
@@ -26687,9 +26744,10 @@ swig -go -help
 <table summary="Go-specific options">
 <tr><th>Go-specific options</th></tr>
 <tr><td>-cgo</td><td>Generate files to be used as input for the Go cgo
- tool. This option is required for Go 1.5 and later, and works for Go
- 1.2 and later. In the future this option will likely become the
- default.</td></tr>
+ tool. This is the default.</td></tr>
+<tr><td>-no-cgo</td><td>Generate files that can be used directly, rather
+ than via the Go cgo tool. This option does not work with Go 1.5 or
+ later. It is required for versions of Go before 1.2.</td></tr>
 <tr><td>-intgosize &lt;s&gt;</td><td>Set the size for the Go type <tt>int</tt>
 . This controls the size that the C/C++ code expects to see. The &lt;s&gt;
  argument should be 32 or 64. This option is currently required during
@@ -26719,13 +26777,18 @@ swig -go -help
  the prefix to use. This corresponds to the <tt>-fgo-prefix</tt> option
  to gccgo. If <tt>-go-pkgpath</tt> is used, <tt>-go-prefix</tt> will be
  ignored.</td></tr>
+<tr><td>-import-prefix &lt;prefix&gt;</td><td>A prefix to add when turning a
+ %import prefix in the SWIG interface file into an import statement in
+ the Go file. For example, with <code>-import-prefix mymodule</code>, a
+ SWIG interface file <code>%import mypackage</code> will become a Go
+ import statement <code>import &quot;mymodule/mypackage&quot;</code>.</td></tr>
 </table>
 <h3><a name="Go_outputs">24.3.2 Generated Wrapper Files</a></h3>
 <p>There are two different approaches to generating wrapper files,
- controlled by SWIG's <tt>-cgo</tt> option. The <tt>-cgo</tt> option
- works with Go version 1.2 or later. It is required when using Go
- version 1.5 or later.</p>
-<p>With or without the <tt>-cgo</tt> option, SWIG will generate the
+ controlled by SWIG's <tt>-no-cgo</tt> option. The <tt>-no-cgo</tt>
+ option only works with version of Go before 1.5. It is required when
+ using versions of Go before 1.2.</p>
+<p>With or without the <tt>-no-cgo</tt> option, SWIG will generate the
  following files when generating wrapper code:</p>
 <ul>
 <li> MODULE.go will contain the Go functions that your Go code will
@@ -26741,8 +26804,8 @@ swig -go -help
  may be helpful to include it in your code, compiled with the usual C or
  C++ compiler.</li>
 </ul>
-<p>When neither the <tt>-cgo</tt> nor the <tt>-gccgo</tt> option is
- used, SWIG will also generate an additional file:</p>
+<p>When the <tt>-no-cgo</tt> option is used, and the <tt>-gccgo</tt>
+ option is not used, SWIG will also generate an additional file:</p>
 <ul>
 <li> MODULE_gc.c will contain C code which should be compiled with the C
  compiler distributed as part of the gc compiler. It should then be
@@ -28806,7 +28869,7 @@ Exception in thread &quot;main&quot; java.lang.UnsatisfiedLinkError: exampleJNI.
 <p> where <tt>gcd</tt> is the missing JNI function that SWIG generated
  into the wrapper file. Also make sure you pass all of the required
  libraries to the linker. The <tt>java -verbose:jni</tt> commandline
- switch is also a great way to get more information on unresolved
+ option is also a great way to get more information on unresolved
  symbols. One last piece of advice is to beware of the common faux pas
  of having more than one native library version in your path.</p>
 <p> In summary, ensure that you are using the correct C/C++ compiler and
@@ -28970,7 +29033,7 @@ java::
  to run <tt>vcvars32</tt> first). This is a pretty simplistic Makefile,
  but hopefully its enough to get you started. Of course you may want to
  make changes for it to work for C++ by adding in the -c++ command line
- switch for swig and replacing .c with .cxx.</p>
+ option for swig and replacing .c with .cxx.</p>
 <h2><a name="Java_basic_tour">26.3 A tour of basic C/C++ wrapping</a></h2>
 <p> By default, SWIG attempts to build a natural Java interface to your
  C/C++ code. Functions are wrapped as functions, classes are wrapped as
@@ -37169,7 +37232,7 @@ if(js_exception)
  and data-driven programming. Lua is intended to be used as a powerful,
  light-weight configuration language for any program that needs one. Lua
  is implemented as a library, written in clean C (that is, in the common
- subset of ANSI C and C++). It's also a<em> really</em> tiny language,
+ subset of ISO C and C++). It's also a<em> really</em> tiny language,
  less than 6000 lines of code, which compiles to &lt;100 kilobytes of
  binary code. It can be found at <a href="http://www.lua.org">
 http://www.lua.org</a></p>
