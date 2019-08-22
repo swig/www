@@ -2279,7 +2279,7 @@ body { font-family: serif; }
 </ul>
 <HR NOSHADE>
 <h1><a name="Sections">SWIG-4.0 Documentation</a></h1>
-<p> Last update : SWIG-4.0.0 (27 Apr 2019)</p>
+<p> Last update : SWIG-4.0.1 (21 Aug 2019)</p>
 <h2><a name="Sections_Sections">Sections</a></h2>
 <h3><a name="Sections_core_docs">SWIG Core Documentation</a></h3>
 <ul>
@@ -3160,9 +3160,9 @@ SWIG Windows Examples</a> section in order to run examples using Visual
  C++.</li>
 </ul>
 <h3><a name="Windows_executable">3.1.1 Windows Executable</a></h3>
-<p> The swigwin distribution contains the SWIG Windows executable,
- swig.exe, which will run on 32 bit versions of Windows, ie Windows 95
- and later. If you want to build your own swig.exe have a look at <a href="#Windows_swig_exe">
+<p> The swigwin distribution contains the SWIG Windows 32-bit
+ executable, swig.exe, which will run on both 32-bit and 64-bit versions
+ of Windows. If you want to build your own swig.exe have a look at <a href="#Windows_swig_exe">
 Building swig.exe on Windows</a>.</p>
 <h2><a name="Windows_examples">3.2 SWIG Windows Examples</a></h2>
 <p> Using Microsoft Visual C++ is the most common approach to compiling
@@ -6515,6 +6515,16 @@ Vector *new_Vector() {
 <pre>
 %init %{
   init_variables();
+%}
+</pre>
+</div>
+<p> Please note that some language backends (e.g. C# or Java) don't have
+ any initialization function, hence you should define a global object
+ performing the necessary initialization for them instead:</p>
+<div class="code">
+<pre>
+%init %{
+  static struct MyInit { MyInit() { init_variables(); } } myInit;
 %}
 </pre>
 </div>
@@ -13775,8 +13785,8 @@ std::vector&lt;double&gt; half(const std::vector&lt;double&gt;&amp; v) {
 }
 
 void halve_in_place(std::vector&lt;double&gt;&amp; v) {
-  std::transform(v.begin(), v.end(), v.begin(),
-                 std::bind2nd(std::divides&lt;double&gt;(), 2.0));
+  for (std::vector&lt;double&gt;::iterator it = v.begin(); it != v.end(); ++it)
+    *it /= 2.0;
 }
 </pre>
 </div>
@@ -18194,37 +18204,69 @@ _wrap_foo(argc, args[]) {
 <pre>
 Symbolic Name                   Precedence Value
 ------------------------------  ------------------
-SWIG_TYPECHECK_POINTER           0  
-SWIG_TYPECHECK_VOIDPTR           10 
-SWIG_TYPECHECK_BOOL              15 
-SWIG_TYPECHECK_UINT8             20 
-SWIG_TYPECHECK_INT8              25 
-SWIG_TYPECHECK_UINT16            30 
-SWIG_TYPECHECK_INT16             35 
-SWIG_TYPECHECK_UINT32            40 
-SWIG_TYPECHECK_INT32             45 
-SWIG_TYPECHECK_UINT64            50 
-SWIG_TYPECHECK_INT64             55 
-SWIG_TYPECHECK_UINT128           60 
-SWIG_TYPECHECK_INT128            65 
-SWIG_TYPECHECK_INTEGER           70 
-SWIG_TYPECHECK_FLOAT             80 
-SWIG_TYPECHECK_DOUBLE            90 
-SWIG_TYPECHECK_COMPLEX           100 
-SWIG_TYPECHECK_UNICHAR           110 
-SWIG_TYPECHECK_UNISTRING         120 
-SWIG_TYPECHECK_CHAR              130 
-SWIG_TYPECHECK_STRING            140 
-SWIG_TYPECHECK_BOOL_ARRAY        1015 
-SWIG_TYPECHECK_INT8_ARRAY        1025 
-SWIG_TYPECHECK_INT16_ARRAY       1035 
-SWIG_TYPECHECK_INT32_ARRAY       1045 
-SWIG_TYPECHECK_INT64_ARRAY       1055 
-SWIG_TYPECHECK_INT128_ARRAY      1065 
-SWIG_TYPECHECK_FLOAT_ARRAY       1080 
-SWIG_TYPECHECK_DOUBLE_ARRAY      1090 
-SWIG_TYPECHECK_CHAR_ARRAY        1130 
-SWIG_TYPECHECK_STRING_ARRAY      1140 
+SWIG_TYPECHECK_POINTER           0
+SWIG_TYPECHECK_ITERATOR          5
+SWIG_TYPECHECK_VOIDPTR           10
+SWIG_TYPECHECK_BOOL              15
+SWIG_TYPECHECK_UINT8             20
+SWIG_TYPECHECK_INT8              25
+SWIG_TYPECHECK_UINT16            30
+SWIG_TYPECHECK_INT16             35
+SWIG_TYPECHECK_UINT32            40
+SWIG_TYPECHECK_INT32             45
+SWIG_TYPECHECK_SIZE              47
+SWIG_TYPECHECK_PTRDIFF           48
+SWIG_TYPECHECK_UINT64            50
+SWIG_TYPECHECK_INT64             55
+SWIG_TYPECHECK_UINT128           60
+SWIG_TYPECHECK_INT128            65
+SWIG_TYPECHECK_INTEGER           70
+SWIG_TYPECHECK_FLOAT             80
+SWIG_TYPECHECK_DOUBLE            90
+SWIG_TYPECHECK_CPLXFLT           95
+SWIG_TYPECHECK_CPLXDBL           100
+SWIG_TYPECHECK_COMPLEX           105
+SWIG_TYPECHECK_UNICHAR           110
+SWIG_TYPECHECK_STDUNISTRING      115
+SWIG_TYPECHECK_UNISTRING         120
+SWIG_TYPECHECK_CHAR              130
+SWIG_TYPECHECK_STDSTRING         135
+SWIG_TYPECHECK_STRING            140
+SWIG_TYPECHECK_PAIR              150
+SWIG_TYPECHECK_STDARRAY          155
+SWIG_TYPECHECK_VECTOR            160
+SWIG_TYPECHECK_DEQUE             170
+SWIG_TYPECHECK_LIST              180
+SWIG_TYPECHECK_SET               190
+SWIG_TYPECHECK_MULTISET          200
+SWIG_TYPECHECK_MAP               210
+SWIG_TYPECHECK_MULTIMAP          220
+SWIG_TYPECHECK_STACK             230
+SWIG_TYPECHECK_QUEUE             240
+SWIG_TYPECHECK_BOOL_ARRAY        1015
+SWIG_TYPECHECK_INT8_ARRAY        1025
+SWIG_TYPECHECK_INT16_ARRAY       1035
+SWIG_TYPECHECK_INT32_ARRAY       1045
+SWIG_TYPECHECK_INT64_ARRAY       1055
+SWIG_TYPECHECK_INT128_ARRAY      1065
+SWIG_TYPECHECK_FLOAT_ARRAY       1080
+SWIG_TYPECHECK_DOUBLE_ARRAY      1090
+SWIG_TYPECHECK_CHAR_ARRAY        1130
+SWIG_TYPECHECK_STRING_ARRAY      1140
+SWIG_TYPECHECK_OBJECT_ARRAY      1150
+SWIG_TYPECHECK_BOOL_PTR          2015
+SWIG_TYPECHECK_UINT8_PTR         2020
+SWIG_TYPECHECK_INT8_PTR          2025
+SWIG_TYPECHECK_UINT16_PTR        2030
+SWIG_TYPECHECK_INT16_PTR         2035
+SWIG_TYPECHECK_UINT32_PTR        2040
+SWIG_TYPECHECK_INT32_PTR         2045
+SWIG_TYPECHECK_UINT64_PTR        2050
+SWIG_TYPECHECK_INT64_PTR         2055
+SWIG_TYPECHECK_FLOAT_PTR         2080
+SWIG_TYPECHECK_DOUBLE_PTR        2090
+SWIG_TYPECHECK_CHAR_PTR          2130
+SWIG_TYPECHECK_SWIGOBJECT        5000
 </pre>
 </div>
 <p> (These precedence levels are defined in <tt>swig.swg</tt>, a library
@@ -27019,7 +27061,7 @@ func (o *GoClassName) Close() {
  be checked dynamically.</p>
 <h3><a name="Go_templates">24.4.6 Go Templates</a></h3>
 <p> In order to use C++ templates in Go, you must tell SWIG to create
- wrappers for a particular template instantation. To do this, use the <tt>
+ wrappers for a particular template instantiation. To do this, use the <tt>
 %template</tt> directive.</p>
 <h3><a name="Go_director_classes">24.4.7 Go Director Classes</a></h3>
 <p> SWIG's director feature permits a Go type to act as the subclass of
@@ -36302,9 +36344,6 @@ $ make check-javascript-examples V8_VERSION=0x032530 ENGINE=v8</pre>
 <p><code>long long</code> is not supported</p>
 </li>
 <li>
-<p><code>%native</code> is not supported</p>
-</li>
-<li>
 <p>Javascript callbacks are not supported</p>
 </li>
 <li>
@@ -42888,10 +42927,12 @@ echo &quot;E = &quot; . E . &quot;\n&quot;;
 </div>
 <p> There's one peculiarity of how constants work in PHP which it is
  useful to note (this is not specific to SWIG though) - if you try to
- use an undeclared constant, PHP will emit a notice and then expand the
- constant to a string version of the constant's name. Unfortunately it
- is easy to miss the notice if you're using PHP in a webserver, as it
- will probably end up in error.log or similar.</p>
+ use an undeclared constant, PHP will emit a warning (or a notice in PHP
+ 7.1 and earlier) and then expand the constant to a string version of
+ the constant's name. Unfortunately it is easy to miss the warning
+ message if you're using PHP in a webserver as it will probably end up
+ in error.log or similar. Apparently this will throw an Error in a
+ future version of PHP, but until then it's something to be aware of.</p>
 <p> For example,</p>
 <div class="code">
 <pre>
@@ -42915,8 +42956,7 @@ if(EASY_TO_MISPEL) {
 </div>
 <p> The mis-spelled constant will become the string 'EASY_TO_MISPEL',
  which is treated as true by the if test, when the value of the intended
- constant would be treated as false! Modern versions of PHP will at
- least issue a PHP notice by default when this happens.</p>
+ constant would be treated as false!</p>
 <h3><a name="Php_nn2_2">31.2.2 Global Variables</a></h3>
 <p> Because PHP does not provide a mechanism to intercept access and
  assignment of global variables, global variables are supported through
@@ -46779,7 +46819,7 @@ class Go(object):
  definition is replaced by the second definition and so the second
  definition is the one used when the method is called. While this
  possibly provides the best of both worlds, the time to import the
- module will be slighly slower when the class is defined due to the
+ module will be slightly slower when the class is defined due to the
  additional method definitions.</p>
 <p> The command line options mentioned above also apply to wrapped C/C++
  global functions, not just class methods.</p>
@@ -49331,10 +49371,11 @@ setup.py</tt>):</p>
 <!-- INDEX -->
 <p> R is a GPL'ed open source statistical and plotting environment.
  Information about R can be found at <a href="http://www.r-project.org/">
-www.r-project.org</a>. The R bindings are under active development. They
- have been used to compile and run an R interface to QuantLib running on
- Mandriva Linux with gcc. The R bindings also work on Microsoft Windows
- using Visual C++.</p>
+www.r-project.org</a>.</p>
+<p> The R bindings are under active development. They have been used to
+ compile and run an R interface to QuantLib running on Mandriva Linux
+ with gcc. The R bindings also work on Microsoft Windows using Visual
+ C++.</p>
 <h2><a name="R_nn2">33.1 Bugs</a></h2>
 <p> Currently the following features are not implemented or broken:</p>
 <ul>
@@ -49386,9 +49427,10 @@ dyn.load(paste(&quot;example&quot;, .Platform$dynlib.ext, sep=&quot;&quot;))
 source(&quot;example.R&quot;)
 cacheMetaData(1)
 </pre>
-</div> The cacheMetaData(1) will cause R to refresh its object tables.
- Without it, inheritance of wrapped objects may fail.
-<p> These two files can be loaded in any order</p>
+</div>
+<p> The cacheMetaData(1) will cause R to refresh its object tables.
+ Without it, inheritance of wrapped objects may fail. These two files
+ can be loaded in any order.</p>
 <p> If you are compiling code yourself (not using R itself), there are a
  few things to watch out for:</p>
 <ul>
@@ -49409,16 +49451,18 @@ Error in .Call(&quot;R_swig_fact&quot;, s_arg1, as.logical(.copy), PACKAGE = &qu
  library into</li>
 </ul>
 <h2><a name="R_nn4">33.3 Precompiling large R files</a></h2>
- In cases where the R file is large, one make save a lot of loading time
- by precompiling the R wrapper. This can be done by creating the file
- makeRData.R which contains the following
+<p> In cases where the R file is large, one make save a lot of loading
+ time by precompiling the R wrapper. This can be done by creating the
+ file makeRData.R which contains the following</p>
+<div class="code">
 <pre>
 source('BigFile.R')
 save(list=ls(all=TRUE), file=&quot;BigFile.RData&quot;, compress=TRUE)
 q(save=&quot;no&quot;)
 </pre>
- This will generate a compiled R file called BigFile.RData that will
- save a large amount of loading time.
+</div>
+<p> This will generate a compiled R file called BigFile.RData that will
+ save a large amount of loading time.</p>
 <h2><a name="R_nn5">33.4 General policy</a></h2>
 <p> The general policy of the module is to treat the C/C++ as a basic
  wrapping over the underlying functions and rely on the R type system to
@@ -49440,38 +49484,42 @@ slices)
 <h2><a name="R_nn7">33.7 Enumerations</a></h2>
 <p> R doesn't have a native enumeration type. Enumerations are
  represented as character strings in R, with calls to R functions that
- convert back and forth between integers. The details of enumeration
- names and contents are stored in hidden R environments, which are named
- according the the enumeration name - for example, an enumeration
- colour:<div class="code">
+ convert back and forth between integers.</p>
+<p> The details of enumeration names and contents are stored in hidden R
+ environments, which are named according the the enumeration name - for
+ example, an enumeration colour:</p>
+<div class="code">
 <pre>
 enum colour { red=-1, blue, green = 10 };
 </pre>
-</div> will be initialized by the following call in R:<div class="code">
+</div>
+<p> will be initialized by the following call in R:</p>
+<div class="code">
 <pre>
 defineEnumeration(&quot;_colour&quot;,
  .values=c(&quot;red&quot; = .Call('R_swig_colour_red_get',FALSE, PACKAGE='enum_thorough'),
 &quot;blue&quot; = .Call('R_swig_colour_blue_get',FALSE, PACKAGE='enum_thorough'),
 &quot;green&quot; = .Call('R_swig_colour_green_get',FALSE, PACKAGE='enum_thorough')))
-
 </pre>
-</div></p>
+</div>
 <p> which will create an environment named <tt>.__E___colour</tt>. The
  enumeration values are initialised via calls to C/C++ code, allowing
  complex values for enumerations to be used. Calls to the C/C++ code
  require the compiled library to be loaded, so a <tt>delayedAssign</tt>
  is employed within <tt>defineEnumeration</tt> in order to allow the
- code to be easily used in R packages. The user typically does not need
- to access the enumeration lookup functions or know the name of the
- enumeration type used by R. Attributes containing the type information
- are attached by swig to functions requiring enumeration arguments or
- returning enumeration values, and those attributes are used to identify
- and access the appropriate environments and thus translate between
- characters and integers. The relevant functions, for debugging
- purposes, are <tt>enumToInteger</tt> and <tt>enumFromInteger</tt>.
- Anonymous enumerations are ignored by the binding generation process,
- leaving no way of accessing the value of anonymous enumerations from R
- code.</p>
+ code to be easily used in R packages.</p>
+<p> The user typically does not need to access the enumeration lookup
+ functions or know the name of the enumeration type used by R.
+ Attributes containing the type information are attached by swig to
+ functions requiring enumeration arguments or returning enumeration
+ values, and those attributes are used to identify and access the
+ appropriate environments and thus translate between characters and
+ integers.</p>
+<p> The relevant functions, for debugging purposes, are <tt>
+enumToInteger</tt> and <tt>enumFromInteger</tt>.</p>
+<p> Anonymous enumerations are ignored by the binding generation
+ process, leaving no way of accessing the value of anonymous
+ enumerations from R code.</p>
 <HR NOSHADE>
 <h1><a name="Ruby">34 SWIG and Ruby</a></h1>
 
@@ -49628,7 +49676,7 @@ defineEnumeration(&quot;_colour&quot;,
 <!-- INDEX -->
 <p>This chapter describes SWIG's support of Ruby.</p>
 <h2><a name="Ruby_nn2">34.1 Preliminaries</a></h2>
-<p> SWIG 3.0 is known to work with Ruby versions 1.8 and later. Given
+<p> SWIG 4.0 is known to work with Ruby versions 1.9 and later. Given
  the choice, you should use the latest stable version of Ruby. You
  should also determine if your system supports shared libraries and
  dynamic loading. SWIG will work with or without dynamic loading, but
@@ -60832,7 +60880,7 @@ virtual int functionWrapper(Node *n) {
   /* Close the function(error) */
   Printv(wrapper-&gt;code, &quot;return ERROR;\n&quot;, &quot;}\n&quot;, NIL);
 
-  /* final substititions if applicable */
+  /* final substitutions if applicable */
   ...
 
   /* Dump the function out */
