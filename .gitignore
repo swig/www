@@ -8,3 +8,4 @@ Doc*/README
 Doc*/*.book
 Doc*/*.patch
 Doc*/*.py
+/Doc4.*/
