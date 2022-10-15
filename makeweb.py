@@ -20,9 +20,9 @@ def makepage(filename, extension):
     body = f.readlines()
     f.close()
     title = body[0]
-    body = string.join(body[1:])
-    page = string.replace(page,"$title",title + "  ")
-    page = string.replace(page,"$body",body)
+    body = "".join(body[1:])
+    page = page.replace("$title", title + "  ")
+    page = page.replace("$body", body)
 
     # Read in the corner file
     try:
@@ -37,7 +37,7 @@ def makepage(filename, extension):
         except:
             corner = ""
     
-    page = string.replace(page,"$corner",corner)
+    page = page.replace("$corner", corner)
 
     # Read in the top file
     try:
@@ -52,7 +52,7 @@ def makepage(filename, extension):
         except:
             top = ""
     
-    page = string.replace(page,"$top",top)
+    page = page.replace("$top", top)
 
     # Read in the side file
     try:
@@ -67,7 +67,7 @@ def makepage(filename, extension):
         except:
             side = ""
     
-    page = string.replace(page,"$side",side)
+    page = page.replace("$side", side)
 
     # Read in the footer file
     try:
@@ -82,18 +82,18 @@ def makepage(filename, extension):
         except:
             footer = ""
 
-    page = string.replace(page,"$footer",footer)
+    page = page.replace("$footer", footer)
 
     mtime = os.stat(filename)[stat.ST_MTIME]
     mstr = time.ctime(mtime)
 
-    page = string.replace(page,"$mtime",mstr);
+    page = page.replace("$mtime", mstr);
 
     # Write out the page
-    f = open(name+"."+extension,"w")
+    f = open(name+"."+extension, "w")
     f.write(page)
     f.close()
-    print "Wrote ", name+"."+extension
+    print("Wrote {}.{}".format(name, extension))
 
 files = glob.glob("*.ht")
 
