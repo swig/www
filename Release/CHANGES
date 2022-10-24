@@ -5,6 +5,151 @@ See the RELEASENOTES file for a summary of changes in each release.
 Issue # numbers mentioned below can be found on Github. For more details, add
 the issue number to the end of the URL: https://github.com/swig/swig/issues/
 
+Version 4.0.2 (8 Jun 2020)
+==========================
+
+2020-06-07  vigsterkr
+            [Ruby] #1717 Nil fix mangling strings
+
+2020-06-07  vadz
+            #1748 Fix doxygen comments quoting issue
+
+2020-06-07  munoah
+            #1800 Escape spaces in file paths for dependencies (-M -MM etc)
+
+2020-06-06  andreas-schwab
+            [Ruby] #1801 Fix encoding on big endian systems when wrapping std::wstring.
+
+2020-05-31  kwwette
+            [Octave] #1789 error handling improvements and return error code on exit for SWIG wrapped modules.
+
+2020-05-30  msteinbeck
+            [D] #1593 Replace broken imports when using newer versions of D.
+
+2020-05-29: ZackerySpytz
+            [Python] #1716 Performance improvements when converting strings when using Python >= 3.3.
+
+2020-05-28: ZackerySpytz
+            #1776 Quite dramatically decrease run times when generating very large interface files by changing
+            some internal memory pool sizes.
+
+2020-05-28: mcfarljm
+            #1788 Fix handling of Doxygen \endlink command.
+
+2020-05-24: vapier
+            [Javascript] #1796 Fix pkg-config invocation in configure.
+
+2020-04-30: kwwette
+            [Octave] Fix exception raising for newer Octave versions
+            Since (at least) Octave 5.1.0, the Octave error() function now raises a C++ exception,
+            which if uncaught immediately exits a SWIG wrapper function, bypassing any cleanup code
+            that may appear after a "fail:" label. This patch adds a "try { ... } catch(...) { }"
+            block around the contents of SWIG wrapper functions to first execute the cleanup code
+            before rethrowing any exception raised. It is backward compatible with earlier versions
+            of Octave where error() does not raise an exception, which will still branch to the
+            "fail:" block to execute cleanup code if an error is encountered.
+
+            Note that the new "try { ... } catch(...) { }" block will localise any local variables
+            used in typemaps that were NOT declared through SWIG's %typemap(...) syntax, so it's
+            possible this could break existing SWIG wrappers which were implicitly sharing local
+            variables between typemaps. This can be fixed, however, by declaring local variables
+            which need to be shared between typemaps through SWIG's %typemap(...) syntax.
+
+2020-02-18: ryannevell
+            [Lua] #1728 Add support for LUA lightuserdata to SWIG_Lua_ConvertPtr.
+
+2020-02-18: dmach
+            [Ruby] #1725 Fix gcc -Wcatch-value warnings.
+
+2020-02-14: treitmayr
+            #1724 Fix wrapping of abstract user-defined conversion operators.
+
+2020-02-13: ddurham2
+            [Python] #1512 Fix memleak when using STL containers of shared_ptr objects.
+
+2020-02-06: wsfulton
+            [Python] #1673 #1674 Fix setting 'this' when extending a proxy class with __slots__.
+
+2020-01-31: vadz
+            [Ruby] #1651 Add std::auto_ptr<> typemaps.
+
+2020-01-31: ZackerySpytz
+            [Python] #1700 The Python C API functions PyBytes_AsStringAndSize() and
+            PyString_AsStringAndSize() are now checked for failure.
+
+2020-01-31: vadz
+            [Python] #1710 Fix crash parsing empty docstrings.
+
+2020-01-30: Alzathar
+            [R] #910 #914 Fix R memory leak on exception.
+
+2020-01-30: richardbeare
+            [R] #1511 Fix bug wrapping functions. These were previously incorrectly wrapped as if
+            they were variables. This happened when 'get' or 'set' was in the name of the function
+            or method, but sometimes also in some other circumstances. If you were using R
+            attribute syntax to access these methods, you'll need to switch to calling them as R
+            methods.
+
+            *** POTENTIAL INCOMPATIBILITY ***
+
+2020-01-24: etse-dignitas, wsfulton
+            [C#, D, Java] #1533 Fix upcasting for shared_ptr's of templated types.
+
+2020-01-16: mcfarljm
+            #1643 #1654 When using -doxygen, fix segfault when nameless parameters or vararg parameters
+            are used.
+
+2020-01-16: mcfarljm
+            #1632 #1659 Fix newline handling for doxygen "///" comments.
+
+2020-01-14: mcfarljm
+            #1647 #1656 Fix crash handling empty doxygen comments.
+
+2020-01-14: mcfarljm
+            #1608 Improve doxygen support.
+            - Add support for \param[] commands such as: \param[in].
+            - Optional arguments are marked as 'optional' in pydoc.
+            - Improve support for \code commands so that other languages are supported as code blocks.
+              Support added for java, c and py.  For example Python: \code{.py} ... \endcode
+            - Fix doxygen handling of \em and \p tags for Python.
+
+2020-01-13: wsfulton
+            [Python] #1595 Python -builtin constructors silently ignored keyword arguments.
+            Instead of silently ignoring them, now a "TypeError: f() takes no keyword arguments"
+            exception is thrown if keyword arguments are used. Hence constructors and normal methods/
+            functions behave in the same way. Note, -keyword should be used with -builtin to obtain
+            keyword argument support.
+
+2020-01-05: jschueller shadchin
+            [Python] #1670 #1696 Add missing field initializers introduced in python 3.8:
+            tp_vectorcall and tp_print.
+
+2020-01-05: friedrichatgc
+            [Octave] #1688 Change swig_this() to use size_t instead of long for compatibility
+            with Windows 64 bit.
+
+2020-01-05: treitmayr
+            [Ruby] #1692 #1689 Add support for Ruby 2.7
+
+2019-12-30: treitmayr
+            [Ruby] #1653 #1668 Fix code generated when using -globalmodule option.
+
+2019-12-29: ZackerySpytz
+            [OCaml] #1686 Fix compilation errors with OCaml 4.09.0.
+
+2019-12-10: wsfulton
+            #1679 Fix parsing of C++11 identifiers with special meaning (final and override) when
+            they are used as part of the scope name of an identifier, such as a namespace name.
+
+2019-11-26: wsfulton
+            [C#] #1628 'out' or 'ref' used in a cstype typemap was not always stripped out in parts
+            of director code generation.
+
+2019-11-01: wsfulton
+            [Python] #1595 Fix bug in support for keyword arguments (kwargs feature or -keyword)
+            when using -builtin. The fix is in the argument error checking when wrapping zero
+            argument constructors only.
+
 Version 4.0.1 (21 Aug 2019)
 ===========================
 
@@ -55,7 +200,7 @@ Version 4.0.1 (21 Aug 2019)
                   VectorOverload(std::vector< Number,std::allocator< Number > >)
                   VectorOverload(std::vector< int,std::allocator< int > >)
 
-            The problem was due to some error handling that was not cleared during typehecking.
+            The problem was due to some error handling that was not cleared during typechecking.
             In this case an error was not cleared when the elements in the list failed the
             typecheck for converting to X. Only occurs in Python 3+.
 
@@ -144,6 +289,7 @@ Version 4.0.1 (21 Aug 2019)
 2019-05-22: ferdynator
 	    [PHP] #1528 Don't add a closing '?>' PHP tag to generated files.
 	    PSR-2 says it MUST be omitted for files containing only PHP.
+
 Version 4.0.0 (27 Apr 2019)
 ===========================
 
@@ -2992,7 +3138,7 @@ Version 3.0.3 (30 Dec 2014)
 
 2014-09-12: olly
 	    [PHP] Add support for specifying any PHP interfaces a wrapped class
-	    implements, e.g.: %typemap("phpinterfaces") MyIterator "Iterator";
+	    implements, e.g.: %typemap("phpinterfaces") MyIterator "Iterator"
 
 2014-09-11: olly
 	    [PHP] Fix throwing a PHP exception through C++ from a subclassed
@@ -3157,7 +3303,7 @@ Version 3.0.0 (16 Mar 2014)
             project has been further extended. The C++11 support is comprehensive, but by no means complete
             or without limitations. Full details for each new feature in C++11 is covered in the
             CPlusPlus11.html chapter in the documentation which is included in SWIG and also available
-            online at http://www.swig.org/Doc3.0/CPlusPlus11.html.
+            online at https://www.swig.org/Doc3.0/CPlusPlus11.html.
 
 2014-03-14: v-for-vandal
             [Lua] Numerous Lua improvements:
@@ -5639,7 +5785,7 @@ Version 2.0.0 (2 June 2010)
 
 2010-02-27: wsfulton
             License code changes: SWIG Source is GPL-v3 and library code license is now clearer
-            and is provided under a very permissive license. See http://www.swig.org/legal.html.
+            and is provided under a very permissive license. See https://www.swig.org/legal.html.
 
 2010-02-13: wsfulton
             [Ruby] A few fixes for compiling under ruby-1.9.x including patch from 'Nibble'.
@@ -8251,8 +8397,8 @@ Version 1.3.30 (November 13, 2006)
             javabase/csbase typemap, eg in the following, 'Me' will be the base class,
             no matter what Foo is really derived from in the C++ layer.
 
-              %typemap(javabase, replace="1") Foo "Me";
-              %typemap(csbase, replace="1") Foo "Me";
+              %typemap(javabase, replace="1") Foo "Me"
+              %typemap(csbase, replace="1") Foo "Me"
 
             Previously it was not possible for the javabase/csbase typemaps to override the C++ base.
 
@@ -9739,7 +9885,7 @@ Version 1.3.28 (February 12, 2006)
 	    solutions is to write:
 
 	      %typemap(in) A * {...}
-  	      %typemap(freeag) A * "";
+  	      %typemap(freeag) A * ""
 
 	    overload 'freearg' with an empty definition.
 
@@ -11169,20 +11315,20 @@ Version 1.3.27 (October 15, 2005)
 	      then the typemap will be inserted without the block
 	      imposed by the brackets, similar to
 
-	       %typemap(in) Hello "...";
+	       %typemap(in) Hello "..."
 
 	      So, why you don't just use the quote style?, because:
 	      
 	         1.- The quote style doesn't get preprocessed, for example
 	      
-	              %typemap(in) Hello "$1= SWIG_macro($1);";
+	              %typemap(in) Hello "$1= SWIG_macro($1);"
 	      
 	             here, SWIG_macro doesn't get expanded
 
                  2.- Inside a quote typemap, you have to use 
                      quotes carefully
 
-		      %typemap(in) Hello "$1 = \"hello\" ";
+		      %typemap(in) Hello "$1 = \"hello\" "
 
 		 3.- You can't make emacs and/or other editors
 		     to indent inside a string!. 
@@ -11384,7 +11530,7 @@ Version 1.3.26 (October 9, 2005)
 
 	      %define hello(name, Type)
 	      %define name ## a(Type)
-	      %typemap(in) Type "hello;";
+	      %typemap(in) Type "hello;"
 	      %enddef
 	      %enddef
 	      
@@ -13380,7 +13526,7 @@ Version 1.3.23 (November 11, 2004)
             whereupon the default of 0 was used. You can get the same behaviour for C
             code by using the "default" typemap:
 
-              %typemap(default) int val "$1 = 0;";
+              %typemap(default) int val "$1 = 0;"
               %{
               void foo(int val);
               %}
@@ -13709,9 +13855,11 @@ Version 1.3.22 (September 4, 2004)
 	    specifiers from the C type.  This makes it possible, for instance, to control
 	    whether a C "char" argument takes a Lisp character or a Lisp integer value.
 	    The default (taking Lisp characters) is done by these built-in typemaps:
-	      %typemap(ffitype) char ":char"; %typemap(lisptype) char "character";
+	      %typemap(ffitype) char ":char"
+	      %typemap(lisptype) char "character"
 	    If char means an integer instead, use these typemaps:
-	      %typemap(ffitype) char ":char"; %typemap(lisptype) char "integer";
+	      %typemap(ffitype) char ":char"
+	      %typemap(lisptype) char "integer"
 
 08/22/2004: wsfulton
             As discussed in bug #772453, the SWIG library directory is now installed
@@ -18729,9 +18877,9 @@ Version 1.3.14 (August 12, 2002)
             shadowinterface
             
             Note that it is possible to target a particular proxy class:
-            %typemap(javaimports) Foo "import java.util.*";
+            %typemap(javaimports) Foo "import java.util.*"
             or a particular type wrapper class:
-            %typemap(javaimports) double* "import java.math.*";
+            %typemap(javaimports) double* "import java.math.*"
             Note that $javaclassname in these typemaps are substituted with either the proxy 
             classname when using proxy classes or the SWIGTYPE class name.
 
@@ -19469,8 +19617,8 @@ Version 1.3.12 (June 2, 2002)
             typemap must exactly match up with the "in" or "ignore"
             typemap.  For example:
 
-                 %typemap(in) (char *data, int len) { ... };
-                 %typemap(freearg) char *data { ... }; 
+                 %typemap(in) (char *data, int len) { ... }
+                 %typemap(freearg) char *data { ... }
 
                  void foo(char *data, int len);
 
@@ -20926,7 +21074,7 @@ Version 1.3.11 (January 31, 2002)
 
             Second, a typemap can force a no-match by defining
 
-             %typemap(in) sometype "pass";
+             %typemap(in) sometype "pass"
 
             If this is used, the typemap system will *not* record a
             typemap match for "sometype".   This can be used to block
@@ -20934,7 +21082,7 @@ Version 1.3.11 (January 31, 2002)
             a typemap feature for some type, you could do this.
 
                // Do not allow global variables of type 'const char *' to be set.
-               %typemap(varin) const char * "pass";
+               %typemap(varin) const char * "pass"
 
             It might also be possible to use this to do subtle and
             strange things with typemaps.  For example, if you wanted to
@@ -20948,8 +21096,8 @@ Version 1.3.11 (January 31, 2002)
                     ... return a value ...
                 }
                 /* Block unqualified typemaps defined above */
-                %typemap(ignore) const blah * "pass";
-                %typemap(argout) const blah * "pass";
+                %typemap(ignore) const blah * "pass"
+                %typemap(argout) const blah * "pass"
                 %typemap(in)     const blah * {
                     ... get input value ...
                 }
@@ -21726,7 +21874,7 @@ Version 1.3.10 (December 10, 2001)
            %typemap directive can now accept nearly arbitrary keyword parameters.
            For example:
 
-              %typemap(in,parse="i",doc="integer") int "...";
+              %typemap(in,parse="i",doc="integer") int "..."
 
            The purpose of the keyword parameters is to supply code generation
            hints to the target language module.   The intepretation of the
@@ -23804,7 +23952,7 @@ Version 1.3 Alpha 4 (September 4, 2000)
           Typemaps can now be specified using string literals like
           this:
 
-              %typemap(in) int "$target = SvIV($source);";
+              %typemap(in) int "$target = SvIV($source);"
 
           When code is specified like this, it is *NOT* enclosed
           inside a local scope (as with older typemap declarations).
