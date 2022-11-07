@@ -1,11 +1,12 @@
 
     <?php 
     // Include this to display news items. Set $rss_limit must contain a value 1-50.
-    require_once('magpierss-0.72/rss_fetch.inc');
-    ini_set("include_path", ".:./magpierss-0.72");
+    require_once('magpierss-20131221/rss_fetch.inc');
+    ini_set("include_path", ".:./magpierss-20131221");
 
 //    define('MAGPIE_CACHE_DIR', '/tmp/persistent/swig/magpie_cache');
-    define('MAGPIE_CACHE_DIR', '/home/project-web/swig/magpie_cache');
+//    define('MAGPIE_CACHE_DIR', '/home/project-web/swig/magpie_cache');
+    define('MAGPIE_CACHE_DIR', '/tmp/magpie_cache');
     error_reporting(E_ERROR);
 
     // for debugging:

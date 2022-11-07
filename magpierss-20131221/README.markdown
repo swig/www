@@ -1,8 +1,10 @@
-NAME
+# MagpieRSS - a simple RSS integration tool
 
-	MagpieRSS - a simple RSS integration tool
+Probably the most popular PHP RSS parser, ever.  Released in 2002, roughly 500k direct downloads, plus uncounted downloads as part of open source projects like Wordpress.
 
-SYNOPSIS
+Additionally this code was written when PHP 4.1.2 was the state of the art, and it shows.
+
+## USAGE
 
 	require_once(rss_fetch.inc);
 	$url = $_GET['url'];
@@ -17,7 +19,7 @@ SYNOPSIS
 	}
 	echo "</ul>";
 
-DESCRIPTION
+## DESCRIPTION
 
 	MapieRSS is an XML-based RSS parser in PHP.  It attempts to be "PHP-like",
 	and simple to use.
@@ -38,11 +40,12 @@ DESCRIPTION
    it was supposed to be here.  For strict validation, look elsewhere.
 
 
-GETTING STARTED
+## GETTING STARTED
 
 	
 
-COPYRIGHT:
+## COPYRIGHT:
+
 	Copyright(c) 2002 kellan@protest.net. All rights reserved.
 	This software is released under the GNU General Public License.
 	Please read the disclaimer at the top of the Snoopy.class.inc file.

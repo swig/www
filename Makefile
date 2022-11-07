@@ -5,7 +5,7 @@ WORKTREE=../swig
 help:
 	@echo "Simple makefile to create the web pages and publish to the web server"
 	@echo "Targets:"
-	@echo "  htmlfiles - create .html files from .ht files"
+	@echo "  htmlfiles - create .html files from .ht and .ph files"
 	@echo "  makedocs - copy Doc/Manual files from main git source repository working tree to local directory ready for publishing to web server"
 	@echo "  rsync - publish local files to web server"
 	@echo "  rsync-dry-run - dry run of above"
@@ -24,7 +24,7 @@ htmlfiles:
 	python makeweb.py
 
 rsync:
-	rsync $(DRY_RUN) --verbose -r --checksum --chmod=ug+w,ugo+r --delete-excluded --exclude .git --exclude .gitignore --exclude "*.sw?" --exclude "*.bak" --exclude "*.ht" --exclude "*.ph" --exclude "default.*" --exclude Makefile --exclude "*.py" --exclude "*.book" --exclude "survey/*.csv" --exclude "survey/swigsurvey" --exclude "survey/README.txt" --rsh="ssh" . $(USERNAME),swig@web.sourceforge.net:/home/groups/s/sw/swig/swigweb
+	rsync $(DRY_RUN) --verbose -r --checksum --chmod=ug+w,ugo+r --delete-excluded --exclude .git --exclude .gitignore --exclude "*.sw?" --exclude "*.bak" --exclude "*.ht" --exclude "*.ph" --exclude "*.php" --exclude "default.*" --exclude Makefile --exclude "*.py" --exclude "*.book" --exclude "magpierss-20131221" --exclude "survey/*.csv" --exclude "survey/swigsurvey" --exclude "survey/README.txt" --rsh="ssh" . $(USERNAME),swig@web.sourceforge.net:/home/groups/s/sw/swig/swigweb
 
 rsync-dry-run:
 	$(MAKE) rsync DRY_RUN=--dry-run 

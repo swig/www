@@ -8,6 +8,7 @@ import glob
 import os
 import time
 import stat
+import subprocess
 
 def makepage(filename, extension):
     name, suffix = os.path.splitext(filename)
@@ -102,5 +103,19 @@ for f in files:
 
 files = glob.glob("*.ph")
 
+# The .ph files create .php files which used to run on the web server.
+# All external access from the web server is now blocked (the RSS news feed is blocked).
+# Instead we use php to generate the html and then upload html static pages to the server.
 for f in files:
+    base = os.path.splitext(f)[0]
+    php_filename = base + ".php"
+    html_filename = base + ".html"
+    if os.path.exists(php_filename):
+        os.remove(php_filename)
+    if os.path.exists(html_filename):
+        os.remove(html_filename)
     makepage(f, "php")
+    html_string = subprocess.check_output(["php", php_filename])
+    html_file = open(html_filename, "w")
+    html_file.write(html_string)
+    print("Wrote {}".format(html_filename))
