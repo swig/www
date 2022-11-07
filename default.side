@@ -26,26 +26,26 @@
 <tr><td align=center><a href="https://sourceforge.net/projects/swig/"><img src="https://sourceforge.net/sflogo.php?group_id=1645&type=15" width="170" border="0" alt="Get SWIG at SourceForge.net. Fast, secure and Free Open Source software downloads" /></a></td></tr>
 
 <tr><td bgcolor="#000000" align=center><font color="#ffffff"><b>Exits</b></font></td></tr>
-<tr><td><a href="http://www.mono-project.com/">C# - Mono</a></td></tr>
+<tr><td><a href="https://www.mono-project.com/">C# - Mono</a></td></tr>
 <tr><td><a href="https://docs.microsoft.com/en-us/dotnet/articles/csharp/">C# - MS .NET</a></td></tr>
-<tr><td><a href="http://www.digitalmars.com/d/">D</a></td></tr>
-<tr><td><a href="http://golang.org">Go language</a></td></tr>
-<tr><td><a href="http://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
-<tr><td><a href="http://java.sun.com">Java</a></td></tr>
+<tr><td><a href="https://dlang.org/">D</a></td></tr>
+<tr><td><a href="https://go.dev/">Go language</a></td></tr>
+<tr><td><a href="https://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
+<tr><td><a href="https://www.oracle.com/java/">Java</a></td></tr>
 <tr><td><a href="https://nodejs.org/en/">Javascript - Node.js</a></td></tr>
-<tr><td><a href="https://developers.google.com/v8/">Javascript - V8</a></td></tr>
+<tr><td><a href="https://v8.dev/">Javascript - V8</a></td></tr>
 <tr><td><a href="https://webkit.org/">Javascript - WebKit</a></td></tr>
-<tr><td><a href="http://www.lua.org">Lua</a></td></tr>
-<tr><td><a href="http://racket-lang.org/">MzScheme/Racket</a></td></tr>
-<tr><td><a href="http://ocaml.org/">OCaml</a></td></tr>
-<tr><td><a href="http://www.octave.org/">Octave</a></td></tr>
-<tr><td><a href="https://www.perl.org">Perl</a></td></tr>
-<tr><td><a href="http://www.php.net">PHP</a></td></tr>
-<tr><td><a href="https://www.python.org">Python</a></td></tr>
-<tr><td><a href="http://www.r-project.org">R</a></td></tr>
-<tr><td><a href="https://www.ruby-lang.org">Ruby</a></td></tr>
-<tr><td><a href="http://www.scilab.org/">Scilab</a></td></tr>
-<tr><td><a href="http://www.tcl.tk">Tcl/Tk</a></td></tr>
+<tr><td><a href="https://www.lua.org/">Lua</a></td></tr>
+<tr><td><a href="https://racket-lang.org/">MzScheme/Racket</a></td></tr>
+<tr><td><a href="https://ocaml.org/">OCaml</a></td></tr>
+<tr><td><a href="https://www.octave.org/">Octave</a></td></tr>
+<tr><td><a href="https://www.perl.org/">Perl</a></td></tr>
+<tr><td><a href="https://www.php.net/">PHP</a></td></tr>
+<tr><td><a href="https://www.python.org/">Python</a></td></tr>
+<tr><td><a href="https://www.r-project.org/">R</a></td></tr>
+<tr><td><a href="https://www.ruby-lang.org/">Ruby</a></td></tr>
+<tr><td><a href="https://www.scilab.org/">Scilab</a></td></tr>
+<tr><td><a href="https://www.tcl.tk/">Tcl/Tk</a></td></tr>
 
 
 </table>
