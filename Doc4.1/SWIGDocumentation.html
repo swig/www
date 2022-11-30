@@ -2335,7 +2335,7 @@ body { font-family: serif; }
 </ul>
 <HR NOSHADE>
 <h1><a name="Sections">SWIG-4.1 Documentation</a></h1>
-<p> Last update : SWIG-4.1.0 (24 Oct 2022)</p>
+<p> Last update : SWIG-4.1.1 (30 Nov 2022)</p>
 <h2><a name="Sections_Sections">Sections</a></h2>
 <h3><a name="Sections_core_docs">SWIG Core Documentation</a></h3>
 <ul>
@@ -7197,7 +7197,7 @@ $ c++ example_wrap.o $(OBJS) -o example.so
  details. The SWIG Wiki also has further details.</p>
 <b> Compatibility Note:</b> Early versions of SWIG generated just a
  flattened low-level C style API to C++ classes by default. The <tt>
--noproxy</tt> commandline option is recognised by many target languages
+-noproxy</tt> commandline option is recognised by some target languages
  and will generate just this interface as in earlier versions.
 <h2><a name="SWIGPlus_nn38">6.5 Proxy classes</a></h2>
 <p> In order to provide a natural mapping from C++ classes to the target
@@ -44682,14 +44682,10 @@ echo &quot;The sum $in1 + $in2 = $result\n&quot;;
  PHP in a number of ways: by using <tt>unset</tt> on an existing
  variable, or assigning <tt>NULL</tt> to a variable.</p>
 <h3><a name="Php_nn2_6">32.2.6 Structures and C++ classes</a></h3>
-<p> SWIG defaults to wrapping C++ structs and classes with PHP classes.
- Since SWIG 4.1.0, this is done entirely via PHP's C API - earlier SWIG
- versions generated a PHP wrapper script which defined proxy classes
- which called a set of flat functions which actually wrapped the C++
- class.</p>
-<p> If you don't want the class wrappers, you can pass the command-line
- option &quot;-noproxy&quot; in which case you'll get C++ classes wrapped as flat
- functions as described below.</p>
+<p> SWIG wraps C++ structs and classes with PHP classes. Since SWIG
+ 4.1.0, this is done entirely via PHP's C API - earlier SWIG versions
+ generated a PHP wrapper script which defined proxy classes which called
+ a set of flat functions which actually wrapped the C++ class.</p>
 <p> This interface file</p>
 <div class="code">
 <pre>
@@ -44733,31 +44729,13 @@ struct Complex {
 <p> Member variables and methods are accessed using the <tt>-&gt;</tt>
  operator.</p>
 <h4><a name="Php_nn2_6_1">32.2.6.1 Using -noproxy</a></h4>
-<p> The <tt>-noproxy</tt> option flattens the object structure and
- generates collections of named functions. The above example results in
- the following PHP functions:</p>
-<div class="code">
-<pre>
-new_Vector();
-Vector_x_set($obj, $d);
-Vector_x_get($obj);
-Vector_y_set($obj, $d);
-Vector_y_get($obj);
-Vector_z_set($obj, $d);
-Vector_z_get($obj);
-Vector_magnitude($obj);
-new_Complex();
-Complex_re_set($obj, $d);
-Complex_re_get($obj);
-Complex_im_set($obj, $d);
-Complex_im_get($obj);
-</pre>
-</div>
+<p> SWIG/PHP used to support a <tt>-noproxy</tt> option to flatten the
+ class structure and generate collections of named flat functions. This
+ is no longer supported as of SWIG 4.1.0.</p>
 <h4><a name="Php_nn2_6_2">32.2.6.2 Constructors and Destructors</a></h4>
-<p> The constructor is called when <tt>new Object()</tt> (or <tt>
-new_Object()</tt> if using <tt>-noproxy</tt>) is used to create an
- instance of the object. If multiple constructors are defined for an
- object, function overloading will be used to determine which
+<p> The constructor is called when <tt>new Object()</tt> is used to
+ create an instance of the object. If multiple constructors are defined
+ for an object, function overloading will be used to determine which
  constructor to execute.</p>
 <p> Because PHP uses reference counting, simple assignment of one
  variable to another such as:</p>
