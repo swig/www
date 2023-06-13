@@ -3,7 +3,7 @@ SWIG Features
 <h2>SWIG Features</h2>
 
 <p>
-This information is based on the SWIG-4.0.0 release.
+This information is based on the SWIG-4.1.0 release.
 
 <h3>Code Generation</h3>
 
@@ -50,7 +50,7 @@ SWIG is capable of wrapping all of ISO C99.   Features include:
 
 <h3>ISO C++</h3>
 
-SWIG provides wrapping support for ISO C++98 to C++17.
+SWIG provides wrapping support for ISO C++98 to C++20.
 
 <ul>
 <Li>All C++ datatypes.
@@ -68,7 +68,7 @@ SWIG provides wrapping support for ISO C++98 to C++17.
 <li>Template specialization and partial specialization.
 <li>Smart pointers
 <li>C++ library support for strings and the STL.
-<li>The majority of the newer C++11 to C++17 standard features.
+<li>The majority of the newer C++11 to C++20 standard features.
 </ul>
 
 <p>
