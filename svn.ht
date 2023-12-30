@@ -54,7 +54,7 @@ to install the above tools on your machine for everything to work.
 There is
 <a href="https://help.github.com/">generic Git help</a>
 available from Github, but the steps below should be all you need to get going quickly.
-However, Windows users should also look at the <a href="Doc4.1/Windows.html#Windows_swig_exe">Building swig.exe on Windows</a>.
+However, Windows users should also look at the <a href="Doc4.2/Windows.html#Windows_swig_exe">Building swig.exe on Windows</a>.
 
 <ol>
 <li><p>The latest development (master) version of SWIG can be retrieved using:
@@ -92,7 +92,7 @@ just check the examples and test-suite for that language. For example, the Pytho
 $ make check-python-examples
 $ make check-python-test-suite
 </pre>
-More details on the <a href="Doc4.1/Extending.html#Extending_test_suite">SWIG test-suite</a> are available.
+More details on the <a href="Doc4.2/Extending.html#Extending_test_suite">SWIG test-suite</a> are available.
 
 </ol>
 

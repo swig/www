@@ -2,10 +2,16 @@ SWIG Documentation, Presentations, and Papers
 
 <p><img src="images/doc.png" alt="Documentation">
 
+<H3>SWIG-4.2</h3>
+<ul>
+
+<li> <a href="Doc4.2/index.html">Documentation</a> for the latest 4.2 release.
+</ul>
+
 <H3>SWIG-4.1</h3>
 <ul>
 
-<li> <a href="Doc4.1/index.html">Documentation</a> for the latest 4.1 release.
+<li> <a href="Doc4.1/index.html">Documentation</a> for the older 4.1 release.
 </ul>
 
 <H3>SWIG-4.0</h3>
