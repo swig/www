@@ -33,6 +33,7 @@
 <tr><td><a href="https://www.gnu.org/software/guile/guile.html">Guile</a></td></tr>
 <tr><td><a href="https://www.oracle.com/java/">Java</a></td></tr>
 <tr><td><a href="https://nodejs.org/en/">Javascript - Node.js</a></td></tr>
+<tr><td><a href="https://nodejs.org/api/n-api.html">Javascript - Node-API</a></td></tr>
 <tr><td><a href="https://v8.dev/">Javascript - V8</a></td></tr>
 <tr><td><a href="https://webkit.org/">Javascript - WebKit</a></td></tr>
 <tr><td><a href="https://www.lua.org/">Lua</a></td></tr>
