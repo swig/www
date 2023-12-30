@@ -119,8 +119,6 @@ for f in files:
         os.remove(html_filename)
     makepage(f, "php")
     html_string = subprocess.check_output(["php", php_filename])
-    # TODO Python 3 reports: write() argument must be str, not bytes 
-    # html_file = open(html_filename, "wb")
-    html_file = open(html_filename, "w")
+    html_file = open(html_filename, "wb")
     html_file.write(html_string)
     print("Wrote {}".format(html_filename))
