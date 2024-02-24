@@ -21,10 +21,10 @@ updateweb: htmlfiles rsync
 updateweb-dry-run: htmlfiles rsync-dry-run
 
 htmlfiles:
-	python makeweb.py
+	python3 makeweb.py
 
 rsync:
-	rsync $(DRY_RUN) --verbose -r --checksum --chmod=ug+w,ugo+r --delete-excluded --exclude .git --exclude .gitignore --exclude "*.sw?" --exclude "*.bak" --exclude "*.ht" --exclude "*.ph" --exclude "*.php" --exclude "default.*" --exclude Makefile --exclude "*.py" --exclude "*.book" --exclude "magpierss-20131221" --exclude "survey/*.csv" --exclude "survey/swigsurvey" --exclude "survey/README.txt" --rsh="ssh" . $(USERNAME),swig@web.sourceforge.net:/home/groups/s/sw/swig/swigweb
+	rsync $(DRY_RUN) --verbose -r --checksum --chmod=ug+w,ugo+r --delete-excluded --exclude .git --exclude .gitignore --exclude "*.sw?" --exclude "*.bak" --exclude "*.ht" --exclude "*.ph" --exclude "*.php" --exclude "*.tmp" --exclude "default.*" --exclude Makefile --exclude "*.py" --exclude "*.book" --exclude "survey/*.csv" --exclude "survey/swigsurvey" --exclude "survey/README.txt" --rsh="ssh" . $(USERNAME),swig@web.sourceforge.net:/home/groups/s/sw/swig/swigweb
 
 rsync-dry-run:
 	$(MAKE) rsync DRY_RUN=--dry-run 

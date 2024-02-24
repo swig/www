@@ -9,6 +9,12 @@ import os
 import time
 import stat
 import subprocess
+import re
+import sys
+import feedparser # install using: pip install feedparser
+
+if sys.version_info[0:2] < (3, 0):
+    raise RuntimeError("Python 3 required")
 
 def makepage(filename, extension):
     name, suffix = os.path.splitext(filename)
@@ -96,8 +102,22 @@ def makepage(filename, extension):
     f.close()
     print("Wrote {}.{}".format(name, extension))
 
-# Check that /usr/bin/curl exists (required by magpierss)
-subprocess.check_output(["/usr/bin/curl", "--version"])
+def grab_rss_newsfeed(rss_limit, html_file):
+    url = "https://sourceforge.net/p/swig/news/feed?limit={}".format(rss_limit) # Project news releases (including full text of news items)
+    feed = feedparser.parse(url)
+    html_file.write(b"<dl>")
+    count = 0
+    for newsitem in feed.entries:
+        count = count + 1
+        publish_date = time.strftime("%Y/%m/%d", newsitem.published_parsed)
+        link = newsitem.link
+        title = newsitem.title
+        description = newsitem.description
+        # print("processing entry {} {}".format(count, title))
+        line = '<p><dt><b>{}</b> - <a href="{}">{}</a></dt><dd>{}</dd></dt></p>'.format(publish_date, link, title, description)
+        html_file.write(bytes(line, encoding="utf-8"))
+    html_file.write(b"</dl>\n")
+
 
 files = glob.glob("*.ht")
 
@@ -106,19 +126,32 @@ for f in files:
 
 files = glob.glob("*.ph")
 
-# The .ph files create .php files which used to run on the web server.
+# The .ph files used to create .php files which used to run on the web server.
 # All external access from the web server is now blocked (the RSS news feed is blocked).
-# Instead we use php to generate the html and then upload html static pages to the server.
+# Instead we create .tmp files prior to creating .html files and then upload html static pages to the server.
 for f in files:
     base = os.path.splitext(f)[0]
-    php_filename = base + ".php"
+    tmp_filename = base + ".tmp"
     html_filename = base + ".html"
-    if os.path.exists(php_filename):
-        os.remove(php_filename)
+    if os.path.exists(tmp_filename):
+        os.remove(tmp_filename)
     if os.path.exists(html_filename):
         os.remove(html_filename)
-    makepage(f, "php")
-    html_string = subprocess.check_output(["php", php_filename])
+    makepage(f, "tmp")
+
     html_file = open(html_filename, "wb")
-    html_file.write(html_string)
+    tmp_file = open(tmp_filename, "rb")
+    for line in tmp_file:
+        if b"<?python" in line:
+            pattern = re.compile(r"<\?python rss_limit=(\d+)\?>")
+            stripped_line = line.strip().decode('utf-8')
+            match = pattern.match(stripped_line)
+            if not match:
+                raise RuntimeError("Incorrectly formatted '<?python' line in {}: '{}'".format(f, stripped_line))
+            rss_limit = int(match.group(1))
+            grab_rss_newsfeed(rss_limit, html_file)
+        else:
+            html_file.write(line)
+    html_file.close()
+
     print("Wrote {}".format(html_filename))

@@ -33,10 +33,7 @@ Recent News
 </h3>
 
 
-    <?php 
-    $rss_limit=10;
-    include 'newsinc.php';
-    ?> 
+    <?python rss_limit=10?>
 
 <p>
 <a href="news.php">More news</a>
