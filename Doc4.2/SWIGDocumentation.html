@@ -360,7 +360,17 @@ body { font-family: serif; }
 </li>
 <li><a HREF="#SWIGPlus_nn15">6.7 Protection</a></li>
 <li><a HREF="#SWIGPlus_nn16">6.8 Enums and constants</a></li>
-<li><a HREF="#SWIGPlus_nn17">6.9 Friends</a></li>
+<li><a HREF="#SWIGPlus_nn17">6.9 Friends</a>
+<ul>
+<li><a HREF="#SWIGPlus_friend_classes">6.9.1 Friend classes</a></li>
+<li><a HREF="#SWIGPlus_friend_function_definitions">6.9.2 Friend
+ function definitions</a></li>
+<li><a HREF="#SWIGPlus_friend_function_declarations">6.9.3 Friend
+ function declarations</a></li>
+<li><a HREF="#SWIGPlus_friends_unqualified">6.9.4 Unqualified friend
+ functions</a></li>
+</ul>
+</li>
 <li><a HREF="#SWIGPlus_nn18">6.10 References and pointers</a></li>
 <li><a HREF="#SWIGPlus_nn19">6.11 Pass and return by value</a></li>
 <li><a HREF="#SWIGPlus_nn20">6.12 Inheritance</a></li>
@@ -2363,7 +2373,7 @@ body { font-family: serif; }
 </ul>
 <HR NOSHADE>
 <h1><a name="Sections">SWIG-4.2 Documentation</a></h1>
-<p> Last update : SWIG-4.2.0 (30 Dec 2023)</p>
+<p> Last update : SWIG-4.2.1 (24 Feb 2024)</p>
 <h2><a name="Sections_Sections">Sections</a></h2>
 <h3><a name="Sections_core_docs">SWIG Core Documentation</a></h3>
 <ul>
@@ -7022,7 +7032,17 @@ extern void dump(FILE *f);
 </li>
 <li><a href="#SWIGPlus_nn15">Protection</a></li>
 <li><a href="#SWIGPlus_nn16">Enums and constants</a></li>
-<li><a href="#SWIGPlus_nn17">Friends</a></li>
+<li><a href="#SWIGPlus_nn17">Friends</a>
+<ul>
+<li><a href="#SWIGPlus_friend_classes">Friend classes</a></li>
+<li><a href="#SWIGPlus_friend_function_definitions">Friend function
+ definitions</a></li>
+<li><a href="#SWIGPlus_friend_function_declarations">Friend function
+ declarations</a></li>
+<li><a href="#SWIGPlus_friends_unqualified">Unqualified friend functions</a>
+</li>
+</ul>
+</li>
 <li><a href="#SWIGPlus_nn18">References and pointers</a></li>
 <li><a href="#SWIGPlus_nn19">Pass and return by value</a></li>
 <li><a href="#SWIGPlus_nn20">Inheritance</a></li>
@@ -7094,8 +7114,8 @@ extern void dump(FILE *f);
 <p> This chapter describes SWIG's support for wrapping C++. It is mostly
  concerned about C++ as defined by the C++ 98 and 03 standards. For
  additions to the original C++ standard, please read the <a href="#CPlusPlus11">
-SWIG and C++11</a>, <a href="#CPlusPlus14">SWIG and C++14</a> and <a href="#CPlusPlus17">
-SWIG and C++17</a> chapters. <a href="#CPlusPlus20">SWIG and C++20</a>
+SWIG and C++11</a>, <a href="#CPlusPlus14">SWIG and C++14</a>, <a href="#CPlusPlus17">
+SWIG and C++17</a> and <a href="#CPlusPlus20">SWIG and C++20</a>
  chapters. As a prerequisite, you should first read the chapter <a href="#SWIG">
 SWIG Basics</a> to see how SWIG wraps ISO C. Support for C++ builds upon
  ISO C wrapping and that material will be useful in understanding this
@@ -7908,49 +7928,181 @@ Swig_STOUT = Swig::STOUT
 <p> Members declared as <tt>const</tt> are wrapped as read-only members
  and do not create constants.</p>
 <h2><a name="SWIGPlus_nn17">6.9 Friends</a></h2>
-<p> Friend declarations are recognised by SWIG. For example, if you have
- this code:</p>
+<h3><a name="SWIGPlus_friend_classes">6.9.1 Friend classes</a></h3>
+<p> Friend classes are a C++ feature that do not affect SWIG wrappers.
+ SWIG simply parses the friend class declarations, but they are
+ effectively ignored as they have no meaningful effect for wrappers. An
+ example of friend classes:</p>
 <div class="code">
 <pre>
-class Foo {
-public:
-  ...
-  friend void blah(Foo *f);
+class X;
+class Y;
+class C {
+  // Friend classes have no effect on generated wrappers
+  friend class X;
+  friend Y;
   ...
 };
 </pre>
 </div>
-<p> then the <tt>friend</tt> declaration does result in a wrapper code
- equivalent to one generated for the following declaration</p>
+<h3><a name="SWIGPlus_friend_function_definitions">6.9.2 Friend function
+ definitions</a></h3>
+<p> A friend function definition in a C++ class defines a non-member
+ function of the class and simultaneously makes it a friend of the
+ class. For example, if you have this code:</p>
 <div class="code">
 <pre>
-class Foo {
+class Buddy {
+  int val;
+  friend int blah(Buddy *b) { return b-&gt;val; }
+public:
+  ...
+};
+</pre>
+</div>
+<p> then the <tt>friend</tt> function definition results in wrapper code
+ equivalent to one generated for the following:</p>
+<div class="code">
+<pre>
+class Buddy {
+  int val;
+  friend int blah(Buddy *b);
 public:
   ...
 };
 
-void blah(Foo *f);    
+int blah(Buddy *b) { return b-&gt;val; }
 </pre>
 </div>
-<p> A friend declaration, as in C++, is understood to be in the same
- scope where the class is declared, hence, you can have</p>
+<p> Access from target languages is thus as if <tt>blah</tt> was wrapped
+ as a non-member function. The function is available and wrapped even if
+ the friend is defined with private or protected access.</p>
+<p> A friend definition, as in C++, is understood to be in the same
+ scope that the class is defined in, hence the scoping required for SWIG
+ directives, such as <tt>%ignore</tt>, is as follows:</p>
 <div class="code">
 <pre>
-
-%ignore bar::blah(Foo *f);
+%ignore bar::blah(Buddy *b);
+// Not: %ignore bar::Buddy::blah(Buddy *b);
 
 namespace bar {
-
-  class Foo {
+  class Buddy {
+    int val;
+    friend int blah(Buddy *b) { return b-&gt;val; }
   public:
-    ...
-    friend void blah(Foo *f);
     ...
   };
 }
 </pre>
 </div>
-<p> and a wrapper for the method 'blah' will not be generated.</p>
+<p> and a wrapper for <tt>blah</tt> will not be generated.</p>
+<h3><a name="SWIGPlus_friend_function_declarations">6.9.3 Friend
+ function declarations</a></h3>
+<p> A C++ class can specify friends via friend function declarations.
+ These functions are allowed access to the private and protected members
+ of a class. This is pure C++ functionality and these friend function
+ declarations are hence quietly ignored by SWIG and do not result in any
+ wrappers. Well, not always! The C++ rules for friends that SWIG needs
+ to follow are not that simple. Technically, only qualified function
+ declarations are silently ignored by SWIG. Below are some examples of
+ qualified friend declarations in <tt>A</tt> that are quietly ignored:</p>
+<div class="code">
+<pre>
+struct B {
+  int f();
+  B();
+  ~B();
+  ...
+};
+
+int g();
+
+class A {
+public:
+  // The following friend function-declarations are silently ignored (including constructor and destructor friends)
+  friend B::B();
+  friend B::~B();
+  friend int B::f();
+  friend int ::g();
+  ...
+};
+</pre>
+</div>
+<p> In the example above, if SWIG parses the struct <tt>B</tt> and
+ global function <tt>g()</tt>, then they are of course wrapped as
+ normal.</p>
+<h3><a name="SWIGPlus_friends_unqualified">6.9.4 Unqualified friend
+ functions</a></h3>
+<p> Further clarification is required regarding both friend function
+ definitions and declarations. In C++, friend function definitions can
+ only be unqualified, whereas, friend function declarations can be
+ either unqualified or qualified. Qualified friend function declarations
+ are silently ignored by SWIG as covered in the previous section. SWIG
+ does generate wrappers for any unqualified friend functions that it
+ parses. This section goes through some of the complexities of wrapping
+ unqualified friend functions.</p>
+<p> Consider an unqualified friend function definition:</p>
+<div class="code">
+<pre>
+class Chum {
+  int val;
+  friend int blah() { Chum c; c.private_function(); return c.val; }
+  void private_function();
+public:
+  ...
+};
+</pre>
+</div>
+<p> The <tt>Chum::blah()</tt> friend is very similar to the <tt>
+Buddy::blah(Buddy *)</tt> friend presented earlier. However, the
+ generated code to call <tt>blah()</tt> may not compile unlike the code
+ to call <tt>blah(Buddy *)</tt>. The compiler error will be something
+ like:<div class="shell">
+<pre>
+error: 'blah' was not declared in this scope
+</pre>
+</div></p>
+<p> The reason one works and the other doesn't is due to the rules
+ around unqualified friend definitions/declarations. Broadly, friends
+ are not visible for lookup except via argument dependent lookup that
+ considers the class that the friend is defined/declared in, unless
+ there is a<i> matching declaration</i> at namespace scope. This will
+ probably only make sense if you are conversant with this C++ concept,
+ which is covered quite well at <a href="https://en.cppreference.com/w/cpp/language/adl">
+Argument-dependent lookup</a>. In our examples, <tt>blah(Buddy *)</tt>
+ is visible via argument dependent lookup, but <tt>blah()</tt> is not.
+ The solution is thus to provide a<i> matching declaration</i> in order
+ to make the function visible to the compiler. Simply add:</p>
+<div class="code">
+<pre>
+int blah();
+</pre>
+</div>
+<p> SWIG does<b> not</b> have to parse it. In all likelihood, your code
+ already has the<i> matching declaration</i> as it is required in order
+ for the friend function definition to be usable from pure C++ code.</p>
+<p> The same potential problem applies to unqualified friend function
+ declarations, such as:</p>
+<div class="code">
+<pre>
+class Mate {
+  int val;
+  friend int blah(); // Unqualified friend function declaration
+  void private_function();
+public:
+  ...
+};
+</pre>
+</div>
+<p> Again, the actual function declaration needs to be visible to the
+ compiler. Or just the actual function definition as shown below. This
+ must be defined in the same scope as <tt>Mate</tt>. Of course the
+ function definition is necessary in order to avoid linking issues too.</p>
+<div class="code">
+<pre>
+int blah() { Mate m; m.private_function(); return m.val; }
+</pre>
+</div>
 <h2><a name="SWIGPlus_nn18">6.10 References and pointers</a></h2>
 <p> C++ references are supported, but SWIG transforms them back into
  pointers. For example, a declaration like this :</p>
@@ -10365,8 +10517,8 @@ namespace B {
  resembles this:</p>
 <div class="shell">
 <pre>
-example.i:26. Error. 'foo' is multiply defined in the generated target language module.
-example.i:23. Previous declaration of 'foo'
+example.i:26: Error: 'foo' is multiply defined in the generated target language module.
+example.i:23: Error: Previous declaration of 'foo'
 </pre>
 </div>
 <p> To resolve this error, simply use <tt>%rename</tt> to disambiguate
@@ -23580,18 +23732,15 @@ example.i(4) : Syntax error in input(1).
  ignored.</li>
 <li>303. <tt>%extend</tt> defined for an undeclared class '<em>name</em>
 '.</li>
+<li>304. Unsupported constant value (ignored).</li>
 <li>305. Bad constant value (ignored).</li>
-<li>306. '<em>identifier</em>' is private in this context.</li>
 <li>308. Namespace alias '<em>name</em>' not allowed here. Assuming '<em>
 name</em>'</li>
 <li>309. [private | protected] inheritance ignored.</li>
-<li>310. Template '<em>name</em>' was already wrapped as '<em>name</em>'
- (ignored)</li>
 <li>312. Unnamed nested class not currently supported (ignored).</li>
 <li>313. Unrecognized extern type &quot;<em>name</em>&quot; (ignored).</li>
 <li>314. '<em>identifier</em>' is a<em> lang</em> keyword.</li>
 <li>315. Nothing known about '<em>identifier</em>'.</li>
-<li>316. Repeated %module directive.</li>
 <li>317. Specialization of non-template '<em>name</em>'.</li>
 <li>318. Instantiation of template '<em>name</em>' is ambiguous,
  instantiation<em> templ</em> used, instantiation<em> templ</em>
@@ -23610,6 +23759,11 @@ name</em>'</li>
 <li>326. Deprecated %extend name used - the<em> kind</em> name '<em>name</em>
 ' should be used instead of the typedef name '<em>name</em>'.</li>
 <li>327. Extern template ignored.</li>
+<li>328. Value assigned to<em> name</em> not used due to limited parsing
+ implementation.</li>
+<li>329. Using declaration '<em>name</em>' for inheriting constructors
+ uses base '<em>name</em>' which is not an immediate base of '<em>name</em>
+'.</li>
 <li>340. Lambda expressions and closures are not fully supported yet.</li>
 <li>344. Unable to deduce decltype for '<em>expr</em>'.</li>
 <li>345. Unable to deduce auto return type for '<em>name</em>'
@@ -23662,6 +23816,8 @@ name</em>'</li>
 <li>393. operator&amp; ignored (unary).</li>
 <li>394. operator new[] ignored.</li>
 <li>395. operator delete[] ignored.</li>
+<li>396. operator*() ignored.</li>
+<li>397. operator&lt;=&gt; delete[] ignored.</li>
 </ul>
 <h3><a name="Warnings_nn13">19.9.4 Types and typemaps (400-499)</a></h3>
 <ul>
@@ -23671,10 +23827,13 @@ name</em>'</li>
 <li>404. Duplicate template instantiation of '<em>type</em>' with name '<em>
 name</em>' ignored, previous instantiation of '<em>type</em>' with name
  '<em>name</em>'.</li>
+<li>405. Method with rvalue ref-qualifier<em> name</em> ignored.</li>
 <li>450. Reserved</li>
 <li>451. Setting const char * variable may leak memory.</li>
 <li>452. Reserved</li>
 <li>453. Can't apply (pattern). No typemaps are defined.</li>
+<li>454. Setting a pointer/reference variable may leak memory</li>
+<li>455. Setting a const wchar_t * variable may leak memory.</li>
 <li>460. Unable to use type<em> type</em> as a function argument.</li>
 <li>461. Unable to use return type<em> type</em> in function<em> name</em>
 .</li>
@@ -23702,6 +23861,7 @@ name</em>' ignored, previous instantiation of '<em>type</em>' with name
  optimal attribute usage in the out typemap.</li>
 <li>476. Initialization using std::initializer_list.</li>
 <li>477. No directorthrows typemap defined for<em> type</em></li>
+<li>490. Fragment '<em>name</em>' not found.</li>
 </ul>
 <h3><a name="Warnings_nn14">19.9.5 Code generation (500-559)</a></h3>
 <ul>
@@ -27887,7 +28047,7 @@ public class ExtendMe : global::System.IDisposable {
 <h3><a name="CSharp_enum_underlying_type">23.9.9 Underlying type for
  enums</a></h3>
 <p> C# enums use int as the underlying type for each enum item, unless
- there is a C++11 enum base specifiying the underlying C++ enum type. If
+ there is a C++11 enum base specifying the underlying C++ enum type. If
  there is a C++ base enum then this is automatically converted to the
  equivalent C# integral type. If you wish to change the underlying type
  to something else, then use the <tt>csbase</tt> typemap. For example
@@ -41492,7 +41652,7 @@ end
 <!-- INDEX -->
 <p> Octave is a high-level language intended for numerical programming
  that is mostly compatible with MATLAB. More information can be found at
- <a href="https://www.gnu.org/software/octave/">Octave web site</a>.</p>
+ <a href="https://octave.org/">Octave web site</a>.</p>
 <p> This chapter is intended to give an introduction to using the
  module. You should also read the SWIG documentation that is not
  specific to Octave. Also, there are a dozen or so examples in the
@@ -41500,7 +41660,8 @@ end
  (Examples/test-suite and Examples/test-suite/octave).</p>
 <h2><a name="Octave_nn2">30.1 Preliminaries</a></h2>
 <p> SWIG is regularly tested against the following versions of Octave:
- 3.8, 4.0, 4.2.</p>
+ 5.2, 6.4. SWIG 4.2.1 has also been manually tested with 7.3, 8.4 and
+ 9.0.</p>
 <p> Every effort is made to maintain backward compatibility with older
  versions of Octave. This cannot be guaranteed however, as in recent
  times new Octave releases have required nontrivial updates to SWIG,
@@ -41528,12 +41689,6 @@ extern double Foo; </pre>
 <div class="shell">
 <pre>$ swig -octave -c++ -o example_wrap.cpp example.i </pre>
 </div>
-<p> This creates a C++ source file &quot;example_wrap.cpp&quot;. A C++ file is
- generated even when wrapping C code as Octave is itself written in C++
- and requires wrapper code to be in the same language. The generated C++
- source file contains the low-level wrappers that need to be compiled
- and linked with the rest of your C/C++ application (in this case, the
- gcd implementation) to create an extension module.</p>
 <h3><a name="Octave_nn4">30.2.1 Command-line options</a></h3>
 <p> The swig command line has a number of options you can use, like to
  redirect its output. Use <tt>swig -help</tt> to learn about these.
@@ -42256,7 +42411,12 @@ octave-side routine called
  whether Octave or the C/C++ code owns the object. If Octave owns it,
  any destructors will be called when the reference count reaches zero.
  If the C/C++ side owns the object, then destructors will not be called
- when the reference count goes to zero.</p>
+ when the reference count goes to zero. As noted above, <tt>swig_ref</tt>
+ represents a reference counted pointer to a C/C++-side object. It also
+ contains a flag indicating whether Octave or the C/C++ code owns the
+ object. If Octave owns it, any destructors will be called when the
+ reference count reaches zero. If the C/C++ side owns the object, then
+ destructors will not be called when the reference count goes to zero.</p>
 <p> For example,<div class="code">
 <pre>
 %inline {
@@ -57763,7 +57923,7 @@ guide</a> describes the Scilab external modules structure and files, in
 <p><b> Caution: This chapter is under repair!</b></p>
 <p> This chapter discusses SWIG's support of Tcl. Since SWIG 4.1.0, Tcl
  8.4 or a later release is required. Prior to that earlier Tcl 8.x
- releases were also supported.</p>
+ releases were also supported. Tcl 9.0 is supported since SWIG 4.2.1.</p>
 <h2><a name="Tcl_nn2">37.1 Preliminaries</a></h2>
 <p> To build a Tcl module, run SWIG using the <tt>-tcl</tt> or <tt>-tcl8</tt>
  option :</p>
@@ -60411,16 +60571,16 @@ here</a>.</p>
 <p> If you're not familiar with the Objective Caml language, you can
  visit <a href="https://ocaml.org/">The Ocaml Website</a>.</p>
 <h2><a name="Ocaml_nn2">39.1 Preliminaries</a></h2>
-<p> SWIG is compatible with OCaml 3.12.0 and above. Given the choice,
- you should use the latest stable release. The SWIG Ocaml module has
- been tested on Linux (x86, PPC, Sparc) and Cygwin on Windows. The best
- way to determine whether your system will work is to compile the
- examples and test-suite which come with SWIG. You can do this by
- running <tt>make check</tt> from the SWIG root directory after
- installing SWIG. The Ocaml module has been tested using the system's
- dynamic linking (the usual -lxxx against libxxx.so, as well as with
- Gerd Stolpmann's <a href="http://download.camlcity.org/download/">Dl
- package</a>. The ocaml_dynamic and ocaml_dynamic_cpp targets in the
+<p> SWIG is known to be compatible with OCaml 4.13.1 and above - older
+ versions are not regularly tested. Given the choice, you should use the
+ latest stable release. The SWIG Ocaml module has been tested on Linux
+ (x86, PPC, Sparc) and Cygwin on Windows. The best way to determine
+ whether your system will work is to compile the examples and test-suite
+ which come with SWIG. You can do this by running <tt>make check</tt>
+ from the SWIG root directory after installing SWIG. The Ocaml module
+ has been tested using the system's dynamic linking (the usual -lxxx
+ against libxxx.so, as well as with Gerd Stolpmann's <a href="http://download.camlcity.org/download/">
+Dl package</a>. The ocaml_dynamic and ocaml_dynamic_cpp targets in the
  file Examples/Makefile illustrate how to compile and link SWIG modules
  that will be loaded dynamically. This has only been tested on Linux so
  far.</p>
