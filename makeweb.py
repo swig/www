@@ -11,7 +11,7 @@ import stat
 import subprocess
 import re
 import sys
-import feedparser # install using: pip install feedparser
+import feedparser # install using: 1) sudo apt install python3-feedparser or 2) pip3 install feedparser
 
 if sys.version_info[0:2] < (3, 0):
     raise RuntimeError("Python 3 required")
