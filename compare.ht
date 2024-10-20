@@ -3,13 +3,14 @@ SWIG Features
 <h2>SWIG Features</h2>
 
 <p>
-This information is based on the SWIG-4.2.0 release.
+This information is based on the SWIG-4.3.0 release.
 
 <h3>Code Generation</h3>
 
 SWIG currently generates wrapper code for the following different target languages:
 
 <ul>
+<li>C
 <li>C#
 <li>D
 <li>Go
