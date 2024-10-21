@@ -71,9 +71,10 @@ Support for the Go language was added in swig-2.0.1.<br>
 Support for D was added in swig-2.0.2.<br>
 Support for Javascript Core/WebKit and V8 was added in swig-3.0.1.<br>
 Support for Scilab was added in swig-3.0.5.<br>
-Support for Allegrocl, CFFI, Chicken, CLISP, Modula3, S-EXP, UFFI and Pike was removed in swig-4.0.0.<br> <p>
+Support for Allegrocl, CFFI, Chicken, CLISP, Modula3, S-EXP, UFFI and Pike was removed in swig-4.0.0.<br>
 Support for Javascript Node.js was added in swig-4.0.0.<br>
 
+<p>
 Any newer versions of these languages should be assumed to be
 supported unless otherwise indicated.   
 
