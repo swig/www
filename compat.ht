@@ -56,7 +56,7 @@ The following languages are also supported in swig-1.3.6 onwards.
 <ul>
 <li> Java JDK 1.1 and newer.
 <li> Ruby.
-<li> Mzscheme.
+<li> MzScheme.
 </ul>
 
 PHP support was added in swig-1.3.11.<br>
@@ -69,9 +69,10 @@ Support for R was added in swig-1.3.30.<br>
 Support for Octave was added in swig-1.3.35.<br>
 Support for the Go language was added in swig-2.0.1.<br>
 Support for D was added in swig-2.0.2.<br>
-Support for Javascript was added in swig-3.0.1.<br>
+Support for Javascript Core/WebKit and V8 was added in swig-3.0.1.<br>
 Support for Scilab was added in swig-3.0.5.<br>
 Support for Allegrocl, CFFI, Chicken, CLISP, Modula3, S-EXP, UFFI and Pike was removed in swig-4.0.0.<br> <p>
+Support for Javascript Node.js was added in swig-4.0.0.<br>
 
 Any newer versions of these languages should be assumed to be
 supported unless otherwise indicated.   
