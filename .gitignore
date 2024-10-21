@@ -2,6 +2,7 @@
 /*.html
 /*.php
 *.bak
+*.tmp
 Doc*/chapters
 Doc*/Makefile
 Doc*/README
