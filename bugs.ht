@@ -8,6 +8,7 @@ view all development activity such as code changes and issues.
 
 <p>
 Bugs can be submitted as an issue on the <a href="https://github.com/swig/swig/issues">SWIG Github issue tracker</a>.
+Please only raise a new issue if you can provide all the details to recreate it, ideally with a small and complete cut down test.
 Users who have found a bug and fixed it themselves can submit a patch as a 
 <a href="https://github.com/swig/swig/pulls">SWIG Github pull request</a>.
 Patches are very welcome and encouraged as user contributions are the primary way that SWIG evolves and improves.
@@ -15,14 +16,14 @@ The SWIG developers try to give top priority to patches.
 Note that submitting issues and pull requests requires a Github account, but simply browsing anything on Github does not.
 
 <p>
-Modifications to this website can be submitted as a pull request to the separate <a href="https://github.com/swig/www">SWIG Github www project</a>.
+Modifications to this website can be submitted as a pull request to the separate <a href="https://github.com/swig/www">SWIG www Github project</a>.
 
 <p>
 SWIG is an all volunteer effort and so bug reports may not 
 receive an immediate response.
 If you have an urgent problem or if you are not sure you have found a bug, please
 post a message to the <a href="mail.html">swig</a> mailing list
-instead. 
+instead.
 
 <p>
 Development used to be based on <a href="https://sourceforge.net/projects/swig/">Sourceforge</a>.

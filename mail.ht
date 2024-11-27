@@ -1,22 +1,50 @@
 SWIG Mailing Lists
 
-<p><img src="images/mail.png" alt="Mail">
+<table summary="Community Support"> <tr>
+<td bgcolor="#000000" align=center><font color="#ffffff"><b>Community Support</b></font></td>
+</tr> </table>
 
 <p>
 
-There are a number of mailing lists available. Please use them for any queries related to the use or development of SWIG.
+SWIG is an all volunteer project with typical open source community support.
+There are a number of mailing lists available. These have traditionally been used for any queries related to the use or development of SWIG.
+The popularity of mailing lists has declined in recent years and many users have started to use Github discussions and Stack Overflow. For general help and support, we suggest you consider one of the following:
+
+<ol>
+<li>
+<a href="https://stackoverflow.com/questions/tagged/swig">Stack Overflow</a>. The link takes you straight to the all the questions with the [swig] tag. You may want to add language tags, such as [ruby], [python] etc to narrow down the scope.
+</li>
+<li>
+<a href="https://github.com/swig/swig/discussions/">SWIG Github Discussions</a> for discussing any kind of SWIG related topic.
+</li>
+<li>
+<a href="https://github.com/swig/swig/issues/">SWIG Github Issues</a> if you have found a bug. Please raise a new issue if you can provide a cut down test case with all the details to recreate it. See <a href="bugs.html">Bugs and Patches</a> for more details.
+</li>
+<li>
+<a href="https://github.com/swig/swig/pulls/">SWIG Github Pull Requests</a> if you would like to contribute a patch to improve SWIG. More details at <a href="bugs.html">Bugs and Patches</a>.
+</li>
+<li>
+The <a href="https://sourceforge.net/p/swig/mailman/swig-user/">swig-user</a> mailing list for general user queries, more details below.
+</li>
+<li>
+The <a href="https://sourceforge.net/p/swig/mailman/swig-devel/">swig-devel</a> mailing list for SWIG development related discussions, more details below.
+</li>
+</ol>
+
+<table summary="Mailing Lists"> <tr>
+<td bgcolor="#000000" align=center><font color="#ffffff"><b>Mailing Lists</b></font></td>
+</tr> </table>
+
+<!--
+<p><img src="images/mail.png" alt="Mail">
+-->
 
 <p>
 The mailing lists are subscriber only lists, so you <b>must subscribe</b> to the relevant list in order to post to that list. 
 </p>
 
 <p>
-The mailing lists are set with a very high level of spam rejection, meaning occasionally some SWIG user's email postings will be discarded. Emails classified as spam are quietly discarded, so please check the archives if you are unsure as to whether or not your email was successfully posted. Note that only plain text emails should be sent, that is html, rtf etc formatted emails may be quietly discarded. 
-</p>
-
-<p>
-Note that in November 2005 new mailing lists replaced the original mailing lists.
-Details of <a href="#search_lists">searching or browsing</a> both the new and old lists are given below.
+The mailing lists are set with a very high level of spam rejection, meaning occasionally some SWIG user's email postings will be discarded. Emails classified as spam are quietly discarded, so please check the archives if you are unsure as to whether or not your email was successfully posted. Note that plain text emails are preferred as html, rtf etc formatted emails have been known to be quietly discarded.
 </p>
 
 <p>
@@ -25,8 +53,8 @@ To subscribe to any of the mailing lists or view the archives, use the links on 
 
 <table BORDER="1" summary="Mailing lists">
 <tr>
-<td><font size="+1">List</font></td>
-<td><font size="+1">Purpose</font></td>
+<td>List</td>
+<td>Purpose</td>
 </tr>
 
 <tr>
@@ -60,6 +88,11 @@ The list also contains historic Subversion commits.
 
 </table>
 
+<p>
+Note that these mailing lists began use in November 2005 and replaced the older original mailing lists.
+Details of <a href="#search_lists">searching or browsing</a> both the current and original lists are given below.
+</p>
+
 <h2><a name="top_bottom_posting">Top posting and bottom posting</h2>
 <p>
 Replies to emails can be either <a href="http://en.wikipedia.org/wiki/Top-posting/#Bottom-posting">bottom or top posted</a>.
@@ -70,15 +103,13 @@ Please don't mix top and bottom posts in one thread, stick with whichever approa
 
 <p>
 For those who are new to mailing lists, there are many articles on the subject, for example,
-<a href="http://www.caliburn.nl/topposting.html">Bottom vs. top posting and quotation style on Usenet</a> and
-<a href="http://www.cs.tut.fi/~jkorpela/usenet/brox.html">Why is Bottom-posting better than Top-posting/</a>.
+<a href="http://www.caliburn.nl/topposting.html">Bottom vs. top posting and quotation style on Usenet</a>.
 
 </p>
 
-<h2><a name="search_lists">Searching and browsing the mailing lists</h2>
+<h2><a name="search_lists">Searching and browsing the mailing lists archives</h2>
 <p>
-The mailing lists can be searched in various different ways.
-The links below are shortcuts to the archives from where you can browse the archives of postings from November 2005 onwards.
+The current SourceForge mailing lists began use towards the end of 2005 and are listed below.
 </p>
 
 <p>
@@ -91,15 +122,61 @@ The links below are shortcuts to the archives from where you can browse the arch
 
 
 <p>
-The lists at Sourceforge can be searched directly on the <a href="https://sourceforge.net/p/swig/mailman/">Sourceforge SWIG mailing lists page</a>, but the recommended way to search is detailed below.
+The lists at Sourceforge can be searched directly on the <a href="https://sourceforge.net/p/swig/mailman/">Sourceforge SWIG mailing lists page</a>.
 </p>
+
+<p>
+The original mailing lists in use prior to November 2005 were hosted at the University of Chicago, but are no longer accessible using the original links.
+
+<p>
+<a href="http://www.cs.uchicago.edu/mailman/pipermail/swig">swig archives</a> - swig-user equivalent
+<br>
+<a href="http://www.cs.uchicago.edu/mailman/pipermail/swig-dev">swig-dev archives</a> - swig-devel equivalent
+<br>
+
+<p>
+However, these original mailing lists are partially archived by Gmane and include emails from around the year 2000 and later.
+Gmane combines the original equivalent and current mailing lists as described below.
+They can be read using an NNTP newsreader configured to use server <tt>news.gmane.io</tt> and the groups listed in the following table.
+</p>
+
+<table BORDER="1" summary="Gmane Newsgroups">
+<tr>
+<td>Group</td>
+<td>Mailing lists</td>
+</tr>
+
+<tr>
+<td>
+gmane.comp.programming.swig
+</td>
+<td>
+Combination of the original swig and current swig-user mailing lists
+</td>
+</tr>
+
+<tr>
+<td>
+gmane.comp.programming.swig.devel
+</td>
+<td>
+Combination of the original swig-dev and current swig-devel mailing lists
+</td>
+</tr>
+
+</table>
+<p>
+
+<!-- Gmane has disappeared
 
 <p>
 The original mailing lists in use prior to November 2005 are partially archived. 
 These old lists and the new lists can be searched at the same time using <a href="http://www.gmane.org">Gmane</a>:
 </p>
+-->
 
 <!-- SiteSearch Gmane -->
+<!--
 <FORM method=GET action="http://search.gmane.org">
 <TABLE bgcolor="#FFFFFF"><tr>
 <td>
@@ -111,6 +188,7 @@ These old lists and the new lists can be searched at the same time using <a href
 </font>
 </td></tr></TABLE>
 </FORM>
+-->
 <!-- SiteSearch Gmane -->
 
 <!-- no longer works as the University of Chicago has removed the mailing lists
@@ -147,6 +225,7 @@ border="0" ALT="Google"></A>
 </FORM>
 -->
 
+<!-- Gmane and Nabble have disappeared
 <p>
 The Gmane interface to the <a href="http://dir.gmane.org/gmane.comp.programming.swig">old swig and new swig-user mailing lists</a>
 and the <a href="http://dir.gmane.org/gmane.comp.programming.swig.devel"> old swig-dev and new swig-devel mailing lists</a> 
@@ -156,4 +235,4 @@ can also be used to browse online as if the list was a newsgroup. Note that the 
 <p>
 The swig-user mailing list can also be browsed and searched using <a href="http://www.nabble.com/SWIG-f3365.html">Nabble</a>.
 </p>
-
+-->
