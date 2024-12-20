@@ -57,13 +57,13 @@ extern char *get_time();
 
 <h3> Building a Tcl module </h3>
 
-At the UNIX prompt, type the following (shown for Linux, see the <a href="https://github.com/swig/swig/wiki/FAQ#shared-libraries">SWIG Wiki Shared Libraries FAQ</a> page for help with other operating systems):
+At the UNIX prompt, type the following (shown for Ubuntu, see the <a href="https://github.com/swig/swig/wiki/FAQ#shared-libraries">SWIG Wiki Shared Libraries FAQ</a> page for help with other operating systems):
 
 <blockquote>
 <pre>
 unix % swig -tcl example.i
-unix % gcc -fpic -c example.c example_wrap.c \
-       -I/usr/local/include 
+unix % gcc -fPIC -c example.c example_wrap.c \
+       -I/usr/include/tcl
 unix % gcc -shared example.o example_wrap.o -o example.so
 unix % tclsh
 % load ./example.so example
@@ -159,7 +159,7 @@ SWIG will also generate code for accessing C/C++ code from C# using PInvoke. Her
 
 <blockquote><pre>
 $ swig -csharp example.i
-$ gcc -c -fpic example.c example_wrap.c
+$ gcc -c -fPIC example.c example_wrap.c
 $ gcc -shared example.o  example_wrap.o   -o libexample.so
 $ mono-csc -out:runme.exe *.cs
 $ cat runme.cs
@@ -292,7 +292,7 @@ Now, compiling for Linux (Python):
 <blockquote>
 <pre>
 $ swig -python -c++ pair.i
-$ g++ -c -fpic pair_wrap.c -I/usr/include/python2.7
+$ g++ -c -fPIC pair_wrap.c -I/usr/include/python2.7
 $ g++ -shared pair_wrap.o -o _pair.so
 $ python
 Python 2.7.15 (default, Nov 12 2018, 14:31:15) 
