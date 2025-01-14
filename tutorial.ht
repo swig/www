@@ -34,7 +34,7 @@ char *get_time()
 
 <h3>Interface file </h3>
 
-Now, in order to add these files to your favorite language, you need to write an
+Now, in order to add these functions to your favorite language, you need to write an
 "interface file" which is the input to SWIG.  An interface file for these
 C functions might look like this :
 
