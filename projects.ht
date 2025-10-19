@@ -67,7 +67,7 @@ module that encapsulates the <a href="http://www.wxwidgets.org/">wxWidgets</a> G
 
 <li>
   <a href="http://www.quantlib.org/">QuantLib</a>
-  library for quantitative finance with ports for C#, Guile, Java, MzScheme, Perl, Python, and Ruby.
+  library for quantitative finance with ports for C#, Guile, Java, Perl, Python, and Ruby.
 </li>
 
 <li>

@@ -10,8 +10,7 @@ Javascript, Perl, PHP, Python, Tcl and Ruby. The list of
 <a href="compat.html#SupportedLanguages">supported languages</a> also includes 
 non-scripting languages such as C#, D, Go language,
 Java including Android, Lua, OCaml, Octave, Scilab and R.
-Also several interpreted and compiled Scheme implementations (Guile, MzScheme/Racket)
-are supported. SWIG is most
+Also the Guile Scheme implementation is supported. SWIG is most
 commonly used to create high-level interpreted or compiled programming
 environments, user interfaces, and as a tool for testing and prototyping C/C++ software. 
 SWIG is typically used to parse C/C++ interfaces and generate the 'glue code' required for the above target languages to call into the C/C++ code.

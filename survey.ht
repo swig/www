@@ -21,7 +21,6 @@ Which target languages will you be using SWIG for? Please select all that apply.
 <input name="langCSharp" type=checkbox value="1"> C# <br>
 <input name="langGuile" type=checkbox value="1"> Guile <br>
 <input name="langJava" type=checkbox value="1"> Java <br>
-<input name="langMzscheme" type=checkbox value="1"> MzScheme/Racket <br>
 <input name="langOcaml" type=checkbox value="1"> Ocaml <br>
 <input name="langPerl" type=checkbox value="1"> Perl <br>
 <input name="langPhp" type=checkbox value="1"> Php <br>

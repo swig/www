@@ -3,7 +3,7 @@ SWIG Features
 <h2>SWIG Features</h2>
 
 <p>
-This information is based on the SWIG-4.3.1 release.
+This information is based on the SWIG-4.4.0 release.
 
 <h3>Code Generation</h3>
 
@@ -18,7 +18,6 @@ SWIG currently generates wrapper code for the following different target languag
 <li>Java
 <li>Javascript
 <li>Lua
-<li>MzScheme/Racket
 <li>OCaml
 <li>Octave
 <li>Perl
