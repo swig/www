@@ -35,5 +35,5 @@ Recent News
     <?python rss_limit=10?>
 
 <p>
-<a href="news.php">More news</a>
+<a href="news.html">More news</a>
 
