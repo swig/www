@@ -41,9 +41,9 @@ makedocs:
 	cp $(WORKTREE)/LICENSE* Release/
 	cp $(WORKTREE)/RELEASENOTES Release/
 	cp $(WORKTREE)/README Release/
-	rm -rf Doc4.4
-	cp -rf $(WORKTREE)/Doc/Manual Doc4.4
-	rm Doc4.4/*.py
-	rm -f Doc4.4/*.bak
-	rm Doc4.4/chapters
-	rm Doc4.4/README
+	rm -rf Doc4.5
+	cp -rf $(WORKTREE)/Doc/Manual Doc4.5
+	rm Doc4.5/*.py
+	rm -f Doc4.5/*.bak
+	rm Doc4.5/chapters
+	rm Doc4.5/README
