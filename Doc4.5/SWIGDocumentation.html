@@ -2564,7 +2564,7 @@ body { font-family: serif; }
 </ul>
 <HR NOSHADE>
 <h1><a name="Sections">SWIG-4.5 Documentation</a></h1>
-<p> Last update : SWIG-4.5.0 (06 Aug 2026)</p>
+<p> Last update : SWIG-4.5.1 (04 Sep 2026)</p>
 <h2><a name="Sections_Sections">Sections</a></h2>
 <h3><a name="Sections_core_docs">SWIG Core Documentation</a></h3>
 <ul>
@@ -9498,6 +9498,24 @@ public:
 class Ham {
 public:
   void foo(int);      // Renamed to foo_i
+};
+</pre>
+</div>
+<p> An empty parameter list and <tt>(void)</tt> are not interchangeable
+ either, even though they declare the same function in C++. The
+ parameter list must be written exactly as it appears in the
+ declaration:</p>
+<div class="code">
+<pre>
+%rename(refresh_void) refresh(void);
+
+class Display {
+public:
+  void refresh();       // Stays 'refresh' (not renamed)
+};
+class Monitor {
+public:
+  void refresh(void);   // Renamed to refresh_void
 };
 </pre>
 </div></li>
@@ -18342,8 +18360,9 @@ double log(<b>Real nonnegative</b>);
 <div class="code">
 <pre>
 %typemap(in) (<b>char *str, int len</b>) {
-  $1 = PyString_AsString($input);   /* char *str */
-  $2 = PyString_Size($input);       /* int len   */
+  Py_ssize_t nbytes;
+  $1 = (char *) PyUnicode_AsUTF8AndSize($input, &amp;nbytes);  /* char *str */
+  $2 = (int) nbytes;                                       /* int len   */
 }
 ...
 int count(<b>char *str, int len</b>, char c);
@@ -18643,8 +18662,9 @@ Preprocessor and Typemaps</a>. Here are some examples of valid typemap
 %typemap(in) (char *str, int len),
              (char *buffer, int size)
 {
-  $1 = PyString_AsString($input);
-  $2 = PyString_Size($input);
+  Py_ssize_t nbytes;
+  $1 = (char *) PyUnicode_AsUTF8AndSize($input, &amp;nbytes);
+  $2 = (int) nbytes;
 }
 
 /* Typemap with extra pattern parameters */
@@ -20309,7 +20329,7 @@ $input            - The original input object passed.
   delete $1;
 }
 %typemap(out) string * {
-  $result = PyString_FromString($1-&gt;c_str());
+  $result = PyUnicode_FromString($1-&gt;c_str());
 }
 ...
 
@@ -20891,12 +20911,12 @@ int foo(int argc, char *argv[]);
   $2 = (char **) malloc(($1+1)*sizeof(char *));
   for (i = 0; i &lt; $1; i++) {
     PyObject *s = PyList_GetItem($input, i);
-    if (!PyString_Check(s)) {
+    if (!PyUnicode_Check(s)) {
       free($2);
       PyErr_SetString(PyExc_ValueError, &quot;List items must be strings&quot;);
       SWIG_fail;
     }
-    $2[i] = PyString_AsString(s);
+    $2[i] = (char *) PyUnicode_AsUTF8(s);
   }
   $2[i] = 0;
 }
@@ -20985,12 +21005,12 @@ int write(int fd, void *wbuffer, size_t len);
 <pre>
 // typemap for an outgoing buffer
 %typemap(in) (void *wbuffer, size_t len) {
-  if (!PyString_Check($input)) {
-    PyErr_SetString(PyExc_ValueError, &quot;Expecting a string&quot;);
+  if (!PyBytes_Check($input)) {
+    PyErr_SetString(PyExc_ValueError, &quot;Expecting a bytes object&quot;);
     SWIG_fail;
   }
-  $1 = (void *) PyString_AsString($input);
-  $2 = PyString_Size($input);
+  $1 = (void *) PyBytes_AsString($input);
+  $2 = PyBytes_Size($input);
 }
 
 // typemap for an incoming buffer
@@ -21015,7 +21035,7 @@ int write(int fd, void *wbuffer, size_t len);
     PyErr_SetFromErrno(PyExc_IOError);
     return NULL;
   }
-  $result = PyString_FromStringAndSize($1, result);
+  $result = PyBytes_FromStringAndSize($1, result);
   free($1);
 }
 </pre>
@@ -21025,20 +21045,20 @@ int write(int fd, void *wbuffer, size_t len);
  that was returned by the function. <tt>$result</tt> is the scripting
  language object being returned to the interpreter.).</p>
 <p> Now, in a script, you can write code that simply passes buffers as
- strings like this:</p>
+ bytes objects like this:</p>
 <div class="targetlang">
 <pre>
 &gt;&gt;&gt; f = example.open(&quot;Makefile&quot;)
 &gt;&gt;&gt; example.read(f, 40)
-'TOP        = ../..\nSWIG       = $(TOP)/.'
+b'TOP        = ../..\nSWIG       = $(TOP)/.'
 &gt;&gt;&gt; example.read(f, 40)
-'./swig\nSRCS       = example.c\nTARGET    '
+b'./swig\nSRCS       = example.c\nTARGET    '
 &gt;&gt;&gt; example.close(f)
 0
-&gt;&gt;&gt; g = example.open(&quot;foo&quot;, example.O_WRONLY | example.O_CREAT, 0644)
-&gt;&gt;&gt; example.write(g, &quot;Hello world\n&quot;)
+&gt;&gt;&gt; g = example.open(&quot;foo&quot;, example.O_WRONLY | example.O_CREAT, 0o644)
+&gt;&gt;&gt; example.write(g, b&quot;Hello world\n&quot;)
 12
-&gt;&gt;&gt; example.write(g, &quot;This is a test\n&quot;)
+&gt;&gt;&gt; example.write(g, b&quot;This is a test\n&quot;)
 15
 &gt;&gt;&gt; example.close(g)
 0
@@ -21861,11 +21881,11 @@ SWIG_TYPECHECK_SWIGOBJECT        5000
 }
 
 %typecheck(SWIG_TYPECHECK_CHAR) char {
-  $1 = (PyString_Check($input) &amp;&amp; (PyString_Size($input) == 1)) ? 1 : 0;
+  $1 = (PyUnicode_Check($input) &amp;&amp; (PyUnicode_GetLength($input) == 1)) ? 1 : 0;
 }
 
 %typecheck(SWIG_TYPECHECK_STRING) char * {
-  $1 = PyString_Check($input) ? 1 : 0;
+  $1 = PyUnicode_Check($input) ? 1 : 0;
 }
 
 %typemap(typecheck, precedence=SWIG_TYPECHECK_POINTER, noblock=1) SWIGTYPE * {
@@ -21901,8 +21921,8 @@ SWIG_TYPECHECK_SWIGOBJECT        5000
 <pre>
 // Typemap for a C++ string
 %typemap(in) std::string {
-  if (PyString_Check($input)) {
-    $1 = std::string(PyString_AsString($input));
+  if (PyUnicode_Check($input)) {
+    $1 = std::string(PyUnicode_AsUTF8($input));
   } else {
     SWIG_exception(SWIG_TypeError, &quot;string expected&quot;);
   }
@@ -23717,7 +23737,7 @@ int execlp(const char *path, const char *arg, ...);
 <pre>
 %typemap(in) (const char *fmt, ...) {
     $1 = &quot;%s&quot;;                                /* Fix format string to %s */
-    $2 = (void *) PyString_AsString($input);  /* Get string argument */
+    $2 = (void *) PyUnicode_AsUTF8($input);   /* Get string argument */
 };
 ...
 int printf(const char *fmt, ...);
@@ -23737,7 +23757,7 @@ wrap_printf() {
   int   result;
 
   arg1 = &quot;%s&quot;;
-  arg2 = (void *) PyString_AsString(arg2obj);
+  arg2 = (void *) PyUnicode_AsUTF8(arg2obj);
   ...
   result = printf(arg1, arg2);
   ...
@@ -23861,12 +23881,12 @@ https://www.sourceware.org/libffi/</a>). libffi is a library that allows
   argv = (char **) malloc(sizeof(char *)*(argc+1));
   for (i = 0; i &lt; argc; i++) {
     PyObject *o = PyTuple_GetItem(varargs, i);
-    if (!PyString_Check(o)) {
+    if (!PyUnicode_Check(o)) {
       free(argv);
       PyErr_SetString(PyExc_ValueError, &quot;Expected a string&quot;);
       SWIG_fail;
     }
-    argv[i] = PyString_AsString(o);
+    argv[i] = (char *) PyUnicode_AsUTF8(o);
   }
   argv[i] = NULL;
   $1 = (void *) argv;
@@ -23949,7 +23969,7 @@ int execlp(const char *path, const char *arg1, ...);
   int    i;
 
   /* Format string */
-  $1 = PyString_AsString($input);
+  $1 = PyUnicode_AsUTF8($input);
 
   /* Variable length arguments */
   argc = PyTuple_Size(varargs);
@@ -23962,9 +23982,9 @@ int execlp(const char *path, const char *arg1, ...);
     } else if (PyFloat_Check(o)) {
       argv[i].type = VT_DOUBLE;
       argv[i].val.dvalue = PyFloat_AsDouble(o);
-    } else if (PyString_Check(o)) {
+    } else if (PyUnicode_Check(o)) {
       argv[i].type = VT_POINTER;
-      argv[i].val.pvalue = (void *) PyString_AsString(o);
+      argv[i].val.pvalue = (void *) PyUnicode_AsUTF8(o);
     } else {
       free(argv);
       PyErr_SetString(PyExc_ValueError, &quot;Unsupported argument type&quot;);
@@ -52956,8 +52976,9 @@ extern int fact(Integer n);    // Above typemap is applied
 <div class="code">
 <pre>
 %typemap(in) (char *str, int len) {
-  $1 = PyString_AsString($input);
-  $2 = PyString_Size($input);
+  Py_ssize_t nbytes;
+  $1 = (char *) PyUnicode_AsUTF8AndSize($input, &amp;nbytes);
+  $2 = (int) nbytes;
 };
 
 int count(char c, char *str, int len);
@@ -53050,11 +53071,22 @@ int       PyFloat_Check(PyObject *);
 <p><b> Python String Functions</b></p>
 <div class="code">
 <pre>
-PyObject *PyString_FromString(char *);
-PyObject *PyString_FromStringAndSize(char *, lint len);
-int       PyString_Size(PyObject *);
-char     *PyString_AsString(PyObject *);
-int       PyString_Check(PyObject *);
+PyObject   *PyUnicode_FromString(const char *);
+PyObject   *PyUnicode_FromStringAndSize(const char *, Py_ssize_t len);
+const char *PyUnicode_AsUTF8(PyObject *);
+const char *PyUnicode_AsUTF8AndSize(PyObject *, Py_ssize_t *len);
+Py_ssize_t  PyUnicode_GetLength(PyObject *);
+int         PyUnicode_Check(PyObject *);
+</pre>
+</div>
+<p><b> Python Bytes Functions</b></p>
+<div class="code">
+<pre>
+PyObject   *PyBytes_FromString(const char *);
+PyObject   *PyBytes_FromStringAndSize(const char *, Py_ssize_t len);
+Py_ssize_t  PyBytes_Size(PyObject *);
+char       *PyBytes_AsString(PyObject *);
+int         PyBytes_Check(PyObject *);
 </pre>
 </div>
 <p><b> Python List Functions</b></p>
@@ -53108,17 +53140,51 @@ PyObject* PyDict_Items(PyObject *p);
 <p><b> Python File Conversion Functions</b></p>
 <div class="code">
 <pre>
-PyObject *PyFile_FromFile(FILE *f);
-FILE     *PyFile_AsFile(PyObject *);
-int       PyFile_Check(PyObject *);
+int PyObject_AsFileDescriptor(PyObject *);
 </pre>
 </div>
+<p> Python 3 file objects are not built on <tt>FILE *</tt>, so there is
+ no equivalent of the Python 2 <tt>PyFile_FromFile</tt> and <tt>
+PyFile_AsFile</tt> functions. A file descriptor obtained with <tt>
+PyObject_AsFileDescriptor</tt> can be turned into a <tt>FILE *</tt> with
+ <tt>fdopen</tt>, but the resulting stream and the Python file object
+ then have separate buffers.</p>
 <p><b> Abstract Object Interface</b></p>
 <div class="code">
 <pre>
 write me
 </pre>
 </div>
+<p><b> Compatibility note:</b> SWIG-4.5.0 removed the Python 2 C API
+ compatibility macros that earlier versions defined in the generated
+ code for use by typemaps. A typemap still using one of these has to be
+ changed to call the Python 3 C API directly. Each macro is listed below
+ with the Python 3 API it expanded to:</p>
+<div class="code">
+<pre>
+PyClass_Check               PyObject_IsInstance
+PyInt_Check                 PyLong_Check
+PyInt_AsLong                PyLong_AsLong
+PyInt_FromLong              PyLong_FromLong
+PyInt_FromSize_t            PyLong_FromSize_t
+PyString_Check              PyBytes_Check
+PyString_FromString         PyUnicode_FromString
+PyString_Format             PyUnicode_Format
+PyString_AsString           PyBytes_AsString
+PyString_Size               PyBytes_Size
+PyString_InternFromString   PyUnicode_InternFromString
+Py_TPFLAGS_HAVE_CLASS       Py_TPFLAGS_BASETYPE
+_PyLong_FromSsize_t         PyLong_FromSsize_t
+SWIG_Python_str_FromFormat  PyUnicode_FromFormat
+SWIG_Python_str_FromChar    PyUnicode_FromString
+</pre>
+</div>
+<p> Note that <tt>PyString_Check</tt>, <tt>PyString_AsString</tt> and <tt>
+PyString_Size</tt> expanded to the <tt>PyBytes_*</tt> functions and so
+ operated on a <tt>bytes</tt> object rather than a <tt>str</tt>. A
+ typemap that should accept a <tt>str</tt> needs the corresponding <tt>
+PyUnicode_*</tt> function instead, such as <tt>PyUnicode_AsUTF8</tt> in
+ place of <tt>PyString_AsString</tt>.</p>
 <h2><a name="Python_nn58">33.9 Typemap Examples</a></h2>
 <p> This section includes a few examples of typemaps. For more examples,
  you might look at the files &quot;<tt>python.swg</tt>&quot; and &quot;<tt>typemaps.i</tt>
@@ -53160,8 +53226,8 @@ int foo(int argc, char **argv);
     $2 = (char **) malloc(($1+1)*sizeof(char *));
     for (i = 0; i &lt; $1; i++) {
       PyObject *o = PyList_GetItem($input, i);
-      if (PyString_Check(o)) {
-        $2[i] = PyString_AsString(PyList_GetItem($input, i));
+      if (PyUnicode_Check(o)) {
+        $2[i] = (char *) PyUnicode_AsUTF8(o);
       } else {
         PyErr_SetString(PyExc_TypeError, &quot;list must contain strings&quot;);
         SWIG_fail;
@@ -53574,7 +53640,7 @@ class Bike(object):
 // A reference to the parent class is added to ensure the underlying C++
 // object is not deleted while the item is in use
 %typemap(ret) Wheel&amp; getWheel {
-  PyObject *bike_reference_string = SWIG_Python_str_FromChar(&quot;__bike_reference&quot;);
+  PyObject *bike_reference_string = PyUnicode_FromString(&quot;__bike_reference&quot;);
   PyObject_SetAttr($result, bike_reference_string, $self);
   Py_DecRef(bike_reference_string);
 }
@@ -53600,7 +53666,7 @@ bike_reference_init</tt> typemap generates code into the &quot;init&quot; sectio
 %fragment(&quot;bike_reference_function&quot;, &quot;header&quot;, fragment=&quot;bike_reference_init&quot;) {
 
 static PyObject *bike_reference() {
-  static PyObject *bike_reference_string = SWIG_Python_str_FromChar(&quot;__bike_reference&quot;);
+  static PyObject *bike_reference_string = PyUnicode_FromString(&quot;__bike_reference&quot;);
   return bike_reference_string;
 }
 
@@ -57751,7 +57817,7 @@ width="100%"><tbody>
   delete $1;
 }
 %typemap(out) string * {
-  $result = PyString_FromString($1-&gt;c_str());
+  $result = rb_str_new2($1-&gt;c_str());
 }
 ...
 

@@ -2805,6 +2805,26 @@ public:
 </pre>
 </div>
 
+<p>
+An empty parameter list and <tt>(void)</tt> are not interchangeable either, even though they declare the same function in C++.
+The parameter list must be written exactly as it appears in the declaration:
+</p>
+
+<div class="code">
+<pre>
+%rename(refresh_void) refresh(void);
+
+class Display {
+public:
+  void refresh();       // Stays 'refresh' (not renamed)
+};
+class Monitor {
+public:
+  void refresh(void);   // Renamed to refresh_void
+};
+</pre>
+</div>
+
 <li><p>
 The name matching rules also use default arguments for finer control when wrapping methods that have default arguments.
 Recall that methods with default arguments are wrapped as if the equivalent overloaded methods had been parsed
