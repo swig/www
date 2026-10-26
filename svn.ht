@@ -13,6 +13,8 @@ we are always looking for people to help out with various aspects of SWIG develo
 This can be anything from improving functionality in the SWIG source code or typemaps to writing documentation.
 
 <ul>
+<li><p>Read the <a href="https://github.com/swig/swig/blob/master/CONTRIBUTING.md">contributing guide</a> before opening a pull request.
+It covers building from Git, testing, CI etiquette and contributions made with the help of AI tools, which are welcome.
 <li><p>Send email to the <a href="mail.html">swig-devel</a> (SWIG Developers) mailing list
 if you are interested in getting involved in development.
 We'd love to hear some background knowledge and information about yourself and we can help you getting started.
@@ -23,7 +25,6 @@ We'd love to hear some background knowledge and information about yourself and w
 <p>
 Development versions of SWIG are available through a <a href="http://git-scm.com/">Git</a> repository hosted
 at <a href="https://github.com/swig/swig">Github</a>.
-There is also a <a href="http://subversion.apache.org/">Subversion</a> (SVN) interface provided by Github.
 
 <h3> Disclaimer </h3>
 
@@ -36,13 +37,17 @@ However, it is often in better shape than the last official release!
 To compile SWIG from the raw source available from Git, you will need the following tools:
 
 <ul>
-<li> Either Git or Subversion
-<li> Autoconf 2.58 or higher
+<li> Git
+<li> Autoconf 2.64 or higher
 <li> Automake 1.7.2 or higher
 <li> A working C and C++ compiler.
 <li> Bison 3.5.0 or higher (to generate the SWIG parser).
-<li> libpcre (regular expressions library dependency)
+<li> PCRE2 (regular expressions library dependency, not needed when configured with <tt>--without-pcre</tt>)
 </ul>
+
+<p>
+The <a href="https://github.com/swig/swig/wiki/Getting-Started">Getting Started</a> page on the SWIG wiki lists the
+packages to install on popular operating systems.
 
 <p>
 It is important to note that the Git repository does not include the C code
@@ -64,12 +69,7 @@ $ git clone https://github.com/swig/swig.git
 </pre>
 
 <p>
-You can also use Github as if it was a Subversion server, see <a href="https://github.com/blog/1178-collaborating-on-github-with-subversion">Collaborating on GitHub with Subversion</a>.
-The following should get you going with the latest:
-
-<pre>
-$ svn checkout https://github.com/swig/swig/trunk swig
-</pre>
+If you would like to contribute, <a href="https://help.github.com/articles/fork-a-repo">fork</a> the repository on Github first and clone your fork instead.
 
 
 <li><p>To build SWIG, follow the steps below and replace <tt>/some/directory</tt> with a directory that you have permission to write to:
@@ -96,12 +96,11 @@ More details on the <a href="Doc4.5/Extending.html#Extending_test_suite">SWIG te
 
 </ol>
 
-<b>Note:</b> The Git repository is read-only so the system will not 
-accept code modifications unless you are a registered SWIG developer.
-If you would like to see your modifications in the official SWIG distribution, you can
-<a href="https://help.github.com/articles/fork-a-repo">fork</a> the repository
-and send a <a href="https://help.github.com/articles/using-pull-requests">pull request</a>
-or submit a <a href="bugs.html">patch</a> to the patch tracker.
+<b>Note:</b> If you would like to see your modifications in the official SWIG distribution,
+send a <a href="https://help.github.com/articles/using-pull-requests">pull request</a> from your fork
+as described in the <a href="https://github.com/swig/swig/blob/master/CONTRIBUTING.md">contributing guide</a>.
+Please run the test suite locally first and then on your own fork's GitHub Actions, as each push to a pull request runs
+about 200 CI jobs that the whole project shares.
 
 <h3> Build Issues </h3>
 Here are some guidelines should you be experiencing problems building SWIG from Git.

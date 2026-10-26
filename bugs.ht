@@ -13,6 +13,8 @@ Users who have found a bug and fixed it themselves can submit a patch as a
 <a href="https://github.com/swig/swig/pulls">SWIG Github pull request</a>.
 Patches are very welcome and encouraged as user contributions are the primary way that SWIG evolves and improves.
 The SWIG developers try to give top priority to patches.
+Before opening a pull request, please read the <a href="https://github.com/swig/swig/blob/master/CONTRIBUTING.md">contributing guide</a>.
+It covers testing, CI etiquette and contributions made with the help of AI tools.
 Note that submitting issues and pull requests requires a Github account, but simply browsing anything on Github does not.
 
 <p>
